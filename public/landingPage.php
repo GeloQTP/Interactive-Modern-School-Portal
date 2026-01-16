@@ -5,7 +5,7 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Laragon College University</title>
-
+    <link rel="icon" type="image/png" href="../src/img/YellowElephant.png">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet">
 </head>
 
@@ -16,7 +16,7 @@
         <div class="container my-1">
             <a href="#" class="navbar-brand fw-bold d-flex align-items-center">
                 <span class="px-2"><img src="../src/img/YellowElephant.png" alt="yellow elephant logo" style="width: 50px; border-radius: 100px;"></span>
-                <span class="d-none d-sm-block">Laragon University</span>
+                <span class="d-none d-sm-block"><span class="text-warning">Laragon</span> University</span>
             </a>
 
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navmenu">
@@ -28,7 +28,7 @@
                     <li class="nav-item"><a class="nav-link" href="#">About</a></li>
                     <li class="nav-item"><a class="nav-link" href="#">Admission</a></li>
                     <li class="nav-item"><a class="nav-link" href="#">Events</a></li>
-                    <li class="nav-item"><a class="nav-link text-warning" href="#">Login</a></li>
+                    <li class="nav-item"><button class="btn btn-warning btn-md bg-dark text-warning">Login</button></li>
                 </ul>
             </div>
         </div>
