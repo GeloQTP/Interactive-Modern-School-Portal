@@ -1,3 +1,13 @@
+<?php
+
+// include('./includes/db_connect.php');
+
+if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+    $stmt = $conn->prepare("INSERT INTO newsletter_subscribers (email) VALUES (?)");
+}
+
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -7,6 +17,7 @@
     <title>Laragon College University</title>
     <link rel="icon" type="image/png" href="../src/img/YellowElephant.png">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="../styles/style.css">
 </head>
 
 <body>
@@ -28,14 +39,14 @@
                     <li class="nav-item"><a class="nav-link" href="#">About</a></li>
                     <li class="nav-item"><a class="nav-link" href="#">Admission</a></li>
                     <li class="nav-item"><a class="nav-link" href="#">Events</a></li>
-                    <li class="nav-item"><button class="btn btn-warning btn-md bg-dark text-warning">Login</button></li>
+                    <li class="nav-item"><button class="btn btn-warning bg-dark text-warning" onclick="window.location.href='loginPage.php'">Login</button></li>
                 </ul>
             </div>
         </div>
     </nav>
 
     <!-- HERO SECTION -->
-    <section class="bg-dark text-light py-5 mt-5">
+    <section class="bg-dark text-light py-5 p-lg-3 mt-5">
         <div class="container">
             <div class="d-flex align-items-center justify-content-center">
 
@@ -60,21 +71,26 @@
 
     <!-- NEWS LETTER SECTION -->
     <section class="bg-warning text-dark p-3">
-        <div class="container d-sm-flex flex-sm-row justify-content-between align-items-center">
-            <h4 class="mb-3 mb-sm-0">Subscribe to our Newsletter</h4>
-            <form class="d-flex" role="search">
-                <input class="form-control me-2" type="email" placeholder="Enter your email" aria-label="Search">
-                <button class="btn btn-dark" type="submit">Subscribe</button>
-            </form>
+        <div class="container">
+            <div class="d-md-flex justify-between-center align-items-center justify-content-between">
+                <h4 class="mb-3 mb-md-0">Subscribe to our Newsletter</h4>
+
+                <div class="input-group news-input">
+                    <input type="text" class="form-control" placeholder="Enter you Email" name="email">
+                    <button class="btn btn-lg bg-dark text-light" type="button">Submit</button>
+                </div>
+
+            </div>
         </div>
     </section>
 
     <!-- CARDS SECTION -->
     <section class="bg-dark py-5">
 
-        <h1 class="d-flex align-items-center justify-content-center bg-dark text-light mb-4">Our Courses</h1>
+        <h1 class="d-flex align-items-center justify-content-center bg-dark text-light mb-4">Our<span class="text-warning ms-2">Courses</span>
+        </h1>
 
-        <div class="container d-flex flex-column flex-sm-row justify-content-center align-items-center gap-4">
+        <div class="container d-flex flex-column flex-md-row justify-content-center align-items-center gap-4">
 
             <div class="card bg-dark" style="width: 18rem; border: 1px solid #444;">
                 <img src="../src/img/Group Learn.jpg" class="card-img-top" alt="...">
