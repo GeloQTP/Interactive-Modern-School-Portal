@@ -46,7 +46,7 @@
                     <p class="lead my-3">
                         Join a world-class university dedicated to academic excellence and innovation.
                     </p>
-                    <button class="btn btn-warning btn-lg">Enroll Now</button>
+                    <button class="btn btn-warning btn-lg" onclick="window.location.href='registrationPage.php'">Enroll Now</button>
                 </div>
                 <div class="col-sm-6 d-none d-sm-block">
                     <img src="../src/img/school.jpg"
@@ -72,12 +72,14 @@
     <!-- CARDS SECTION -->
     <section class="bg-dark py-5">
 
+        <h1 class="d-flex align-items-center justify-content-center bg-dark text-light mb-4">Our Courses</h1>
+
         <div class="container d-flex flex-column flex-sm-row justify-content-center align-items-center gap-4">
 
             <div class="card bg-dark" style="width: 18rem; border: 1px solid #444;">
                 <img src="../src/img/Group Learn.jpg" class="card-img-top" alt="...">
                 <div class="card-body">
-                    <h4 class="card-title text-light" style="text-decoration: underline; text-underline-offset: 4px;">Education</h4>
+                    <h4 class="card-title text-light" style="text-decoration: underline; text-underline-offset: 4px; text-decoration-thickness:1px;">Education</h4>
                     <p class="card-text text-light">Access comprehensive learning resources, courses, and academic materials designed to support your educational journey.</p>
                     <a href="#" class="btn btn-warning">Go somewhere</a>
                 </div>
@@ -86,7 +88,7 @@
             <div class="card bg-dark" style="width: 18rem; border: 1px solid #444;">
                 <img src="../src/img/Accounting+Clerk-3915942594.jpg" class="card-img-top" alt="...">
                 <div class="card-body">
-                    <h4 class="card-title text-light" style="text-decoration: underline; text-underline-offset: 4px;">Accounting</h4>
+                    <h4 class="card-title text-light" style="text-decoration: underline; text-underline-offset: 4px; text-decoration-thickness:1px">Accounting</h4>
                     <p class="card-text text-light">Master financial management and accounting principles through expert instruction and practical applications.</p>
                     <a href="#" class="btn btn-warning">Go somewhere</a>
                 </div>
@@ -95,8 +97,17 @@
             <div class="card bg-dark" style="width: 18rem; border: 1px solid #444;">
                 <img src="../src/img/Student-Programming.jpg" class="card-img-top" alt="...">
                 <div class="card-body">
-                    <h4 class="card-title text-light" style="text-decoration: underline; text-underline-offset: 4px;">Computer Science</h4>
+                    <h4 class="card-title text-light" style="text-decoration: underline; text-underline-offset: 4px; text-decoration-thickness:1px">Computer Science</h4>
                     <p class="card-text text-light">Learn coding and software development skills with hands-on projects and industry-standard technologies.</p>
+                    <a href="#" class="btn btn-warning">Go somewhere</a>
+                </div>
+            </div>
+
+            <div class="card bg-dark" style="width: 18rem; border: 1px solid #444;">
+                <img src="../src/img/YellowElephant.png" class="card-img-top" alt="...">
+                <div class="card-body">
+                    <h4 class="card-title text-light" style="text-decoration: underline; text-underline-offset: 4px; text-decoration-thickness:1px">Empty Card</h4>
+                    <p class="card-text text-light">Business Course Description.Business Course Description.Business Course Description.</p>
                     <a href="#" class="btn btn-warning">Go somewhere</a>
                 </div>
             </div>
