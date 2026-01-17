@@ -3,10 +3,8 @@
 include(__DIR__ . '/../../includes/db_connect.php'); // include the database connection file
 mysqli_report(MYSQLI_REPORT_STRICT | MYSQLI_REPORT_ALL);
 
-$errorMessage = $_SESSION['error_message'] ?? '';
-$_SESSION['error_message'] = ''; // Clear error message after displaying
-$successMessage = $_SESSION['success_message'] ?? '';
-$_SESSION['success_message'] = ''; // Clear success message after displaying
+$status = $_SESSION['status'] ?? '';
+$_SESSION['status'] = ''; // Clear status message after displaying
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
@@ -14,7 +12,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $email = filter_var($email, FILTER_VALIDATE_EMAIL);
 
     if (!$email) { // check for valid email
-        $_SESSION['error_message'] = 'Please enter a valid email address.';
+        $_SESSION['status'] = 'Please enter a valid email address.';
         header('Location: landingPage.php');
         exit;
     }
@@ -25,11 +23,11 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $stmt->execute();
         $stmt->close();
 
-        $_SESSION['success_message'] = 'Thank you for subscribing to our newsletter!';
+        $_SESSION['status'] = 'Thank you for subscribing to our newsletter!';
     } catch (mysqli_sql_exception $e) {
 
         // Log the error instead of showing it
-        $_SESSION['error_message'] = 'An error occurred while processing your subscription. Please try again later.';
+        $_SESSION['status'] = 'An error occurred while processing your subscription. Please try again later.';
     }
 }
 
@@ -48,6 +46,21 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 </head>
 
 <body>
+
+    <!-- TOASTS SECTION -->
+    <div class="toast-container position-fixed bottom-0 end-0 p-3">
+        <div id="liveToast" class="toast bg-dark text-light" role="alert" aria-live="assertive" aria-atomic="true">
+            <div class="toast-header">
+                <img src="../../src/img/YellowElephant.png" class="rounded me-2 img-fluid" alt="...">
+                <strong class="me-auto">Bootstrap</strong>
+                <small>11 mins ago</small>
+                <button type="button" class="btn-close" data-bs-dismiss="toast" aria-label="Close"></button>
+            </div>
+            <div class="toast-body">
+                <?= $status ?>
+            </div>
+        </div>
+    </div>
 
     <!-- NAVBAR -->
     <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
@@ -168,8 +181,16 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
 </body>
 
-<script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"></script>
 
+<script>
+    const statusMessage = <?= json_encode($status); ?>;
+    const toastLiveExample = document.getElementById('liveToast')
+
+    if (statusMessage === '') {
+        const toastBootstrap = bootstrap.Toast.getOrCreateInstance(toastLiveExample)
+        toastBootstrap.show()
+    }
 </script>
 
 </html>
