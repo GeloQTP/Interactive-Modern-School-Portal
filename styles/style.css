@@ -1,4 +1,6 @@
 @media(min-width: 768px) {
+
+    /*large (lg) in Bootsrap 5*/
     .news-input {
         width: 50%;
     }

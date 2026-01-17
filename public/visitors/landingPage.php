@@ -1,9 +1,36 @@
 <?php
 
-// include('./includes/db_connect.php');
+include(__DIR__ . '/../../includes/db_connect.php'); // include the database connection file
+mysqli_report(MYSQLI_REPORT_STRICT | MYSQLI_REPORT_ALL);
+
+$errorMessage = $_SESSION['error_message'] ?? '';
+$_SESSION['error_message'] = ''; // Clear error message after displaying
+$successMessage = $_SESSION['success_message'] ?? '';
+$_SESSION['success_message'] = ''; // Clear success message after displaying
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-    $stmt = $conn->prepare("INSERT INTO newsletter_subscribers (email) VALUES (?)");
+
+    $email = $_POST['email'] ?? '';
+    $email = filter_var($email, FILTER_VALIDATE_EMAIL);
+
+    if (!$email) { // check for valid email
+        $_SESSION['error_message'] = 'Please enter a valid email address.';
+        header('Location: landingPage.php');
+        exit;
+    }
+
+    try {
+        $stmt = $conn->prepare("INSERT INTO newsletter_subscribers (email) VALUES (?)");
+        $stmt->bind_param('s', $email);
+        $stmt->execute();
+        $stmt->close();
+
+        $_SESSION['success_message'] = 'Thank you for subscribing to our newsletter!';
+    } catch (mysqli_sql_exception $e) {
+
+        // Log the error instead of showing it
+        $_SESSION['error_message'] = 'An error occurred while processing your subscription. Please try again later.';
+    }
 }
 
 ?>
@@ -17,7 +44,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     <title>Laragon College University</title>
     <link rel="icon" type="image/png" href="../src/img/YellowElephant.png">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet">
-    <link rel="stylesheet" href="../styles/style.css">
+    <link rel="stylesheet" href="./../../styles/style.css">
 </head>
 
 <body>
@@ -25,8 +52,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     <!-- NAVBAR -->
     <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
         <div class="container my-1">
-            <a href="#" class="navbar-brand fw-bold d-flex align-items-center">
-                <span class="px-2"><img src="../src/img/YellowElephant.png" alt="yellow elephant logo" style="width: 50px; border-radius: 100px;"></span>
+            <a href="landingPage.php" class="navbar-brand fw-bold d-flex align-items-center">
+                <span class="px-2"><img src="./../../src/img/YellowElephant.png" alt="yellow elephant logo" style="width: 50px; border-radius: 100px;"></span>
                 <span class="d-none d-sm-block"><span class="text-warning">Laragon</span> University</span>
             </a>
 
@@ -57,10 +84,10 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                     <p class="lead my-3">
                         Join a world-class university dedicated to academic excellence and innovation.
                     </p>
-                    <button class="btn btn-warning btn-lg" onclick="window.location.href='registrationPage.php'">Enroll Now</button>
+                    <button class="btn btn-warning btn-lg" type="button" onclick="window.location.href='registrationPage.php'">Register Now</button>
                 </div>
                 <div class="col-sm-6 d-none d-sm-block">
-                    <img src="../src/img/school.jpg"
+                    <img src="./../../src/img/school.jpg"
                         class="img-fluid rounded shadow"
                         alt="Laragon University Campus Image">
                 </div>
@@ -75,10 +102,10 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             <div class="d-md-flex justify-between-center align-items-center justify-content-between">
                 <h4 class="mb-3 mb-md-0">Subscribe to our Newsletter</h4>
 
-                <div class="input-group news-input">
-                    <input type="text" class="form-control" placeholder="Enter you Email" name="email">
-                    <button class="btn btn-lg bg-dark text-light" type="button">Submit</button>
-                </div>
+                <form action="<?= htmlspecialchars($_SERVER['PHP_SELF']) ?>" method='POST' class="input-group news-input">
+                    <input type="text" class="form-control" placeholder="Enter your Email" name="email">
+                    <button class="btn btn-lg bg-dark text-light" type="submit">Submit</button>
+                </form>
 
             </div>
         </div>
@@ -87,13 +114,13 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     <!-- CARDS SECTION -->
     <section class="bg-dark py-5">
 
-        <h1 class="d-flex align-items-center justify-content-center bg-dark text-light mb-4">Our<span class="text-warning ms-2">Courses</span>
+        <h1 class="d-flex align-items-center justify-content-center bg-dark text-light mb-4">Our<span class="text-warning ms-2">Programs</span>
         </h1>
 
         <div class="container d-flex flex-column flex-md-row justify-content-center align-items-center gap-4">
 
             <div class="card bg-dark" style="width: 18rem; border: 1px solid #444;">
-                <img src="../src/img/Group Learn.jpg" class="card-img-top" alt="...">
+                <img src="./../../src/img/Group Learn.jpg" class="card-img-top" alt="...">
                 <div class="card-body">
                     <h4 class="card-title text-light" style="text-decoration: underline; text-underline-offset: 4px; text-decoration-thickness:1px;">Education</h4>
                     <p class="card-text text-light">Access comprehensive learning resources, courses, and academic materials designed to support your educational journey.</p>
@@ -102,7 +129,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             </div>
 
             <div class="card bg-dark" style="width: 18rem; border: 1px solid #444;">
-                <img src="../src/img/Accounting+Clerk-3915942594.jpg" class="card-img-top" alt="...">
+                <img src="./../../src/img/Accounting+Clerk-3915942594.jpg" class="card-img-top" alt="...">
                 <div class="card-body">
                     <h4 class="card-title text-light" style="text-decoration: underline; text-underline-offset: 4px; text-decoration-thickness:1px">Accounting</h4>
                     <p class="card-text text-light">Master financial management and accounting principles through expert instruction and practical applications.</p>
@@ -111,7 +138,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             </div>
 
             <div class="card bg-dark" style="width: 18rem; border: 1px solid #444;">
-                <img src="../src/img/Student-Programming.jpg" class="card-img-top" alt="...">
+                <img src="./../../src/img/Student-Programming.jpg" class="card-img-top" alt="...">
                 <div class="card-body">
                     <h4 class="card-title text-light" style="text-decoration: underline; text-underline-offset: 4px; text-decoration-thickness:1px">Computer Science</h4>
                     <p class="card-text text-light">Learn coding and software development skills with hands-on projects and industry-standard technologies.</p>
@@ -120,7 +147,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             </div>
 
             <div class="card bg-dark" style="width: 18rem; border: 1px solid #444;">
-                <img src="../src/img/YellowElephant.png" class="card-img-top" alt="...">
+                <img src="./../../src/img/YellowElephant.png" class="card-img-top" alt="...">
                 <div class="card-body">
                     <h4 class="card-title text-light" style="text-decoration: underline; text-underline-offset: 4px; text-decoration-thickness:1px">Empty Card</h4>
                     <p class="card-text text-light">Business Course Description.Business Course Description.Business Course Description.</p>
@@ -138,7 +165,11 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         </div>
     </footer>
 
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"></script>
+
 </body>
+
+<script>
+
+</script>
 
 </html>
