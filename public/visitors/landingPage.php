@@ -1,5 +1,5 @@
 <?php
-
+session_start(); // start the session to use session variables
 include(__DIR__ . '/../../includes/db_connect.php'); // include the database connection file
 mysqli_report(MYSQLI_REPORT_STRICT | MYSQLI_REPORT_ALL);
 
@@ -51,9 +51,9 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     <div class="toast-container position-fixed bottom-0 end-0 p-3">
         <div id="liveToast" class="toast bg-dark text-light" role="alert" aria-live="assertive" aria-atomic="true">
             <div class="toast-header">
-                <img src="../../src/img/YellowElephant.png" class="rounded me-2 img-fluid" alt="...">
-                <strong class="me-auto">Bootstrap</strong>
-                <small>11 mins ago</small>
+                <img src="../../src/img/YellowElephant.png" style="width: 30px;" class="rounded me-2 img-fluid" alt="...">
+                <strong class="me-auto">Laragon Notification</strong>
+                <small>just now</small>
                 <button type="button" class="btn-close" data-bs-dismiss="toast" aria-label="Close"></button>
             </div>
             <div class="toast-body">
@@ -187,7 +187,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     const statusMessage = <?= json_encode($status); ?>;
     const toastLiveExample = document.getElementById('liveToast')
 
-    if (statusMessage === '') {
+    if (statusMessage !== "") {
         const toastBootstrap = bootstrap.Toast.getOrCreateInstance(toastLiveExample)
         toastBootstrap.show()
     }
