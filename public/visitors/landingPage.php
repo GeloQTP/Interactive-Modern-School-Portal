@@ -1,35 +1,10 @@
 <?php
-session_start(); // start the session to use session variables
+session_start();
 include(__DIR__ . '/../../includes/db_connect.php'); // include the database connection file
 mysqli_report(MYSQLI_REPORT_STRICT | MYSQLI_REPORT_ALL);
 
 $status = $_SESSION['status'] ?? '';
 $_SESSION['status'] = ''; // Clear status message after displaying
-
-if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-
-    $email = $_POST['email'] ?? '';
-    $email = filter_var($email, FILTER_VALIDATE_EMAIL);
-
-    if (!$email) { // check for valid email
-        $_SESSION['status'] = 'Please enter a valid email address.';
-        header('Location: landingPage.php');
-        exit;
-    }
-
-    try {
-        $stmt = $conn->prepare("INSERT INTO newsletter_subscribers (email) VALUES (?)");
-        $stmt->bind_param('s', $email);
-        $stmt->execute();
-        $stmt->close();
-
-        $_SESSION['status'] = 'Thank you for subscribing to our newsletter!';
-    } catch (mysqli_sql_exception $e) {
-
-        // Log the error instead of showing it
-        $_SESSION['status'] = 'An error occurred while processing your subscription. Please try again later.';
-    }
-}
 
 ?>
 
@@ -40,7 +15,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Laragon College University</title>
-    <link rel="icon" type="image/png" href="../src/img/YellowElephant.png">
+    <link rel="icon" type="image/png" href="./../../src/img/YellowElephant.png">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="./../../styles/style.css">
 </head>
@@ -100,9 +75,30 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                     <button class="btn btn-warning btn-lg" type="button" onclick="window.location.href='registrationPage.php'">Register Now</button>
                 </div>
                 <div class="col-sm-6 d-none d-sm-block">
-                    <img src="./../../src/img/school.jpg"
+                    <!-- <img src="./../../src/img/school.jpg"
                         class="img-fluid rounded shadow"
-                        alt="Laragon University Campus Image">
+                        alt="Laragon University Campus Image"> -->
+                    <div id="carouselExampleAutoplaying" class="carousel slide" data-bs-ride="carousel">
+                        <div class="carousel-inner">
+                            <div class="carousel-item active">
+                                <img src="../../src/img/Accounting+Clerk-3915942594.jpg" class="d-block w-100" alt="...">
+                            </div>
+                            <div class="carousel-item">
+                                <img src="../../src/img/Student-Programming.jpg" class="d-block w-100" alt="...">
+                            </div>
+                            <div class="carousel-item">
+                                <img src="../../src/img/Student-demonstrating.jpg" class="d-block w-100" alt="...">
+                            </div>
+                        </div>
+                        <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleAutoplaying" data-bs-slide="prev">
+                            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                            <span class="visually-hidden">Previous</span>
+                        </button>
+                        <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleAutoplaying" data-bs-slide="next">
+                            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                            <span class="visually-hidden">Next</span>
+                        </button>
+                    </div>
                 </div>
 
             </div>
@@ -115,8 +111,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             <div class="d-md-flex justify-between-center align-items-center justify-content-between">
                 <h4 class="mb-3 mb-md-0">Subscribe to our Newsletter</h4>
 
-                <form action="<?= htmlspecialchars($_SERVER['PHP_SELF']) ?>" method='POST' class="input-group news-input">
-                    <input type="text" class="form-control" placeholder="Enter your Email" name="email">
+                <form class="input-group news-input">
+                    <input type="text" class="form-control" placeholder="Enter your Email" name="email" required>
                     <button class="btn btn-lg bg-dark text-light" type="submit">Submit</button>
                 </form>
 
@@ -184,13 +180,50 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"></script>
 
 <script>
-    const statusMessage = <?= json_encode($status); ?>;
-    const toastLiveExample = document.getElementById('liveToast')
+    document.addEventListener("DOMContentLoaded", () => {
 
-    if (statusMessage !== "") {
-        const toastBootstrap = bootstrap.Toast.getOrCreateInstance(toastLiveExample)
-        toastBootstrap.show()
-    }
+        const form = document.querySelector(".news-input");
+        const emailInput = document.querySelector(".news-input input");
+        const submitBtn = document.querySelector(".news-input button");
+        const toastLiveExample = document.getElementById('liveToast');
+
+        form.addEventListener('submit', async (e) => {
+            e.preventDefault();
+
+            const email = emailInput.value.trim();
+            const formData = new FormData(form);
+
+            submitBtn.disabled = true;
+            submitBtn.textContent = 'Please Wait...';
+
+            try {
+                const response = await fetch('emailSubmit.php', {
+                    method: 'POST',
+                    body: formData,
+                    credentials: 'same-origin'
+                });
+
+                if (!response.ok) {
+                    throw new Error('Network response was not ok');
+                }
+
+                const result = await response.json();
+
+                document.querySelector('.toast-body').textContent = result.message;
+                const toastBootstrap = bootstrap.Toast.getOrCreateInstance(toastLiveExample);
+                toastBootstrap.show()
+
+
+            } catch (error) {
+                console.error('Error:', error);
+                alert('An error occurred. Please try again.');
+
+            } finally {
+                submitBtn.disabled = false;
+                submitBtn.textContent = 'Submit';
+            }
+        });
+    });
 </script>
 
 </html>
