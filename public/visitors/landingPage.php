@@ -24,7 +24,7 @@ $_SESSION['status'] = ''; // Clear status message after displaying
 
     <!-- TOASTS SECTION -->
     <div class="toast-container position-fixed bottom-0 end-0 p-3">
-        <div id="liveToast" class="toast bg-dark text-light" role="alert" aria-live="assertive" aria-atomic="true">
+        <div id="liveToast" class="toast bg-light text-dark" role="alert" aria-live="assertive" aria-atomic="true">
             <div class="toast-header">
                 <img src="../../src/img/YellowElephant.png" style="width: 30px;" class="rounded me-2 img-fluid" alt="...">
                 <strong class="me-auto">Laragon Notification</strong>
@@ -75,29 +75,21 @@ $_SESSION['status'] = ''; // Clear status message after displaying
                     <button class="btn btn-warning btn-lg" type="button" onclick="window.location.href='registrationPage.php'">Register Now</button>
                 </div>
                 <div class="col-sm-6 d-none d-sm-block">
-                    <!-- <img src="./../../src/img/school.jpg"
-                        class="img-fluid rounded shadow"
-                        alt="Laragon University Campus Image"> -->
-                    <div id="carouselExampleAutoplaying" class="carousel slide" data-bs-ride="carousel">
+                    <div id="carouselExampleSlidesOnly" class="carousel slide" data-bs-ride="carousel">
                         <div class="carousel-inner">
                             <div class="carousel-item active">
-                                <img src="../../src/img/Accounting+Clerk-3915942594.jpg" class="d-block w-100" alt="...">
+                                <img src="./../../src/img/Accounting+Clerk-3915942594.jpg" class="d-block w-100" alt="image of accounting clerk">
                             </div>
                             <div class="carousel-item">
-                                <img src="../../src/img/Student-Programming.jpg" class="d-block w-100" alt="...">
+                                <img src="./../../src/img/Student-Programming.jpg" class="d-block w-100" alt="image of student programming">
                             </div>
                             <div class="carousel-item">
-                                <img src="../../src/img/Student-demonstrating.jpg" class="d-block w-100" alt="...">
+                                <img src="./../../src/img/Student-demonstrating.jpg" class="d-block w-100" alt="image of student demonstrating something">
+                            </div>
+                            <div class="carousel-item">
+                                <img src="./../../src/img/school.jpg" class="d-block img-fluid" alt="image of school building" style="width: 88.2%;">
                             </div>
                         </div>
-                        <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleAutoplaying" data-bs-slide="prev">
-                            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-                            <span class="visually-hidden">Previous</span>
-                        </button>
-                        <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleAutoplaying" data-bs-slide="next">
-                            <span class="carousel-control-next-icon" aria-hidden="true"></span>
-                            <span class="visually-hidden">Next</span>
-                        </button>
                     </div>
                 </div>
 
@@ -133,7 +125,6 @@ $_SESSION['status'] = ''; // Clear status message after displaying
                 <div class="card-body">
                     <h4 class="card-title text-light" style="text-decoration: underline; text-underline-offset: 4px; text-decoration-thickness:1px;">Education</h4>
                     <p class="card-text text-light">Access comprehensive learning resources, courses, and academic materials designed to support your educational journey.</p>
-                    <a href="#" class="btn btn-warning">Go somewhere</a>
                 </div>
             </div>
 
@@ -142,7 +133,6 @@ $_SESSION['status'] = ''; // Clear status message after displaying
                 <div class="card-body">
                     <h4 class="card-title text-light" style="text-decoration: underline; text-underline-offset: 4px; text-decoration-thickness:1px">Accounting</h4>
                     <p class="card-text text-light">Master financial management and accounting principles through expert instruction and practical applications.</p>
-                    <a href="#" class="btn btn-warning">Go somewhere</a>
                 </div>
             </div>
 
@@ -151,7 +141,6 @@ $_SESSION['status'] = ''; // Clear status message after displaying
                 <div class="card-body">
                     <h4 class="card-title text-light" style="text-decoration: underline; text-underline-offset: 4px; text-decoration-thickness:1px">Computer Science</h4>
                     <p class="card-text text-light">Learn coding and software development skills with hands-on projects and industry-standard technologies.</p>
-                    <a href="#" class="btn btn-warning">Go somewhere</a>
                 </div>
             </div>
 
@@ -160,7 +149,6 @@ $_SESSION['status'] = ''; // Clear status message after displaying
                 <div class="card-body">
                     <h4 class="card-title text-light" style="text-decoration: underline; text-underline-offset: 4px; text-decoration-thickness:1px">Empty Card</h4>
                     <p class="card-text text-light">Business Course Description.Business Course Description.Business Course Description.</p>
-                    <a href="#" class="btn btn-warning">Go somewhere</a>
                 </div>
             </div>
 
@@ -194,7 +182,7 @@ $_SESSION['status'] = ''; // Clear status message after displaying
             const formData = new FormData(form);
 
             submitBtn.disabled = true;
-            submitBtn.textContent = 'Please Wait...';
+            submitBtn.innerHTML = '<span class="spinner-grow spinner-grow-sm" style="margin-bottom:3px" role ="status"> <span class="visually-hidden"> Loading... </span></span>';
 
             try {
                 const response = await fetch('emailSubmit.php', {
@@ -215,8 +203,9 @@ $_SESSION['status'] = ''; // Clear status message after displaying
 
 
             } catch (error) {
-                console.error('Error:', error);
-                alert('An error occurred. Please try again.');
+                document.querySelector('.toast-body').textContent = 'An error occurred. Please try again.';
+                const toastBootstrap = bootstrap.Toast.getOrCreateInstance(toastLiveExample);
+                toastBootstrap.show()
 
             } finally {
                 submitBtn.disabled = false;
