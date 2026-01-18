@@ -15,7 +15,7 @@
         <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
             <div class="container my-1">
                 <a href="landingPage.php" class="navbar-brand fw-bold d-flex align-items-center">
-                    <span class="px-2"><img src="../src/img/YellowElephant.png" alt="yellow elephant logo" style="width: 50px; border-radius: 100px;"></span>
+                    <span class="px-2"><img src="./../../src/img/YellowElephant.png" alt="yellow elephant logo" style="width: 50px; border-radius: 100px;"></span>
                     <span class="d-none d-sm-block"><span class="text-warning">Laragon</span> University</span>
                 </a>
 
