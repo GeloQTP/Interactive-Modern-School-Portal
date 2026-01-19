@@ -188,16 +188,16 @@
 <script>
     const spinner = document.querySelector('.spinner-wrapper');
 
-    window.addEventListener('load', () => {
+    window.addEventListener('load', () => { // add loader animation while the page is loading
         setTimeout(() => {
             spinner.style.display = 'none';
         }, 1000);
     });
+
 </script>
 
 <script>
     document.addEventListener("DOMContentLoaded", () => {
-
 
         const form = document.querySelector(".news-input");
         const emailInput = document.querySelector(".news-input input");
@@ -214,7 +214,7 @@
             submitBtn.innerHTML = '<span class="spinner-grow spinner-grow-sm" style="margin-bottom:3px" role ="status"> <span class="visually-hidden"> Loading... </span></span>';
 
             try {
-                const response = await fetch('emailSubmit.php', {
+                const response = await fetch(`emailSubmit.php`, {
                     method: 'POST',
                     body: formData,
                     credentials: 'same-origin'
