@@ -64,7 +64,7 @@
                         <label for="lastName" class="lead text-warning">Middle Name</label>
                         <input type="text" class="form-control bg-secondary focus-ring focus-ring-light text-light border-0" aria-label="Middle name" id="middleName" name="middleName" required>
                     </div>
-                    <div class="col-md-1 mx-auto">
+                    <div class="col-md-1 ms-auto">
                         <label for="lastName" class="lead text-warning">Ex.</label>
                         <input type="text" class="form-control bg-secondary focus-ring focus-ring-light text-light border-0" aria-label="Middle name" id="middleName" placeholder="e.g Jr" name="middleName" required>
                     </div>
