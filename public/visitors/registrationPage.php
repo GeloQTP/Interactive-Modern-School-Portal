@@ -158,18 +158,17 @@
                             <label for="lastName" class="lead text-warning">Student Type</label>
                             <select class="form-select bg-secondary focus-ring focus-ring-light text-light border-0" aria-label="Gender" name="Gender" id="genderInput" required>
                                 <option selected></option>
-                                <option value="Male">Male</option>
-                                <option value="Female">Female</option>
-                                <option value="Others">Prefer not to say</option>
+                                <option value="newStudent">New Student</option>
+                                <option value="returnee">Returnee</option>
+                                <option value="transferee">Transferee</option>
                             </select>
                         </div>
                         <div class="col-md-3 col-6">
                             <label for="lastName" class="lead text-warning">Enrollment Type</label>
                             <select class="form-select bg-secondary focus-ring focus-ring-light text-light border-0" aria-label="Gender" name="Gender" id="genderInput" required>
                                 <option selected></option>
-                                <option value="Male">Male</option>
-                                <option value="Female">Female</option>
-                                <option value="Others">Prefer not to say</option>
+                                <option value="regular">Regular</option>
+                                <option value="irregular">Irregular</option>
                             </select>
                         </div>
                     </div>
