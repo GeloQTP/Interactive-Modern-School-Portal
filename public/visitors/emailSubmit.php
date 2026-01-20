@@ -19,7 +19,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             $stmt->bind_param("s", $email);
 
             if ($stmt->execute()) {
-                echo json_encode(['success' => true, 'message' => 'Subscribed successfully']);
+                echo json_encode(['success' => true, 'message' => 'Subscription Sucessful.']);
             } else {
                 $_SESSION['status'] = 'Subscription failed. Please try again.';
                 echo json_encode(['success' => false, 'message' => 'Database error']);

@@ -51,39 +51,39 @@
 
                 <h1 class="lead display-4 mb-5 w-100 text-light" style="border-bottom:1px solid orange">Personal Information</h1>
 
-                <div class="row row g-4">
+                <div class="row g-3">
                     <div class="col-md-4">
                         <label for="firstName" class="lead text-warning">First Name</label>
-                        <input type="text" class="form-control bg-secondary focus-ring focus-ring-light text-light border-0" aria-label="First name" id="firstName" name="firstName" required>
+                        <input type="text" class="form-control bg-secondary focus-ring focus-ring-light text-light border-0" aria-label="First name" id="firstNameInput" name="firstName" required>
                     </div>
                     <div class="col-md-4">
                         <label for="lastName" class="lead text-warning">Last Name</label>
-                        <input type="text" class="form-control bg-secondary focus-ring focus-ring-light text-light border-0" aria-label="Last name" id="lastName" name="lastName" required>
+                        <input type="text" class="form-control bg-secondary focus-ring focus-ring-light text-light border-0" aria-label="Last name" id="lastNameInput" name="lastName" required>
                     </div>
                     <div class="col-md-2">
                         <label for="lastName" class="lead text-warning">Middle Name</label>
-                        <input type="text" class="form-control bg-secondary focus-ring focus-ring-light text-light border-0" aria-label="Middle name" id="middleName" name="middleName" required>
+                        <input type="text" class="form-control bg-secondary focus-ring focus-ring-light text-light border-0" aria-label="Middle name" id="middleNameInput" name="middleName" required>
                     </div>
-                    <div class="col-md-1 ms-auto">
+                    <div class="col-md-1 col-3 ms-md-auto">
                         <label for="lastName" class="lead text-warning">Ex.</label>
-                        <input type="text" class="form-control bg-secondary focus-ring focus-ring-light text-light border-0" aria-label="Middle name" id="middleName" placeholder="e.g Jr" name="middleName" required>
+                        <input type="text" class="form-control bg-secondary focus-ring focus-ring-light text-light border-0" aria-label="Extention name" id="middleNameInput" placeholder="e.g Jr" name="exName" required>
                     </div>
 
                     <div class="col-md-4">
                         <label for="birthdate" class="lead text-warning">Date of Birth</label>
-                        <input type="date" class="form-control bg-secondary focus-ring focus-ring-light text-light border-0 text-light" id="birthdate" name="birthdate" required>
+                        <input type="date" class="form-control bg-secondary focus-ring focus-ring-light text-light border-0 text-light" id="birthdateInput" name="birthDate" aria-label="Date of Birth" required>
                     </div>
                     <div class="col-md-1 col-3 me-md-auto">
                         <label for="lastName" class="lead text-warning">Age</label>
-                        <input class="form-control bg-secondary border-0 text-light" type="text" aria-label="Disabled input example" disabled readonly>
+                        <input class="form-control bg-secondary border-0 text-light" type="text" aria-label="Disabled Input" id="ageInput" name="age" readonly>
                     </div>
-                    <div class="col-md-2 col-6 mx-md-auto">
+                    <div class="col-md-2 col-4 mx-md-auto">
                         <label for="firstName" class="lead text-warning">Nationality</label>
-                        <input type="text" class="form-control bg-secondary focus-ring focus-ring-light text-light border-0" aria-label="First name" id="firstName" name="firstName" required>
+                        <input type="text" class="form-control bg-secondary focus-ring focus-ring-light text-light border-0" aria-label="First name" id="nationalityInput" name="nationality" required>
                     </div>
                     <div class="col-md-2 col-6">
                         <label for="firstName" class="lead text-warning">Civil Status</label>
-                        <select class="form-select bg-secondary focus-ring focus-ring-light text-light border-0" aria-label="Default select example">
+                        <select class="form-select bg-secondary focus-ring focus-ring-light text-light border-0" aria-label="Civil Status" id="civilStatusInput" name="civilStatus" required>
                             <option selected></option>
                             <option value="single">Single</option>
                             <option value="married">Married</option>
@@ -93,7 +93,7 @@
                     </div>
                     <div class="col-md-2 col-6 ms-auto">
                         <label for="lastName" class="lead text-warning">Gender</label>
-                        <select class="form-select bg-secondary focus-ring focus-ring-light text-light border-0" aria-label="Default select example">
+                        <select class="form-select bg-secondary focus-ring focus-ring-light text-light border-0" aria-label="Gender" name="Gender" id="genderInput" required>
                             <option selected></option>
                             <option value="Male">Male</option>
                             <option value="Female">Female</option>
@@ -101,14 +101,78 @@
                         </select>
                     </div>
 
-                    <div class="col-md-6">
-                        <label for="lastName" class="lead text-warning">Address</label>
-                        <input type="text" class="form-control bg-secondary focus-ring focus-ring-light text-light border-0" aria-label="Address" id="address" name="address" required>
+                    <h1 class="lead display-4 mt-5 mb-3 w-100 text-light" style="border-bottom:1px solid orange">Contact Information</h1>
+
+                    <div class="row g-3">
+                        <div class="col-md-4 col-9">
+                            <label for="lastName" class="lead text-warning">Email</label>
+                            <input type="text" class="form-control bg-secondary focus-ring focus-ring-light text-light border-0" aria-label="email" id="emailInput" name="email" required>
+                        </div>
+                        <div class="col-md-4 col-6">
+                            <label for="lastName" class="lead text-warning">Phone Number</label>
+                            <input type="text" class="form-control bg-secondary focus-ring focus-ring-light text-light border-0" aria-label="phoneNumber" id="phoneNumberInput" name="phoneNumber" required>
+                        </div>
+                        <div class="col-md-4">
+                            <label for="lastName" class="lead text-warning">Complete Address</label>
+                            <input type="text" class="form-control bg-secondary focus-ring focus-ring-light text-light border-0" aria-label="completeAddress" id="addressInput" name="address" required>
+                        </div>
+
+                        <div class="col-md-4 col-6">
+                            <label for="lastName" class="lead text-warning">City</label>
+                            <input type="text" class="form-control bg-secondary focus-ring focus-ring-light text-light border-0" aria-label="city" id="cityInput" name="city" required>
+                        </div>
+                        <div class="col-md-4 col-6">
+                            <label for="lastName" class="lead text-warning">Province</label>
+                            <input type="text" class="form-control bg-secondary focus-ring focus-ring-light text-light border-0" aria-label="province" id="provinceInput" name="province" required>
+                        </div>
+                        <div class="col-md-1 col-3 mx-md-auto">
+                            <label for="lastName" class="lead text-warning">Zip Code</label>
+                            <input type="text" class="form-control bg-secondary focus-ring focus-ring-light text-light border-0" aria-label="completeAddress" id="zipcodeInput" name="zipCode" required>
+                        </div>
                     </div>
 
-                    <h1 class="lead display-4 my-5 w-100 text-light" style="border-bottom:1px solid orange">Contact Information</h1>
+                    <h1 class="lead display-4 mt-5 mb-3 w-100 text-light" style="border-bottom:1px solid orange">Academic Information</h1>
 
-
+                    <div class="row g-3">
+                        <div class="col-md-3 col-6">
+                            <label for="lastName" class="lead text-warning">Program</label>
+                            <select class="form-select bg-secondary focus-ring focus-ring-light text-light border-0" aria-label="Gender" name="Gender" id="genderInput" required>
+                                <option selected></option>
+                                <option value="education">Education</option>
+                                <option value="accounting">Accounting</option>
+                                <option value="computer_science">Computer Science</option>
+                                <option value="business_management">Business Management</option>
+                            </select>
+                        </div>
+                        <div class="col-md-3 col-6">
+                            <label for="lastName" class="lead text-warning">Year Level</label>
+                            <select class="form-select bg-secondary focus-ring focus-ring-light text-light border-0" aria-label="Gender" name="Gender" id="genderInput" required>
+                                <option selected></option>
+                                <option value="1stYear">1st Year</option>
+                                <option value="2ndYear">2nd Year</option>
+                                <option value="3rdYear">3rd Year</option>
+                                <option value="4thYear">4th Year</option>
+                            </select>
+                        </div>
+                        <div class="col-md-3 col-6">
+                            <label for="lastName" class="lead text-warning">Student Type</label>
+                            <select class="form-select bg-secondary focus-ring focus-ring-light text-light border-0" aria-label="Gender" name="Gender" id="genderInput" required>
+                                <option selected></option>
+                                <option value="Male">Male</option>
+                                <option value="Female">Female</option>
+                                <option value="Others">Prefer not to say</option>
+                            </select>
+                        </div>
+                        <div class="col-md-3 col-6">
+                            <label for="lastName" class="lead text-warning">Enrollment Type</label>
+                            <select class="form-select bg-secondary focus-ring focus-ring-light text-light border-0" aria-label="Gender" name="Gender" id="genderInput" required>
+                                <option selected></option>
+                                <option value="Male">Male</option>
+                                <option value="Female">Female</option>
+                                <option value="Others">Prefer not to say</option>
+                            </select>
+                        </div>
+                    </div>
 
                 </div>
 
@@ -116,6 +180,12 @@
 
         </div>
     </section>
+
+    <footer>
+        <div class="bg-dark text-light text-center p-3">
+            <p class="mb-0">&copy; 2024 Laragon College University. All rights reserved.</p>
+        </div>
+    </footer>
 
 </body>
 
