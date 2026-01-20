@@ -193,7 +193,6 @@
             spinner.style.display = 'none';
         }, 1000);
     });
-
 </script>
 
 <script>

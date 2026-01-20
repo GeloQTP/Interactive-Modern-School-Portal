@@ -23,7 +23,7 @@
         <!-- NAVBAR -->
         <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
             <div class="container my-1">
-                <a href="landingPage.html" class="navbar-brand fw-bold d-flex align-items-center">
+                <a href="landingPage.php" class="navbar-brand fw-bold d-flex align-items-center">
                     <span class="px-2"><img src="./../../src/img/YellowElephant.png" alt="yellow elephant logo" style="width: 50px; border-radius: 100px;"></span>
                     <span class="d-none d-sm-block"><span class="text-warning lead">Laragon</span> University</span>
                 </a>
@@ -47,11 +47,11 @@
     <section class="bg-dark text-light py-5 p-lg-5 mt-5">
         <div class="container">
 
-            <form action="" class="input-group d-flex align-items-center justify-content-center">
+            <form class="input-group d-flex align-items-center justify-content-center">
 
                 <h1 class="lead display-4 mb-5 w-100 text-light" style="border-bottom:1px solid orange">Personal Information</h1>
 
-                <div class="row g-4">
+                <div class="row row g-4">
                     <div class="col-md-4">
                         <label for="firstName" class="lead text-warning">First Name</label>
                         <input type="text" class="form-control bg-secondary focus-ring focus-ring-light text-light border-0" aria-label="First name" id="firstName" name="firstName" required>
@@ -77,20 +77,6 @@
                         <label for="lastName" class="lead text-warning">Age</label>
                         <input class="form-control bg-secondary border-0 text-light" type="text" aria-label="Disabled input example" disabled readonly>
                     </div>
-                    <div class="col-md-2 ms-auto">
-                        <label for="lastName" class="lead text-warning">Gender</label>
-                        <select class="form-select bg-secondary focus-ring focus-ring-light text-light border-0" aria-label="Default select example">
-                            <option selected></option>
-                            <option value="Male">Male</option>
-                            <option value="Female">Female</option>
-                            <option value="Others">Prefer not to say</option>
-                        </select>
-                    </div>
-
-                    <div class="col-md-6">
-                        <label for="lastName" class="lead text-warning">Address</label>
-                        <input type="text" class="form-control bg-secondary focus-ring focus-ring-light text-light border-0" aria-label="Address" id="address" name="address" required>
-                    </div>
                     <div class="col-md-2 col-6 mx-md-auto">
                         <label for="firstName" class="lead text-warning">Nationality</label>
                         <input type="text" class="form-control bg-secondary focus-ring focus-ring-light text-light border-0" aria-label="First name" id="firstName" name="firstName" required>
@@ -105,6 +91,27 @@
                             <option value="separated">Separated</option>
                         </select>
                     </div>
+                    <div class="col-md-2 col-6 ms-auto">
+                        <label for="lastName" class="lead text-warning">Gender</label>
+                        <select class="form-select bg-secondary focus-ring focus-ring-light text-light border-0" aria-label="Default select example">
+                            <option selected></option>
+                            <option value="Male">Male</option>
+                            <option value="Female">Female</option>
+                            <option value="Others">Prefer not to say</option>
+                        </select>
+                    </div>
+
+                    <div class="col-md-6">
+                        <label for="lastName" class="lead text-warning">Address</label>
+                        <input type="text" class="form-control bg-secondary focus-ring focus-ring-light text-light border-0" aria-label="Address" id="address" name="address" required>
+                    </div>
+
+                    <h1 class="lead display-4 my-5 w-100 text-light" style="border-bottom:1px solid orange">Contact Information</h1>
+
+
+
+                </div>
+
             </form>
 
         </div>
