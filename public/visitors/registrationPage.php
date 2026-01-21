@@ -104,74 +104,70 @@
 
                         <h1 class="lead display-4 mt-5 mb-3 w-100 text-light" style="border-bottom:1px solid orange">Contact Information</h1>
 
-                        <div class="row g-3">
-                            <div class="col-md-4 col-9">
-                                <label for="lastName" class="lead text-warning">Email</label>
-                                <input type="text" class="form-control bg-secondary focus-ring focus-ring-light text-light border-0" id="emailInput" name="email" required>
-                            </div>
-                            <div class="col-md-4 col-6">
-                                <label for="lastName" class="lead text-warning">Phone Number</label>
-                                <input type="text" class="form-control bg-secondary focus-ring focus-ring-light text-light border-0" id="phoneNumberInput" name="phoneNumber" required>
-                            </div>
-                            <div class="col-md-4">
-                                <label for="lastName" class="lead text-warning">Complete Address</label>
-                                <input type="text" class="form-control bg-secondary focus-ring focus-ring-light text-light border-0" id="addressInput" name="address" required>
-                            </div>
+                        <div class="col-md-4 col-9">
+                            <label for="lastName" class="lead text-warning">Email</label>
+                            <input type="text" class="form-control bg-secondary focus-ring focus-ring-light text-light border-0" id="emailInput" name="email" required>
+                        </div>
+                        <div class="col-md-4 col-6">
+                            <label for="lastName" class="lead text-warning">Phone Number</label>
+                            <input type="text" class="form-control bg-secondary focus-ring focus-ring-light text-light border-0" id="phoneNumberInput" name="phoneNumber" required>
+                        </div>
+                        <div class="col-md-4">
+                            <label for="lastName" class="lead text-warning">Complete Address</label>
+                            <input type="text" class="form-control bg-secondary focus-ring focus-ring-light text-light border-0" id="addressInput" name="address" required>
+                        </div>
 
-                            <div class="col-md-4 col-6">
-                                <label for="lastName" class="lead text-warning">City</label>
-                                <input type="text" class="form-control bg-secondary focus-ring focus-ring-light text-light border-0" id="cityInput" name="city" required>
-                            </div>
-                            <div class="col-md-4 col-6">
-                                <label for="lastName" class="lead text-warning">Province</label>
-                                <input type="text" class="form-control bg-secondary focus-ring focus-ring-light text-light border-0" id="provinceInput" name="province" required>
-                            </div>
-                            <div class="col-md-1 col-3 mx-md-auto">
-                                <label for="lastName" class="lead text-warning">Zip Code</label>
-                                <input type="text" class="form-control bg-secondary focus-ring focus-ring-light text-light border-0" id="zipcodeInput" name="zipCode" required>
-                            </div>
+                        <div class="col-md-4 col-6">
+                            <label for="lastName" class="lead text-warning">City</label>
+                            <input type="text" class="form-control bg-secondary focus-ring focus-ring-light text-light border-0" id="cityInput" name="city" required>
+                        </div>
+                        <div class="col-md-4 col-6">
+                            <label for="lastName" class="lead text-warning">Province</label>
+                            <input type="text" class="form-control bg-secondary focus-ring focus-ring-light text-light border-0" id="provinceInput" name="province" required>
+                        </div>
+                        <div class="col-md-1 col-3 mx-md-auto">
+                            <label for="lastName" class="lead text-warning">Zip Code</label>
+                            <input type="text" class="form-control bg-secondary focus-ring focus-ring-light text-light border-0" id="zipcodeInput" name="zipCode" required>
                         </div>
 
                         <h1 class="lead display-4 mt-5 mb-3 w-100 text-light" style="border-bottom:1px solid orange">Academic Information</h1>
 
-                        <div class="row g-3 d-flex">
-                            <div class="col-md-3 col-6">
-                                <label for="lastName" class="lead text-warning">Program</label>
-                                <select class="form-select bg-secondary focus-ring focus-ring-light text-light border-0" name="program" id="programInput" required>
-                                    <option selected></option>
-                                    <option value="education">Education</option>
-                                    <option value="accounting">Accounting</option>
-                                    <option value="computer_science">Computer Science</option>
-                                    <option value="business_management">Business Management</option>
-                                </select>
-                            </div>
-                            <div class="col-md-3 col-6">
-                                <label for="lastName" class="lead text-warning">Year Level</label>
-                                <select class="form-select bg-secondary focus-ring focus-ring-light text-light border-0" name="yearLevel" id="yearLevelInput" required>
-                                    <option selected></option>
-                                    <option value="1stYear">1st Year</option>
-                                    <option value="2ndYear">2nd Year</option>
-                                    <option value="3rdYear">3rd Year</option>
-                                    <option value="4thYear">4th Year</option>
-                                </select>
-                            </div>
-                            <div class="col-md-3 col-6">
-                                <label for="lastName" class="lead text-warning">Student Type</label>
-                                <select class="form-select bg-secondary focus-ring focus-ring-light text-light border-0" name="Gender" id="genderInput" required>
-                                    <option selected></option>
-                                    <option value="newStudent">New Student</option>
-                                    <option value="returnee">Returnee</option>
-                                    <option value="transferee">Transferee</option>
-                                </select>
-                            </div>
-                            <div class="col-md-3 col-6">
-                                <label for="lastName" class="lead text-warning">Enrollment Type</label>
-                                <select class="form-select bg-secondary focus-ring focus-ring-light text-light border-0" id="genderInput" required>
-                                    <option selected></option>
-                                    <option value="regular">Regular</option>
-                                    <option value="irregular">Irregular</option>
-                                </select>
-                            </div>
+                        <div class="col-md-3 col-6">
+                            <label for="lastName" class="lead text-warning">Program</label>
+                            <select class="form-select bg-secondary focus-ring focus-ring-light text-light border-0" name="program" id="programInput" required>
+                                <option selected></option>
+                                <option value="education">Education</option>
+                                <option value="accounting">Accounting</option>
+                                <option value="computer_science">Computer Science</option>
+                                <option value="business_management">Business Management</option>
+                            </select>
+                        </div>
+                        <div class="col-md-3 col-6">
+                            <label for="lastName" class="lead text-warning">Year Level</label>
+                            <select class="form-select bg-secondary focus-ring focus-ring-light text-light border-0" name="yearLevel" id="yearLevelInput" required>
+                                <option selected></option>
+                                <option value="1stYear">1st Year</option>
+                                <option value="2ndYear">2nd Year</option>
+                                <option value="3rdYear">3rd Year</option>
+                                <option value="4thYear">4th Year</option>
+                            </select>
+                        </div>
+                        <div class="col-md-3 col-6">
+                            <label for="lastName" class="lead text-warning">Student Type</label>
+                            <select class="form-select bg-secondary focus-ring focus-ring-light text-light border-0" name="Gender" id="genderInput" required>
+                                <option selected></option>
+                                <option value="newStudent">New Student</option>
+                                <option value="returnee">Returnee</option>
+                                <option value="transferee">Transferee</option>
+                            </select>
+                        </div>
+                        <div class="col-md-3 col-6">
+                            <label for="lastName" class="lead text-warning">Enrollment Type</label>
+                            <select class="form-select bg-secondary focus-ring focus-ring-light text-light border-0" id="genderInput" required>
+                                <option selected></option>
+                                <option value="regular">Regular</option>
+                                <option value="irregular">Irregular</option>
+                            </select>
                         </div>
                     </div>
 
