@@ -206,16 +206,13 @@
         form.addEventListener('submit', async (e) => {
             e.preventDefault();
 
-            const email = emailInput.value.trim();
-            const formData = new FormData(form);
-
             submitBtn.disabled = true;
             submitBtn.innerHTML = '<span class="spinner-grow spinner-grow-sm" style="margin-bottom:3px" role ="status"> <span class="visually-hidden"> Loading... </span></span>';
 
             try {
                 const response = await fetch(`emailSubmit.php`, {
                     method: 'POST',
-                    body: formData,
+                    body: new FormData(form), // we can use `this` keyword, but ()=> does not have its own `this ` keyword
                     credentials: 'same-origin'
                 });
 

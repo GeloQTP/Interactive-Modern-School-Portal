@@ -54,36 +54,36 @@
 
                     <div class="row g-3">
                         <div class="col-md-4">
-                            <label for="firstName" class="lead text-warning">First Name</label>
+                            <label for="firstNameInput" class="lead text-warning">First Name</label>
                             <input type="text" class="form-control bg-secondary focus-ring focus-ring-light text-light border-0" id="firstNameInput" name="firstName" required>
                         </div>
                         <div class="col-md-4">
-                            <label for="lastName" class="lead text-warning">Last Name</label>
+                            <label for="lastNameInput" class="lead text-warning">Last Name</label>
                             <input type="text" class="form-control bg-secondary focus-ring focus-ring-light text-light border-0" id="lastNameInput" name="lastName" required>
                         </div>
                         <div class="col-md-2">
-                            <label for="lastName" class="lead text-warning">Middle Name</label>
+                            <label for="middleNameInput" class="lead text-warning">Middle Name</label>
                             <input type="text" class="form-control bg-secondary focus-ring focus-ring-light text-light border-0" id="middleNameInput" name="middleName" required>
                         </div>
                         <div class="col-md-1 col-3 ms-md-auto">
-                            <label for="lastName" class="lead text-warning">Ex.</label>
-                            <input type="text" class="form-control bg-secondary focus-ring focus-ring-light text-light border-0" name" id="middleNameInput" placeholder="e.g Jr" name="exName" required>
+                            <label for="extensionName" class="lead text-warning">Ex.</label>
+                            <input type="text" class="form-control bg-secondary focus-ring focus-ring-light text-light border-0" name" id="extensionName" placeholder="e.g Jr" name="exName" required>
                         </div>
 
                         <div class="col-md-4">
-                            <label for="birthdate" class="lead text-warning">Date of Birth</label>
+                            <label for="birthdateInput" class="lead text-warning">Date of Birth</label>
                             <input type="date" class="form-control bg-secondary focus-ring focus-ring-light text-light border-0 text-light" id="birthdateInput" name="birthDate" required>
                         </div>
                         <div class="col-md-1 col-3 me-md-auto">
-                            <label for="lastName" class="lead text-warning">Age</label>
+                            <label for="ageInput" class="lead text-warning">Age</label>
                             <input class="form-control bg-secondary border-0 text-light" type="text" id="ageInput" name="age" readonly>
                         </div>
                         <div class="col-md-2 col-4 mx-md-auto">
-                            <label for="firstName" class="lead text-warning">Nationality</label>
+                            <label for="nationalityInput" class="lead text-warning">Nationality</label>
                             <input type="text" class="form-control bg-secondary focus-ring focus-ring-light text-light border-0" id="nationalityInput" name="nationality" required>
                         </div>
                         <div class="col-md-2 col-6">
-                            <label for="firstName" class="lead text-warning">Civil Status</label>
+                            <label for="civilStatusInput" class="lead text-warning">Civil Status</label>
                             <select class="form-select bg-secondary focus-ring focus-ring-light text-light border-0" id="civilStatusInput" name="civilStatus" required>
                                 <option selected></option>
                                 <option value="single">Single</option>
@@ -93,7 +93,7 @@
                             </select>
                         </div>
                         <div class="col-md-2 col-6 ms-auto">
-                            <label for="lastName" class="lead text-warning">Gender</label>
+                            <label for="genderInput" class="lead text-warning">Gender</label>
                             <select class="form-select bg-secondary focus-ring focus-ring-light text-light border-0" id="genderInput" required>
                                 <option selected></option>
                                 <option value="Male">Male</option>
@@ -105,35 +105,35 @@
                         <h1 class="lead display-4 mt-5 mb-3 w-100 text-light" style="border-bottom:1px solid orange">Contact Information</h1>
 
                         <div class="col-md-4 col-9">
-                            <label for="lastName" class="lead text-warning">Email</label>
-                            <input type="text" class="form-control bg-secondary focus-ring focus-ring-light text-light border-0" id="emailInput" name="email" required>
+                            <label for="emailInput" class="lead text-warning">Email</label>
+                            <input type="text" class="form-control bg-secondary focus-ring focus-ring-light text-light border-0" id="emailInput" name="email" required autocomplete="email">
                         </div>
                         <div class="col-md-4 col-6">
-                            <label for="lastName" class="lead text-warning">Phone Number</label>
-                            <input type="text" class="form-control bg-secondary focus-ring focus-ring-light text-light border-0" id="phoneNumberInput" name="phoneNumber" required>
+                            <label for="phoneNumberInput" class="lead text-warning">Phone Number</label>
+                            <input type="tel" class="form-control bg-secondary focus-ring focus-ring-light text-light border-0" id="phoneNumberInput" name="phoneNumber" required autocomplete="tel">
                         </div>
                         <div class="col-md-4">
-                            <label for="lastName" class="lead text-warning">Complete Address</label>
-                            <input type="text" class="form-control bg-secondary focus-ring focus-ring-light text-light border-0" id="addressInput" name="address" required>
+                            <label for="addressInput" class="lead text-warning">Complete Address</label>
+                            <input type="text" class="form-control bg-secondary focus-ring focus-ring-light text-light border-0" id="addressInput" name="address" required autocomplete="street-address">
                         </div>
 
                         <div class="col-md-4 col-6">
-                            <label for="lastName" class="lead text-warning">City</label>
+                            <label for="cityInput" class="lead text-warning">City</label>
                             <input type="text" class="form-control bg-secondary focus-ring focus-ring-light text-light border-0" id="cityInput" name="city" required>
                         </div>
                         <div class="col-md-4 col-6">
-                            <label for="lastName" class="lead text-warning">Province</label>
+                            <label for="provinceInput" class="lead text-warning">Province</label>
                             <input type="text" class="form-control bg-secondary focus-ring focus-ring-light text-light border-0" id="provinceInput" name="province" required>
                         </div>
                         <div class="col-md-1 col-3 mx-md-auto">
-                            <label for="lastName" class="lead text-warning">Zip Code</label>
+                            <label for="zipcodeInput" class="lead text-warning">Zip Code</label>
                             <input type="text" class="form-control bg-secondary focus-ring focus-ring-light text-light border-0" id="zipcodeInput" name="zipCode" required>
                         </div>
 
                         <h1 class="lead display-4 mt-5 mb-3 w-100 text-light" style="border-bottom:1px solid orange">Academic Information</h1>
 
                         <div class="col-md-3 col-6">
-                            <label for="lastName" class="lead text-warning">Program</label>
+                            <label for="programInput" class="lead text-warning">Program</label>
                             <select class="form-select bg-secondary focus-ring focus-ring-light text-light border-0" name="program" id="programInput" required>
                                 <option selected></option>
                                 <option value="education">Education</option>
@@ -143,7 +143,7 @@
                             </select>
                         </div>
                         <div class="col-md-3 col-6">
-                            <label for="lastName" class="lead text-warning">Year Level</label>
+                            <label for="yearLevelInput" class="lead text-warning">Year Level</label>
                             <select class="form-select bg-secondary focus-ring focus-ring-light text-light border-0" name="yearLevel" id="yearLevelInput" required>
                                 <option selected></option>
                                 <option value="1stYear">1st Year</option>
@@ -153,8 +153,8 @@
                             </select>
                         </div>
                         <div class="col-md-3 col-6">
-                            <label for="lastName" class="lead text-warning">Student Type</label>
-                            <select class="form-select bg-secondary focus-ring focus-ring-light text-light border-0" name="Gender" id="genderInput" required>
+                            <label for="studentType" class="lead text-warning">Student Type</label>
+                            <select class="form-select bg-secondary focus-ring focus-ring-light text-light border-0" name="Gender" id="studentType" required>
                                 <option selected></option>
                                 <option value="newStudent">New Student</option>
                                 <option value="returnee">Returnee</option>
@@ -162,15 +162,52 @@
                             </select>
                         </div>
                         <div class="col-md-3 col-6">
-                            <label for="lastName" class="lead text-warning">Enrollment Type</label>
-                            <select class="form-select bg-secondary focus-ring focus-ring-light text-light border-0" id="genderInput" required>
+                            <label for="enrollmentType" class="lead text-warning">Enrollment Type</label>
+                            <select class="form-select bg-secondary focus-ring focus-ring-light text-light border-0" id="enrollmentType" required>
                                 <option selected></option>
                                 <option value="regular">Regular</option>
                                 <option value="irregular">Irregular</option>
                             </select>
                         </div>
+
+                        <h1 class="lead display-4 mt-5 mb-3 w-100 text-light" style="border-bottom:1px solid orange">Emergency Contact</h1>
+
+                        <div class="col-md-4">
+                            <label for="guardianInput" class="lead text-warning">Guardian</label>
+                            <input type="text" class="form-control bg-secondary focus-ring focus-ring-light text-light border-0" id="guardianInput" name="guardianName" required>
+                        </div>
+                        <div class="col-md-4">
+                            <label for="relationshipInput" class="lead text-warning">Relationship</label>
+                            <input type="text" class="form-control bg-secondary focus-ring focus-ring-light text-light border-0" id="relationshipInput" name="relationship" required>
+                        </div>
+                        <div class="col-md-4">
+                            <label for="guardianphoneInput" class="lead text-warning">Guardian Phone</label>
+                            <input type="text" class="form-control bg-secondary focus-ring focus-ring-light text-light border-0" id="guardianphoneInput" name="guardianPhone" required>
+                        </div>
+                        <div class="col-md-4">
+                            <label for="guardianmailInput" class="lead text-warning">Guardian Email</label>
+                            <input type="text" class="form-control bg-secondary focus-ring focus-ring-light text-light border-0" id="guardianmailInput" name="guardianEmail" required>
+                        </div>
                     </div>
 
+                    <div class="me-auto mt-5">
+                        <div class="form-check">
+                            <input class="form-check-input" type="checkbox" value="" id="checkDefault" required>
+                            <p class="form-check-label" for="termsCheck">
+                                I agree to the <a class="text-warning" onclick="console.log('EULA')">Terms and Conditions</a> and
+                                <a class="text-warning" onclick="console.log('PP')">Privacy Policy</a>
+                            </p>
+                        </div>
+                    </div>
+
+                    <div class="d-grid gap-2 d-flex justify-content-md-end mt-5 ms-auto">
+                        <button type="button" class="btn btn-outline-warning" onclick="window.location.href='landingPage.php'">
+                            Cancel
+                        </button>
+                        <button type="submit" class="btn btn-warning" id="submitBtn">
+                            Register
+                        </button>
+                    </div>
 
                 </form>
 
