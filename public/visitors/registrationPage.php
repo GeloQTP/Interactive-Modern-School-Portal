@@ -181,7 +181,7 @@
                             <input type="text" class="form-control bg-secondary focus-ring focus-ring-light text-light border-0" id="relationshipInput" name="relationship" required>
                         </div>
                         <div class="col-md-4">
-                            <label for="guardianphoneInput" class="lead text-warning">Guardian Phone</label>
+                            <label for="guardianphoneInput" class="lead text-warning">Guardian's Contact Number</label>
                             <input type="text" class="form-control bg-secondary focus-ring focus-ring-light text-light border-0" id="guardianphoneInput" name="guardianPhone" required>
                         </div>
                         <div class="col-md-4">
