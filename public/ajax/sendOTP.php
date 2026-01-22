@@ -11,10 +11,6 @@ $dotenv->load();
 
 if ($_SERVER['REQUEST_METHOD'] == "POST") {
 
-    $senderName = $_POST['name'];
-    $senderEmail = $_POST['email'];
-    $senderMessage = $_POST['message'];
-
     $mail = new PHPMailer(true);
 
     try {

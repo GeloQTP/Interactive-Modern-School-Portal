@@ -74,9 +74,9 @@
                             <label for="birthdateInput" class="lead text-warning">Date of Birth</label>
                             <input type="date" class="form-control bg-secondary focus-ring focus-ring-light text-light border-0 text-light" id="birthdateInput" name="birthDate" required>
                         </div>
-                        <div class="col-md-1 col-3 me-md-auto">
+                        <div class="col-md-1 col-3 mx-md-auto">
                             <label for="ageInput" class="lead text-warning">Age</label>
-                            <input class="form-control bg-secondary border-0 text-light" type="text" id="ageInput" name="age" readonly>
+                            <input class="form-control bg-secondary border-0 text-light text-center" type="text" id="ageInput" name="age" readonly>
                         </div>
                         <div class="col-md-2 col-4 mx-md-auto">
                             <label for="nationalityInput" class="lead text-warning">Nationality</label>
@@ -204,7 +204,7 @@
                         <button type="button" class="btn btn-outline-warning" onclick="window.location.href='landingPage.php'">
                             Cancel
                         </button>
-                        <button type="submit" class="btn btn-warning" id="submitBtn">
+                        <button type="submit" class="btn btn-warning" id="submitBtn" onclick="">
                             Register
                         </button>
                     </div>
@@ -236,7 +236,24 @@
 </script>
 
 <script>
-    document.addEventListener("DOMContentLoaded", () => {
+    const ageInput = document.getElementById("ageInput");
+
+    document.getElementById("birthdateInput").addEventListener("change", function() {
+        let birthDate = this.value;
+        let splitDate = birthDate.split("-");
+        let birthYear = splitDate[0];
+
+        let fullDate = new Date();
+        let currentYear = fullDate.getFullYear();
+
+        let age = currentYear - birthYear;
+
+        ageInput.value = age
+    });
+</script>
+
+<script>
+    document.addEventListener("DOMContentLoaded", () => { // only loads the script once the DOM is completely loaded.
 
         const form = document.getElementById("registrationForm");
 
