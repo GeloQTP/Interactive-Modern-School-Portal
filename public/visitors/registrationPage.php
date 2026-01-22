@@ -48,7 +48,7 @@
         <section class="bg-dark text-light py-5 p-lg-5 mt-5">
             <div class="container">
 
-                <form class="input-group d-flex align-items-center justify-content-center">
+                <form class="input-group d-flex align-items-center justify-content-center" id="registrationForm">
 
                     <h1 class="lead display-4 mb-5 w-100 text-light" style="border-bottom:1px solid orange">Personal Information</h1>
 
@@ -232,6 +232,14 @@
         setTimeout(() => {
             spinner.style.display = 'none';
         }, 1000);
+    });
+</script>
+
+<script>
+    document.addEventListener("DOMContentLoaded", () => {
+
+        const form = document.getElementById("registrationForm");
+
     });
 </script>
 
