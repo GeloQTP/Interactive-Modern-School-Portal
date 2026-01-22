@@ -109,7 +109,7 @@
                 <h4 class="mb-3 mb-md-0">Subscribe to our Newsletter</h4>
 
                 <form class="input-group news-input">
-                    <input type="text" class="form-control" placeholder="Enter your Email" name="email" required>
+                    <input type="text" class="form-control" placeholder="Enter your Email" name="email" required autocomplete="on">
                     <button class="btn btn-lg bg-dark text-light" type="submit">Submit</button>
                 </form>
 
