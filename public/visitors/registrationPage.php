@@ -291,7 +291,7 @@
         });
 
         const ageInput = document.getElementById("ageInput");
-        document.getElementById("birthdateInput").addEventListener("change", function () {
+        document.getElementById("birthdateInput").addEventListener("change", function() {
             const birthDate = new Date(this.value);
             const today = new Date();
             let age = today.getFullYear() - birthDate.getFullYear();
@@ -302,4 +302,5 @@
     </script>
 
 </body>
+
 </html>
