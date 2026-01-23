@@ -269,23 +269,23 @@
                                     You agree to use this system only for lawful and authorized purposes. Any attempt to gain unauthorized access, disrupt system operations, or misuse this platform may result in disciplinary action and may be subject to legal consequences.
                                     <br><br>
                                     By checking the box below and clicking “Understood,” you acknowledge that you have read, understood, and agree to these Terms and Conditions and the Privacy Policy, and that you are legally authorized to submit this registration.
+                                </div>
 
-                                    <div class="mt-5 d-flex align-items-center justify-content-center">
-                                        <div class="form-check">
-                                            <input class="form-check-input" type="checkbox" id="termsCheck" required>
-                                            <p class="form-check-label">
-                                                I agree to the
-                                                <a class="text-warning">Terms and Conditions</a>
-                                                and
-                                                <a class="text-warning">Privacy Policy</a>
-                                            </p>
-                                        </div>
+                                <div class="mt-5 d-flex align-items-center justify-content-center">
+                                    <div class="form-check">
+                                        <input class="form-check-input" type="checkbox" id="termsCheck" required>
+                                        <p class="form-check-label">
+                                            I agree to the
+                                            <a class="text-warning">Terms and Conditions</a>
+                                            and
+                                            <a class="text-warning">Privacy Policy</a>
+                                        </p>
                                     </div>
+                                </div>
 
-                                    <div class="modal-footer">
-                                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal" data-bs-target="">Close</button>
-                                        <button type="submit" class="btn btn-warning">Understood</button>
-                                    </div>
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal" data-bs-target="">Close</button>
+                                    <button type="submit" class="btn btn-warning">Understood</button>
                                 </div>
 
                             </div>
