@@ -337,9 +337,18 @@
         });
 
         window.addEventListener("DOMContentLoaded", () => {
-            document.getElementById("registrationForm").addEventListener("submit", (e) => {
+            const form = document.getElementById("registrationForm");
+
+            form.addEventListener("submit", async (e) => {
                 e.preventDefault();
 
+                const res = await fetch(`../ajax/register.php`, {
+                    method: 'POST',
+                    body: new FormData(form),
+                    credentials: "same-origin"
+                });
+
+                //TODO: HTTP REQUEST
 
             });
         });
