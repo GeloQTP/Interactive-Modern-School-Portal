@@ -284,12 +284,14 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"></script>
 
     <script>
+        // LOADER ANIMATION
         const spinner = document.querySelector('.spinner-wrapper');
 
         window.addEventListener('load', () => {
             setTimeout(() => spinner.style.display = 'none', 1000);
         });
 
+        // AUTOMATED AGE CALCULATION AND DISPLAY
         const ageInput = document.getElementById("ageInput");
         document.getElementById("birthdateInput").addEventListener("change", function() {
             const birthDate = new Date(this.value);
