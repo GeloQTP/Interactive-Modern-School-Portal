@@ -348,7 +348,7 @@
                     credentials: "same-origin"
                 });
 
-                //TODO: HTTP REQUEST
+                //TODO: HTTP REQUEST laptop
 
             });
         });
