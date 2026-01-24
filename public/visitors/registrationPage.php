@@ -355,7 +355,8 @@
                         credentials: "same-origin"
                     });
 
-                    const data = await res.json();
+                    const data = await res.text();
+                    console.log(data)
 
                     if (!res.ok) {
                         throw new Error('Network response was not ok')
