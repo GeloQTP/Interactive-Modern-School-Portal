@@ -206,13 +206,13 @@
         form.addEventListener('submit', async (e) => {
             e.preventDefault();
 
-            submitBtn.disabled = true;
+            submitBtn.disabled = true; // disable the submit button to avoid double submittion.
             submitBtn.innerHTML = '<span class="spinner-grow spinner-grow-sm" style="margin-bottom:3px" role ="status"> <span class="visually-hidden"> Loading... </span></span>';
 
             try {
                 const response = await fetch(`../ajax/emailSubmit.php`, {
                     method: 'POST',
-                    body: new FormData(form), // we can use `this` keyword, but ()=> does not have its own `this ` keyword
+                    body: new FormData(form),
                     credentials: 'same-origin'
                 });
 
@@ -235,6 +235,7 @@
             } finally {
                 submitBtn.disabled = false;
                 submitBtn.textContent = 'Submit';
+                emailInput.value = "" // clear the form input 
             }
         });
     });

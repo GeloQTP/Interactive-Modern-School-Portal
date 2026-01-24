@@ -285,7 +285,7 @@
 
                                 <div class="modal-footer">
                                     <button type="button" class="btn btn-secondary" data-bs-dismiss="modal" data-bs-target="">Close</button>
-                                    <button type="submit" class="btn btn-warning">Understood</button>
+                                    <button type="submit" class="btn btn-warning" id="acceptEULA">Understood</button>
                                 </div>
 
                             </div>
@@ -336,19 +336,41 @@
             ageInput.value = age;
         });
 
+        // AJAX Submittion
+        // AJAX Submittion
         window.addEventListener("DOMContentLoaded", () => {
             const form = document.getElementById("registrationForm");
+            const acceptBtn = document.getElementById("acceptEULA");
 
             form.addEventListener("submit", async (e) => {
                 e.preventDefault();
 
-                const res = await fetch(`../ajax/register.php`, {
-                    method: 'POST',
-                    body: new FormData(form),
-                    credentials: "same-origin"
-                });
+                acceptBtn.disabled = true;
+                acceptBtn.innerHTML = '<span class="spinner-grow spinner-grow-sm" style="margin-bottom:3px" role ="status"> <span class="visually-hidden"> Loading... </span></span>';
 
-                //TODO: HTTP REQUEST
+                try {
+                    const res = await fetch(`../ajax/sendOTP.php`, {
+                        method: 'POST',
+                        body: new FormData(form),
+                        credentials: "same-origin"
+                    });
+
+                    const data = await res.json();
+
+                    if (!res.ok) {
+                        throw new Error('Network response was not ok')
+                    } else {
+                        console.log("OTP Send!");
+                        console.log(data.message);
+                    }
+
+                } catch (error) {
+                    console.log('Something went wrong.');
+                    console.log(error.message);
+                } finally {
+                    acceptBtn.disabled = false;
+                    acceptBtn.innerHTML = 'Understood';
+                }
 
             });
         });
