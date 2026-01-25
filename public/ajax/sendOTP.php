@@ -1,6 +1,7 @@
 <?php
 
 session_start();
+include __DIR__ . '/../../includes/db_connect.php';
 
 use PHPMailer\PHPMailer\PHPMailer;
 use PHPMailer\PHPMailer\Exception;
@@ -18,6 +19,8 @@ if ($_SERVER['REQUEST_METHOD'] == "POST") {
     $_SESSION['OTP'] = $otp;
     $_SESSION['otp_timestamp'] = time(); // For 10-minute expiration
 
+    $stmt = $conn->prepare("INSERT INTO pending_registrations (email, phone, otp_hash, otp_expires_at) VALUES (?,?,?,?)");
+
     $mail = new PHPMailer(true);
 
     try {
@@ -32,18 +35,18 @@ if ($_SERVER['REQUEST_METHOD'] == "POST") {
         $mail->Port = $_ENV["SMTP_PORT"];
 
         // Recipients
-        $mail->setFrom($_ENV["SMTP_USER"], "DFSquid");
+        $mail->setFrom($_ENV["SMTP_USER"], "Laragon College University");
         $mail->addAddress($email);
 
         // Mail
         $mail->isHTML(true);
 
-        $mail->Subject = "Your One-Time Password (OTP) from Laragon University Registration Form";
+        $mail->Subject = "Your One-Time Password (OTP) from Laragon College University";
 
         $mail->Body =
             "
                     <div style='font-family: Arial, sans-serif; color: #333; line-height: 1.6; max-width: 600px; margin: auto;'>
-                        <h2 style='color: #2c3e50;'>School Registration Verification</h2>
+                        <h2 style='color: #2c3e50;'>Laragon Registration Verification</h2>
 
                         <p>Dear Student / Parent,</p>
 

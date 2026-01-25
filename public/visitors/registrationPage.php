@@ -361,7 +361,7 @@
                     if (!res.ok) {
                         throw new Error('Network response was not ok')
                     } else {
-                        console.log("OTP Send!");
+                        console.log("OTP Sent!");
                         console.log(data.message);
                     }
 
