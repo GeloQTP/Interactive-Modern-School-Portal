@@ -22,7 +22,7 @@
     <header>
         <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
             <div class="container my-1">
-                <a href="landingPage.php" class="navbar-brand fw-bold d-flex align-items-center">
+                <a href="LandingPage.php" class="navbar-brand fw-bold d-flex align-items-center">
                     <span class="px-2">
                         <img src="./../../src/img/YellowElephant.png" alt="Laragon logo" style="width: 50px; border-radius: 100px;">
                     </span>
@@ -305,7 +305,7 @@
 
                 </form>
 
-                //TODO: OTP MODAL
+                <!-- TODO: OTP MODAL -->
 
             </div>
         </section>
@@ -313,7 +313,7 @@
 
     <footer>
         <div class="bg-dark text-light text-center p-3">
-            <p class="mb-0">&copy; 2024 Laragon College University. All rights reserved.</p>
+            <p class="mb-0">&copy; 2026 Laragon College University. All rights reserved.</p>
         </div>
     </footer>
 

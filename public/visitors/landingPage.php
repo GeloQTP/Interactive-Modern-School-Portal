@@ -38,7 +38,7 @@
     <!-- NAVBAR -->
     <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
         <div class="container my-1">
-            <a href="landingPage.php" class="navbar-brand fw-bold d-flex align-items-center">
+            <a href="LandingPage.php" class="navbar-brand fw-bold d-flex align-items-center">
                 <span class="px-2"><img src="./../../src/img/YellowElephant.png" alt="yellow elephant logo"
                         style="width: 50px; border-radius: 100px;"></span>
                 <span class="d-none d-sm-block"><span class="text-warning lead">Laragon</span> University</span>
@@ -73,7 +73,7 @@
                         Join a world-class university dedicated to academic excellence and innovation.
                     </p>
                     <button class="btn btn-warning btn-lg" type="button"
-                        onclick="window.location.href='registrationPage.php'">Register Now</button>
+                        onclick="window.location.href='RegistrationPage.php'">Register Now</button>
                 </div>
                 <div class="col-sm-6 d-none d-sm-block">
                     <div id="carouselExampleSlidesOnly" class="carousel slide" data-bs-ride="carousel">
@@ -176,7 +176,7 @@
 
     <footer>
         <div class="bg-dark text-light text-center p-3">
-            <p class="mb-0">&copy; 2024 Laragon College University. All rights reserved.</p>
+            <p class="mb-0">&copy; 2026 Laragon College University. All rights reserved.</p>
         </div>
     </footer>
 
