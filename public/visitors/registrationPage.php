@@ -271,7 +271,7 @@
                                     By checking the box below and clicking “Understood,” you acknowledge that you have read, understood, and agree to these Terms and Conditions and the Privacy Policy, and that you are legally authorized to submit this registration.
                                 </div>
 
-                                <div class="mt-5 d-flex align-items-center justify-content-center">
+                                <div class="mt-5 mx-3 d-flex align-items-center justify-content-center fs-6">
                                     <div class="form-check">
                                         <input class="form-check-input" type="checkbox" id="termsCheck" required>
                                         <p class="form-check-label">
@@ -346,10 +346,10 @@
                 e.preventDefault();
 
                 acceptBtn.disabled = true;
-                acceptBtn.innerHTML = '<span class="spinner-grow spinner-grow-sm" style="margin-bottom:3px" role ="status"> <span class="visually-hidden"> Loading... </span></span>';
+                acceptBtn.innerHTML = '<span class="spinner-grow spinner-grow-sm" role ="status"> <span class="visually-hidden"> Loading... </span></span>';
 
                 try {
-                    const res = await fetch(`../ajax/sendOTP.php`, {
+                    const res = await fetch(`../ajax/registrationOTP.php`, {
                         method: 'POST',
                         body: new FormData(form),
                         credentials: "same-origin"
@@ -362,7 +362,6 @@
                         throw new Error('Network response was not ok')
                     } else {
                         console.log("OTP Sent!");
-                        console.log(data.message);
                     }
 
                 } catch (error) {
