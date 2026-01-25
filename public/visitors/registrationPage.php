@@ -305,6 +305,8 @@
 
                 </form>
 
+                //TODO: OTP MODAL
+
             </div>
         </section>
     </main>
@@ -336,7 +338,6 @@
             ageInput.value = age;
         });
 
-        // AJAX Submittion
         // AJAX Submittion
         window.addEventListener("DOMContentLoaded", () => {
             const form = document.getElementById("registrationForm");
