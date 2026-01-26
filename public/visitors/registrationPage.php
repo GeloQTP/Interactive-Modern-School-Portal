@@ -362,11 +362,6 @@
                     </div>
                 </div>
 
-                <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#otpModal">
-                    Launch static backdrop modal
-                </button>
-
-
             </div>
         </section>
     </main>
