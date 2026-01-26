@@ -1,4 +1,7 @@
 # Env files (secrets/environmental variables)
 .env
+PHPMailer.env
+database.env
 vendor/
 dist/
+libraries/

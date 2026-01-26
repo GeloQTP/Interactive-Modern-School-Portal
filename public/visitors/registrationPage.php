@@ -22,7 +22,7 @@
     <header>
         <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
             <div class="container my-1">
-                <a href="landingPage.php" class="navbar-brand fw-bold d-flex align-items-center">
+                <a href="LandingPage.php" class="navbar-brand fw-bold d-flex align-items-center">
                     <span class="px-2">
                         <img src="./../../src/img/YellowElephant.png" alt="Laragon logo" style="width: 50px; border-radius: 100px;">
                     </span>
@@ -269,23 +269,23 @@
                                     You agree to use this system only for lawful and authorized purposes. Any attempt to gain unauthorized access, disrupt system operations, or misuse this platform may result in disciplinary action and may be subject to legal consequences.
                                     <br><br>
                                     By checking the box below and clicking “Understood,” you acknowledge that you have read, understood, and agree to these Terms and Conditions and the Privacy Policy, and that you are legally authorized to submit this registration.
+                                </div>
 
-                                    <div class="mt-5 d-flex align-items-center justify-content-center">
-                                        <div class="form-check">
-                                            <input class="form-check-input" type="checkbox" id="termsCheck" required>
-                                            <p class="form-check-label">
-                                                I agree to the
-                                                <a class="text-warning">Terms and Conditions</a>
-                                                and
-                                                <a class="text-warning">Privacy Policy</a>
-                                            </p>
-                                        </div>
+                                <div class="mt-5 mx-3 d-flex align-items-center justify-content-center fs-6">
+                                    <div class="form-check">
+                                        <input class="form-check-input" type="checkbox" id="termsCheck" required>
+                                        <p class="form-check-label">
+                                            I agree to the
+                                            <a class="text-warning">Terms and Conditions</a>
+                                            and
+                                            <a class="text-warning">Privacy Policy</a>
+                                        </p>
                                     </div>
+                                </div>
 
-                                    <div class="modal-footer">
-                                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal" data-bs-target="">Close</button>
-                                        <button type="submit" class="btn btn-warning">Understood</button>
-                                    </div>
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                                    <button type="submit" class="btn btn-warning" id="acceptEULA">Understood</button>
                                 </div>
 
                             </div>
@@ -294,7 +294,7 @@
 
                     <div class="d-grid gap-2 d-flex justify-content-md-end mt-5 ms-auto">
                         <button type="button" class="btn btn-outline-warning"
-                            onclick="window.location.href='landingPage.php'">
+                            onclick="window.location.href='LandingPage.php'">
                             Cancel
                         </button>
                         <button type="button" class="btn btn-warning" data-bs-toggle="modal" data-bs-target="#eulaModal">
@@ -305,13 +305,58 @@
 
                 </form>
 
+                <!-- OTP MODAL -->
+                <div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+                    <div class="modal-dialog modal-dialog-centered">
+                        <div class="modal-content bg-dark text-light">
+                            <div class="modal-header">
+                                <h1 class="modal-title fs-5" id="staticBackdropLabel">OTP Verification</h1>
+                                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                            </div>
+                            <form id="OTP_form">
+                                <div class="modal-body">
+                                    <div class="row g-1 text-center">
+                                        <div class="col-2">
+                                            <input type="text" class="form-control text-center" name="otp1" maxlength="1">
+                                        </div>
+                                        <div class=" col-2">
+                                            <input type="text" class="form-control text-center" name="otp2" maxlength="1">
+                                        </div>
+                                        <div class="col-2">
+                                            <input type="text" class="form-control text-center" name="otp3" maxlength="1">
+                                        </div>
+                                        <div class="col-2">
+                                            <input type="text" class="form-control text-center" name="otp4" maxlength="1">
+                                        </div>
+                                        <div class="col-2">
+                                            <input type="text" class="form-control text-center" name="otp5" maxlength="1">
+                                        </div>
+                                        <div class="col-2">
+                                            <input type="text" class="form-control text-center" name="otp6" maxlength="1">
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                                    <button type="button" class="btn btn-primary">Understood</button>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+
+                <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#staticBackdrop">
+                    Launch static backdrop modal
+                </button>
+
+
             </div>
         </section>
     </main>
 
     <footer>
         <div class="bg-dark text-light text-center p-3">
-            <p class="mb-0">&copy; 2024 Laragon College University. All rights reserved.</p>
+            <p class="mb-0">&copy; 2026 Laragon College University. All rights reserved.</p>
         </div>
     </footer>
 
@@ -336,20 +381,82 @@
             ageInput.value = age;
         });
 
+        // AJAX Submittion
         window.addEventListener("DOMContentLoaded", () => {
             const form = document.getElementById("registrationForm");
+            const acceptBtn = document.getElementById("acceptEULA");
 
             form.addEventListener("submit", async (e) => {
                 e.preventDefault();
 
-                const res = await fetch(`../ajax/register.php`, {
-                    method: 'POST',
-                    body: new FormData(form),
-                    credentials: "same-origin"
+                acceptBtn.disabled = true;
+                acceptBtn.innerHTML = '<span class="spinner-border spinner-border-sm" role ="status"> <span class="visually-hidden"> Loading... </span></span>';
+
+                try {
+                    const res = await fetch(`../ajax/registrationOTP.php`, {
+                        method: 'POST',
+                        body: new FormData(form),
+                        credentials: "same-origin"
+                    });
+
+                    const data = await res.text();
+                    console.log(data)
+
+                    if (!res.ok) {
+                        throw new Error('Network response was not ok')
+                    } else {
+                        console.log("OTP Sent!");
+                    }
+
+                } catch (error) {
+                    console.log('Something went wrong.');
+                    console.log(error.message);
+                } finally {
+                    acceptBtn.disabled = false;
+                    acceptBtn.innerHTML = 'Understood';
+                }
+
+            });
+        });
+
+        //OTP AUTO NEXT
+        document.addEventListener('DOMContentLoaded', function() {
+            const otpInputs = document.querySelectorAll('#staticBackdrop input[type="text"]');
+
+            otpInputs.forEach((input, index) => {
+                // Move to next input on input
+                input.addEventListener('input', function(e) {
+                    if (this.value.length === 1 && index < otpInputs.length - 1) {
+                        otpInputs[index + 1].focus();
+                    }
                 });
 
-                //TODO: HTTP REQUEST laptop
+                // Handle backspace to move to previous input
+                input.addEventListener('keydown', function(e) {
+                    if (e.key === 'Backspace' && this.value === '' && index > 0) {
+                        otpInputs[index - 1].focus();
+                    }
+                });
 
+                // Prevent typing more than 1 character
+                input.addEventListener('input', function(e) {
+                    if (this.value.length > 1) {
+                        this.value = this.value.slice(0, 1);
+                    }
+                });
+
+                // Only allow numbers
+                input.addEventListener('keypress', function(e) {
+                    if (!/[0-9]/.test(e.key)) {
+                        e.preventDefault();
+                    }
+                });
+            });
+
+            // Optional: Auto-focus first input when modal opens
+            const modal = document.getElementById('staticBackdrop');
+            modal.addEventListener('shown.bs.modal', function() {
+                otpInputs[0].focus();
             });
         });
     </script>
