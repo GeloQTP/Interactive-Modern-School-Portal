@@ -201,7 +201,7 @@
         const form = document.querySelector(".news-input");
         const emailInput = document.querySelector(".news-input input");
         const submitBtn = document.querySelector(".news-input button");
-        const toastLiveExample = document.getElementById('liveToast');
+        const toastNotif = document.getElementById('liveToast');
 
         form.addEventListener('submit', async (e) => {
             e.preventDefault();
@@ -223,13 +223,13 @@
                 const result = await response.json();
 
                 document.querySelector('.toast-body').textContent = result.message;
-                const toastBootstrap = bootstrap.Toast.getOrCreateInstance(toastLiveExample);
+                const toastBootstrap = bootstrap.Toast.getOrCreateInstance(toastNotif);
                 toastBootstrap.show()
 
 
             } catch (error) {
                 document.querySelector('.toast-body').textContent = 'An error occurred. Please try again.';
-                const toastBootstrap = bootstrap.Toast.getOrCreateInstance(toastLiveExample);
+                const toastBootstrap = bootstrap.Toast.getOrCreateInstance(toastNotif);
                 toastBootstrap.show()
 
             } finally {
