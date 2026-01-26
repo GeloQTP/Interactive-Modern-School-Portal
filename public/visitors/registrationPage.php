@@ -284,7 +284,7 @@
                                 </div>
 
                                 <div class="modal-footer">
-                                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal" data-bs-target="">Close</button>
+                                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
                                     <button type="submit" class="btn btn-warning" id="acceptEULA">Understood</button>
                                 </div>
 
@@ -305,7 +305,50 @@
 
                 </form>
 
-                <!-- TODO: OTP MODAL -->
+                <!-- OTP MODAL -->
+                <div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+                    <div class="modal-dialog modal-dialog-centered">
+                        <div class="modal-content bg-dark text-light">
+                            <div class="modal-header">
+                                <h1 class="modal-title fs-5" id="staticBackdropLabel">OTP Verification</h1>
+                                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                            </div>
+                            <form id="OTP_form">
+                                <div class="modal-body">
+                                    <div class="row g-1 text-center">
+                                        <div class="col-2">
+                                            <input type="text" class="form-control text-center" name="otp1" maxlength="1">
+                                        </div>
+                                        <div class=" col-2">
+                                            <input type="text" class="form-control text-center" name="otp2" maxlength="1">
+                                        </div>
+                                        <div class="col-2">
+                                            <input type="text" class="form-control text-center" name="otp3" maxlength="1">
+                                        </div>
+                                        <div class="col-2">
+                                            <input type="text" class="form-control text-center" name="otp4" maxlength="1">
+                                        </div>
+                                        <div class="col-2">
+                                            <input type="text" class="form-control text-center" name="otp5" maxlength="1">
+                                        </div>
+                                        <div class="col-2">
+                                            <input type="text" class="form-control text-center" name="otp6" maxlength="1">
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                                    <button type="button" class="btn btn-primary">Understood</button>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+
+                <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#staticBackdrop">
+                    Launch static backdrop modal
+                </button>
+
 
             </div>
         </section>
@@ -373,6 +416,47 @@
                     acceptBtn.innerHTML = 'Understood';
                 }
 
+            });
+        });
+
+        //OTP AUTO NEXT
+        document.addEventListener('DOMContentLoaded', function() {
+            const otpInputs = document.querySelectorAll('#staticBackdrop input[type="text"]');
+
+            otpInputs.forEach((input, index) => {
+                // Move to next input on input
+                input.addEventListener('input', function(e) {
+                    if (this.value.length === 1 && index < otpInputs.length - 1) {
+                        otpInputs[index + 1].focus();
+                    }
+                });
+
+                // Handle backspace to move to previous input
+                input.addEventListener('keydown', function(e) {
+                    if (e.key === 'Backspace' && this.value === '' && index > 0) {
+                        otpInputs[index - 1].focus();
+                    }
+                });
+
+                // Prevent typing more than 1 character
+                input.addEventListener('input', function(e) {
+                    if (this.value.length > 1) {
+                        this.value = this.value.slice(0, 1);
+                    }
+                });
+
+                // Only allow numbers
+                input.addEventListener('keypress', function(e) {
+                    if (!/[0-9]/.test(e.key)) {
+                        e.preventDefault();
+                    }
+                });
+            });
+
+            // Optional: Auto-focus first input when modal opens
+            const modal = document.getElementById('staticBackdrop');
+            modal.addEventListener('shown.bs.modal', function() {
+                otpInputs[0].focus();
             });
         });
     </script>
