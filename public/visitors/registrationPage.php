@@ -294,7 +294,7 @@
 
                     <div class="d-grid gap-2 d-flex justify-content-md-end mt-5 ms-auto">
                         <button type="button" class="btn btn-outline-warning"
-                            onclick="window.location.href='landingPage.php'">
+                            onclick="window.location.href='LandingPage.php'">
                             Cancel
                         </button>
                         <button type="button" class="btn btn-warning" data-bs-toggle="modal" data-bs-target="#eulaModal">
@@ -347,7 +347,7 @@
                 e.preventDefault();
 
                 acceptBtn.disabled = true;
-                acceptBtn.innerHTML = '<span class="spinner-grow spinner-grow-sm" role ="status"> <span class="visually-hidden"> Loading... </span></span>';
+                acceptBtn.innerHTML = '<span class="spinner-border spinner-border-sm" role ="status"> <span class="visually-hidden"> Loading... </span></span>';
 
                 try {
                     const res = await fetch(`../ajax/registrationOTP.php`, {
