@@ -64,51 +64,51 @@
                     </h1>
 
                     <div class="row g-3">
-                        <div class="col-md-4">
+                        <div class="col-md-3">
                             <label for="firstNameInput" class="lead text-warning">First Name</label>
-                            <input type="text" class="form-control bg-secondary text-light border-0"
+                            <input type="text" class="form-control form-control-sm bg-secondary text-light border-0"
                                 id="firstNameInput" name="firstName" required>
                         </div>
 
-                        <div class="col-md-4">
+                        <div class="col-md-3">
                             <label for="lastNameInput" class="lead text-warning">Last Name</label>
-                            <input type="text" class="form-control bg-secondary text-light border-0"
+                            <input type="text" class="form-control form-control-sm bg-secondary text-light border-0"
                                 id="lastNameInput" name="lastName" required>
                         </div>
 
-                        <div class="col-md-2">
+                        <div class="col-md-3">
                             <label for="middleNameInput" class="lead text-warning">Middle Name</label>
-                            <input type="text" class="form-control bg-secondary text-light border-0"
+                            <input type="text" class="form-control form-control-sm bg-secondary text-light border-0"
                                 id="middleNameInput" name="middleName" required>
                         </div>
 
-                        <div class="col-md-1 col-3 ms-md-auto">
-                            <label for="extensionName" class="lead text-warning">Ex.</label>
-                            <input type="text" class="form-control bg-secondary text-light border-0"
+                        <div class="col-md-2 col-5 ms-md-auto">
+                            <label for="extensionName" class="lead text-warning">Extention Name</label>
+                            <input type="text" class="form-control form-control-sm bg-secondary text-light border-0"
                                 id="extensionName" name="exName" placeholder="e.g Jr">
                         </div>
 
                         <div class="col-md-4">
                             <label for="birthdateInput" class="lead text-warning">Date of Birth</label>
-                            <input type="date" class="form-control bg-secondary text-light border-0"
+                            <input type="date" class="form-control form-control-sm bg-secondary text-light border-0"
                                 id="birthdateInput" name="birthDate" required>
                         </div>
 
                         <div class="col-md-1 col-3 mx-md-auto">
                             <label for="ageInput" class="lead text-warning">Age</label>
-                            <input type="text" class="form-control bg-secondary text-light text-center border-0"
+                            <input type="text" class="form-control form-control-sm bg-secondary text-light text-center border-0"
                                 id="ageInput" name="age" readonly>
                         </div>
 
                         <div class="col-md-2 col-4 mx-md-auto">
                             <label for="nationalityInput" class="lead text-warning">Nationality</label>
-                            <input type="text" class="form-control bg-secondary text-light border-0"
+                            <input type="text" class="form-control form-control-sm bg-secondary text-light border-0"
                                 id="nationalityInput" name="nationality" required>
                         </div>
 
                         <div class="col-md-2 col-6">
                             <label for="civilStatusInput" class="lead text-warning">Civil Status</label>
-                            <select class="form-select bg-secondary text-light border-0"
+                            <select class="form-select form-select-sm bg-secondary text-light border-0"
                                 id="civilStatusInput" name="civilStatus" required>
                                 <option value="" selected></option>
                                 <option value="single">Single</option>
@@ -120,7 +120,7 @@
 
                         <div class="col-md-2 col-6 ms-auto">
                             <label for="genderInput" class="lead text-warning">Gender</label>
-                            <select class="form-select bg-secondary text-light border-0"
+                            <select class="form-select form-select-sm bg-secondary text-light border-0"
                                 id="genderInput" name="gender" required>
                                 <option value="" selected></option>
                                 <option value="Male">Male</option>
@@ -135,37 +135,43 @@
 
                         <div class="col-md-4 col-9">
                             <label for="emailInput" class="lead text-warning">Email</label>
-                            <input type="email" class="form-control bg-secondary text-light border-0"
+                            <input type="email" class="form-control form-control-sm bg-secondary text-light border-0"
                                 id="emailInput" name="email" required autocomplete="email">
                         </div>
 
                         <div class="col-md-4 col-6">
                             <label for="phoneNumberInput" class="lead text-warning">Phone Number</label>
-                            <input type="tel" class="form-control bg-secondary text-light border-0"
+                            <input type="tel" class="form-control form-control-sm bg-secondary text-light border-0"
                                 id="phoneNumberInput" name="phoneNumber" required autocomplete="tel">
                         </div>
 
                         <div class="col-md-4">
-                            <label for="addressInput" class="lead text-warning">Complete Address</label>
-                            <input type="text" class="form-control bg-secondary text-light border-0"
+                            <label for="addressInput" class="lead text-warning">Address / House Number</label>
+                            <input type="text" class="form-control form-control-sm bg-secondary text-light border-0"
                                 id="addressInput" name="address" required autocomplete="street-address">
                         </div>
 
-                        <div class="col-md-4 col-6">
-                            <label for="cityInput" class="lead text-warning">City</label>
-                            <input type="text" class="form-control bg-secondary text-light border-0"
-                                id="cityInput" name="city" required>
+                        <div class="col-md-4">
+                            <label for="addressInput" class="lead text-warning">Barangay</label>
+                            <input type="text" class="form-control form-control-sm bg-secondary text-light border-0"
+                                id="barangayInput" name="barangayInput" required autocomplete="street-address">
                         </div>
 
                         <div class="col-md-4 col-6">
+                            <label for="cityInput" class="lead text-warning">City / District</label>
+                            <input type="text" class="form-control form-control-sm bg-secondary text-light border-0"
+                                id="cityInput" name="city" required>
+                        </div>
+
+                        <div class="col-md-3 col-6">
                             <label for="provinceInput" class="lead text-warning">Province</label>
-                            <input type="text" class="form-control bg-secondary text-light border-0"
+                            <input type="text" class="form-control form-control-sm bg-secondary text-light border-0"
                                 id="provinceInput" name="province" required>
                         </div>
 
                         <div class="col-md-1 col-3 mx-md-auto">
                             <label for="zipcodeInput" class="lead text-warning">Zip Code</label>
-                            <input type="text" class="form-control bg-secondary text-light border-0"
+                            <input type="text" class="form-control form-control-sm bg-secondary text-light border-0"
                                 id="zipcodeInput" name="zipCode" required>
                         </div>
 
@@ -175,7 +181,7 @@
 
                         <div class="col-md-3 col-6">
                             <label for="programInput" class="lead text-warning">Program</label>
-                            <select class="form-select bg-secondary text-light border-0"
+                            <select class="form-select form-select-sm bg-secondary text-light border-0"
                                 id="programInput" name="program" required>
                                 <option value="" selected></option>
                                 <option value="education">Education</option>
@@ -187,7 +193,7 @@
 
                         <div class="col-md-3 col-6">
                             <label for="yearLevelInput" class="lead text-warning">Year Level</label>
-                            <select class="form-select bg-secondary text-light border-0"
+                            <select class="form-select form-select-sm bg-secondary text-light border-0"
                                 id="yearLevelInput" name="yearLevel" required>
                                 <option value="" selected></option>
                                 <option value="1stYear">1st Year</option>
@@ -199,7 +205,7 @@
 
                         <div class="col-md-3 col-6">
                             <label for="studentType" class="lead text-warning">Student Type</label>
-                            <select class="form-select bg-secondary text-light border-0"
+                            <select class="form-select form-select-sm bg-secondary text-light border-0"
                                 id="studentType" name="studentType" required>
                                 <option value="" selected></option>
                                 <option value="newStudent">New Student</option>
@@ -210,7 +216,7 @@
 
                         <div class="col-md-3 col-6">
                             <label for="enrollmentType" class="lead text-warning">Enrollment Type</label>
-                            <select class="form-select bg-secondary text-light border-0"
+                            <select class="form-select form-select-sm bg-secondary text-light border-0"
                                 id="enrollmentType" name="enrollmentType" required>
                                 <option value="" selected></option>
                                 <option value="regular">Regular</option>
@@ -224,28 +230,60 @@
 
                         <div class="col-md-4">
                             <label for="guardianInput" class="lead text-warning">Guardian</label>
-                            <input type="text" class="form-control bg-secondary text-light border-0"
+                            <input type="text" class="form-control form-control-sm bg-secondary text-light border-0"
                                 id="guardianInput" name="guardianName" required>
                         </div>
 
                         <div class="col-md-4">
                             <label for="relationshipInput" class="lead text-warning">Relationship</label>
-                            <input type="text" class="form-control bg-secondary text-light border-0"
+                            <input type="text" class="form-control form-control-sm bg-secondary text-light border-0"
                                 id="relationshipInput" name="relationship" required>
                         </div>
 
                         <div class="col-md-4">
                             <label for="guardianphoneInput" class="lead text-warning">Guardian's Contact Number</label>
-                            <input type="tel" class="form-control bg-secondary text-light border-0"
+                            <input type="tel" class="form-control form-control-sm bg-secondary text-light border-0"
                                 id="guardianphoneInput" name="guardianPhone" required>
                         </div>
 
                         <div class="col-md-4">
                             <label for="guardianmailInput" class="lead text-warning">Guardian Email</label>
-                            <input type="email" class="form-control bg-secondary text-light border-0"
+                            <input type="email" class="form-control form-control-sm bg-secondary text-light border-0"
                                 id="guardianmailInput" name="guardianEmail" required>
                         </div>
+
+                            <h1 class="lead display-5 mt-5 mb-3 w-100 text-light" style="border-bottom:1px solid orange">
+                                Account Information
+                            </h1>
+
+                        <div class="col-md-4">
+                            <label for="guardianInput" class="lead text-warning">Account Username</label>
+                            <input type="text" class="form-control form-control-sm bg-secondary text-light border-0"
+                                id="accountUsernameInput" name="accountUsername" required>
+                        </div>
+
+                        <div class="col-md-4">
+                            <label for="guardianInput" class="lead text-warning">Password</label>
+                            <input type="password" class="form-control form-control-sm bg-secondary text-light border-0"
+                                id="passwordInput" name="password" required>
+                        </div>
+
+                        <div class="col-md-4">
+                            <label for="guardianInput" class="lead text-warning">Confirm Password</label>
+                            <input type="password" class="form-control form-control-sm bg-secondary text-light border-0"
+                                id="confirmPassword" name="confirmPassword" required>
+                        </div>
+
+                        <div class="col-md-4">
+                            <label for="guardianInput" class="lead text-warning">Recovery Email</label>
+                            <input type="password" class="form-control form-control-sm bg-secondary text-light border-0"
+                                id="recoveryEmailInput" name="recoveryInput" required>
+                                <!-- CANNOT BE THE SAME AS EMAIL -->
+                        </div>
+
                     </div>
+
+                    
 
                     <!-- EULA MODAL -->
                     <div class="modal fade" id="eulaModal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
