@@ -252,9 +252,9 @@
                                 id="guardianmailInput" name="guardianEmail" required>
                         </div>
 
-                            <h1 class="lead display-5 mt-5 mb-3 w-100 text-light" style="border-bottom:1px solid orange">
-                                Account Information
-                            </h1>
+                        <h1 class="lead display-5 mt-5 mb-3 w-100 text-light" style="border-bottom:1px solid orange">
+                            Account Information
+                        </h1>
 
                         <div class="col-md-4">
                             <label for="guardianInput" class="lead text-warning">Account Username</label>
@@ -278,12 +278,10 @@
                             <label for="guardianInput" class="lead text-warning">Recovery Email</label>
                             <input type="password" class="form-control form-control-sm bg-secondary text-light border-0"
                                 id="recoveryEmailInput" name="recoveryInput" required>
-                                <!-- CANNOT BE THE SAME AS EMAIL -->
+                            <!-- CANNOT BE THE SAME AS EMAIL -->
                         </div>
 
                     </div>
-
-                    
 
                     <!-- EULA MODAL -->
                     <div class="modal fade" id="eulaModal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
