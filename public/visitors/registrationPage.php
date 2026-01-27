@@ -110,7 +110,7 @@
                             <label for="civilStatusInput" class="lead text-warning">Civil Status</label>
                             <select class="form-select form-select-sm bg-secondary text-light border-0"
                                 id="civilStatusInput" name="civilStatus" required>
-                                <option value="" selected></option>
+                                <option value="" disabled selected>Select Status</option>
                                 <option value="single">Single</option>
                                 <option value="married">Married</option>
                                 <option value="widow">Widow</option>
@@ -122,7 +122,7 @@
                             <label for="genderInput" class="lead text-warning">Gender</label>
                             <select class="form-select form-select-sm bg-secondary text-light border-0"
                                 id="genderInput" name="gender" required>
-                                <option value="" selected></option>
+                                <option value="" disabled selected>Select Gender</option>
                                 <option value="Male">Male</option>
                                 <option value="Female">Female</option>
                                 <option value="Others">Prefer not to say</option>
@@ -183,7 +183,7 @@
                             <label for="programInput" class="lead text-warning">Program</label>
                             <select class="form-select form-select-sm bg-secondary text-light border-0"
                                 id="programInput" name="program" required>
-                                <option value="" selected></option>
+                                <option value="" disabled selected>Select Program</option>
                                 <option value="education">Education</option>
                                 <option value="accounting">Accounting</option>
                                 <option value="computer_science">Computer Science</option>
@@ -195,7 +195,7 @@
                             <label for="yearLevelInput" class="lead text-warning">Year Level</label>
                             <select class="form-select form-select-sm bg-secondary text-light border-0"
                                 id="yearLevelInput" name="yearLevel" required>
-                                <option value="" selected></option>
+                                <option value="" disabled selected>Select Year Level</option>
                                 <option value="1stYear">1st Year</option>
                                 <option value="2ndYear">2nd Year</option>
                                 <option value="3rdYear">3rd Year</option>
@@ -207,7 +207,7 @@
                             <label for="studentType" class="lead text-warning">Student Type</label>
                             <select class="form-select form-select-sm bg-secondary text-light border-0"
                                 id="studentType" name="studentType" required>
-                                <option value="" selected></option>
+                                <option value="" disabled selected>Select Student Type</option>
                                 <option value="newStudent">New Student</option>
                                 <option value="returnee">Returnee</option>
                                 <option value="transferee">Transferee</option>
@@ -218,7 +218,7 @@
                             <label for="enrollmentType" class="lead text-warning">Enrollment Type</label>
                             <select class="form-select form-select-sm bg-secondary text-light border-0"
                                 id="enrollmentType" name="enrollmentType" required>
-                                <option value="" selected></option>
+                                <option value="" disabled selected>Select Enrollment Type</option>
                                 <option value="regular">Regular</option>
                                 <option value="irregular">Irregular</option>
                             </select>
@@ -236,8 +236,21 @@
 
                         <div class="col-md-4">
                             <label for="relationshipInput" class="lead text-warning">Relationship</label>
-                            <input type="text" class="form-control form-control-sm bg-secondary text-light border-0"
+                            <select class="form-select form-select-sm bg-secondary text-light border-0"
                                 id="relationshipInput" name="relationship" required>
+                                <option value="" disabled selected>Select relationship</option>
+                                <option value="Mother">Mother</option>
+                                <option value="Father">Father</option>
+                                <option value="Guardian">Guardian</option>
+                                <option value="StepMother">Step Mother</option>
+                                <option value="StepFather">Step Father</option>
+                                <option value="Grandparent">Grandparent</option>
+                                <option value="Sibling">Sibling</option>
+                                <option value="AuntUncle">Aunt / Uncle</option>
+                                <option value="FosterParent">Foster Parent</option>
+                                <option value="Other">Other</option>
+                            </select>
+
                         </div>
 
                         <div class="col-md-4">
@@ -247,7 +260,7 @@
                         </div>
 
                         <div class="col-md-4">
-                            <label for="guardianmailInput" class="lead text-warning">Guardian Email</label>
+                            <label for="guardianmailInput" class="lead text-warning">Guardian's Email</label>
                             <input type="email" class="form-control form-control-sm bg-secondary text-light border-0"
                                 id="guardianmailInput" name="guardianEmail" required>
                         </div>
@@ -333,8 +346,7 @@
                             onclick="window.location.href='LandingPage.php'">
                             Cancel
                         </button>
-                        <button type="button" class="btn btn-warning" data-bs-toggle="modal" data-bs-target="#eulaModal">
-                            <!-- TODO: REFACTOR THIS BUTTON => SUBMIT -->
+                        <button type="submit" class="btn btn-warning" data-bs-toggle="modal" data-bs-target="#eulaModal" id="registerBtn">
                             Register
                         </button>
                     </div>
@@ -408,111 +420,182 @@
         </div>
     </footer>
 
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"></script>
+</body>
 
-    <script>
-        // LOADER ANIMATION
-        const spinner = document.querySelector('.spinner-wrapper');
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"></script>
 
-        window.addEventListener('load', () => {
-            setTimeout(() => spinner.style.display = 'none', 1000);
-        });
+<script>
+    // LOADER ANIMATION
+    const spinner = document.querySelector('.spinner-wrapper');
 
-        // AUTOMATED AGE CALCULATION AND DISPLAY
-        const ageInput = document.getElementById("ageInput");
-        document.getElementById("birthdateInput").addEventListener("change", function() {
-            const birthDate = new Date(this.value);
-            const today = new Date();
-            let age = today.getFullYear() - birthDate.getFullYear();
-            const m = today.getMonth() - birthDate.getMonth();
-            if (m < 0 || (m === 0 && today.getDate() < birthDate.getDate())) age--;
-            ageInput.value = age;
-        });
+    window.addEventListener('load', () => {
+        setTimeout(() => spinner.style.display = 'none', 1000);
+    });
 
-        // AJAX Submittion
-        window.addEventListener("DOMContentLoaded", () => {
-            const form = document.getElementById("registrationForm");
-            const acceptBtn = document.getElementById("acceptEULA");
+    // AUTOMATED AGE CALCULATION AND DISPLAY
+    const ageInput = document.getElementById("ageInput");
+    document.getElementById("birthdateInput").addEventListener("change", function() {
+        const birthDate = new Date(this.value);
+        const today = new Date();
+        let age = today.getFullYear() - birthDate.getFullYear();
+        const m = today.getMonth() - birthDate.getMonth();
+        if (m < 0 || (m === 0 && today.getDate() < birthDate.getDate())) age--;
+        ageInput.value = age;
+    });
 
-            form.addEventListener("submit", async (e) => {
-                e.preventDefault();
+    // AJAX Submittion
+    window.addEventListener("DOMContentLoaded", () => {
+        const form = document.getElementById("registrationForm");
+        const acceptBtn = document.getElementById("acceptEULA");
 
-                acceptBtn.disabled = true;
-                acceptBtn.innerHTML = '<span class="spinner-border spinner-border-sm" role ="status"> <span class="visually-hidden"> Loading... </span></span>';
+        form.addEventListener("submit", async (e) => {
+            e.preventDefault();
 
-                try {
-                    const res = await fetch(`../ajax/registrationOTP.php`, {
-                        method: 'POST',
-                        body: new FormData(form),
-                        credentials: "same-origin"
-                    });
+            acceptBtn.disabled = true;
+            acceptBtn.innerHTML = '<span class="spinner-border spinner-border-sm" role ="status"> <span class="visually-hidden"> Loading... </span></span>';
 
-                    const data = await res.text();
-                    console.log(data)
+            try {
+                const res = await fetch(`../ajax/registrationOTP.php`, {
+                    method: 'POST',
+                    body: new FormData(form),
+                    credentials: "same-origin"
+                });
 
-                    if (!res.ok) {
-                        throw new Error('Network response was not ok')
-                    } else {
-                        console.log("OTP Sent!");
-                        let OTP_Modal = bootstrap.Modal.getOrCreateInstance(document.getElementById('otpModal'));
-                        let eulaModal = bootstrap.Modal.getOrCreateInstance(document.getElementById('eulaModal'));
-                        eulaModal.hide();
-                        OTP_Modal.show();
-                    }
+                const data = await res.text();
+                console.log(data)
 
-                } catch (error) {
-                    console.log('Something went wrong.');
-                    console.log(error.message);
-                } finally {
-                    acceptBtn.disabled = false;
-                    acceptBtn.innerHTML = 'Understood';
+                if (!res.ok) {
+                    throw new Error('Network response was not ok')
+                } else {
+                    console.log("OTP Sent!");
+                    let OTP_Modal = bootstrap.Modal.getOrCreateInstance(document.getElementById('otpModal'));
+                    let eulaModal = bootstrap.Modal.getOrCreateInstance(document.getElementById('eulaModal'));
+                    eulaModal.hide();
+                    OTP_Modal.show();
                 }
 
+            } catch (error) {
+                console.log('Something went wrong.');
+                console.log(error.message);
+            } finally {
+                acceptBtn.disabled = false;
+                acceptBtn.innerHTML = 'Understood';
+            }
+
+        });
+    });
+
+    //OTP AUTO NEXT
+    document.addEventListener('DOMContentLoaded', function() {
+        const otpInputs = document.querySelectorAll('#otpModal input[type="text"]');
+
+        otpInputs.forEach((input, index) => {
+            // Move to next input on input
+            input.addEventListener('input', function(e) {
+                if (this.value.length === 1 && index < otpInputs.length - 1) {
+                    otpInputs[index + 1].focus();
+                }
+            });
+
+            // Handle backspace to move to previous input
+            input.addEventListener('keydown', function(e) {
+                if (e.key === 'Backspace' && this.value === '' && index > 0) {
+                    otpInputs[index - 1].focus();
+                }
+            });
+
+            // Prevent typing more than 1 character
+            input.addEventListener('input', function(e) {
+                if (this.value.length > 1) {
+                    this.value = this.value.slice(0, 1);
+                }
+            });
+
+            // Only allow numbers
+            input.addEventListener('keypress', (e) => {
+                if (!/[0-9]/.test(e.key)) {
+                    e.preventDefault();
+                }
             });
         });
 
-        //OTP AUTO NEXT
-        document.addEventListener('DOMContentLoaded', function() {
-            const otpInputs = document.querySelectorAll('#otpModal input[type="text"]');
-
-            otpInputs.forEach((input, index) => {
-                // Move to next input on input
-                input.addEventListener('input', function(e) {
-                    if (this.value.length === 1 && index < otpInputs.length - 1) {
-                        otpInputs[index + 1].focus();
-                    }
-                });
-
-                // Handle backspace to move to previous input
-                input.addEventListener('keydown', function(e) {
-                    if (e.key === 'Backspace' && this.value === '' && index > 0) {
-                        otpInputs[index - 1].focus();
-                    }
-                });
-
-                // Prevent typing more than 1 character
-                input.addEventListener('input', function(e) {
-                    if (this.value.length > 1) {
-                        this.value = this.value.slice(0, 1);
-                    }
-                });
-
-                // Only allow numbers
-                input.addEventListener('keypress', (e) => {
-                    if (!/[0-9]/.test(e.key)) {
-                        e.preventDefault();
-                    }
-                });
-            });
-
-            // Optional: Auto-focus first input when modal opens
-            const modal = document.getElementById('otpModal');
-            modal.addEventListener('shown.bs.modal', () => {
-                otpInputs[0].focus();
-            });
+        // Optional: Auto-focus first input when modal opens
+        const modal = document.getElementById('otpModal');
+        modal.addEventListener('shown.bs.modal', () => {
+            otpInputs[0].focus();
         });
-    </script>
+    });
 
-</body>
+    window.addEventListener('DOMContentLoaded', () => {
+        const registerBtn = document.getElementById('registerBtn');
+        registerBtn.disabled = true;
+    });
+
+    document.getElementById("registrationForm").addEventListener('input', () => {
+        validateInputs();
+    });
+
+    document.getElementById("registrationForm").addEventListener('input', () => {
+        validateConfirmPassword(); // TODO: Password and Confirm Password must match.
+    });
+
+    document.getElementById("registrationForm").addEventListener('input', () => {
+        validateEmail(); // TODO: Email and  Recovery Email must not match.
+    });
+
+    function validateInputs() {
+        const registerBtn = document.getElementById('registerBtn');
+        const registrationForm = {
+            // Personal Information
+            firstName: document.getElementById("firstNameInput").value,
+            lastName: document.getElementById("lastNameInput").value,
+            middleName: document.getElementById("middleNameInput").value,
+            extensionName: document.getElementById("extensionName").value,
+            birthDate: document.getElementById("birthdateInput").value,
+            age: document.getElementById("ageInput").value,
+            nationality: document.getElementById("nationalityInput").value,
+            civilStatus: document.getElementById("civilStatusInput").value,
+            gender: document.getElementById("genderInput").value,
+
+            // Contact Information
+            email: document.getElementById("emailInput").value,
+            phoneNumber: document.getElementById("phoneNumberInput").value,
+            address: document.getElementById("addressInput").value,
+            barangay: document.getElementById("barangayInput").value,
+            city: document.getElementById("cityInput").value,
+            province: document.getElementById("provinceInput").value,
+            zipCode: document.getElementById("zipcodeInput").value,
+
+            // Academic Information
+            program: document.getElementById("programInput").value,
+            yearLevel: document.getElementById("yearLevelInput").value,
+            studentType: document.getElementById("studentType").value,
+            enrollmentType: document.getElementById("enrollmentType").value,
+
+            // Emergency Contact
+            guardianName: document.getElementById("guardianInput").value,
+            relationship: document.getElementById("relationshipInput").value,
+            guardianPhone: document.getElementById("guardianphoneInput").value,
+            guardianEmail: document.getElementById("guardianmailInput").value,
+
+            // Account Information
+            accountUsername: document.getElementById("accountUsernameInput").value,
+            password: document.getElementById("passwordInput").value,
+            confirmPassword: document.getElementById("confirmPassword").value,
+            recoveryEmail: document.getElementById("recoveryEmailInput").value
+        };
+
+        const hasEmptyField = Object.values(registrationForm).some(
+            value => value === "" || value === null || value === undefined
+        );
+
+        if (hasEmptyField) {
+            registerBtn.disabled = true;
+        } else {
+            registerBtn.disabled = false;
+        }
+
+    }
+</script>
 
 </html>
