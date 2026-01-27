@@ -128,7 +128,7 @@ if ($_SERVER['REQUEST_METHOD'] == "POST") {
     exit;
 }
 
-if ($_SERVER['REQUEST_METHOD'] === 'GET') { // TODO: 
+if ($_SERVER['REQUEST_METHOD'] === 'GET') { // TODO: Compare OTP
 
     $_SESSION['otp_timestamp'] = time();
 }
