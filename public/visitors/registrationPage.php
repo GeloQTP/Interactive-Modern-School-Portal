@@ -59,7 +59,7 @@
                 <form class="input-group d-flex align-items-center justify-content-center"
                     id="registrationForm" method="post">
 
-                    <h1 class="lead display-4 mb-5 w-100 text-light" style="border-bottom:1px solid orange">
+                    <h1 class="lead display-5 mb-5 w-100 text-light" style="border-bottom:1px solid orange">
                         Personal Information
                     </h1>
 
@@ -129,7 +129,7 @@
                             </select>
                         </div>
 
-                        <h1 class="lead display-4 mt-5 mb-3 w-100 text-light" style="border-bottom:1px solid orange">
+                        <h1 class="lead display-5 mt-5 mb-3 w-100 text-light" style="border-bottom:1px solid orange">
                             Contact Information
                         </h1>
 
@@ -169,7 +169,7 @@
                                 id="zipcodeInput" name="zipCode" required>
                         </div>
 
-                        <h1 class="lead display-4 mt-5 mb-3 w-100 text-light" style="border-bottom:1px solid orange">
+                        <h1 class="lead display-5 mt-5 mb-3 w-100 text-light" style="border-bottom:1px solid orange">
                             Academic Information
                         </h1>
 
@@ -218,7 +218,7 @@
                             </select>
                         </div>
 
-                        <h1 class="lead display-4 mt-5 mb-3 w-100 text-light" style="border-bottom:1px solid orange">
+                        <h1 class="lead display-5 mt-5 mb-3 w-100 text-light" style="border-bottom:1px solid orange">
                             Emergency Contact
                         </h1>
 
@@ -298,6 +298,7 @@
                             Cancel
                         </button>
                         <button type="button" class="btn btn-warning" data-bs-toggle="modal" data-bs-target="#eulaModal">
+                            <!-- TODO: REFACTOR THIS BUTTON => SUBMIT -->
                             Register
                         </button>
                     </div>
@@ -306,49 +307,60 @@
                 </form>
 
                 <!-- OTP MODAL -->
-                <div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+                <div class="modal fade" id="otpModal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="false">
                     <div class="modal-dialog modal-dialog-centered">
-                        <div class="modal-content bg-dark text-light">
-                            <div class="modal-header">
+                        <div class=" modal-content bg-dark text-light">
+                            <div class="modal-header border-0">
                                 <h1 class="modal-title fs-5" id="staticBackdropLabel">OTP Verification</h1>
                                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                             </div>
-                            <form id="OTP_form">
+                            <form id="OTP_form" autocomplete="off">
                                 <div class="modal-body">
-                                    <div class="row g-1 text-center">
+
+                                    <div class="text-center text-secondary">
+                                        <p>We&#39;ve sent a <strong>6-digit code</strong> to your email.
+                                            Enter it below to continue.</p>
+                                    </div>
+
+                                    <div class="row g-2 text-center">
                                         <div class="col-2">
-                                            <input type="text" class="form-control text-center" name="otp1" maxlength="1">
+                                            <input type="text" class="form-control text-center fs-2" name="Digit1" maxlength="1">
                                         </div>
                                         <div class=" col-2">
-                                            <input type="text" class="form-control text-center" name="otp2" maxlength="1">
+                                            <input type="text" class="form-control text-center fs-2" name="Digit2" maxlength="1">
                                         </div>
                                         <div class="col-2">
-                                            <input type="text" class="form-control text-center" name="otp3" maxlength="1">
+                                            <input type="text" class="form-control text-center fs-2" name="Digit3" maxlength="1">
                                         </div>
                                         <div class="col-2">
-                                            <input type="text" class="form-control text-center" name="otp4" maxlength="1">
+                                            <input type="text" class="form-control text-center fs-2" name="Digit4" maxlength="1">
                                         </div>
                                         <div class="col-2">
-                                            <input type="text" class="form-control text-center" name="otp5" maxlength="1">
+                                            <input type="text" class="form-control text-center fs-2" name="Digit5" maxlength="1">
                                         </div>
                                         <div class="col-2">
-                                            <input type="text" class="form-control text-center" name="otp6" maxlength="1">
+                                            <input type="text" class="form-control text-center fs-2" name="Digit6" maxlength="1">
                                         </div>
                                     </div>
+
+                                    <br>
+
+                                    <div class="text-center text-secondary">
+                                        <small>Didn&#39;t receive it? Check your spam folder.</small>
+                                    </div>
+
                                 </div>
-                                <div class="modal-footer">
+
+
+                                <div class="modal-footer border-0">
                                     <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                                    <button type="button" class="btn btn-primary">Understood</button>
+                                    <button type="button" class="btn btn-warning">Verify</button>
                                 </div>
+
                             </form>
                         </div>
                     </div>
                 </div>
-
-                <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#staticBackdrop">
-                    Launch static backdrop modal
-                </button>
-
 
             </div>
         </section>
@@ -406,6 +418,10 @@
                         throw new Error('Network response was not ok')
                     } else {
                         console.log("OTP Sent!");
+                        let OTP_Modal = bootstrap.Modal.getOrCreateInstance(document.getElementById('otpModal'));
+                        let eulaModal = bootstrap.Modal.getOrCreateInstance(document.getElementById('eulaModal'));
+                        eulaModal.hide();
+                        OTP_Modal.show();
                     }
 
                 } catch (error) {
@@ -421,7 +437,7 @@
 
         //OTP AUTO NEXT
         document.addEventListener('DOMContentLoaded', function() {
-            const otpInputs = document.querySelectorAll('#staticBackdrop input[type="text"]');
+            const otpInputs = document.querySelectorAll('#otpModal input[type="text"]');
 
             otpInputs.forEach((input, index) => {
                 // Move to next input on input
@@ -446,7 +462,7 @@
                 });
 
                 // Only allow numbers
-                input.addEventListener('keypress', function(e) {
+                input.addEventListener('keypress', (e) => {
                     if (!/[0-9]/.test(e.key)) {
                         e.preventDefault();
                     }
@@ -454,8 +470,8 @@
             });
 
             // Optional: Auto-focus first input when modal opens
-            const modal = document.getElementById('staticBackdrop');
-            modal.addEventListener('shown.bs.modal', function() {
+            const modal = document.getElementById('otpModal');
+            modal.addEventListener('shown.bs.modal', () => {
                 otpInputs[0].focus();
             });
         });
