@@ -552,7 +552,7 @@
     });
 
     document.getElementById('registrationForm').addEventListener('input', () => {
-        const isValid = validateInputs();
+        const isValid = validateInputs() && validateEmail() && validatePassword();
         registerBtn.disabled = !isValid;
     });
 

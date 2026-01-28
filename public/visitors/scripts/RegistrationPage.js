@@ -54,7 +54,7 @@ function validateEmail() {
   const recoveryEmail = document
       .getElementById("recoveryEmailInput")
       .value.trim(),
-    emailInputVal = document.getElementById("emailInput").value.trim();
+    emailInput = document.getElementById("emailInput").value.trim();
 
   const recoveryEmailInput = document.getElementById("recoveryEmailInput");
 
@@ -64,16 +64,15 @@ function validateEmail() {
     return false;
   }
 
-  if (recoveryEmail === emailInputVal) {
-    recoveryEmailInput.classList.remove("border-danger");
-    recoveryEmailInput.classList.add("border-success");
+  if (recoveryEmail === emailInput) {
+    recoveryEmailInput.classList.remove("border-success");
+    recoveryEmailInput.classList.add("border-danger");
     return false;
   }
 
-  if (recoveryEmail !== emailInputVal) {
-    recoveryEmailInput.classList.add("border-danger");
-    recoveryEmailInput.classList.remove("border-success");
-  }
+  recoveryEmailInput.classList.remove("border-danger");
+  recoveryEmailInput.classList.add("border-success");
+  return true;
 }
 
 function validatePassword() {
