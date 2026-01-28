@@ -38,7 +38,7 @@
     <header>
         <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
             <div class="container my-1">
-                <a href="LandingPage.php" class="navbar-brand fw-bold d-flex align-items-center">
+                <a href="Landing Page.php" class="navbar-brand fw-bold d-flex align-items-center">
                     <span class="px-2">
                         <img src="./../../src/img/YellowElephant.png" alt="Laragon logo" style="width: 50px; border-radius: 100px;">
                     </span>
@@ -300,16 +300,16 @@
                         <div class="col-md-4">
                             <label for="guardianInput" class="lead text-warning">Confirm Password</label>
                             <input type="password" class="form-control form-control-sm bg-secondary text-light border-0"
-                                id="confirmPassword" name="confirmPassword" required>
-                                <p id="passwordStatus"></p>
-                                <!-- MAKE THIS NOT PUSH BELOW INPUTS -->
+                                id="confirmPassword" name="confirmPassword" required oninput="validatePassword()">
+                            <p id="passwordStatus"></p>
+                            <!-- MAKE THIS NOT PUSH BELOW INPUTS -->
                         </div>
 
                         <div class="col-md-4">
                             <label for="guardianInput" class="lead text-warning">Recovery Email</label>
                             <input type="password" class="form-control form-control-sm bg-secondary text-light border-0"
                                 id="recoveryEmailInput" name="recoveryInput" required>
-                                <p id="emailStatus"></p>
+                            <p id="emailStatus"></p>
                             <!-- CANNOT BE THE SAME AS EMAIL -->
                         </div>
 
@@ -362,7 +362,7 @@
 
                     <div class="d-grid gap-2 d-flex justify-content-md-end mt-5 ms-auto">
                         <button type="button" class="btn btn-outline-warning"
-                            onclick="window.location.href='LandingPage.php'">
+                            onclick="window.location.href='Landing Page.php'">
                             Cancel
                         </button>
                         <button type="submit" class="btn btn-warning" data-bs-toggle="modal" data-bs-target="#eulaModal" id="registerBtn">
@@ -551,17 +551,13 @@
     });
 
     document.getElementById('registrationForm').addEventListener('input', () => {
-        validateInputs();
-        validateEmail();
+        const isValid = validateInputs() && validateEmail() && validatePassword();
+        registerBtn.disabled = !isValid;
     });
 
     // document.getElementById("registrationForm").addEventListener('input', () => {
     //     validateEula(); // TODO: Unchecked Terms and Conditions === Disablled 'Understood' Button.
     // });
-
-    // function validateConfirmPassword() {
-    //     const password = document.getElementById('passwordInput').value;
-    //     const confirmPassword = document.getElementById('confirmPassword').value;
 </script>
 
 <script src="./scripts/RegistrationPage.js"></script>

@@ -14,7 +14,7 @@ $dotenv->load();
 
 if ($_SERVER['REQUEST_METHOD'] == "POST") {
 
-    $email = filter_var($_POST['email'] ?? '', FILTER_SANITIZE_EMAIL);
+    $email = filter_var(trim($_POST['email'] ?? ''), FILTER_SANITIZE_EMAIL);
     $phone = filter_var($_POST['phoneNumber'] ?? '');
     $otp = random_int(100000, 999999); // 6-digit OTP
     $otpHash = password_hash($otp, PASSWORD_BCRYPT);

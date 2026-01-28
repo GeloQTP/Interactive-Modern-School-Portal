@@ -1,9 +1,4 @@
 function validateInputs() {
-  const registerBtn = document.getElementById("registerBtn"),
-    password = document.getElementById("passwordInput").value,
-    confirmPassword = document.getElementById("confirmPassword").value,
-    passwordStatus = document.getElementById("passwordStatus");
-
   const registrationForm = {
     // Personal Information
     firstName: document.getElementById("firstNameInput").value,
@@ -49,31 +44,48 @@ function validateInputs() {
   );
 
   if (hasEmptyField) {
-    registerBtn.disabled = true;
+    return false;
   } else {
-    if (password !== confirmPassword || password.confirmPassword === "") {
-      registerBtn.disabled = true;
-      passwordStatus.textContent = "Password Mismatch"; // Separate Password Validation Function
-    } else {
-      registerBtn.disabled = false;
-      passwordStatus.textContent = "";
-    }
+    return true;
   }
 }
 
-// function validateEmail(){
-//   const recoveryEmailInput = document.getElementById("recoveryEmailInput").value,
-//                 emailInput = document.getElementById("emailInput").value,
-//                 emailValidation = document.getElementById("emailValidation");
+function validateEmail() {
+  const recoveryEmailInput = document
+    .getElementById("recoveryEmailInput")
+    .value.trim();
+  const emailInput = document.getElementById("emailInput").value.trim();
+  const emailStatus = document.getElementById("emailStatus");
 
-//                 if(recoveryEmailInput === emailInput){
-//                   emailValidation.textContent = "Can not be the same as Email.";
-//                   registerBtn.disabled = true;
-//                   console.log("Can not be the same");
-//                 } else{
-//                    emailValidation.textContent = "same";
-//                   registerBtn.disabled = false;
-//                   console.log("not the same anymore yay");
-//                 }
+  if (recoveryEmailInput === "") {
+    emailStatus.textContent = "";
+    return false;
+  }
 
-// }
+  if (recoveryEmailInput === emailInput) {
+    emailStatus.textContent = "Cannot be the same as Initial Email";
+    return false;
+  }
+
+  emailStatus.textContent = "";
+  return true;
+}
+
+function validatePassword() {
+  const password = document.getElementById("passwordInput").value,
+    confirmPassword = document.getElementById("confirmPassword").value,
+    passwordStatus = document.getElementById("passwordStatus");
+
+  if (password === "" || confirmPassword === "") {
+    passwordStatus.textContent = "";
+    return false;
+  }
+
+  if (password !== confirmPassword) {
+    passwordStatus.textContent = "Password mismatch";
+    return false;
+  }
+
+  passwordStatus.textContent = "Confirmed";
+  return true;
+}

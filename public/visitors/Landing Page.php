@@ -38,7 +38,7 @@
     <!-- NAVBAR -->
     <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
         <div class="container my-1">
-            <a href="LandingPage.php" class="navbar-brand fw-bold d-flex align-items-center">
+            <a href="Landing Page.php" class="navbar-brand fw-bold d-flex align-items-center">
                 <span class="px-2"><img src="./../../src/img/YellowElephant.png" alt="yellow elephant logo"
                         style="width: 50px; border-radius: 100px;"></span>
                 <span class="d-none d-sm-block"><span class="text-warning lead">Laragon</span> University</span>
@@ -54,7 +54,7 @@
                     <li class="nav-item"><a class="nav-link" href="#">Admission</a></li>
                     <li class="nav-item"><a class="nav-link" href="#">Events</a></li>
                     <li class="nav-item"><button class="btn btn-warning bg-dark text-warning"
-                            onclick="window.location.href='loginPage.php'">Login</button></li>
+                            onclick="window.location.href='Login Page.php'">Login</button></li>
                 </ul>
             </div>
         </div>
@@ -73,7 +73,7 @@
                         Join a world-class university dedicated to academic excellence and innovation.
                     </p>
                     <button class="btn btn-warning btn-lg" type="button"
-                        onclick="window.location.href='RegistrationPage.php'">Register Now</button>
+                        onclick="window.location.href='Registration Page.php'">Register Now</button>
                 </div>
                 <div class="col-sm-6 d-none d-sm-block">
                     <div id="carouselExampleSlidesOnly" class="carousel slide" data-bs-ride="carousel">
