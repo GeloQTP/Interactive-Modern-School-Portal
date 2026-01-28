@@ -1,7 +1,8 @@
 function validateInputs() {
   const registerBtn = document.getElementById("registerBtn"),
     password = document.getElementById("passwordInput").value,
-    confirmPassword = document.getElementById("confirmPassword").value;
+    confirmPassword = document.getElementById("confirmPassword").value,
+    passwordStatus = document.getElementById("passwordStatus");
 
   const registrationForm = {
     // Personal Information
@@ -49,14 +50,30 @@ function validateInputs() {
 
   if (hasEmptyField) {
     registerBtn.disabled = true;
-    console.log("There's an empty input");
   } else {
     if (password !== confirmPassword || password.confirmPassword === "") {
       registerBtn.disabled = true;
-      console.log("Passwords does not match!");
+      passwordStatus.textContent = "Password Mismatch"; // Separate Password Validation Function
     } else {
       registerBtn.disabled = false;
-      console.log("Equal");
+      passwordStatus.textContent = "";
     }
   }
 }
+
+// function validateEmail(){
+//   const recoveryEmailInput = document.getElementById("recoveryEmailInput").value,
+//                 emailInput = document.getElementById("emailInput").value,
+//                 emailValidation = document.getElementById("emailValidation");
+
+//                 if(recoveryEmailInput === emailInput){
+//                   emailValidation.textContent = "Can not be the same as Email.";
+//                   registerBtn.disabled = true;
+//                   console.log("Can not be the same");
+//                 } else{
+//                    emailValidation.textContent = "same";
+//                   registerBtn.disabled = false;
+//                   console.log("not the same anymore yay");
+//                 }
+
+// }

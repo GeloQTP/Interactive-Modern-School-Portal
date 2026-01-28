@@ -301,12 +301,15 @@
                             <label for="guardianInput" class="lead text-warning">Confirm Password</label>
                             <input type="password" class="form-control form-control-sm bg-secondary text-light border-0"
                                 id="confirmPassword" name="confirmPassword" required>
+                                <p id="passwordStatus"></p>
+                                <!-- MAKE THIS NOT PUSH BELOW INPUTS -->
                         </div>
 
                         <div class="col-md-4">
                             <label for="guardianInput" class="lead text-warning">Recovery Email</label>
                             <input type="password" class="form-control form-control-sm bg-secondary text-light border-0"
                                 id="recoveryEmailInput" name="recoveryInput" required>
+                                <p id="emailStatus"></p>
                             <!-- CANNOT BE THE SAME AS EMAIL -->
                         </div>
 
@@ -549,11 +552,8 @@
 
     document.getElementById('registrationForm').addEventListener('input', () => {
         validateInputs();
+        validateEmail();
     });
-
-    // document.getElementById("registrationForm").addEventListener('input', () => {
-    //     validateEmail(); // TODO: Email and Recovery Email must not match. (try to do the same with password validation)
-    // });
 
     // document.getElementById("registrationForm").addEventListener('input', () => {
     //     validateEula(); // TODO: Unchecked Terms and Conditions === Disablled 'Understood' Button.
