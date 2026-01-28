@@ -152,7 +152,7 @@
                         <div class="col-md-4 col-9">
                             <label for="emailInput" class="lead text-warning">Email</label>
                             <input type="email" class="form-control form-control-sm bg-secondary text-light border-0"
-                                id="emailInput" name="email" required autocomplete="email">
+                                id="emailInput" name="email" oninput="validateEmail()" required autocomplete="email">
                         </div>
 
                         <div class="col-md-4 col-6">
@@ -294,23 +294,22 @@
                         <div class="col-md-4">
                             <label for="guardianInput" class="lead text-warning">Password</label>
                             <input type="password" class="form-control form-control-sm bg-secondary text-light border-0"
-                                id="passwordInput" name="password" required>
+                                id="passwordInput" name="password" oninput="validatePassword()" required>
                         </div>
 
                         <div class="col-md-4">
                             <label for="guardianInput" class="lead text-warning">Confirm Password</label>
-                            <input type="password" class="form-control form-control-sm bg-secondary text-light border-0"
-                                id="confirmPassword" name="confirmPassword" required oninput="validatePassword()">
-                            <p id="passwordStatus"></p>
-                            <!-- MAKE THIS NOT PUSH BELOW INPUTS -->
+                            <input type="password" class="form-control form-control-sm bg-secondary text-light border-secondary"
+                                id="confirmPassword" name="confirmPassword" oninput="validatePassword()" required>
+                            <br>
                         </div>
 
                         <div class="col-md-4">
                             <label for="guardianInput" class="lead text-warning">Recovery Email</label>
-                            <input type="password" class="form-control form-control-sm bg-secondary text-light border-0"
-                                id="recoveryEmailInput" name="recoveryInput" required>
-                            <p id="emailStatus"></p>
-                            <!-- CANNOT BE THE SAME AS EMAIL -->
+                            <input type="email" class="form-control form-control-sm bg-secondary text-light border-secondary"
+                                id="recoveryEmailInput" name="recoveryInput" oninput="validateEmail()" required>
+                            <span id="emailStatus" class="fs-6 text-light"></span>
+                            <br>
                         </div>
 
                     </div>
@@ -546,12 +545,14 @@
     });
 
     window.addEventListener('DOMContentLoaded', () => {
-        const registerBtn = document.getElementById('registerBtn');
+        const registerBtn = document.getElementById('registerBtn'),
+            understoodEULAButton = document.getElementById('acceptEULA');
         registerBtn.disabled = true;
+        understoodEULAButton.disabled = true;
     });
 
     document.getElementById('registrationForm').addEventListener('input', () => {
-        const isValid = validateInputs() && validateEmail() && validatePassword();
+        const isValid = validateInputs();
         registerBtn.disabled = !isValid;
     });
 

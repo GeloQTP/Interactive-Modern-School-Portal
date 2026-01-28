@@ -51,41 +51,48 @@ function validateInputs() {
 }
 
 function validateEmail() {
-  const recoveryEmailInput = document
-    .getElementById("recoveryEmailInput")
-    .value.trim();
-  const emailInput = document.getElementById("emailInput").value.trim();
-  const emailStatus = document.getElementById("emailStatus");
+  const recoveryEmailVal = document
+      .getElementById("recoveryEmailInput")
+      .value.trim(),
+    emailInputVal = document.getElementById("emailInput").value.trim();
 
-  if (recoveryEmailInput === "") {
-    emailStatus.textContent = "";
+  const recoveryEmailInput = document.getElementById("recoveryEmailInput");
+
+  if (recoveryEmailVal === "") {
+    recoveryEmailInput.classList.remove("border-danger");
+    recoveryEmailInput.classList.remove("border-success");
     return false;
   }
 
-  if (recoveryEmailInput === emailInput) {
-    emailStatus.textContent = "Cannot be the same as Initial Email";
+  if (recoveryEmailVal === emailInputVal) {
+    recoveryEmailInput.classList.remove("border-danger");
+    recoveryEmailInput.classList.add("border-success");
     return false;
   }
 
-  emailStatus.textContent = "";
-  return true;
+  if (recoveryEmailVal !== emailInputVal) {
+    recoveryEmailInput.classList.add("border-danger");
+    recoveryEmailInput.classList.remove("border-success");
+  }
 }
 
 function validatePassword() {
   const password = document.getElementById("passwordInput").value,
-    confirmPassword = document.getElementById("confirmPassword").value,
-    passwordStatus = document.getElementById("passwordStatus");
+    confirmPasswordInput = document.getElementById("confirmPassword"),
+    confirmPassword = document.getElementById("confirmPassword").value;
 
   if (password === "" || confirmPassword === "") {
-    passwordStatus.textContent = "";
+    confirmPasswordInput.classList.remove("border-danger");
+    confirmPasswordInput.classList.remove("border-success");
     return false;
   }
 
   if (password !== confirmPassword) {
-    passwordStatus.textContent = "Password mismatch";
+    confirmPasswordInput.classList.add("border-danger");
     return false;
   }
 
-  passwordStatus.textContent = "Confirmed";
+  confirmPasswordInput.classList.remove("border-danger");
+  confirmPasswordInput.classList.add("border-success");
   return true;
 }
