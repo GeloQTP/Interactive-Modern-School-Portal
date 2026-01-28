@@ -19,6 +19,22 @@
         </div>
     </div>
 
+    <!-- TOASTS SECTION -->
+    <div class="toast-container position-fixed bottom-0 end-0 p-3">
+        <div id="liveToast" class="toast bg-light text-dark" role="alert" aria-live="assertive" aria-atomic="true">
+            <div class="toast-header">
+                <img src="../../src/img/YellowElephant.png" style="width: 30px;" class="rounded me-2 img-fluid"
+                    alt="...">
+                <strong class="me-auto">Laragon Notification</strong>
+                <small>just now</small>
+                <button type="button" class="btn-close" data-bs-dismiss="toast" aria-label="Close"></button>
+            </div>
+            <div class="toast-body">
+                <?= $status ?>
+            </div>
+        </div>
+    </div>
+
     <header>
         <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
             <div class="container my-1">
@@ -461,11 +477,11 @@
                     credentials: "same-origin"
                 });
 
-                const data = await res.text();
-                console.log(data)
-
                 if (!res.ok) {
-                    throw new Error('Network response was not ok')
+                    const toastNotif = document.getElementById('liveToast');
+                    document.querySelector('.toast-body').textContent = 'An error occurred. Please try again.';
+                    const toastBootstrap = bootstrap.Toast.getOrCreateInstance(toastNotif);
+                    toastBootstrap.show();
                 } else {
                     console.log("OTP Sent!");
                     let OTP_Modal = bootstrap.Modal.getOrCreateInstance(document.getElementById('otpModal'));
@@ -531,71 +547,23 @@
         registerBtn.disabled = true;
     });
 
-    document.getElementById("registrationForm").addEventListener('input', () => {
+    document.getElementById('registrationForm').addEventListener('input', () => {
         validateInputs();
     });
 
-    document.getElementById("registrationForm").addEventListener('input', () => {
-        validateConfirmPassword(); // TODO: Password and Confirm Password must match.
-    });
+    // document.getElementById("registrationForm").addEventListener('input', () => {
+    //     validateEmail(); // TODO: Email and Recovery Email must not match. (try to do the same with password validation)
+    // });
 
-    document.getElementById("registrationForm").addEventListener('input', () => {
-        validateEmail(); // TODO: Email and  Recovery Email must not match.
-    });
+    // document.getElementById("registrationForm").addEventListener('input', () => {
+    //     validateEula(); // TODO: Unchecked Terms and Conditions === Disablled 'Understood' Button.
+    // });
 
-    function validateInputs() {
-        const registerBtn = document.getElementById('registerBtn');
-        const registrationForm = {
-            // Personal Information
-            firstName: document.getElementById("firstNameInput").value,
-            lastName: document.getElementById("lastNameInput").value,
-            middleName: document.getElementById("middleNameInput").value,
-            extensionName: document.getElementById("extensionName").value,
-            birthDate: document.getElementById("birthdateInput").value,
-            age: document.getElementById("ageInput").value,
-            nationality: document.getElementById("nationalityInput").value,
-            civilStatus: document.getElementById("civilStatusInput").value,
-            gender: document.getElementById("genderInput").value,
-
-            // Contact Information
-            email: document.getElementById("emailInput").value,
-            phoneNumber: document.getElementById("phoneNumberInput").value,
-            address: document.getElementById("addressInput").value,
-            barangay: document.getElementById("barangayInput").value,
-            city: document.getElementById("cityInput").value,
-            province: document.getElementById("provinceInput").value,
-            zipCode: document.getElementById("zipcodeInput").value,
-
-            // Academic Information
-            program: document.getElementById("programInput").value,
-            yearLevel: document.getElementById("yearLevelInput").value,
-            studentType: document.getElementById("studentType").value,
-            enrollmentType: document.getElementById("enrollmentType").value,
-
-            // Emergency Contact
-            guardianName: document.getElementById("guardianInput").value,
-            relationship: document.getElementById("relationshipInput").value,
-            guardianPhone: document.getElementById("guardianphoneInput").value,
-            guardianEmail: document.getElementById("guardianmailInput").value,
-
-            // Account Information
-            accountUsername: document.getElementById("accountUsernameInput").value,
-            password: document.getElementById("passwordInput").value,
-            confirmPassword: document.getElementById("confirmPassword").value,
-            recoveryEmail: document.getElementById("recoveryEmailInput").value
-        };
-
-        const hasEmptyField = Object.values(registrationForm).some(
-            value => value === "" || value === null || value === undefined
-        );
-
-        if (hasEmptyField) {
-            registerBtn.disabled = true;
-        } else {
-            registerBtn.disabled = false;
-        }
-
-    }
+    // function validateConfirmPassword() {
+    //     const password = document.getElementById('passwordInput').value;
+    //     const confirmPassword = document.getElementById('confirmPassword').value;
 </script>
+
+<script src="./scripts/RegistrationPage.js"></script>
 
 </html>
