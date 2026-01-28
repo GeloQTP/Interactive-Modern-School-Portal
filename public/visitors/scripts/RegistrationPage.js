@@ -51,26 +51,26 @@ function validateInputs() {
 }
 
 function validateEmail() {
-  const recoveryEmailVal = document
+  const recoveryEmail = document
       .getElementById("recoveryEmailInput")
       .value.trim(),
     emailInputVal = document.getElementById("emailInput").value.trim();
 
   const recoveryEmailInput = document.getElementById("recoveryEmailInput");
 
-  if (recoveryEmailVal === "") {
+  if (recoveryEmail === "") {
     recoveryEmailInput.classList.remove("border-danger");
     recoveryEmailInput.classList.remove("border-success");
     return false;
   }
 
-  if (recoveryEmailVal === emailInputVal) {
+  if (recoveryEmail === emailInputVal) {
     recoveryEmailInput.classList.remove("border-danger");
     recoveryEmailInput.classList.add("border-success");
     return false;
   }
 
-  if (recoveryEmailVal !== emailInputVal) {
+  if (recoveryEmail !== emailInputVal) {
     recoveryEmailInput.classList.add("border-danger");
     recoveryEmailInput.classList.remove("border-success");
   }
