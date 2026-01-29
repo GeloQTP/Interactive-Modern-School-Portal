@@ -301,14 +301,15 @@
                             <label for="guardianInput" class="lead text-warning">Confirm Password</label>
                             <input type="password" class="form-control form-control-sm bg-secondary text-light border-secondary"
                                 id="confirmPassword" name="confirmPassword" oninput="validatePassword()" required>
+                            <span id="passwordStatus" class="text-danger" style="font-size: 13px;"></span>
                             <br>
                         </div>
 
                         <div class="col-md-4">
-                            <label for="guardianInput" class="lead text-warning">Recovery Email</label>
+                            <label for="guardianInput" class="lead text-warning">Recovery Email </label>
                             <input type="email" class="form-control form-control-sm bg-secondary text-light border-secondary"
                                 id="recoveryEmailInput" name="recoveryInput" oninput="validateEmail()" required>
-                            <span id="emailStatus" class="fs-6 text-light"></span>
+                            <span id="emailStatus" class="text-danger" style="font-size: 13px;"></span>
                             <br>
                         </div>
 
@@ -463,7 +464,6 @@
         });
 
     });
-    
 </script>
 
 <script src="./scripts/RegistrationPage.js"></script>

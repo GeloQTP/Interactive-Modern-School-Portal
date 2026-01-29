@@ -159,46 +159,55 @@ function validateInputs() {
 }
 
 function validateEmail() {
-  const recoveryEmail = document
-      .getElementById("recoveryEmailInput")
-      .value.trim(),
-    emailInput = document.getElementById("emailInput").value.trim();
-
   const recoveryEmailInput = document.getElementById("recoveryEmailInput");
+  const emailStatus = document.getElementById("emailStatus");
 
-  if (recoveryEmail === "") {
-    recoveryEmailInput.classList.remove("border-danger");
-    recoveryEmailInput.classList.remove("border-success");
+  const recoveryEmail = recoveryEmailInput.value.trim();
+  const email = document.getElementById("emailInput").value.trim();
+
+  // Empty check
+  if (!recoveryEmail || !email) {
+    recoveryEmailInput.classList.remove("border-danger", "border-success");
+    emailStatus.innerHTML = "";
     return false;
   }
 
-  if (recoveryEmail === emailInput) {
-    recoveryEmailInput.classList.remove("border-success");
+  // Same email check
+  if (recoveryEmail === email) {
     recoveryEmailInput.classList.add("border-danger");
+    recoveryEmailInput.classList.remove("border-success");
+    emailStatus.innerHTML = "Can't be the same as Email";
     return false;
   }
 
-  recoveryEmailInput.classList.remove("border-danger");
+  // Valid
   recoveryEmailInput.classList.add("border-success");
+  recoveryEmailInput.classList.remove("border-danger");
+  emailStatus.innerHTML = "";
   return true;
 }
 
 function validatePassword() {
   const password = document.getElementById("passwordInput").value,
-    confirmPasswordInput = document.getElementById("confirmPassword"),
     confirmPassword = document.getElementById("confirmPassword").value;
 
-  if (password === "" || confirmPassword === "") {
+  const confirmPasswordInput = document.getElementById("confirmPassword");
+  const passwordStatus = document.getElementById("passwordStatus");
+
+  if (!password || !confirmPassword) {
+    passwordStatus.innerHTML = "";
     confirmPasswordInput.classList.remove("border-danger");
     confirmPasswordInput.classList.remove("border-success");
     return false;
   }
 
   if (password !== confirmPassword) {
+    passwordStatus.innerHTML = "Password mismatch";
     confirmPasswordInput.classList.add("border-danger");
     return false;
   }
 
+  passwordStatus.innerHTML = "";
   confirmPasswordInput.classList.remove("border-danger");
   confirmPasswordInput.classList.add("border-success");
   return true;
