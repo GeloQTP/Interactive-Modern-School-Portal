@@ -1,3 +1,111 @@
+// LOADER ANIMATION
+const spinner = document.querySelector(".spinner-wrapper");
+
+window.addEventListener("load", () => {
+  setTimeout(() => (spinner.style.display = "none"), 1000);
+});
+
+// AUTOMATED AGE CALCULATION AND DISPLAY
+const ageInput = document.getElementById("ageInput");
+document
+  .getElementById("birthdateInput")
+  .addEventListener("change", function () {
+    const birthDate = new Date(this.value);
+    const today = new Date();
+    let age = today.getFullYear() - birthDate.getFullYear();
+    const m = today.getMonth() - birthDate.getMonth();
+    if (m < 0 || (m === 0 && today.getDate() < birthDate.getDate())) age--;
+    ageInput.value = age;
+  });
+
+// AJAX Submittion
+window.addEventListener("DOMContentLoaded", () => {
+  const form = document.getElementById("registrationForm");
+  const acceptBtn = document.getElementById("acceptEULA");
+
+  form.addEventListener("submit", async (e) => {
+    e.preventDefault();
+
+    acceptBtn.disabled = true;
+    acceptBtn.innerHTML =
+      '<span class="spinner-border spinner-border-sm" role ="status"> <span class="visually-hidden"> Loading... </span></span>';
+
+    try {
+      const res = await fetch(`../ajax/registrationOTP.php`, {
+        method: "POST",
+        body: new FormData(form),
+        credentials: "same-origin",
+      });
+
+      if (!res.ok) {
+        const toastNotif = document.getElementById("liveToast");
+        document.querySelector(".toast-body").textContent =
+          "An error occurred. Please try again.";
+        const toastBootstrap = bootstrap.Toast.getOrCreateInstance(toastNotif);
+        toastBootstrap.show();
+      } else {
+        console.log("OTP Sent!");
+        let OTP_Modal = bootstrap.Modal.getOrCreateInstance(
+          document.getElementById("otpModal"),
+        );
+        let eulaModal = bootstrap.Modal.getOrCreateInstance(
+          document.getElementById("eulaModal"),
+        );
+        eulaModal.hide();
+        OTP_Modal.show();
+      }
+    } catch (error) {
+      console.log("Something went wrong.");
+      console.log(error.message);
+    } finally {
+      acceptBtn.disabled = false;
+      acceptBtn.innerHTML = "Understood";
+    }
+  });
+});
+
+//OTP AUTO NEXT
+document.addEventListener("DOMContentLoaded", function () {
+  const otpInputs = document.querySelectorAll('#otpModal input[type="text"]');
+
+  otpInputs.forEach((input, index) => {
+    // Move to next input on input
+    input.addEventListener("input", function (e) {
+      if (this.value.length === 1 && index < otpInputs.length - 1) {
+        otpInputs[index + 1].focus();
+      }
+    });
+
+    // Handle backspace to move to previous input
+    input.addEventListener("keydown", function (e) {
+      if (e.key === "Backspace" && this.value === "" && index > 0) {
+        otpInputs[index - 1].focus();
+      }
+    });
+
+    // Prevent typing more than 1 character
+    input.addEventListener("input", function (e) {
+      if (this.value.length > 1) {
+        this.value = this.value.slice(0, 1);
+      }
+    });
+
+    // Only allow numbers
+    input.addEventListener("keypress", (e) => {
+      if (!/[0-9]/.test(e.key)) {
+        e.preventDefault();
+      }
+    });
+  });
+
+  // Optional: Auto-focus first input when modal opens
+  const modal = document.getElementById("otpModal");
+  modal.addEventListener("shown.bs.modal", () => {
+    otpInputs[0].focus();
+  });
+});
+
+// FUNCTIONS
 function validateInputs() {
   const registrationForm = {
     // Personal Information
