@@ -73,7 +73,7 @@
             <div class="container">
 
                 <form class="input-group d-flex align-items-center justify-content-center"
-                    id="registrationForm" method="post">
+                    id="registrationForm">
 
                     <h1 class="lead display-5 mb-5 w-100 text-light" style="border-bottom:1px solid orange">
                         Personal Information
@@ -420,8 +420,7 @@
 
 
                                 <div class="modal-footer border-0">
-                                    <!-- <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button> -->
-                                    <button type="button" class="btn btn-warning" id="verifyOTP_btn">Verify</button>
+                                    <button type="submit" class="btn btn-warning" id="verifyOTP_btn">Verify</button>
                                 </div>
 
                             </form>
@@ -445,7 +444,7 @@
 <script src="./scripts/RegistrationPage.js"></script>
 
 <script>
-    window.addEventListener('DOMContentLoaded', () => {
+    window.addEventListener('DOMContentLoaded', () => { // TODO: BUG
 
         const otp_form = document.getElementById('OTP_form');
         const verifyOTP_btn = document.getElementById('verifyOTP_btn');
@@ -463,7 +462,7 @@
             const otp = digit1 + digit2 + digit3 + digit4 + digit5 + digit6; // Concatenate the digits to form the OTP
 
             verifyOTP_btn.disabled = true;
-            verifyOTP_btn.innerHTML = '<span class="spinner-grow spinner-grow-sm" style="margin-bottom:3px" role ="status"> <span class="visually-hidden"> Loading... </span></span>';
+            verifyOTP_btn.innerHTML = '<span class="spinner-grow spinner-grow-sm text-secondary" role ="status"> <span class="visually-hidden"> Loading... </span></span>';
 
             try {
 
@@ -479,7 +478,6 @@
                     credentials: 'same-origin',
                 });
 
-                const response = await res.json();
 
                 if (!res.ok) {
                     document.querySelector(".toast-body").textContent = "Something went wrong. Please try again.";
@@ -488,6 +486,8 @@
                     );
                     toastBootstrap.show();
                 }
+
+                const response = await res.json(); 
 
                 if (response.success === true) {
                     document.querySelector(".toast-body").textContent = response.message;

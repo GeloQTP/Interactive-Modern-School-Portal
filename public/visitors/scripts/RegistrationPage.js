@@ -22,18 +22,18 @@ document
 window.addEventListener("DOMContentLoaded", () => {
   const form = document.getElementById("registrationForm");
   const acceptBtn = document.getElementById("acceptEULA");
-  const formData = new FormData(form);
 
   form.addEventListener("submit", async (e) => {
     e.preventDefault();
 
     acceptBtn.disabled = true;
     acceptBtn.innerHTML =
-      '<span class="spinner-border spinner-border-sm" role ="status"> <span class="visually-hidden"> Loading... </span></span>';
+      '<span class="spinner-border spinner-border-sm text-secondary" role ="status"> <span class="visually-hidden"> Loading... </span></span>';
+
+    const formData = new FormData(form);
+    formData.append("action", "send_otp");
 
     try {
-      formData.append("action", "send_otp");
-
       const res = await fetch(`../ajax/registrationOTP.php`, {
         method: "POST",
         body: formData,
@@ -41,13 +41,18 @@ window.addEventListener("DOMContentLoaded", () => {
       });
 
       if (!res.ok) {
+        console.log(res);
         document.querySelector(".toast-body").textContent =
-          "An error occurred. Please try again.";
+          "Request Error. Please try again.";
         const toastBootstrap = bootstrap.Toast.getOrCreateInstance(
           document.getElementById("liveToast"),
         );
         toastBootstrap.show();
-      } else {
+      }
+
+      const result = await res.json();
+
+      if (result.success) {
         let OTP_Modal = bootstrap.Modal.getOrCreateInstance(
           document.getElementById("otpModal"),
         );
@@ -64,6 +69,7 @@ window.addEventListener("DOMContentLoaded", () => {
         toastBootstrap.show();
       }
     } catch (error) {
+      console.log(error);
       document.querySelector(".toast-body").textContent =
         "An error occurred. Please try again.";
       const toastBootstrap = bootstrap.Toast.getOrCreateInstance(

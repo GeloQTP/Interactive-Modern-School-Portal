@@ -13,16 +13,21 @@ $dotenv = Dotenv\Dotenv::createImmutable(__DIR__, 'PHPMailer.env');
 $dotenv->load();
 
 if ($_SERVER['REQUEST_METHOD'] == "POST") {
+    // Read action from POST
+    $action = $_POST['action'] ?? '';
+
+    // Ensure responses are JSON
+    header('Content-Type: application/json; charset=utf-8');
 
     if ($action === 'send_otp') {
         $email = filter_var(trim($_POST['email'] ?? ''), FILTER_SANITIZE_EMAIL);
-        $phone = filter_var($_POST['phoneNumber'] ?? '');
+        $phone = filter_var($_POST['phoneNumber'] ?? '', FILTER_SANITIZE_NUMBER_INT);
         $otp = random_int(100000, 999999); // 6-digit OTP
         $otpHash = password_hash($otp, PASSWORD_BCRYPT);
         $otp_expiration = time() + 600; // For 10-minute expiration
 
         $stmt = $conn->prepare("INSERT INTO pending_registrations (email, phone, otp_hash, otp_expires_at) VALUES (?,?,?,?)");
-        $stmt->bind_param("siss", $email, $phone, $otpHash, $otp_expiration);
+        $stmt->bind_param("sisi", $email, $phone, $otpHash, $otp_expiration);
 
         if ($stmt->execute()) {
 
@@ -117,8 +122,7 @@ if ($_SERVER['REQUEST_METHOD'] == "POST") {
 
                 echo json_encode([
                     'success' => false,
-                    'message' => 'Something went wrong. Please try again.',
-                    // 'error' => $mail->ErrorInfo // Remove this in production
+                    'message' => 'Something went wrong. Please try again.'
                 ]);
             }
             return;
@@ -172,6 +176,10 @@ if ($_SERVER['REQUEST_METHOD'] == "POST") {
         echo json_encode(['success' => true, 'message' => 'OTP verified']);
         exit;
     }
+
+    // No valid action provided
+    echo json_encode(['success' => false, 'message' => 'No action specified']);
+    return;
 } else {
     echo json_encode(['success' => false, 'message' => 'Invalid request method']);
     return;
