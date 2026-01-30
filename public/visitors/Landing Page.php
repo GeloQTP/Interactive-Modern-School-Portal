@@ -217,7 +217,9 @@
                 });
 
                 if (!response.ok) {
-                    throw new Error('Network response was not ok');
+                    document.querySelector('.toast-body').textContent = 'Network response was not ok';
+                    const toastBootstrap = bootstrap.Toast.getOrCreateInstance(toastNotif);
+                    toastBootstrap.show();
                 }
 
                 const result = await response.json();

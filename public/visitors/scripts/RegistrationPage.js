@@ -22,6 +22,7 @@ document
 window.addEventListener("DOMContentLoaded", () => {
   const form = document.getElementById("registrationForm");
   const acceptBtn = document.getElementById("acceptEULA");
+  const formData = new FormData(form);
 
   form.addEventListener("submit", async (e) => {
     e.preventDefault();
@@ -31,20 +32,22 @@ window.addEventListener("DOMContentLoaded", () => {
       '<span class="spinner-border spinner-border-sm" role ="status"> <span class="visually-hidden"> Loading... </span></span>';
 
     try {
+      formData.append("action", "send_otp");
+
       const res = await fetch(`../ajax/registrationOTP.php`, {
         method: "POST",
-        body: new FormData(form),
+        body: formData,
         credentials: "same-origin",
       });
 
       if (!res.ok) {
-        const toastNotif = document.getElementById("liveToast");
         document.querySelector(".toast-body").textContent =
           "An error occurred. Please try again.";
-        const toastBootstrap = bootstrap.Toast.getOrCreateInstance(toastNotif);
+        const toastBootstrap = bootstrap.Toast.getOrCreateInstance(
+          document.getElementById("liveToast"),
+        );
         toastBootstrap.show();
       } else {
-        console.log("OTP Sent!");
         let OTP_Modal = bootstrap.Modal.getOrCreateInstance(
           document.getElementById("otpModal"),
         );
@@ -53,10 +56,20 @@ window.addEventListener("DOMContentLoaded", () => {
         );
         eulaModal.hide();
         OTP_Modal.show();
+
+        document.querySelector(".toast-body").textContent = "OTP Sent.";
+        const toastBootstrap = bootstrap.Toast.getOrCreateInstance(
+          document.getElementById("liveToast"),
+        );
+        toastBootstrap.show();
       }
     } catch (error) {
-      console.log("Something went wrong.");
-      console.log(error.message);
+      document.querySelector(".toast-body").textContent =
+        "An error occurred. Please try again.";
+      const toastBootstrap = bootstrap.Toast.getOrCreateInstance(
+        document.getElementById("liveToast"),
+      );
+      toastBootstrap.show();
     } finally {
       acceptBtn.disabled = false;
       acceptBtn.innerHTML = "Understood";
@@ -102,6 +115,25 @@ document.addEventListener("DOMContentLoaded", function () {
   const modal = document.getElementById("otpModal");
   modal.addEventListener("shown.bs.modal", () => {
     otpInputs[0].focus();
+  });
+});
+
+window.addEventListener("DOMContentLoaded", () => {
+  const registerBtn = document.getElementById("registerBtn"),
+    understoodEULAButton = document.getElementById("acceptEULA"),
+    eulaCheckBox = document.getElementById("termsCheck");
+  registerBtn.disabled = true;
+  understoodEULAButton.disabled = true;
+
+  document.getElementById("registrationForm").addEventListener("input", () => {
+    const isValid = validateInputs() && validateEmail() && validatePassword();
+    registerBtn.disabled = !isValid;
+
+    if (eulaCheckBox.checked) {
+      understoodEULAButton.disabled = false;
+    } else {
+      understoodEULAButton.disabled = true;
+    }
   });
 });
 

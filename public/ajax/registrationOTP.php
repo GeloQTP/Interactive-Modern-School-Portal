@@ -14,42 +14,42 @@ $dotenv->load();
 
 if ($_SERVER['REQUEST_METHOD'] == "POST") {
 
-    $email = filter_var(trim($_POST['email'] ?? ''), FILTER_SANITIZE_EMAIL);
-    $phone = filter_var($_POST['phoneNumber'] ?? '');
-    $otp = random_int(100000, 999999); // 6-digit OTP
-    $otpHash = password_hash($otp, PASSWORD_BCRYPT);
-    $otp_expiration = time() + 600; // For 10-minute expiration
-    $_SESSION['OTP'] = $otp;
+    if ($action === 'send_otp') {
+        $email = filter_var(trim($_POST['email'] ?? ''), FILTER_SANITIZE_EMAIL);
+        $phone = filter_var($_POST['phoneNumber'] ?? '');
+        $otp = random_int(100000, 999999); // 6-digit OTP
+        $otpHash = password_hash($otp, PASSWORD_BCRYPT);
+        $otp_expiration = time() + 600; // For 10-minute expiration
 
-    $stmt = $conn->prepare("INSERT INTO pending_registrations (email, phone, otp_hash, otp_expires_at) VALUES (?,?,?,?)");
-    $stmt->bind_param("siss", $email, $phone, $otpHash, $otp_expiration);
+        $stmt = $conn->prepare("INSERT INTO pending_registrations (email, phone, otp_hash, otp_expires_at) VALUES (?,?,?,?)");
+        $stmt->bind_param("siss", $email, $phone, $otpHash, $otp_expiration);
 
-    if ($stmt->execute()) {
+        if ($stmt->execute()) {
 
-        $mail = new PHPMailer(true);
+            $mail = new PHPMailer(true);
 
-        try {
+            try {
 
-            // Server Settings
-            $mail->isSMTP();
-            $mail->Host = $_ENV["SMTP_HOST"];
-            $mail->SMTPAuth = true;
-            $mail->Username = $_ENV["SMTP_USER"];
-            $mail->Password = $_ENV["SMTP_PASS"];
-            $mail->SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS;
-            $mail->Port = $_ENV["SMTP_PORT"];
+                // Server Settings
+                $mail->isSMTP();
+                $mail->Host = $_ENV["SMTP_HOST"];
+                $mail->SMTPAuth = true;
+                $mail->Username = $_ENV["SMTP_USER"];
+                $mail->Password = $_ENV["SMTP_PASS"];
+                $mail->SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS;
+                $mail->Port = $_ENV["SMTP_PORT"];
 
-            // Recipients
-            $mail->setFrom($_ENV["SMTP_USER"], "Laragon College University");
-            $mail->addAddress($email);
+                // Recipients
+                $mail->setFrom($_ENV["SMTP_USER"], "Laragon College University");
+                $mail->addAddress($email);
 
-            // Mail
-            $mail->isHTML(true);
+                // Mail
+                $mail->isHTML(true);
 
-            $mail->Subject = "Your One-Time Password (OTP) from Laragon College University";
+                $mail->Subject = "Your One-Time Password (OTP) from Laragon College University";
 
-            $mail->Body =
-                "
+                $mail->Body =
+                    "
                     <div style='font-family: Arial, sans-serif; color: #333; line-height: 1.6; max-width: 600px; margin: auto;'>
                         <h2 style='color: #2c3e50;'>Laragon Registration Verification</h2>
 
@@ -88,8 +88,8 @@ if ($_SERVER['REQUEST_METHOD'] == "POST") {
                     </div>
             ";
 
-            $mail->AltBody =
-                "
+                $mail->AltBody =
+                    "
                         School Registration Verification
 
                         Thank you for starting the registration process.
@@ -105,30 +105,74 @@ if ($_SERVER['REQUEST_METHOD'] == "POST") {
                         — Laragon College University
             ";
 
-            $mail->send();
+                $mail->send();
 
-            echo json_encode([
-                'success' => true,
-                'message' => "We have sent an OTP (One Time Password) to your email: {$email}"
-            ]);
-        } catch (Exception $e) {
-            // Log the actual error for debugging
-            // error_log("PHPMailer Error: " . $mail->ErrorInfo);
+                echo json_encode([
+                    'success' => true,
+                    'message' => "We have sent an OTP (One Time Password) to your email: {$email}"
+                ]);
+            } catch (Exception $e) {
+                // Log the actual error for debugging
+                // error_log("PHPMailer Error: " . $mail->ErrorInfo);
 
-            echo json_encode([
-                'success' => false,
-                'message' => 'Something went wrong. Please try again.',
-                // 'error' => $mail->ErrorInfo // Remove this in production
-            ]);
+                echo json_encode([
+                    'success' => false,
+                    'message' => 'Something went wrong. Please try again.',
+                    // 'error' => $mail->ErrorInfo // Remove this in production
+                ]);
+            }
+            return;
         }
+    }
+
+    if ($action === 'verify_otp') {
+
+        $otp = $_POST['otp'] ?? '';
+        $email = $_SESSION['pending_email'] ?? null;
+
+        if (!$email || !preg_match('/^\d{6}$/', $otp)) {
+            echo json_encode(['success' => false, 'message' => 'Invalid OTP']);
+            exit;
+        }
+
+        $stmt = $conn->prepare("
+        SELECT otp_hash, otp_expires_at
+        FROM pending_registrations
+        WHERE email = ?
+        LIMIT 1
+    ");
+        $stmt->bind_param("s", $email);
+        $stmt->execute();
+
+        $result = $stmt->get_result();
+        $row = $result->fetch_assoc();
+
+        if (!$row) {
+            echo json_encode(['success' => false, 'message' => 'OTP not found']);
+            exit;
+        }
+
+        if ($row['otp_expires_at'] < time()) {
+            echo json_encode(['success' => false, 'message' => 'OTP expired']);
+            exit;
+        }
+
+        if (!password_verify($otp, $row['otp_hash'])) {
+            echo json_encode(['success' => false, 'message' => 'Invalid OTP']);
+            exit;
+        }
+
+        // ✅ OTP SUCCESS — invalidate it
+        $del = $conn->prepare("DELETE FROM pending_registrations WHERE email = ?");
+        $del->bind_param("s", $email);
+        $del->execute();
+
+        unset($_SESSION['pending_email']);
+
+        echo json_encode(['success' => true, 'message' => 'OTP verified']);
         exit;
     }
 } else {
     echo json_encode(['success' => false, 'message' => 'Invalid request method']);
-    exit;
-}
-
-if ($_SERVER['REQUEST_METHOD'] === 'GET') { // TODO: Compare OTP
-
-    $_SESSION['otp_timestamp'] = time();
+    return;
 }

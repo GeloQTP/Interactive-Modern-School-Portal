@@ -30,7 +30,7 @@
                 <button type="button" class="btn-close" data-bs-dismiss="toast" aria-label="Close"></button>
             </div>
             <div class="toast-body">
-                <?= $status ?>
+
             </div>
         </div>
     </div>
@@ -420,8 +420,8 @@
 
 
                                 <div class="modal-footer border-0">
-                                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                                    <button type="button" class="btn btn-warning">Verify</button>
+                                    <!-- <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button> -->
+                                    <button type="button" class="btn btn-warning" id="verifyOTP_btn">Verify</button>
                                 </div>
 
                             </form>
@@ -442,23 +442,80 @@
 </body>
 
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"></script>
+<script src="./scripts/RegistrationPage.js"></script>
 
 <script>
     window.addEventListener('DOMContentLoaded', () => {
-        const registerBtn = document.getElementById('registerBtn'),
-            understoodEULAButton = document.getElementById('acceptEULA'),
-            eulaCheckBox = document.getElementById("termsCheck");
-        registerBtn.disabled = true;
-        understoodEULAButton.disabled = true;
 
-        document.getElementById('registrationForm').addEventListener('input', () => {
-            const isValid = validateInputs() && validateEmail() && validatePassword();
-            registerBtn.disabled = !isValid;
+        const otp_form = document.getElementById('OTP_form');
+        const verifyOTP_btn = document.getElementById('verifyOTP_btn');
 
-            if (eulaCheckBox.checked) {
-                understoodEULAButton.disabled = false;
-            } else {
-                understoodEULAButton.disabled = true;
+        otp_form.addEventListener('submit', async (e) => {
+            e.preventDefault();
+
+            const digit1 = document.querySelector('input[name="Digit1"]').value;
+            const digit2 = document.querySelector('input[name="Digit2"]').value;
+            const digit3 = document.querySelector('input[name="Digit3"]').value;
+            const digit4 = document.querySelector('input[name="Digit4"]').value;
+            const digit5 = document.querySelector('input[name="Digit5"]').value;
+            const digit6 = document.querySelector('input[name="Digit6"]').value;
+
+            const otp = digit1 + digit2 + digit3 + digit4 + digit5 + digit6; // Concatenate the digits to form the OTP
+
+            verifyOTP_btn.disabled = true;
+            verifyOTP_btn.innerHTML = '<span class="spinner-grow spinner-grow-sm" style="margin-bottom:3px" role ="status"> <span class="visually-hidden"> Loading... </span></span>';
+
+            try {
+
+                const res = await fetch('../ajax/registration.php', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/x-www-form-urlencoded'
+                    },
+                    body: new URLSearchParams({
+                        action: 'verify_otp',
+                        otp: otp
+                    }),
+                    credentials: 'same-origin',
+                });
+
+                const response = await res.json();
+
+                if (!res.ok) {
+                    document.querySelector(".toast-body").textContent = "Something went wrong. Please try again.";
+                    const toastBootstrap = bootstrap.Toast.getOrCreateInstance(
+                        document.getElementById("liveToast"),
+                    );
+                    toastBootstrap.show();
+                }
+
+                if (response.success === true) {
+                    document.querySelector(".toast-body").textContent = response.message;
+                    const toastBootstrap = bootstrap.Toast.getOrCreateInstance(
+                        document.getElementById("liveToast"),
+                    );
+                    toastBootstrap.show();
+
+                    // setTimeout(() => {
+                    //     window.location.href = "./Login Page.php";
+                    // }, 3000);
+
+                } else {
+                    document.querySelector(".toast-body").textContent = response.message;
+                    const toastBootstrap = bootstrap.Toast.getOrCreateInstance(
+                        document.getElementById("liveToast"),
+                    );
+                    toastBootstrap.show();
+                }
+
+            } catch (error) {
+                document.querySelector(".toast-body").textContent = "Something went wrong. Please try again.";
+                const toastBootstrap = bootstrap.Toast.getOrCreateInstance(
+                    document.getElementById("liveToast"),
+                );
+                toastBootstrap.show();
+            } finally {
+
             }
 
         });
@@ -466,6 +523,5 @@
     });
 </script>
 
-<script src="./scripts/RegistrationPage.js"></script>
 
 </html>
