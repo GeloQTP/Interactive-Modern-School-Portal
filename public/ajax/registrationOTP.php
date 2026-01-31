@@ -2,7 +2,7 @@
 
 session_start();
 include __DIR__ . '/../../includes/db_connect.php';
-mysqli_report(MYSQLI_REPORT_STRICT | MYSQLI_REPORT_ALL);
+mysqli_report(MYSQLI_REPORT_STRICT | MYSQLI_REPORT_ERROR);
 
 use PHPMailer\PHPMailer\PHPMailer;
 use PHPMailer\PHPMailer\Exception;
@@ -112,6 +112,8 @@ if ($_SERVER['REQUEST_METHOD'] == "POST") {
 
                 $mail->send();
 
+                $_SESSION['pending_email'] = $email;
+
                 echo json_encode([
                     'success' => true,
                     'message' => "We have sent an OTP (One Time Password) to your email: {$email}"
@@ -129,7 +131,7 @@ if ($_SERVER['REQUEST_METHOD'] == "POST") {
         }
     }
 
-    if ($action === 'verify_otp') {
+    if ($action === 'verify_otp') { // TODO: REVIEW THIS CODE
 
         $otp = $_POST['otp'] ?? '';
         $email = $_SESSION['pending_email'] ?? null;
@@ -139,12 +141,7 @@ if ($_SERVER['REQUEST_METHOD'] == "POST") {
             exit;
         }
 
-        $stmt = $conn->prepare("
-        SELECT otp_hash, otp_expires_at
-        FROM pending_registrations
-        WHERE email = ?
-        LIMIT 1
-    ");
+        $stmt = $conn->prepare("SELECT otp_hash, otp_expires_at FROM pending_registrations WHERE email = ? ORDER BY  otp_expires_at DESC");
         $stmt->bind_param("s", $email);
         $stmt->execute();
 
@@ -156,17 +153,17 @@ if ($_SERVER['REQUEST_METHOD'] == "POST") {
             exit;
         }
 
-        if ($row['otp_expires_at'] < time()) {
-            echo json_encode(['success' => false, 'message' => 'OTP expired']);
-            exit;
-        }
-
         if (!password_verify($otp, $row['otp_hash'])) {
             echo json_encode(['success' => false, 'message' => 'Invalid OTP']);
             exit;
         }
 
-        // ✅ OTP SUCCESS — invalidate it
+        if ($row['otp_expires_at'] < time()) {
+            echo json_encode(['success' => false, 'message' => 'OTP expired']);
+            exit;
+        }
+
+        //  OTP SUCCESS - invalidate it
         $del = $conn->prepare("DELETE FROM pending_registrations WHERE email = ?");
         $del->bind_param("s", $email);
         $del->execute();

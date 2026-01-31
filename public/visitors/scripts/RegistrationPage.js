@@ -59,6 +59,7 @@ window.addEventListener("DOMContentLoaded", () => {
         let eulaModal = bootstrap.Modal.getOrCreateInstance(
           document.getElementById("eulaModal"),
         );
+
         eulaModal.hide();
         OTP_Modal.show();
 
@@ -117,7 +118,7 @@ document.addEventListener("DOMContentLoaded", function () {
     });
   });
 
-  // Optional: Auto-focus first input when modal opens
+  // Auto-focus first input when modal opens
   const modal = document.getElementById("otpModal");
   modal.addEventListener("shown.bs.modal", () => {
     otpInputs[0].focus();
@@ -143,7 +144,7 @@ window.addEventListener("DOMContentLoaded", () => {
   });
 });
 
-// FUNCTIONS
+// CHECK FOR EMPTY INPUTS
 function validateInputs() {
   const registrationForm = {
     // Personal Information
@@ -196,6 +197,7 @@ function validateInputs() {
   }
 }
 
+// VALIDATE EMAIl
 function validateEmail() {
   const recoveryEmailInput = document.getElementById("recoveryEmailInput");
   const emailStatus = document.getElementById("emailStatus");
@@ -210,7 +212,7 @@ function validateEmail() {
     return false;
   }
 
-  // Same email check
+  // EMAIL CHECKING
   if (recoveryEmail === email) {
     recoveryEmailInput.classList.add("border-danger");
     recoveryEmailInput.classList.remove("border-success");

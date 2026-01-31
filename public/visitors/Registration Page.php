@@ -365,7 +365,7 @@
                             onclick="window.location.href='Landing Page.php'">
                             Cancel
                         </button>
-                        <button type="submit" class="btn btn-warning" data-bs-toggle="modal" data-bs-target="#eulaModal" id="registerBtn">
+                        <button type="button" class="btn btn-warning" data-bs-toggle="modal" data-bs-target="#eulaModal" id="registerBtn">
                             Register
                         </button>
                     </div>
@@ -419,7 +419,7 @@
                                 </div>
 
 
-                                <div class="modal-footer border-0">
+                                <div class="modal-footer border-0 d-flex justify-content-center">
                                     <button type="submit" class="btn btn-warning" id="verifyOTP_btn">Verify</button>
                                 </div>
 
@@ -444,7 +444,7 @@
 <script src="./scripts/RegistrationPage.js"></script>
 
 <script>
-    window.addEventListener('DOMContentLoaded', () => { // TODO: BUG
+    window.addEventListener('DOMContentLoaded', () => {
 
         const otp_form = document.getElementById('OTP_form');
         const verifyOTP_btn = document.getElementById('verifyOTP_btn');
@@ -466,7 +466,7 @@
 
             try {
 
-                const res = await fetch('../ajax/registration.php', {
+                const res = await fetch('../ajax/registrationOTP.php', {
                     method: 'POST',
                     headers: {
                         'Content-Type': 'application/x-www-form-urlencoded'
@@ -487,9 +487,9 @@
                     toastBootstrap.show();
                 }
 
-                const response = await res.json(); 
+                const response = await res.json();
 
-                if (response.success === true) {
+                if (response.success) {
                     document.querySelector(".toast-body").textContent = response.message;
                     const toastBootstrap = bootstrap.Toast.getOrCreateInstance(
                         document.getElementById("liveToast"),
@@ -498,7 +498,7 @@
 
                     // setTimeout(() => {
                     //     window.location.href = "./Login Page.php";
-                    // }, 3000);
+                    // }, 4000);
 
                 } else {
                     document.querySelector(".toast-body").textContent = response.message;
@@ -506,6 +506,8 @@
                         document.getElementById("liveToast"),
                     );
                     toastBootstrap.show();
+                    verifyOTP_btn.disabled = false;
+                    verifyOTP_btn.textContent = 'Verify';
                 }
 
             } catch (error) {
@@ -515,7 +517,8 @@
                 );
                 toastBootstrap.show();
             } finally {
-
+                verifyOTP_btn.disabled = false;
+                verifyOTP_btn.textContent = 'Verify';
             }
 
         });
