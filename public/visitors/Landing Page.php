@@ -50,9 +50,9 @@
 
             <div class="collapse navbar-collapse" id="navmenu">
                 <ul class="navbar-nav ms-auto">
-                    <li class="nav-item"><a class="nav-link" href="#">About</a></li>
-                    <li class="nav-item"><a class="nav-link" href="#">Admission</a></li>
-                    <li class="nav-item"><a class="nav-link" href="#">Events</a></li>
+                    <li class="nav-item"><a class="nav-link" href="About Page.php">About</a></li>
+                    <li class="nav-item"><a class="nav-link" href="Admission Page.php">Admission</a></li>
+                    <li class="nav-item"><a class="nav-link" href="Events Page.php">Events</a></li>
                     <li class="nav-item"><button class="btn btn-warning bg-dark text-warning"
                             onclick="window.location.href='Login Page.php'">Login</button></li>
                 </ul>
