@@ -416,6 +416,12 @@
                                         <small>Didn&#39;t receive it? Check your spam folder.</small>
                                     </div>
 
+                                    <div class="text-center mt-2">
+                                        <a href="#" class="text-warning text-decoration-none fw-semibold" id="resendOTP_link">
+                                            Resend OTP
+                                        </a>
+                                    </div>
+
                                 </div>
 
 
@@ -442,89 +448,5 @@
 
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"></script>
 <script src="./scripts/RegistrationPage.js"></script>
-
-<script>
-    window.addEventListener('DOMContentLoaded', () => {
-
-        const otp_form = document.getElementById('OTP_form');
-        const verifyOTP_btn = document.getElementById('verifyOTP_btn');
-
-        otp_form.addEventListener('submit', async (e) => {
-            e.preventDefault();
-
-            const digit1 = document.querySelector('input[name="Digit1"]').value;
-            const digit2 = document.querySelector('input[name="Digit2"]').value;
-            const digit3 = document.querySelector('input[name="Digit3"]').value;
-            const digit4 = document.querySelector('input[name="Digit4"]').value;
-            const digit5 = document.querySelector('input[name="Digit5"]').value;
-            const digit6 = document.querySelector('input[name="Digit6"]').value;
-
-            const otp = digit1 + digit2 + digit3 + digit4 + digit5 + digit6; // Concatenate the digits to form the OTP
-
-            verifyOTP_btn.disabled = true;
-            verifyOTP_btn.innerHTML = '<span class="spinner-grow spinner-grow-sm text-secondary" role ="status"> <span class="visually-hidden"> Loading... </span></span>';
-
-            try {
-
-                const res = await fetch('../ajax/registrationOTP.php', {
-                    method: 'POST',
-                    headers: {
-                        'Content-Type': 'application/x-www-form-urlencoded'
-                    },
-                    body: new URLSearchParams({
-                        action: 'verify_otp',
-                        otp: otp
-                    }),
-                    credentials: 'same-origin',
-                });
-
-
-                if (!res.ok) {
-                    document.querySelector(".toast-body").textContent = "Something went wrong. Please try again.";
-                    const toastBootstrap = bootstrap.Toast.getOrCreateInstance(
-                        document.getElementById("liveToast"),
-                    );
-                    toastBootstrap.show();
-                }
-
-                const response = await res.json();
-
-                if (response.success) {
-                    document.querySelector(".toast-body").textContent = response.message;
-                    const toastBootstrap = bootstrap.Toast.getOrCreateInstance(
-                        document.getElementById("liveToast"),
-                    );
-                    toastBootstrap.show();
-
-                    // setTimeout(() => {
-                    //     window.location.href = "./Login Page.php";
-                    // }, 4000);
-
-                } else {
-                    document.querySelector(".toast-body").textContent = response.message;
-                    const toastBootstrap = bootstrap.Toast.getOrCreateInstance(
-                        document.getElementById("liveToast"),
-                    );
-                    toastBootstrap.show();
-                    verifyOTP_btn.disabled = false;
-                    verifyOTP_btn.textContent = 'Verify';
-                }
-
-            } catch (error) {
-                document.querySelector(".toast-body").textContent = "Something went wrong. Please try again.";
-                const toastBootstrap = bootstrap.Toast.getOrCreateInstance(
-                    document.getElementById("liveToast"),
-                );
-                toastBootstrap.show();
-            } finally {
-                verifyOTP_btn.disabled = false;
-                verifyOTP_btn.textContent = 'Verify';
-            }
-
-        });
-
-    });
-</script>
-
 
 </html>

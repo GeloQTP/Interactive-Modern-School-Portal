@@ -11,6 +11,5 @@
 <body>
 
 </body>
-<script src="/src/libraries/simpui-main/js/simpui.js"></script>
 
 </html>
