@@ -53,7 +53,7 @@
                     <li class="nav-item"><a class="nav-link" href="About Page.php">About</a></li>
                     <li class="nav-item"><a class="nav-link" href="Admission Page.php">Admission</a></li>
                     <li class="nav-item"><a class="nav-link" href="Events Page.php">Events</a></li>
-                    <li class="nav-item"><button class="btn btn-warning bg-dark text-warning"
+                    <li class="nav-item"><button class="btn btn-warning bg-dark text-warning ms-3"
                             onclick="window.location.href='Login Page.php'">Login</button></li>
                 </ul>
             </div>
@@ -184,17 +184,6 @@
 </body>
 
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"></script>
-
-<script>
-    const spinner = document.querySelector('.spinner-wrapper');
-
-    window.addEventListener('load', () => { // add loader animation while the page is loading
-        setTimeout(() => {
-            spinner.style.display = 'none';
-        }, 1000);
-    });
-</script>
-
 <script src="./scripts/LandingPage.js"></script>
 
 </html>

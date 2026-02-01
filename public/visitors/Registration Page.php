@@ -7,7 +7,8 @@
     <title>Laragon College University</title>
     <link rel="icon" type="image/png" href="./../../src/img/YellowElephant.png">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet">
-    <link rel="stylesheet" href="./../../styles/style.css">
+    <link rel="stylesheet" href="./../../styles/style.css
+    ">
 </head>
 
 <body>
@@ -57,7 +58,7 @@
                         <li class="nav-item"><a class="nav-link" href="Admission Page.php">Admission</a></li>
                         <li class="nav-item"><a class="nav-link" href="Events Page.php">Events</a></li>
                         <li class="nav-item">
-                            <button type="button" class="btn btn-warning bg-dark text-warning"
+                            <button type="button" class="btn btn-warning bg-dark text-warning ms-3"
                                 onclick="window.location.href='loginPage.php'">
                                 Login
                             </button>

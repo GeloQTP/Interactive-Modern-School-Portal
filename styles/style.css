@@ -1,3 +1,7 @@
+body {
+    overflow: hidden;
+}
+
 @media(min-width: 768px) {
 
     /*large (lg) in Bootsrap 5*/
