@@ -38,9 +38,9 @@
                     <ul class="navbar-nav ms-auto">
                         <li class="nav-item"><a class="nav-link" href="About Page.php">About</a></li>
                         <li class="nav-item"><a class="nav-link" href="Admission Page.php">Admission</a></li>
-                        <li class="nav-item"><a class="nav-link border rounded" href="Events Page.php">Events</a></li>
+                        <li class="nav-item"><a class="nav-link border border-warning rounded" href="Events Page.php">Events</a></li>
                         <li class="nav-item">
-                            <button type="button" class="btn btn-warning bg-dark text-warning ms-3"
+                            <button type="button" class="btn btn-warning bg-dark text-warning ms-sm-3"
                                 onclick="window.location.href='loginPage.php'">
                                 Login
                             </button>
