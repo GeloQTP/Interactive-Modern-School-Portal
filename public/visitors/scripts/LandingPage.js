@@ -1,12 +1,3 @@
-const spinner = document.querySelector(".spinner-wrapper");
-
-window.addEventListener("load", () => {
-  // add loader animation while the page is loading
-  setTimeout(() => {
-    spinner.style.display = "none";
-  }, 1000);
-});
-
 document.addEventListener("DOMContentLoaded", () => {
   const form = document.querySelector(".news-input");
   const emailInput = document.querySelector(".news-input input");

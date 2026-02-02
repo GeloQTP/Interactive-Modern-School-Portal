@@ -39,7 +39,7 @@
     <header>
         <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
             <div class="container my-1">
-                <a href="Landing Page.php" class="navbar-brand fw-bold d-flex align-items-center">
+                <a href="./Landing Page.php" class="navbar-brand fw-bold d-flex align-items-center">
                     <span class="px-2">
                         <img src="./../../src/img/YellowElephant.png" alt="Laragon logo" style="width: 50px; border-radius: 100px;">
                     </span>
@@ -56,13 +56,10 @@
                     <ul class="navbar-nav ms-auto">
                         <li class="nav-item"><a class="nav-link" href="About Page.php">About</a></li>
                         <li class="nav-item"><a class="nav-link" href="Admission Page.php">Admission</a></li>
-                        <li class="nav-item"><a class="nav-link" href="Events Page.php">Events</a></li>
-                        <li class="nav-item">
                             <button type="button" class="btn btn-warning bg-dark text-warning ms-lg-3"
                                 onclick="window.location.href='loginPage.php'">
                                 Login
                             </button>
-                        </li>
                     </ul>
                 </div>
             </div>
