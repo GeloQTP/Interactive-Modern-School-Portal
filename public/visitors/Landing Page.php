@@ -125,5 +125,5 @@ include __DIR__ . '/../../includes/header.php';
 </footer>
 
 <script src="/Modern Student Portal/public/visitors/scripts/LandingPage.js"></script>
-
+<script src="./scripts/LandingPage.js"></script>
 <?php include __DIR__ . '/../../includes/footer.php'; ?>
