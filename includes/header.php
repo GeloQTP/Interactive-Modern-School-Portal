@@ -67,7 +67,7 @@
                                 href="/Modern Student Portal/public/visitors/routes/Events Page.php">Events</a>
                         </li>
                         <button type="button" class="btn btn-warning bg-dark text-warning ms-lg-3"
-                            onclick="window.location.href='/Modern Student Portal/public/visitors/loginPage.php'">
+                            onclick="window.location.href='/Modern Student Portal/public/visitors/Login Page.php'">
                             Login
                         </button>
                     </ul>

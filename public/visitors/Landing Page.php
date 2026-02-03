@@ -1,6 +1,5 @@
 <?php
 $pageTitle = 'Home - Laragon College University';
-$currentPage = 'home';
 include __DIR__ . '/../../includes/header.php';
 ?>
 
@@ -19,6 +18,7 @@ include __DIR__ . '/../../includes/header.php';
                 <button class="btn btn-warning btn-lg" type="button"
                     onclick="window.location.href='/Modern Student Portal/public/visitors/Registration Page.php'">Register Now</button>
             </div>
+
             <div class="col-sm-6 d-none d-sm-block">
                 <div id="carouselExampleSlidesOnly" class="carousel slide" data-bs-ride="carousel">
                     <div class="carousel-inner">
@@ -125,5 +125,4 @@ include __DIR__ . '/../../includes/header.php';
 </footer>
 
 <script src="/Modern Student Portal/public/visitors/scripts/LandingPage.js"></script>
-<script src="./scripts/LandingPage.js"></script>
 <?php include __DIR__ . '/../../includes/footer.php'; ?>

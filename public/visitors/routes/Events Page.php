@@ -1,17 +1,3 @@
-<!DOCTYPE html>
-<html lang="en">
-
-<head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Laragon College University</title>
-    <link rel="icon" type="image/png" href="./../../src/img/YellowElephant.png">
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet">
-    <link rel="stylesheet" href="/../Modern Student Portal/styles/style.css">
-</head>
-
-<body>
-
     <?php
     $pageTitle = 'Events - Laragon College University';
     include __DIR__ . '/../../../includes/header.php';
@@ -27,7 +13,3 @@
     </main>
 
     <?php include __DIR__ . '/../../../includes/footer.php'; ?>
-
-</body>
-
-</html>
