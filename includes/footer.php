@@ -15,7 +15,7 @@
 
     // Routing functionality
     document.addEventListener('DOMContentLoaded', () => {
-        document.querySelectorAll('.nav-link, .navbar-brand').forEach(link => {
+        document.querySelectorAll('.nav-link').forEach(link => {
             link.addEventListener('click', (e) => {
                 e.preventDefault();
                 const url = link.getAttribute('href');

@@ -30,6 +30,7 @@ document.addEventListener("DOMContentLoaded", () => {
       document.querySelector(".toast-body").textContent = result.message;
       const toastBootstrap = bootstrap.Toast.getOrCreateInstance(toastNotif);
       toastBootstrap.show();
+
     } catch (error) {
       document.querySelector(".toast-body").textContent =
         "An error occurred. Please try again.";
