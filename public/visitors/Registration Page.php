@@ -5,7 +5,7 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Laragon College University</title>
-    <link rel="icon" type="image/png" href="./../../src/img/YellowElephant.png">
+    <link rel="icon" type="image/png" href="/Modern Student Portal/src/img/TRC_LOGO.png">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="./../../styles/style.css
     ">
@@ -24,9 +24,9 @@
     <div class="toast-container position-fixed bottom-0 end-0 p-3">
         <div id="liveToast" class="toast bg-light text-dark" role="alert" aria-live="assertive" aria-atomic="true">
             <div class="toast-header">
-                <img src="../../src/img/YellowElephant.png" style="width: 30px;" class="rounded me-2 img-fluid"
+                <img src="/Modern Student Portal/src/img/TRC_LOGO.png" style="width: 30px;" class="rounded me-2 img-fluid"
                     alt="...">
-                <strong class="me-auto">Laragon Notification</strong>
+                <strong class="me-auto">TRC Notification</strong>
                 <small>just now</small>
                 <button type="button" class="btn-close" data-bs-dismiss="toast" aria-label="Close"></button>
             </div>
@@ -41,10 +41,10 @@
             <div class="container my-1">
                 <a href="./Landing Page.php" class="navbar-brand fw-bold d-flex align-items-center">
                     <span class="px-2">
-                        <img src="./../../src/img/YellowElephant.png" alt="Laragon logo" style="width: 50px; border-radius: 100px;">
+                        <img src="/Modern Student Portal/src/img/TRC_LOGO.png" alt="Laragon logo" style="width: 50px; border-radius: 100px;">
                     </span>
                     <span class="d-none d-sm-block">
-                        <span class="text-warning lead">Laragon</span> University
+                        <span class="text-warning lead">Tomas Del Rosario</span> College
                     </span>
                 </a>
 
@@ -57,10 +57,10 @@
                         <li class="nav-item"><a class="nav-link" href="./routes/About Page.php">About</a></li>
                         <li class="nav-item"><a class="nav-link" href="./routes/Admission Page.php">Admission</a></li>
                         <li class="nav-item"><a class="nav-link" href="./routes/Events Page.php">Events</a></li>
-                            <button type="button" class="btn btn-warning bg-dark text-warning ms-lg-3"
-                                onclick="window.location.href='./Login Page.php'">
-                                Login
-                            </button>
+                        <button type="button" class="btn btn-warning bg-dark text-warning ms-lg-3"
+                            onclick="window.location.href='./Login Page.php'">
+                            Login
+                        </button>
                     </ul>
                 </div>
             </div>
@@ -269,13 +269,13 @@
                         </div>
 
                         <div class="col-md-4">
-                            <label for="guardianphoneInput" class="lead text-warning">Guardian's Contact Number</label>
+                            <label for="guardianphoneInput" class="lead text-warning">Guardian&#39;s Contact Number</label>
                             <input type="tel" class="form-control form-control-sm bg-secondary text-light border-0"
                                 id="guardianphoneInput" name="guardianPhone" required>
                         </div>
 
                         <div class="col-md-4">
-                            <label for="guardianmailInput" class="lead text-warning">Guardian's Email</label>
+                            <label for="guardianmailInput" class="lead text-warning">Guardian&#39;s Email</label>
                             <input type="email" class="form-control form-control-sm bg-secondary text-light border-0"
                                 id="guardianmailInput" name="guardianEmail" required>
                         </div>
@@ -331,7 +331,7 @@
                                     <br><br>
                                     Submission of this form does not guarantee admission, enrollment, or placement in any course or program. All registrations are subject to review, academic requirements, availability of slots, and institutional approval.
                                     <br><br>
-                                    You authorize the college to collect, store, and process your personal information for academic, administrative, and legal purposes, including enrollment processing, student records management, communication, and compliance with applicable laws. Your information will be handled in accordance with the college's Privacy Policy and applicable data protection regulations.
+                                    You authorize the college to collect, store, and process your personal information for academic, administrative, and legal purposes, including enrollment processing, student records management, communication, and compliance with applicable laws. Your information will be handled in accordance with the college&#39;s Privacy Policy and applicable data protection regulations.
                                     <br><br>
                                     You agree to use this system only for lawful and authorized purposes. Any attempt to gain unauthorized access, disrupt system operations, or misuse this platform may result in disciplinary action and may be subject to legal consequences.
                                     <br><br>

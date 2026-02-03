@@ -4,8 +4,8 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Login - Laragon College University</title>
-    <link rel="icon" type="image/png" href="./../../src/img/YellowElephant.png">
+    <title>Login - Tomas Del Rosario College</title>
+    <link rel="icon" type="image/png" href="/Modern Student Portal/src/img/TRC_LOGO.png">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="/../Modern Student Portal/styles/style.css">
 </head>
@@ -19,23 +19,23 @@
         </div>
     </div>
 
- <!-- NAVBAR -->
+    <!-- NAVBAR -->
     <header>
         <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
             <div class="container my-1">
                 <a href="/Modern Student Portal/public/visitors/Landing Page.php" class="navbar-brand fw-bold d-flex align-items-center">
                     <span class="px-2">
-                        <img src="/Modern Student Portal/src/img/YellowElephant.png" alt="Laragon logo" style="width: 50px; border-radius: 100px;">
+                        <img src="/Modern Student Portal/src/img/TRC_LOGO.png" alt="Laragon logo" style="width: 50px; border-radius: 100px;">
                     </span>
                     <span class="d-none d-sm-block">
-                        <span class="text-warning lead">Laragon</span> University
+                        <span class="text-warning lead">Tomas Del Rosario</span> College
                     </span>
                 </a>
 
                 <button type="button" class="btn btn-warning bg-dark text-warning ms-lg-3"
-                            onclick="window.location.href='/Modern Student Portal/public/visitors/Registration Page.php'">
-                            Register
-             </button>
+                    onclick="window.location.href='/Modern Student Portal/public/visitors/Registration Page.php'">
+                    Register
+                </button>
 
             </div>
         </nav>
@@ -62,7 +62,6 @@
             spinner.style.display = 'none';
         }, 1000);
     });
-
 </script>
 
 </html>

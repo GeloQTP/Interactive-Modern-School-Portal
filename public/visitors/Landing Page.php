@@ -1,5 +1,5 @@
 <?php
-$pageTitle = 'Home - Laragon College University';
+$pageTitle = 'Home - Tomas Del Rosario College';
 include __DIR__ . '/../../includes/header.php';
 ?>
 
@@ -10,7 +10,7 @@ include __DIR__ . '/../../includes/header.php';
 
             <div class=" col-6 text-sm-start text-center">
                 <h1 class="display-5 fw-bold">
-                    Enroll at <span class="text-warning">Laragon</span>
+                    Enroll at <span class="text-warning">TRC</span>
                 </h1>
                 <p class="lead my-3">
                     Join a world-class university dedicated to academic excellence and innovation.
