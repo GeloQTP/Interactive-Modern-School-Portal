@@ -131,7 +131,7 @@ if ($_SERVER['REQUEST_METHOD'] == "POST") {
         }
     }
 
-    if ($action === 'verify_otp') { // TODO: REVIEW THIS CODE
+    if ($action === 'verify_otp') {
 
         $otp = $_POST['otp'] ?? '';
         $email = $_SESSION['pending_email'] ?? null;

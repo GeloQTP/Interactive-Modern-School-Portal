@@ -28,7 +28,7 @@ window.addEventListener("DOMContentLoaded", () => {
 
     acceptBtn.disabled = true;
     acceptBtn.innerHTML =
-      '<span class="spinner-border spinner-border-sm text-secondary" role ="status"> <span class="visually-hidden"> Loading... </span></span>';
+      '<span class="spinner-border spinner-border-sm text-dark" role ="status"> <span class="visually-hidden"> Loading... </span></span>';
 
     const formData = new FormData(form);
     formData.append("action", "send_otp");
@@ -103,7 +103,7 @@ window.addEventListener("DOMContentLoaded", () => {
 
     verifyOTP_btn.disabled = true;
     verifyOTP_btn.innerHTML =
-      '<span class="spinner-grow spinner-grow-sm text-secondary" role ="status"> <span class="visually-hidden"> Loading... </span></span>';
+      '<span class="spinner-grow spinner-grow-sm text-dark" role ="status"> <span class="visually-hidden"> Loading... </span></span>';
 
     try {
       const res = await fetch("../ajax/registrationOTP.php", {
@@ -130,15 +130,36 @@ window.addEventListener("DOMContentLoaded", () => {
       const response = await res.json();
 
       if (response.success) {
-        document.querySelector(".toast-body").textContent = response.message;
-        const toastBootstrap = bootstrap.Toast.getOrCreateInstance(
-          document.getElementById("liveToast"),
-        );
-        toastBootstrap.show();
+        // ! START HERE-----------------------------------START HERE---------------------START HERE---------------
+        const form = document.getElementById("registrationForm");
+        try {
+          const res = await fetch(`../ajax/registerStudent.php`, {
+            method: "POST",
+            body: new FormData(form),
+            credentials: "same-origin",
+          });
 
-        // setTimeout(() => {
-        //     window.location.href = "./Login Page.php";
-        // }, 4000);
+          if (!res.ok) {
+            document.querySelector(".toast-body").textContent =
+              "Something went wrong. Please try again.";
+            const toastBootstrap = bootstrap.Toast.getOrCreateInstance(
+              document.getElementById("liveToast"),
+            );
+            toastBootstrap.show();
+          }
+
+          const response = await res.text(); // * THE AJAX FUNCTION IS WORKING
+          console.log(response); // FOR DEBUGGING PURPOSES
+        } catch (error) {
+          document.querySelector(".toast-body").textContent =
+            "Something went wrong. Please try again.";
+          const toastBootstrap = bootstrap.Toast.getOrCreateInstance(
+            document.getElementById("liveToast"),
+          );
+          toastBootstrap.show();
+        } finally {
+        }
+        // ! END HERE------------------------------------END HERE------------------------ END HERE-------------------
       } else {
         document.querySelector(".toast-body").textContent = response.message;
         const toastBootstrap = bootstrap.Toast.getOrCreateInstance(
