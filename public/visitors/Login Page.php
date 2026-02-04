@@ -21,18 +21,18 @@
 
     <!-- NAVBAR -->
     <header>
-        <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
+        <nav class="navbar navbar-expand-lg navbar-dark bg-light fixed-top">
             <div class="container my-1">
                 <a href="/Modern Student Portal/public/visitors/Landing Page.php" class="navbar-brand fw-bold d-flex align-items-center">
                     <span class="px-2">
                         <img src="/Modern Student Portal/src/img/TRC_LOGO.png" alt="Laragon logo" style="width: 50px; border-radius: 100px;">
                     </span>
                     <span class="d-none d-sm-block">
-                        <span class="text-warning lead">Tomas Del Rosario</span> College
+                        <span class="text-success lead">Tomas Del Rosario</span><span class="text-success"> College</span>
                     </span>
                 </a>
 
-                <button type="button" class="btn btn-warning bg-dark text-warning ms-lg-3"
+                <button type="button" class="btn btn-success bg-light text-success ms-lg-3"
                     onclick="window.location.href='/Modern Student Portal/public/visitors/Registration Page.php'">
                     Register
                 </button>
@@ -41,9 +41,7 @@
         </nav>
     </header>
 
-    <!-- ADD THIS: Container for dynamic content -->
-    <main id="content" style="margin-top: 80px;">
-        <!-- Your page-specific content will be loaded here -->
+    <main id="login_main" style="margin-top: 80px;">
         <div class="container">
             <h1>Welcome to Login Page</h1>
             <!-- Landing page content goes here -->
