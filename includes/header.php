@@ -5,7 +5,7 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title><?php echo $pageTitle ?? 'Laragon College University'; ?></title>
-    <link rel="icon" type="image/png" href="/Modern Student Portal/src/img/YellowElephant.png">
+    <link rel="icon" type="image/png" href="/Modern Student Portal/src/img/TRC_LOGO.png">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="/Modern Student Portal/styles/style.css">
 </head>
@@ -23,9 +23,9 @@
     <div class="toast-container position-fixed bottom-0 end-0 p-3">
         <div id="liveToast" class="toast bg-light text-dark" role="alert" aria-live="assertive" aria-atomic="true">
             <div class="toast-header">
-                <img src="/Modern Student Portal/src/img/YellowElephant.png" style="width: 30px;" class="rounded me-2 img-fluid"
+                <img src="/Modern Student Portal/src/img/TRC_LOGO.png" style="width: 30px;" class="rounded me-2 img-fluid"
                     alt="...">
-                <strong class="me-auto">Laragon Notification</strong>
+                <strong class="me-auto">TRC Notification</strong>
                 <small>just now</small>
                 <button type="button" class="btn-close" data-bs-dismiss="toast" aria-label="Close"></button>
             </div>
@@ -37,14 +37,14 @@
 
     <!-- NAVBAR -->
     <header>
-        <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
+        <nav class="navbar navbar-expand-lg navbar-dark bg-light fixed-top">
             <div class="container my-1">
                 <a href="/Modern Student Portal/public/visitors/Landing Page.php" class="navbar-brand fw-bold d-flex align-items-center">
                     <span class="px-2">
-                        <img src="/Modern Student Portal/src/img/YellowElephant.png" alt="Laragon logo" style="width: 50px; border-radius: 100px;">
+                        <img src="/Modern Student Portal/src/img/TRC_LOGO.png" alt="Laragon logo" style="width: 50px; border-radius: 100px;">
                     </span>
-                    <span class="d-none d-sm-block">
-                        <span class="text-warning lead">Laragon</span> University
+                    <span class="d-none d-sm-block text-success">
+                        <span class="text-success lead">Tomas Del Rosario</span> College
                     </span>
                 </a>
 
@@ -55,18 +55,18 @@
                 <div class="collapse navbar-collapse" id="navmenu">
                     <ul class="navbar-nav ms-auto">
                         <li class="nav-item">
-                            <a class="nav-link"
+                            <a class="nav-link text-success"
                                 href="/Modern Student Portal/public/visitors/routes/About Page.php">About</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link"
+                            <a class="nav-link text-success"
                                 href="/Modern Student Portal/public/visitors/routes/Admission Page.php">Admission</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link"
+                            <a class="nav-link text-success"
                                 href="/Modern Student Portal/public/visitors/routes/Events Page.php">Events</a>
                         </li>
-                        <button type="button" class="btn btn-warning bg-dark text-warning ms-lg-3"
+                        <button type="button" class="btn btn-success bg-light text-success ms-lg-3"
                             onclick="window.location.href='/Modern Student Portal/public/visitors/Login Page.php'">
                             Login
                         </button>

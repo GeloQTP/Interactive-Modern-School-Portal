@@ -1,5 +1,5 @@
     <?php
-    $pageTitle = 'Admission - Laragon College University';
+    $pageTitle = 'Admission - Tomas Del Rosario College';
     include __DIR__ . '/../../../includes/header.php';
     ?>
 
