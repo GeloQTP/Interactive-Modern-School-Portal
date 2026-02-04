@@ -74,7 +74,7 @@ include __DIR__ . '/../../includes/header.php';
             <img src="/Modern Student Portal/src/img/BEED.jpg" class="card-img-top" alt="...">
             <div class="card-body">
                 <h4 class="card-title text-success lead display-6">BEED</h4>
-                <p class="card-text text-dark">Access comprehensive learning resources, courses, and academic
+                <p class="card-text text-dark">Access comprehensive learning resources, courses, and 
                     materials designed to support your educational journey.</p>
             </div>
         </div>
@@ -111,8 +111,8 @@ include __DIR__ . '/../../includes/header.php';
 </section>
 
 <footer>
-    <div class="bg-dark text-light text-center p-3">
-        <p class="mb-0">&copy; 2026 Laragon College University. All rights reserved.</p>
+    <div class="bg-light text-dark text-center p-3">
+        <p class="mb-0">&copy; 2026 Tomas Del Rosario College. All rights reserved.</p>
     </div>
 </footer>
 

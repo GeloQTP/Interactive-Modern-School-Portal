@@ -37,14 +37,14 @@
     </div>
 
     <header>
-        <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
+        <nav class="navbar navbar-expand-lg navbar-dark bg-light fixed-top">
             <div class="container my-1">
                 <a href="./Landing Page.php" class="navbar-brand fw-bold d-flex align-items-center">
                     <span class="px-2">
                         <img src="/Modern Student Portal/src/img/TRC_LOGO.png" alt="Laragon logo" style="width: 50px; border-radius: 100px;">
                     </span>
                     <span class="d-none d-sm-block">
-                        <span class="text-warning lead">Tomas Del Rosario</span> College
+                        <span class="text-success lead">Tomas Del Rosario</span><span class="text-success"> College</span>
                     </span>
                 </a>
 
@@ -54,10 +54,10 @@
 
                 <div class="collapse navbar-collapse" id="navmenu">
                     <ul class="navbar-nav ms-auto">
-                        <li class="nav-item"><a class="nav-link" href="./routes/About Page.php">About</a></li>
-                        <li class="nav-item"><a class="nav-link" href="./routes/Admission Page.php">Admission</a></li>
-                        <li class="nav-item"><a class="nav-link" href="./routes/Events Page.php">Events</a></li>
-                        <button type="button" class="btn btn-warning bg-dark text-warning ms-lg-3"
+                        <li class="nav-item"><a class="nav-link text-success" href="./routes/About Page.php">About</a></li>
+                        <li class="nav-item"><a class="nav-link text-success" href="./routes/Admission Page.php">Admission</a></li>
+                        <li class="nav-item"><a class="nav-link text-success" href="./routes/Events Page.php">Events</a></li>
+                        <button type="button" class="btn btn-success bg-light text-success ms-lg-3"
                             onclick="window.location.href='./Login Page.php'">
                             Login
                         </button>
@@ -68,61 +68,61 @@
     </header>
 
     <main>
-        <section class="bg-dark text-light py-5 p-lg-5 mt-5">
+        <section class="bg-light py-5 p-lg-5 mt-5">
             <div class="container">
 
                 <form class="input-group d-flex align-items-center justify-content-center"
                     id="registrationForm">
 
-                    <h1 class="lead display-5 mb-5 w-100 text-light" style="border-bottom:1px solid orange">
+                    <h1 class="lead display-5 mb-5 w-100 text-dark" style="border-bottom:1px solid green">
                         Personal Information
                     </h1>
 
                     <div class="row g-3">
                         <div class="col-md-3">
-                            <label for="firstNameInput" class="lead text-warning">First Name</label>
+                            <label for="firstNameInput" class="lead text-dark">First Name</label>
                             <input type="text" class="form-control form-control-sm bg-secondary text-light border-0"
-                                id="firstNameInput" name="firstName" required>
+                                id="firstNameInput" name="firstName" required autocomplete="off">
                         </div>
 
                         <div class="col-md-3">
-                            <label for="lastNameInput" class="lead text-warning">Last Name</label>
+                            <label for="lastNameInput" class="lead text-dark">Last Name</label>
                             <input type="text" class="form-control form-control-sm bg-secondary text-light border-0"
-                                id="lastNameInput" name="lastName" required>
+                                id="lastNameInput" name="lastName" required autocomplete="off">
                         </div>
 
                         <div class="col-md-3">
-                            <label for="middleNameInput" class="lead text-warning">Middle Name</label>
+                            <label for="middleNameInput" class="lead text-dark">Middle Name</label>
                             <input type="text" class="form-control form-control-sm bg-secondary text-light border-0"
-                                id="middleNameInput" name="middleName" required>
+                                id="middleNameInput" name="middleName" required autocomplete="off">
                         </div>
 
                         <div class="col-md-2 col-5 ms-md-auto">
-                            <label for="extensionName" class="lead text-warning">Extention Name</label>
+                            <label for="extensionName" class="lead text-dark">Extention Name</label>
                             <input type="text" class="form-control form-control-sm bg-secondary text-light border-0"
-                                id="extensionName" name="exName" placeholder="e.g Jr">
+                                id="extensionName" name="exName" autocomplete="off">
                         </div>
 
                         <div class="col-md-4">
-                            <label for="birthdateInput" class="lead text-warning">Date of Birth</label>
+                            <label for="birthdateInput" class="lead text-dark">Date of Birth</label>
                             <input type="date" class="form-control form-control-sm bg-secondary text-light border-0"
-                                id="birthdateInput" name="birthDate" required>
+                                id="birthdateInput" name="birthDate" required autocomplete="off">
                         </div>
 
                         <div class="col-md-1 col-3 mx-md-auto">
-                            <label for="ageInput" class="lead text-warning">Age</label>
+                            <label for="ageInput" class="lead text-dark">Age</label>
                             <input type="text" class="form-control form-control-sm bg-secondary text-light text-center border-0"
-                                id="ageInput" name="age" readonly>
+                                id="ageInput" name="age" readonly autocomplete="off">
                         </div>
 
                         <div class="col-md-2 col-4 mx-md-auto">
-                            <label for="nationalityInput" class="lead text-warning">Nationality</label>
+                            <label for="nationalityInput" class="lead text-dark">Nationality</label>
                             <input type="text" class="form-control form-control-sm bg-secondary text-light border-0"
-                                id="nationalityInput" name="nationality" required>
+                                id="nationalityInput" name="nationality" required autocomplete="off">
                         </div>
 
                         <div class="col-md-2 col-6">
-                            <label for="civilStatusInput" class="lead text-warning">Civil Status</label>
+                            <label for="civilStatusInput" class="lead text-dark">Civil Status</label>
                             <select class="form-select form-select-sm bg-secondary text-light border-0"
                                 id="civilStatusInput" name="civilStatus" required>
                                 <option value="" disabled selected>Select Status</option>
@@ -134,7 +134,7 @@
                         </div>
 
                         <div class="col-md-2 col-6 ms-auto">
-                            <label for="genderInput" class="lead text-warning">Gender</label>
+                            <label for="genderInput" class="lead text-dark">Gender</label>
                             <select class="form-select form-select-sm bg-secondary text-light border-0"
                                 id="genderInput" name="gender" required>
                                 <option value="" disabled selected>Select Gender</option>
@@ -144,58 +144,58 @@
                             </select>
                         </div>
 
-                        <h1 class="lead display-5 mt-5 mb-3 w-100 text-light" style="border-bottom:1px solid orange">
+                        <h1 class="lead display-5 mt-5 mb-3 w-100 text-dark" style="border-bottom:1px solid green">
                             Contact Information
                         </h1>
 
                         <div class="col-md-4 col-9">
-                            <label for="emailInput" class="lead text-warning">Email</label>
+                            <label for="emailInput" class="lead text-dark">Email</label>
                             <input type="email" class="form-control form-control-sm bg-secondary text-light border-0"
-                                id="emailInput" name="email" oninput="validateEmail()" required autocomplete="email">
+                                id="emailInput" name="email" oninput="validateEmail()" required autocomplete="off">
                         </div>
 
                         <div class="col-md-4 col-6">
-                            <label for="phoneNumberInput" class="lead text-warning">Phone Number</label>
+                            <label for="phoneNumberInput" class="lead text-dark">Phone Number</label>
                             <input type="tel" class="form-control form-control-sm bg-secondary text-light border-0"
-                                id="phoneNumberInput" name="phoneNumber" required autocomplete="tel">
+                                id="phoneNumberInput" name="phoneNumber" required autocomplete="off">
                         </div>
 
                         <div class="col-md-4">
-                            <label for="addressInput" class="lead text-warning">Address / House Number</label>
+                            <label for="addressInput" class="lead text-dark">Address / House Number</label>
                             <input type="text" class="form-control form-control-sm bg-secondary text-light border-0"
-                                id="addressInput" name="address" required autocomplete="street-address">
+                                id="addressInput" name="address" required autocomplete="off">
                         </div>
 
                         <div class="col-md-4">
-                            <label for="addressInput" class="lead text-warning">Barangay</label>
+                            <label for="addressInput" class="lead text-dark">Barangay</label>
                             <input type="text" class="form-control form-control-sm bg-secondary text-light border-0"
-                                id="barangayInput" name="barangayInput" required autocomplete="street-address">
+                                id="barangayInput" name="barangayInput" required autocomplete="off">
                         </div>
 
                         <div class="col-md-4 col-6">
-                            <label for="cityInput" class="lead text-warning">City / District</label>
+                            <label for="cityInput" class="lead text-dark">City / District</label>
                             <input type="text" class="form-control form-control-sm bg-secondary text-light border-0"
-                                id="cityInput" name="city" required>
+                                id="cityInput" name="city" required autocomplete="off">
                         </div>
 
                         <div class="col-md-3 col-6">
-                            <label for="provinceInput" class="lead text-warning">Province</label>
+                            <label for="provinceInput" class="lead text-dark">Province</label>
                             <input type="text" class="form-control form-control-sm bg-secondary text-light border-0"
-                                id="provinceInput" name="province" required>
+                                id="provinceInput" name="province" required autocomplete="off">
                         </div>
 
                         <div class="col-md-1 col-3 mx-md-auto">
-                            <label for="zipcodeInput" class="lead text-warning">Zip Code</label>
+                            <label for="zipcodeInput" class="lead text-dark">Zip Code</label>
                             <input type="text" class="form-control form-control-sm bg-secondary text-light border-0"
-                                id="zipcodeInput" name="zipCode" required>
+                                id="zipcodeInput" name="zipCode" required autocomplete="off">
                         </div>
 
-                        <h1 class="lead display-5 mt-5 mb-3 w-100 text-light" style="border-bottom:1px solid orange">
+                        <h1 class="lead display-5 mt-5 mb-3 w-100 text-dark" style="border-bottom:1px solid green">
                             Academic Information
                         </h1>
 
                         <div class="col-md-3 col-6">
-                            <label for="programInput" class="lead text-warning">Program</label>
+                            <label for="programInput" class="lead text-dark">Program</label>
                             <select class="form-select form-select-sm bg-secondary text-light border-0"
                                 id="programInput" name="program" required>
                                 <option value="" disabled selected>Select Program</option>
@@ -207,7 +207,7 @@
                         </div>
 
                         <div class="col-md-3 col-6">
-                            <label for="yearLevelInput" class="lead text-warning">Year Level</label>
+                            <label for="yearLevelInput" class="lead text-dark">Year Level</label>
                             <select class="form-select form-select-sm bg-secondary text-light border-0"
                                 id="yearLevelInput" name="yearLevel" required>
                                 <option value="" disabled selected>Select Year Level</option>
@@ -219,7 +219,7 @@
                         </div>
 
                         <div class="col-md-3 col-6">
-                            <label for="studentType" class="lead text-warning">Student Type</label>
+                            <label for="studentType" class="lead text-dark">Student Type</label>
                             <select class="form-select form-select-sm bg-secondary text-light border-0"
                                 id="studentType" name="studentType" required>
                                 <option value="" disabled selected>Select Student Type</option>
@@ -230,7 +230,7 @@
                         </div>
 
                         <div class="col-md-3 col-6">
-                            <label for="enrollmentType" class="lead text-warning">Enrollment Type</label>
+                            <label for="enrollmentType" class="lead text-dark">Enrollment Type</label>
                             <select class="form-select form-select-sm bg-secondary text-light border-0"
                                 id="enrollmentType" name="enrollmentType" required>
                                 <option value="" disabled selected>Select Enrollment Type</option>
@@ -239,18 +239,18 @@
                             </select>
                         </div>
 
-                        <h1 class="lead display-5 mt-5 mb-3 w-100 text-light" style="border-bottom:1px solid orange">
+                        <h1 class="lead display-5 mt-5 mb-3 w-100 text-dark" style="border-bottom:1px solid green">
                             Emergency Contact
                         </h1>
 
                         <div class="col-md-4">
-                            <label for="guardianInput" class="lead text-warning">Guardian</label>
+                            <label for="guardianInput" class="lead text-dark">Guardian</label>
                             <input type="text" class="form-control form-control-sm bg-secondary text-light border-0"
-                                id="guardianInput" name="guardianName" required>
+                                id="guardianInput" name="guardianName" required autocomplete="off">
                         </div>
 
                         <div class="col-md-4">
-                            <label for="relationshipInput" class="lead text-warning">Relationship</label>
+                            <label for="relationshipInput" class="lead text-dark">Relationship</label>
                             <select class="form-select form-select-sm bg-secondary text-light border-0"
                                 id="relationshipInput" name="relationship" required>
                                 <option value="" disabled selected>Select relationship</option>
@@ -269,45 +269,45 @@
                         </div>
 
                         <div class="col-md-4">
-                            <label for="guardianphoneInput" class="lead text-warning">Guardian&#39;s Contact Number</label>
+                            <label for="guardianphoneInput" class="lead text-dark">Guardian&#39;s Contact Number</label>
                             <input type="tel" class="form-control form-control-sm bg-secondary text-light border-0"
-                                id="guardianphoneInput" name="guardianPhone" required>
+                                id="guardianphoneInput" name="guardianPhone" required autocomplete="off">
                         </div>
 
                         <div class="col-md-4">
-                            <label for="guardianmailInput" class="lead text-warning">Guardian&#39;s Email</label>
+                            <label for="guardianmailInput" class="lead text-dark">Guardian&#39;s Email</label>
                             <input type="email" class="form-control form-control-sm bg-secondary text-light border-0"
-                                id="guardianmailInput" name="guardianEmail" required>
+                                id="guardianmailInput" name="guardianEmail" required autocomplete="off">
                         </div>
 
-                        <h1 class="lead display-5 mt-5 mb-3 w-100 text-light" style="border-bottom:1px solid orange">
+                        <h1 class="lead display-5 mt-5 mb-3 w-100 text-dark" style="border-bottom:1px solid green">
                             Account Information
                         </h1>
 
                         <div class="col-md-4">
-                            <label for="guardianInput" class="lead text-warning">Account Username</label>
+                            <label for="guardianInput" class="lead text-dark">Account Username</label>
                             <input type="text" class="form-control form-control-sm bg-secondary text-light border-0"
-                                id="accountUsernameInput" name="accountUsername" required>
+                                id="accountUsernameInput" name="accountUsername" required autocomplete="off">
                         </div>
 
                         <div class="col-md-4">
-                            <label for="guardianInput" class="lead text-warning">Password</label>
+                            <label for="guardianInput" class="lead text-dark">Password</label>
                             <input type="password" class="form-control form-control-sm bg-secondary text-light border-0"
-                                id="passwordInput" name="password" oninput="validatePassword()" required>
+                                id="passwordInput" name="password" oninput="validatePassword()" required autocomplete="off">
                         </div>
 
                         <div class="col-md-4">
-                            <label for="guardianInput" class="lead text-warning">Confirm Password</label>
+                            <label for="guardianInput" class="lead text-dark">Confirm Password</label>
                             <input type="password" class="form-control form-control-sm bg-secondary text-light border-secondary"
-                                id="confirmPassword" name="confirmPassword" oninput="validatePassword()" required>
+                                id="confirmPassword" name="confirmPassword" oninput="validatePassword()" required autocomplete="off">
                             <span id="passwordStatus" class="text-danger" style="font-size: 13px;"></span>
                             <br>
                         </div>
 
                         <div class="col-md-4">
-                            <label for="guardianInput" class="lead text-warning">Recovery Email </label>
+                            <label for="guardianInput" class="lead text-dark">Recovery Email </label>
                             <input type="email" class="form-control form-control-sm bg-secondary text-light border-secondary"
-                                id="recoveryEmailInput" name="recoveryInput" oninput="validateEmail()" required>
+                                id="recoveryEmailInput" name="recoveryInput" oninput="validateEmail()" required autocomplete="off">
                             <span id="emailStatus" class="text-danger" style="font-size: 13px;"></span>
                             <br>
                         </div>
@@ -317,7 +317,7 @@
                     <!-- EULA MODAL -->
                     <div class="modal fade" id="eulaModal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
                         <div class="modal-dialog modal-dialog-scrollable modal-lg modal-dialog-centered">
-                            <div class="modal-content bg-dark text-light">
+                            <div class="modal-content bg-light text-dark">
 
                                 <div class="modal-header">
                                     <h1 class="modal-title display-5" id="staticBackdropLabel">Terms and Conditions</h1>
@@ -343,16 +343,16 @@
                                         <input class="form-check-input" type="checkbox" id="termsCheck" required>
                                         <p class="form-check-label">
                                             I agree to the
-                                            <a class="text-warning">Terms and Conditions</a>
+                                            <a class="text-success">Terms and Conditions</a>
                                             and
-                                            <a class="text-warning">Privacy Policy</a>
+                                            <a class="text-success">Privacy Policy</a>
                                         </p>
                                     </div>
                                 </div>
 
                                 <div class="modal-footer">
                                     <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                                    <button type="submit" class="btn btn-warning" id="acceptEULA">Understood</button>
+                                    <button type="submit" class="btn btn-success" id="acceptEULA">Understood</button>
                                 </div>
 
                             </div>
@@ -360,11 +360,11 @@
                     </div>
 
                     <div class="d-grid gap-2 d-flex justify-content-md-end mt-5 ms-auto">
-                        <button type="button" class="btn btn-outline-warning"
+                        <button type="button" class="btn btn-outline-success"
                             onclick="window.location.href='Landing Page.php'">
                             Cancel
                         </button>
-                        <button type="button" class="btn btn-warning" data-bs-toggle="modal" data-bs-target="#eulaModal" id="registerBtn">
+                        <button type="button" class="btn btn-success" data-bs-toggle="modal" data-bs-target="#eulaModal" id="registerBtn">
                             Register
                         </button>
                     </div>
@@ -375,9 +375,9 @@
                 <!-- OTP MODAL -->
                 <div class="modal fade" id="otpModal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="false">
                     <div class="modal-dialog modal-dialog-centered">
-                        <div class=" modal-content bg-dark text-light">
+                        <div class=" modal-content bg-light text-dark">
                             <div class="modal-header border-0">
-                                <h1 class="modal-title fs-5" id="staticBackdropLabel">OTP Verification</h1>
+                                <h1 class="modal-title fs-5 display-5" id="staticBackdropLabel">OTP Verification</h1>
                                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                             </div>
                             <form id="OTP_form" autocomplete="off">
@@ -390,7 +390,7 @@
 
                                     <div class="row g-2 text-center">
                                         <div class="col-2">
-                                            <input type="text" class="form-control text-center fs-2" name="Digit1" maxlength="1">
+                                            <input type="text" class="form-control text-center fs-2" name="Digit1" maxlength="1" >
                                         </div>
                                         <div class=" col-2">
                                             <input type="text" class="form-control text-center fs-2" name="Digit2" maxlength="1">
@@ -416,7 +416,7 @@
                                     </div>
 
                                     <div class="text-center mt-2">
-                                        <a href="#" class="text-warning text-decoration-none fw-semibold" id="resendOTP_link">
+                                        <a href="#" class="text-success text-decoration-none fw-semibold" id="resendOTP_link">
                                             Resend OTP
                                         </a>
                                     </div>
@@ -425,7 +425,7 @@
 
 
                                 <div class="modal-footer border-0 d-flex justify-content-center">
-                                    <button type="submit" class="btn btn-warning" id="verifyOTP_btn">Verify</button>
+                                    <button type="submit" class="btn btn-success" id="verifyOTP_btn">Verify</button>
                                 </div>
 
                             </form>
@@ -438,8 +438,8 @@
     </main>
 
     <footer>
-        <div class="bg-dark text-light text-center p-3">
-            <p class="mb-0">&copy; 2026 Laragon College University. All rights reserved.</p>
+        <div class="bg-light text-dark text-center p-3">
+            <p class="mb-0">&copy; 2026 Tomas Del Rosario College. All rights reserved.</p>
         </div>
     </footer>
 
