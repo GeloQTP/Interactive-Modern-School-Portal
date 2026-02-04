@@ -23,6 +23,10 @@ include __DIR__ . '/../../includes/header.php';
                 <div id="carouselExampleSlidesOnly" class="carousel slide" data-bs-ride="carousel">
                     <div class="carousel-inner">
                         <div class="carousel-item active">
+                            <img src="/Modern Student Portal/src/img/TRC_BACKGROUND_IMAGE.jpg" class="d-block img-fluid"
+                                alt="image of library" style="width: 576px;">
+                        </div>
+                        <div class="carousel-item">
                             <img src="/Modern Student Portal/src/img/nursing station.jpg" class="d-block w-100"
                                 alt="image of nursing station">
                         </div>
@@ -74,7 +78,7 @@ include __DIR__ . '/../../includes/header.php';
             <img src="/Modern Student Portal/src/img/BEED.jpg" class="card-img-top" alt="...">
             <div class="card-body">
                 <h4 class="card-title text-success lead display-6">BEED</h4>
-                <p class="card-text text-dark">Access comprehensive learning resources, courses, and 
+                <p class="card-text text-dark">Access comprehensive learning resources, courses, and
                     materials designed to support your educational journey.</p>
             </div>
         </div>

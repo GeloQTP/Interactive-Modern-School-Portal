@@ -15,7 +15,7 @@
 
     <!-- SPINNER -->
     <div class="spinner-wrapper" aria-hidden="true">
-        <div class="spinner-grow text-dark-emphasis" role="status">
+        <div class="spinner-grow text-secondary" role="status">
             <span class="visually-hidden">Loading...</span>
         </div>
     </div>
@@ -81,49 +81,49 @@
                     <div class="row g-3">
                         <div class="col-md-3">
                             <label for="firstNameInput" class="lead text-dark">First Name</label>
-                            <input type="text" class="form-control form-control-sm bg-secondary text-light border-0"
+                            <input type="text" class="form-control form-control-sm text-dark border-1"
                                 id="firstNameInput" name="firstName" required autocomplete="off">
                         </div>
 
                         <div class="col-md-3">
                             <label for="lastNameInput" class="lead text-dark">Last Name</label>
-                            <input type="text" class="form-control form-control-sm bg-secondary text-light border-0"
+                            <input type="text" class="form-control form-control-sm text-dark border-1"
                                 id="lastNameInput" name="lastName" required autocomplete="off">
                         </div>
 
                         <div class="col-md-3">
                             <label for="middleNameInput" class="lead text-dark">Middle Name</label>
-                            <input type="text" class="form-control form-control-sm bg-secondary text-light border-0"
+                            <input type="text" class="form-control form-control-sm text-dark border-1"
                                 id="middleNameInput" name="middleName" required autocomplete="off">
                         </div>
 
                         <div class="col-md-2 col-5 ms-md-auto">
                             <label for="extensionName" class="lead text-dark">Extention Name</label>
-                            <input type="text" class="form-control form-control-sm bg-secondary text-light border-0"
+                            <input type="text" class="form-control form-control-sm text-dark border-1"
                                 id="extensionName" name="exName" autocomplete="off">
                         </div>
 
                         <div class="col-md-4">
                             <label for="birthdateInput" class="lead text-dark">Date of Birth</label>
-                            <input type="date" class="form-control form-control-sm bg-secondary text-light border-0"
+                            <input type="date" class="form-control form-control-sm text-dark border-1"
                                 id="birthdateInput" name="birthDate" required autocomplete="off">
                         </div>
 
                         <div class="col-md-1 col-3 mx-md-auto">
                             <label for="ageInput" class="lead text-dark">Age</label>
-                            <input type="text" class="form-control form-control-sm bg-secondary text-light text-center border-0"
+                            <input type="text" class="form-control form-control-sm text-dark text-center border-1"
                                 id="ageInput" name="age" readonly autocomplete="off">
                         </div>
 
                         <div class="col-md-2 col-4 mx-md-auto">
                             <label for="nationalityInput" class="lead text-dark">Nationality</label>
-                            <input type="text" class="form-control form-control-sm bg-secondary text-light border-0"
+                            <input type="text" class="form-control form-control-sm text-dark border-1"
                                 id="nationalityInput" name="nationality" required autocomplete="off">
                         </div>
 
                         <div class="col-md-2 col-6">
                             <label for="civilStatusInput" class="lead text-dark">Civil Status</label>
-                            <select class="form-select form-select-sm bg-secondary text-light border-0"
+                            <select class="form-select form-select-sm text-dark border-1"
                                 id="civilStatusInput" name="civilStatus" required>
                                 <option value="" disabled selected>Select Status</option>
                                 <option value="single">Single</option>
@@ -135,7 +135,7 @@
 
                         <div class="col-md-2 col-6 ms-auto">
                             <label for="genderInput" class="lead text-dark">Gender</label>
-                            <select class="form-select form-select-sm bg-secondary text-light border-0"
+                            <select class="form-select form-select-sm text-dark border-1"
                                 id="genderInput" name="gender" required>
                                 <option value="" disabled selected>Select Gender</option>
                                 <option value="Male">Male</option>
@@ -150,43 +150,43 @@
 
                         <div class="col-md-4 col-9">
                             <label for="emailInput" class="lead text-dark">Email</label>
-                            <input type="email" class="form-control form-control-sm bg-secondary text-light border-0"
+                            <input type="email" class="form-control form-control-sm text-dark border-1"
                                 id="emailInput" name="email" oninput="validateEmail()" required autocomplete="off">
                         </div>
 
                         <div class="col-md-4 col-6">
                             <label for="phoneNumberInput" class="lead text-dark">Phone Number</label>
-                            <input type="tel" class="form-control form-control-sm bg-secondary text-light border-0"
+                            <input type="tel" class="form-control form-control-sm text-dark border-1"
                                 id="phoneNumberInput" name="phoneNumber" required autocomplete="off">
                         </div>
 
                         <div class="col-md-4">
                             <label for="addressInput" class="lead text-dark">Address / House Number</label>
-                            <input type="text" class="form-control form-control-sm bg-secondary text-light border-0"
+                            <input type="text" class="form-control form-control-sm text-dark border-1"
                                 id="addressInput" name="address" required autocomplete="off">
                         </div>
 
                         <div class="col-md-4">
                             <label for="addressInput" class="lead text-dark">Barangay</label>
-                            <input type="text" class="form-control form-control-sm bg-secondary text-light border-0"
+                            <input type="text" class="form-control form-control-sm text-dark border-1"
                                 id="barangayInput" name="barangayInput" required autocomplete="off">
                         </div>
 
                         <div class="col-md-4 col-6">
                             <label for="cityInput" class="lead text-dark">City / District</label>
-                            <input type="text" class="form-control form-control-sm bg-secondary text-light border-0"
+                            <input type="text" class="form-control form-control-sm text-dark border-1"
                                 id="cityInput" name="city" required autocomplete="off">
                         </div>
 
                         <div class="col-md-3 col-6">
                             <label for="provinceInput" class="lead text-dark">Province</label>
-                            <input type="text" class="form-control form-control-sm bg-secondary text-light border-0"
+                            <input type="text" class="form-control form-control-sm text-dark border-1"
                                 id="provinceInput" name="province" required autocomplete="off">
                         </div>
 
                         <div class="col-md-1 col-3 mx-md-auto">
                             <label for="zipcodeInput" class="lead text-dark">Zip Code</label>
-                            <input type="text" class="form-control form-control-sm bg-secondary text-light border-0"
+                            <input type="text" class="form-control form-control-sm text-dark border-1"
                                 id="zipcodeInput" name="zipCode" required autocomplete="off">
                         </div>
 
@@ -196,7 +196,7 @@
 
                         <div class="col-md-3 col-6">
                             <label for="programInput" class="lead text-dark">Program</label>
-                            <select class="form-select form-select-sm bg-secondary text-light border-0"
+                            <select class="form-select form-select-sm text-dark border-1"
                                 id="programInput" name="program" required>
                                 <option value="" disabled selected>Select Program</option>
                                 <option value="education">Education</option>
@@ -208,7 +208,7 @@
 
                         <div class="col-md-3 col-6">
                             <label for="yearLevelInput" class="lead text-dark">Year Level</label>
-                            <select class="form-select form-select-sm bg-secondary text-light border-0"
+                            <select class="form-select form-select-sm text-dark border-1"
                                 id="yearLevelInput" name="yearLevel" required>
                                 <option value="" disabled selected>Select Year Level</option>
                                 <option value="1stYear">1st Year</option>
@@ -220,7 +220,7 @@
 
                         <div class="col-md-3 col-6">
                             <label for="studentType" class="lead text-dark">Student Type</label>
-                            <select class="form-select form-select-sm bg-secondary text-light border-0"
+                            <select class="form-select form-select-sm text-dark border-1"
                                 id="studentType" name="studentType" required>
                                 <option value="" disabled selected>Select Student Type</option>
                                 <option value="newStudent">New Student</option>
@@ -231,7 +231,7 @@
 
                         <div class="col-md-3 col-6">
                             <label for="enrollmentType" class="lead text-dark">Enrollment Type</label>
-                            <select class="form-select form-select-sm bg-secondary text-light border-0"
+                            <select class="form-select form-select-sm text-dark border-1"
                                 id="enrollmentType" name="enrollmentType" required>
                                 <option value="" disabled selected>Select Enrollment Type</option>
                                 <option value="regular">Regular</option>
@@ -245,13 +245,13 @@
 
                         <div class="col-md-4">
                             <label for="guardianInput" class="lead text-dark">Guardian</label>
-                            <input type="text" class="form-control form-control-sm bg-secondary text-light border-0"
+                            <input type="text" class="form-control form-control-sm text-dark border-1"
                                 id="guardianInput" name="guardianName" required autocomplete="off">
                         </div>
 
                         <div class="col-md-4">
                             <label for="relationshipInput" class="lead text-dark">Relationship</label>
-                            <select class="form-select form-select-sm bg-secondary text-light border-0"
+                            <select class="form-select form-select-sm text-dark border-1"
                                 id="relationshipInput" name="relationship" required>
                                 <option value="" disabled selected>Select relationship</option>
                                 <option value="Mother">Mother</option>
@@ -270,13 +270,13 @@
 
                         <div class="col-md-4">
                             <label for="guardianphoneInput" class="lead text-dark">Guardian&#39;s Contact Number</label>
-                            <input type="tel" class="form-control form-control-sm bg-secondary text-light border-0"
+                            <input type="tel" class="form-control form-control-sm text-dark border-1"
                                 id="guardianphoneInput" name="guardianPhone" required autocomplete="off">
                         </div>
 
                         <div class="col-md-4">
                             <label for="guardianmailInput" class="lead text-dark">Guardian&#39;s Email</label>
-                            <input type="email" class="form-control form-control-sm bg-secondary text-light border-0"
+                            <input type="email" class="form-control form-control-sm text-dark border-1"
                                 id="guardianmailInput" name="guardianEmail" required autocomplete="off">
                         </div>
 
@@ -286,19 +286,19 @@
 
                         <div class="col-md-4">
                             <label for="guardianInput" class="lead text-dark">Account Username</label>
-                            <input type="text" class="form-control form-control-sm bg-secondary text-light border-0"
+                            <input type="text" class="form-control form-control-sm text-dark border-1"
                                 id="accountUsernameInput" name="accountUsername" required autocomplete="off">
                         </div>
 
                         <div class="col-md-4">
                             <label for="guardianInput" class="lead text-dark">Password</label>
-                            <input type="password" class="form-control form-control-sm bg-secondary text-light border-0"
+                            <input type="password" class="form-control form-control-sm text-dark border-1"
                                 id="passwordInput" name="password" oninput="validatePassword()" required autocomplete="off">
                         </div>
 
                         <div class="col-md-4">
                             <label for="guardianInput" class="lead text-dark">Confirm Password</label>
-                            <input type="password" class="form-control form-control-sm bg-secondary text-light border-secondary"
+                            <input type="password" class="form-control form-control-sm text-dark border-1"
                                 id="confirmPassword" name="confirmPassword" oninput="validatePassword()" required autocomplete="off">
                             <span id="passwordStatus" class="text-danger" style="font-size: 13px;"></span>
                             <br>
@@ -306,7 +306,7 @@
 
                         <div class="col-md-4">
                             <label for="guardianInput" class="lead text-dark">Recovery Email </label>
-                            <input type="email" class="form-control form-control-sm bg-secondary text-light border-secondary"
+                            <input type="email" class="form-control form-control-sm text-dark border-1"
                                 id="recoveryEmailInput" name="recoveryInput" oninput="validateEmail()" required autocomplete="off">
                             <span id="emailStatus" class="text-danger" style="font-size: 13px;"></span>
                             <br>
@@ -390,7 +390,7 @@
 
                                     <div class="row g-2 text-center">
                                         <div class="col-2">
-                                            <input type="text" class="form-control text-center fs-2" name="Digit1" maxlength="1" >
+                                            <input type="text" class="form-control text-center fs-2" name="Digit1" maxlength="1">
                                         </div>
                                         <div class=" col-2">
                                             <input type="text" class="form-control text-center fs-2" name="Digit2" maxlength="1">

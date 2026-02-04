@@ -14,7 +14,7 @@
 
     <!-- SPINNER -->
     <div class="spinner-wrapper">
-        <div class="spinner-grow text-dark-emphasis" role="status">
+        <div class="spinner-grow text-secondary" role="status">
             <span class="visually-hidden">Loading...</span>
         </div>
     </div>

@@ -10,6 +10,21 @@
     <link rel="stylesheet" href="/../Modern Student Portal/styles/style.css">
 </head>
 
+<style>
+    body {
+        overflow: hidden;
+
+    }
+
+    #login_main {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        width: 100vw;
+        height: 100vh;
+    }
+</style>
+
 <body>
 
     <!-- SPINNER -->
@@ -41,11 +56,80 @@
         </nav>
     </header>
 
-    <main id="login_main" style="margin-top: 80px;">
+    <main id="login_main">
         <div class="container">
-            <h1>Welcome to Login Page</h1>
-            <!-- Landing page content goes here -->
+            <div class="row justify-content-center">
+                <div class="col-md-6">
+                    <div class="bg-light p-4 p-md-5 rounded-3 shadow-sm">
+
+                        <h2 class="text-center lead display-6 mb-5">Login</h2>
+
+                        <form>
+
+                            <!-- Email -->
+                            <div class="form-floating mb-3">
+                                <input
+                                    type="email"
+                                    class="form-control"
+                                    id="loginEmail"
+                                    placeholder="name@example.com"
+                                    required>
+                                <label for="loginEmail">
+                                    <i class="bi bi-envelope me-1"></i>Email address
+                                </label>
+                            </div>
+
+                            <!-- Password -->
+                            <div class="form-floating mb-3">
+                                <input
+                                    type="password"
+                                    class="form-control"
+                                    id="loginPassword"
+                                    placeholder="Password"
+                                    required>
+                                <label for="loginPassword">
+                                    <i class="bi bi-lock me-1"></i>Password
+                                </label>
+                            </div>
+
+                            <!-- Remember & Forgot -->
+                            <div class="d-flex justify-content-between align-items-center mb-4">
+                                <div class="form-check">
+                                    <input class="form-check-input" type="checkbox" id="rememberMe">
+                                    <label class="form-check-label" for="rememberMe">
+                                        Remember me
+                                    </label>
+                                </div>
+                                <a href="#" class="text-decoration-none small text-success">
+                                    Forgot password?
+                                </a>
+                            </div>
+
+                            <!-- Button -->
+                            <button
+                                type="submit"
+                                class="btn btn-success w-100 py-2 fw-semibold">
+                                Login
+                            </button>
+
+                        </form>
+
+                        <!-- Divider -->
+                        <hr class="my-4">
+
+                        <!-- Register -->
+                        <p class="text-center small mb-0 text-secondary">
+                            Don&#39;t have an account?
+                            <a href="/Modern Student Portal/public/visitors/Registration Page.php" class="text-decoration-none fw-semibold text-success">
+                                Register here
+                            </a>
+                        </p>
+
+                    </div>
+                </div>
+            </div>
         </div>
+
     </main>
 
 </body>
