@@ -133,13 +133,13 @@ window.addEventListener("DOMContentLoaded", () => {
         // ! START HERE-----------------------------------START HERE---------------------START HERE---------------
         const form = document.getElementById("registrationForm");
         try {
-          const res = await fetch(`../ajax/registerStudent.php`, {
+          const registerRes = await fetch(`../ajax/registerStudent.php`, {
             method: "POST",
             body: new FormData(form),
             credentials: "same-origin",
           });
 
-          if (!res.ok) {
+          if (!registerRes.ok) {
             document.querySelector(".toast-body").textContent =
               "Something went wrong. Please try again.";
             const toastBootstrap = bootstrap.Toast.getOrCreateInstance(
@@ -148,8 +148,32 @@ window.addEventListener("DOMContentLoaded", () => {
             toastBootstrap.show();
           }
 
-          const response = await res.text(); // * THE AJAX FUNCTION IS WORKING
-          console.log(response); // FOR DEBUGGING PURPOSES
+          const registerResponse = await registerRes.json(); // * THE AJAX FUNCTION IS WORKING
+
+          if (registerResponse.success) {
+            document.querySelector(".toast-body").textContent =
+              registerResponse.message;
+            const toastBootstrap = bootstrap.Toast.getOrCreateInstance(
+              document.getElementById("liveToast"),
+            );
+            toastBootstrap.show();
+
+            let OTP_Modal = bootstrap.Modal.getOrCreateInstance(
+              document.getElementById("otpModal"),
+            );
+
+            OTP_Modal.hide();
+
+            form.reset(); // RESET FORM FIELDS
+            otp_form.reset();
+          } else {
+            document.querySelector(".toast-body").textContent =
+              registerResponse.message;
+            const toastBootstrap = bootstrap.Toast.getOrCreateInstance(
+              document.getElementById("liveToast"),
+            );
+            toastBootstrap.show();
+          }
         } catch (error) {
           document.querySelector(".toast-body").textContent =
             "Something went wrong. Please try again.";
@@ -166,8 +190,6 @@ window.addEventListener("DOMContentLoaded", () => {
           document.getElementById("liveToast"),
         );
         toastBootstrap.show();
-        verifyOTP_btn.disabled = false;
-        verifyOTP_btn.textContent = "Verify";
       }
     } catch (error) {
       document.querySelector(".toast-body").textContent =

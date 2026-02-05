@@ -46,7 +46,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $password        = $_POST['password'] ?? '';
     $recoveryEmail   = filter_input(INPUT_POST, 'recoveryInput', FILTER_SANITIZE_EMAIL);
 
-    $stmt = $conn->prepare("INSERT INTO registered_students (
+    $stmt = $conn->prepare("INSERT INTO students (
                                         FirstName, LastName, MiddleName, Ext_Name,
                                         BirthDate, Age, Nationality, CivilStatus,
                                         Gender, Email, PhoneNumber, Address, Barangay,
@@ -95,8 +95,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     if ($stmt->execute()) {
         echo json_encode(['success' => true, 'message' => 'Registration Successful!']);
     } else {
-        echo json_encode(['success' => false, 'message' => 'Something went wrong, Please Try again.']);
+        echo json_encode(['success' => false, 'message' => 'Registration Failed, Please Try again.']);
     }
 } else {
-    echo json_encode(['success' => false, 'message' => 'Invalid Request Method']);
+    echo json_encode(['success' => false, 'message' => 'Invalid Request. Please Try again.']);
 }
