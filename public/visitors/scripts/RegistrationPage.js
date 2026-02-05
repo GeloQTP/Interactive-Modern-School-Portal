@@ -182,6 +182,8 @@ window.addEventListener("DOMContentLoaded", () => {
           );
           toastBootstrap.show();
         } finally {
+          verifyOTP_btn.disabled = false;
+          verifyOTP_btn.innerHTML = 'Verify';
         }
         // ! END HERE------------------------------------END HERE------------------------ END HERE-------------------
       } else {

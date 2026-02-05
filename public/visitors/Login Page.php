@@ -47,24 +47,24 @@
                     </span>
                 </a>
 
-                <button type="button" class="btn btn-success bg-light text-success ms-lg-3"
+                <!-- <button type="button" class="btn btn-success bg-light text-success ms-lg-3"
                     onclick="window.location.href='/Modern Student Portal/public/visitors/Registration Page.php'">
                     Register
-                </button>
+                </button> -->
 
             </div>
         </nav>
     </header>
 
-    <main id="login_main">
+    <main id="login_main" class="mt-5"> <!--ADD BACKGROUND IMAGE-->
         <div class="container">
             <div class="row justify-content-center">
                 <div class="col-md-6">
                     <div class="bg-light p-4 p-md-5 rounded-3 shadow-sm">
 
-                        <h2 class="text-center lead display-6 mb-5">Login</h2>
+                        <h2 class="text-center lead display-6 mb-5">LOGIN</h2>
 
-                        <form>
+                        <form id="loginForm">
 
                             <!-- Email -->
                             <div class="form-floating mb-3">
@@ -144,6 +144,27 @@
             spinner.style.display = 'none';
         }, 1000);
     });
+
+window.addEventListener('DOMContentLoaded',()=>{
+    const loginForm = document.getElementById("loginForm");
+
+    loginForm.addEventListener('submit', async (e) => {
+        e.preventDefault();
+
+        const res = await fetch(`../ajax/login.php`,{
+            method: 'POST',
+            body: new FormData(loginForm),
+            credentials: 'same-origin',
+        });
+
+        if(!res.ok){
+
+        }
+
+    });
+
+});
+
 </script>
 
 </html>
