@@ -130,7 +130,6 @@ window.addEventListener("DOMContentLoaded", () => {
       const response = await res.json();
 
       if (response.success) {
-        // ! START HERE-----------------------------------START HERE---------------------START HERE---------------
         const form = document.getElementById("registrationForm");
         try {
           const registerRes = await fetch(`../ajax/registerStudent.php`, {
@@ -183,9 +182,8 @@ window.addEventListener("DOMContentLoaded", () => {
           toastBootstrap.show();
         } finally {
           verifyOTP_btn.disabled = false;
-          verifyOTP_btn.innerHTML = 'Verify';
+          verifyOTP_btn.innerHTML = "Verify";
         }
-        // ! END HERE------------------------------------END HERE------------------------ END HERE-------------------
       } else {
         document.querySelector(".toast-body").textContent = response.message;
         const toastBootstrap = bootstrap.Toast.getOrCreateInstance(

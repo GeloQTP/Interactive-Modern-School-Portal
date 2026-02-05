@@ -34,6 +34,22 @@
         </div>
     </div>
 
+    <!-- TOASTS SECTION -->
+    <div class="toast-container position-fixed bottom-0 end-0 p-3">
+        <div id="liveToast" class="toast bg-light text-dark" role="alert" aria-live="assertive" aria-atomic="true">
+            <div class="toast-header">
+                <img src="/Modern Student Portal/src/img/TRC_LOGO.png" style="width: 30px;" class="rounded me-2 img-fluid"
+                    alt="...">
+                <strong class="me-auto">TRC Notification</strong>
+                <small>just now</small>
+                <button type="button" class="btn-close" data-bs-dismiss="toast" aria-label="Close"></button>
+            </div>
+            <div class="toast-body">
+
+            </div>
+        </div>
+    </div>
+
     <!-- NAVBAR -->
     <header>
         <nav class="navbar navbar-expand-lg navbar-dark bg-light fixed-top">
@@ -71,7 +87,7 @@
                                 <input
                                     type="email"
                                     class="form-control"
-                                    id="loginEmail"
+                                    name="email"
                                     placeholder="name@example.com"
                                     required>
                                 <label for="loginEmail">
@@ -84,7 +100,7 @@
                                 <input
                                     type="password"
                                     class="form-control"
-                                    id="loginPassword"
+                                    name="password"
                                     placeholder="Password"
                                     required>
                                 <label for="loginPassword">
@@ -145,26 +161,59 @@
         }, 1000);
     });
 
-window.addEventListener('DOMContentLoaded',()=>{
-    const loginForm = document.getElementById("loginForm");
+    window.addEventListener('DOMContentLoaded', () => {
+        const loginForm = document.getElementById("loginForm");
 
-    loginForm.addEventListener('submit', async (e) => {
-        e.preventDefault();
+        loginForm.addEventListener('submit', async (e) => {
+            e.preventDefault();
 
-        const res = await fetch(`../ajax/login.php`,{
-            method: 'POST',
-            body: new FormData(loginForm),
-            credentials: 'same-origin',
+            try {
+                const res = await fetch(`../ajax/login.php`, {
+                    method: 'POST',
+                    body: new FormData(loginForm),
+                    credentials: 'same-origin',
+                });
+
+                if (!res.ok) {
+                    document.querySelector(".toast-body").textContent =
+                        "Network Response Error, Please Try again.";
+                    const toastBootstrap = bootstrap.Toast.getOrCreateInstance(
+                        document.getElementById("liveToast"),
+                    );
+                    toastBootstrap.show();
+                }
+
+                const response = await res.json();
+
+                if (response.success) {
+                    document.querySelector(".toast-body").textContent = response.message;
+                    const toastBootstrap = bootstrap.Toast.getOrCreateInstance(
+                        document.getElementById("liveToast"),
+                    );
+                    toastBootstrap.show();
+                } else {
+                    document.querySelector(".toast-body").textContent =
+                        "Something went wrong. Please try again.";
+                    const toastBootstrap = bootstrap.Toast.getOrCreateInstance(
+                        document.getElementById("liveToast"),
+                    );
+                    toastBootstrap.show();
+                }
+
+            } catch (error) {
+                document.querySelector(".toast-body").textContent =
+                    "Something went wrong. Please try again.";
+                const toastBootstrap = bootstrap.Toast.getOrCreateInstance(
+                    document.getElementById("liveToast"),
+                );
+                toastBootstrap.show();
+            } finally {
+
+            }
+
         });
 
-        if(!res.ok){
-
-        }
-
     });
-
-});
-
 </script>
 
 </html>

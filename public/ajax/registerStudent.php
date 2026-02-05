@@ -44,58 +44,80 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     // ACCOUNT INFORMATION
     $accountUsername = trim($_POST['accountUsername'] ?? '');
     $password        = $_POST['password'] ?? '';
+    $hashedPassword  = password_hash($password, PASSWORD_BCRYPT);
     $recoveryEmail   = filter_input(INPUT_POST, 'recoveryInput', FILTER_SANITIZE_EMAIL);
 
-    $stmt = $conn->prepare("INSERT INTO students (
-                                        FirstName, LastName, MiddleName, Ext_Name,
-                                        BirthDate, Age, Nationality, CivilStatus,
-                                        Gender, Email, PhoneNumber, Address, Barangay,
-                                        City, Province, ZipCode, Program, YearLevel, 
-                                        StudentType, EnrollmentType, GuardianName, Relationship,
-                                        GuardianPhone, GuardianEmail
-                                        )
-                                        VALUES
-                                        (?,?,?,?,
-                                        ?,?,?,?,
-                                        ?,?,?,?,?,
-                                        ?,?,?,?,?,
-                                        ?,?,?,?,
-                                        ?,?
-                                        )
-                                        ");
+    // Start transaction
+    $conn->begin_transaction();
 
-    $stmt->bind_param(
-        "sssssississsssssssssssss",
-        $firstName,
-        $lastName,
-        $middleName,
-        $extensionName,
-        $birthDate,
-        $age,
-        $nationality,
-        $civilStatus,
-        $gender,
-        $email,
-        $phoneNumber,
-        $address,
-        $barangay,
-        $city,
-        $province,
-        $zipCode,
-        $program,
-        $yearLevel,
-        $studentType,
-        $enrollmentType,
-        $guardianName,
-        $relationship,
-        $guardianPhone,
-        $guardianEmail
-    );
+    try {
+        // First query - Insert student
+        $stmt = $conn->prepare("INSERT INTO student_information (
+                                            FirstName, LastName, MiddleName, Ext_Name,
+                                            BirthDate, Age, Nationality, CivilStatus,
+                                            Gender, Email, PhoneNumber, Address, Barangay,
+                                            City, Province, ZipCode, Program, YearLevel, 
+                                            StudentType, EnrollmentType, GuardianName, Relationship,
+                                            GuardianPhone, GuardianEmail
+                                            )
+                                            VALUES
+                                            (?,?,?,?,
+                                            ?,?,?,?,
+                                            ?,?,?,?,?,
+                                            ?,?,?,?,?,
+                                            ?,?,?,?,
+                                            ?,?
+                                            )
+                                            ");
 
-    if ($stmt->execute()) {
-        echo json_encode(['success' => true, 'message' => 'Registration Successful!']);
-    } else {
-        echo json_encode(['success' => false, 'message' => 'Registration Failed, Please Try again.']);
+        $stmt->bind_param(
+            "sssssississsssssssssssss",
+            $firstName,
+            $lastName,
+            $middleName,
+            $extensionName,
+            $birthDate,
+            $age,
+            $nationality,
+            $civilStatus,
+            $gender,
+            $email,
+            $phoneNumber,
+            $address,
+            $barangay,
+            $city,
+            $province,
+            $zipCode,
+            $program,
+            $yearLevel,
+            $studentType,
+            $enrollmentType,
+            $guardianName,
+            $relationship,
+            $guardianPhone,
+            $guardianEmail
+        );
+
+        $stmt->execute();
+        $student_id = $conn->insert_id;
+        $stmt->close();
+
+        // Second query - Insert account
+        $stmt = $conn->prepare("INSERT INTO student_accounts (student_id, account_username, account_password, recovery_email) 
+                                VALUES (?,?,?,?)");
+
+        $stmt->bind_param("isss", $student_id, $accountUsername, $hashedPassword, $recoveryEmail);
+        $stmt->execute();
+        $stmt->close();
+
+        // Commit both queries
+        $conn->commit();
+
+        echo json_encode(['success' => true, 'message' => 'Registration successful']);
+    } catch (Exception $e) {
+        // Rollback if any query fails
+        $conn->rollback();
+        echo json_encode(['success' => false, 'message' => 'Registration failed: ' . $e->getMessage()]);
     }
 } else {
     echo json_encode(['success' => false, 'message' => 'Invalid Request. Please Try again.']);
