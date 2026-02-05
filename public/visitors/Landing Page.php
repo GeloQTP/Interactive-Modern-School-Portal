@@ -24,7 +24,7 @@ include __DIR__ . '/../../includes/header.php';
                     <div class="carousel-inner">
                         <div class="carousel-item active">
                             <img src="/Modern Student Portal/src/img/TRC_BACKGROUND_IMAGE.jpg" class="d-block img-fluid"
-                                alt="image of library" style="width: 576px;">
+                                alt="image of library" style="width: 36.3vw; height: auto;">
                         </div>
                         <div class="carousel-item">
                             <img src="/Modern Student Portal/src/img/nursing station.jpg" class="d-block w-100"

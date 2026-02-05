@@ -45,18 +45,18 @@ if ($_SERVER['REQUEST_METHOD'] == "POST") {
                 $mail->Port = $_ENV["SMTP_PORT"];
 
                 // Recipients
-                $mail->setFrom($_ENV["SMTP_USER"], "Laragon College University");
+                $mail->setFrom($_ENV["SMTP_USER"], "Tomas Del Rosario College");
                 $mail->addAddress($email);
 
                 // Mail
                 $mail->isHTML(true);
 
-                $mail->Subject = "Your One-Time Password (OTP) from Laragon College University";
+                $mail->Subject = "Your One-Time Password (OTP) from Tomas Del Rosario College";
 
                 $mail->Body =
                     "
                     <div style='font-family: Arial, sans-serif; color: #333; line-height: 1.6; max-width: 600px; margin: auto;'>
-                        <h2 style='color: #2c3e50;'>Laragon Registration Verification</h2>
+                        <h2 style='color: #2c3e50;'>TRC Registration Verification</h2>
 
                         <p>Dear Student / Parent,</p>
 
@@ -88,7 +88,7 @@ if ($_SERVER['REQUEST_METHOD'] == "POST") {
                         </p>
 
                         <p style='font-size: 12px; color: #777;'>
-                            © " . date('Y') . " Laragon College University. All rights reserved.
+                            © " . date('Y') . " Tomas Del Rosario College. All rights reserved.
                         </p>
                     </div>
             ";
@@ -107,7 +107,7 @@ if ($_SERVER['REQUEST_METHOD'] == "POST") {
 
                         If you did not request this registration, please ignore this email.
 
-                        — Laragon College University
+                        — Tomas Del Rosario College
             ";
 
                 $mail->send();
