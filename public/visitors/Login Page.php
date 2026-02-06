@@ -86,7 +86,7 @@
                             <div class="form-floating mb-3">
                                 <input
                                     type="email"
-                                    class="form-control"
+                                    class="form-control form-control-sm"
                                     name="email"
                                     placeholder="name@example.com"
                                     required>
