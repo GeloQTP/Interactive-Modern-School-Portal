@@ -4,7 +4,7 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Laragon College University</title>
+    <title>Register - Tomas Del Rosario College</title>
     <link rel="icon" type="image/png" href="/Modern Student Portal/src/img/TRC_LOGO.png">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="./../../styles/style.css
@@ -15,7 +15,7 @@
 
     <!-- SPINNER -->
     <div class="spinner-wrapper" aria-hidden="true">
-        <div class="spinner-grow text-secondary" role="status">
+        <div class="spinner-grow text-success" role="status">
             <span class="visually-hidden">Loading...</span>
         </div>
     </div>
