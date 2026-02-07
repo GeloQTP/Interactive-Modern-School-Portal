@@ -70,8 +70,8 @@
     }
 
     #sidebar.expand {
-        width: 260px;
-        min-width: 260px;
+        width: 300px;
+        min-width: 300px;
     }
 
     #toggle-btn {
@@ -137,7 +137,7 @@
                 </button>
 
                 <div class="sidebar-logo">
-                    <a href="#">ADMIN</a>
+                    <a href="#">ADMIN, &lt;Name&gt;</a>
                 </div>
             </div>
 
