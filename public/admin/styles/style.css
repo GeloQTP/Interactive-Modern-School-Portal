@@ -1,5 +1,25 @@
  @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap');
 
+ /* width */
+ ::-webkit-scrollbar {
+     width: 10px;
+ }
+
+ /* Track */
+ ::-webkit-scrollbar-track {
+     background: #f1f1f1;
+ }
+
+ /* Handle */
+ ::-webkit-scrollbar-thumb {
+     background: #88888885;
+ }
+
+ /* Handle on hover */
+ ::-webkit-scrollbar-thumb:hover {
+     background: #7a7a7a;
+ }
+
  ::after,
  ::before {
      box-sizing: border-box;
@@ -67,11 +87,11 @@
      margin: auto 0;
  }
 
- .sidebar-logo a {
+ /* .sidebar-logo img {
      color: #FFF;
      font-size: 1.15rem;
      font-weight: 600;
- }
+ } */
 
  #sidebar:not(.expand) .sidebar-logo,
  #sidebar:not(.expand) a.sidebar-link span {
@@ -80,7 +100,7 @@
 
  .sidebar-nav {
      padding: 3rem 0;
-     /* flex: 1 1 auto; */
+     flex: 1 1 auto;
  }
 
  a.sidebar-link {
@@ -115,4 +135,19 @@
      align-items: center;
      justify-content: center;
      z-index: 999;
+ }
+
+ .custom-tooltip-view {
+     --bs-tooltip-bg: var(--bs-primary);
+     --bs-tooltip-color: var(--bs-white);
+ }
+
+ .custom-tooltip-mark {
+     --bs-tooltip-bg: var(--bs-success);
+     --bs-tooltip-color: var(--bs-white);
+ }
+
+ .custom-tooltip-archive {
+     --bs-tooltip-bg: var(--bs-warning);
+     --bs-tooltip-color: var(--bs-dark);
  }
