@@ -56,11 +56,6 @@ window.addEventListener("DOMContentLoaded", () => {
         let OTP_Modal = bootstrap.Modal.getOrCreateInstance(
           document.getElementById("otpModal"),
         );
-        let eulaModal = bootstrap.Modal.getOrCreateInstance(
-          document.getElementById("eulaModal"),
-        );
-
-        eulaModal.hide();
         OTP_Modal.show();
 
         document.querySelector(".toast-body").textContent = "OTP Sent.";
@@ -80,6 +75,12 @@ window.addEventListener("DOMContentLoaded", () => {
     } finally {
       acceptBtn.disabled = false;
       acceptBtn.innerHTML = "Understood";
+
+      let eulaModal = bootstrap.Modal.getOrCreateInstance(
+        document.getElementById("eulaModal"),
+      );
+
+      eulaModal.hide();
     }
   });
 });
@@ -120,7 +121,7 @@ window.addEventListener("DOMContentLoaded", () => {
 
       if (!res.ok) {
         document.querySelector(".toast-body").textContent =
-          "Something went wrong. Please try again.";
+          "Network Response Error. Please try again.";
         const toastBootstrap = bootstrap.Toast.getOrCreateInstance(
           document.getElementById("liveToast"),
         );
@@ -132,71 +133,48 @@ window.addEventListener("DOMContentLoaded", () => {
       if (response.success) {
         // IF OTP VERIFICATION IS A SUCCESS
         const form = document.getElementById("registrationForm");
-        try {
-          const registerRes = await fetch(`../ajax/registerStudent.php`, {
-            method: "POST",
-            body: new FormData(form),
-            credentials: "same-origin",
-          });
 
-          if (!registerRes.ok) {
-            document.querySelector(".toast-body").textContent =
-              "Something went wrong. Please try again.";
-            const toastBootstrap = bootstrap.Toast.getOrCreateInstance(
-              document.getElementById("liveToast"),
-            );
-            toastBootstrap.show();
-          }
+        const registerRes = await fetch(`../ajax/registerStudent.php`, {
+          method: "POST",
+          body: new FormData(form),
+          credentials: "same-origin",
+        });
 
-          const registerResponse = await registerRes.json();
-
-          if (registerResponse.success) {
-            // IF REGISTRATION IS A SUCCESS
-            document.querySelector(".toast-body").textContent =
-              registerResponse.message;
-            const toastBootstrap = bootstrap.Toast.getOrCreateInstance(
-              document.getElementById("liveToast"),
-            );
-            toastBootstrap.show();
-
-            let OTP_Modal = bootstrap.Modal.getOrCreateInstance(
-              document.getElementById("otpModal"),
-            );
-
-            OTP_Modal.hide();
-
-            form.reset();
-            otp_form.reset();
-            window.scrollTo(0, 0);
-          } else {
-            // IF REGISTRATION FAILED
-            let OTP_Modal = bootstrap.Modal.getOrCreateInstance(
-              document.getElementById("otpModal"),
-            );
-            document.querySelector(".toast-body").textContent =
-              registerResponse.message;
-            const toastBootstrap = bootstrap.Toast.getOrCreateInstance(
-              document.getElementById("liveToast"),
-            );
-
-            OTP_Modal.hide();
-            toastBootstrap.show();
-            otp_form.reset();
-            window.scrollTo(0, 0);
-          }
-        } catch (error) {
-          // IF REGISTRATION FAILED
+        if (!registerRes.ok) {
           document.querySelector(".toast-body").textContent =
-            "Something went wrong. Please try again.";
+            "Network Response Error. Please try again.";
           const toastBootstrap = bootstrap.Toast.getOrCreateInstance(
             document.getElementById("liveToast"),
           );
           toastBootstrap.show();
+        }
+
+        const registerResponse = await registerRes.json();
+
+        if (registerResponse.success) {
+          // IF REGISTRATION IS A SUCCESS
+          document.querySelector(".toast-body").textContent =
+            registerResponse.message;
+          const toastBootstrap = bootstrap.Toast.getOrCreateInstance(
+            document.getElementById("liveToast"),
+          );
+          let OTP_Modal = bootstrap.Modal.getOrCreateInstance(
+            document.getElementById("otpModal"),
+          );
+
+          OTP_Modal.hide();
+          toastBootstrap.show();
+          form.reset();
           otp_form.reset();
           window.scrollTo(0, 0);
-        } finally {
-          verifyOTP_btn.disabled = false;
-          verifyOTP_btn.innerHTML = "Verify";
+        } else {
+          // IF REGISTRATION FAILED
+          document.querySelector(".toast-body").textContent =
+            registerResponse.message;
+          const toastBootstrap = bootstrap.Toast.getOrCreateInstance(
+            document.getElementById("liveToast"),
+          );
+          toastBootstrap.show();
         }
       } else {
         // IF OTP VERIFICATION FAILED
@@ -205,12 +183,10 @@ window.addEventListener("DOMContentLoaded", () => {
           document.getElementById("liveToast"),
         );
         toastBootstrap.show();
-
-        window.scrollTo(0, 0);
       }
     } catch (error) {
       document.querySelector(".toast-body").textContent =
-        "Something went wrong. Please try again.";
+        "An Error Occured. Please try again.";
       const toastBootstrap = bootstrap.Toast.getOrCreateInstance(
         document.getElementById("liveToast"),
       );

@@ -123,6 +123,13 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             $stmt->execute();
             $stmt->close();
 
+            $log_description = 'New Student Registration';
+
+            $stmt = $conn->prepare("INSERT INTO logs (user_id, log_description) VALUES (?,?)");
+            $stmt->bind_param("is", $student_id, $log_description);
+            $stmt->execute();
+            $stmt->close();
+
             // Commit both queries
             $conn->commit();
 
@@ -130,7 +137,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         } catch (Exception $e) {
             // Rollback if any query fails
             $conn->rollback();
-            echo json_encode(['success' => false, 'message' => 'Registration failed: ' . $e->getMessage()]);
+            echo json_encode(['success' => false, 'message' => 'Registration failed: ']);
         }
     }
 } else {
