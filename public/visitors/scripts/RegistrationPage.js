@@ -89,6 +89,8 @@ window.addEventListener("DOMContentLoaded", () => {
 window.addEventListener("DOMContentLoaded", () => {
   const otp_form = document.getElementById("OTP_form");
   const verifyOTP_btn = document.getElementById("verifyOTP_btn");
+  const recoveryEmailInput = document.getElementById("recoveryEmailInput");
+  const confirmPasswordInput = document.getElementById("confirmPassword");
 
   otp_form.addEventListener("submit", async (e) => {
     e.preventDefault();
@@ -165,6 +167,17 @@ window.addEventListener("DOMContentLoaded", () => {
           OTP_Modal.hide();
           toastBootstrap.show();
           form.reset();
+
+          recoveryEmailInput.classList.remove(
+            "border-danger",
+            "border-success",
+          );
+
+          confirmPasswordInput.classList.remove(
+            "border-danger",
+            "border-success",
+          );
+
           otp_form.reset();
           window.scrollTo(0, 0);
         } else {
@@ -350,8 +363,7 @@ function validatePassword() {
 
   if (!password || !confirmPassword) {
     passwordStatus.innerHTML = "";
-    confirmPasswordInput.classList.remove("border-danger");
-    confirmPasswordInput.classList.remove("border-success");
+    confirmPasswordInput.classList.remove("border-danger", "border-success");
     return false;
   }
 
