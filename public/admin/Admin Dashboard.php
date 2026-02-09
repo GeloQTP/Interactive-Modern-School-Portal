@@ -34,6 +34,22 @@
         </div>
     </div>
 
+    <!-- TOASTS SECTION -->
+    <div class="toast-container position-fixed bottom-0 end-0 p-3">
+        <div id="liveToast" class="toast bg-light text-dark" role="alert" aria-live="assertive" aria-atomic="true">
+            <div class="toast-header">
+                <img src="/Modern Student Portal/src/img/TRC_LOGO.png" style="width: 30px;" class="rounded me-2 img-fluid"
+                    alt="...">
+                <strong class="me-auto">TRC Notification</strong>
+                <small>just now</small>
+                <button type="button" class="btn-close" data-bs-dismiss="toast" aria-label="Close"></button>
+            </div>
+            <div class="toast-body">
+
+            </div>
+        </div>
+    </div>
+
     <div class="wrapper">
         <aside id="sidebar" style="position: fixed; height:100%;">
             <div class="d-flex">
@@ -139,7 +155,7 @@
                                 <div class="d-flex justify-content-between align-items-center">
                                     <div>
                                         <p class="text-muted mb-1">Total Students</p>
-                                        <h3 class="mb-0 fw-bold">0</h3>
+                                        <h3 class="mb-0 fw-bold" id="totalStudents">0</h3>
                                         <small class="text-success">+12% from last month</small>
                                     </div>
                                     <div class="stat-icon text-info">
@@ -211,7 +227,7 @@
                                 <div class="d-flex justify-content-between align-items-center">
                                     <div>
                                         <p class="text-muted mb-1">Pending Approvals</p>
-                                        <h3 class="mb-0 fw-bold">0</h3>
+                                        <h3 class="mb-0 fw-bold" id="pendingRegistrations">0</h3>
                                         <small class="text-success">+12% from last month</small>
                                     </div>
                                     <div class="stat-icon bg-opacity-10 text-warning">
@@ -319,9 +335,7 @@
 <script>
     const tooltipTriggerList = document.querySelectorAll('[data-bs-toggle="tooltip"]')
     const tooltipList = [...tooltipTriggerList].map(tooltipTriggerEl => new bootstrap.Tooltip(tooltipTriggerEl))
-</script>
 
-<script>
     const hamburger = document.querySelector("#toggle-btn");
 
     hamburger.addEventListener("click", function() {
@@ -334,6 +348,17 @@
     window.addEventListener("load", () => {
         setTimeout(() => (spinner.style.display = "none"), 1000);
     });
+</script>
+
+<script>
+    fetch(`../../classes/dashboardStats.php`, {
+            method: 'POST',
+        })
+        .then(res => res.json())
+        .then(data => {
+            document.getElementById("totalStudents").textContent = data.totalStudents;
+            document.getElementById("pendingRegistrations").textContent = data.totalPendingRegistrations;
+        });
 </script>
 
 </html>

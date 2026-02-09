@@ -1,33 +1,44 @@
 <?php
 
-class dashboardStats
+include __DIR__ . '/../includes/db_connect.php';
+mysqli_report(MYSQLI_REPORT_STRICT || MYSQLI_REPORT_ERROR);
+class DashboardStats
 {
-    private mysqli $conn; // private property (variable) only accesible to this class
+    private mysqli $conn;
 
-    public function __construct(mysqli $conn) // will be automatically called when we create/call an object
+    public function __construct(mysqli $conn)
     {
-        $this->conn = $conn; // this->conn refers to the private property above
+        $this->conn = $conn;
     }
 
-    public function totalStudents(): int
+    public function countStudentsByState(string $state): int
     {
-        $stmt = $this->conn->prepare("SELECT COUNT(*) AS totalStudents FROM student_information WHERE state = ?");
-        $stmt->bind_param("s", 'enrolled');
+        $stmt = $this->conn->prepare(
+            "SELECT COUNT(*) FROM student_information WHERE state = ?"
+        );
+        $stmt->bind_param("s", $state);
         $stmt->execute();
-        $result = $stmt->get_result()->fetch_assoc();
-        return $result['totalStudents'];
+        $stmt->bind_result($total);
+        $stmt->fetch();
+        $stmt->close();
+
+        return $total;
     }
-
-    // public function totalTeachers(): int
-    // {
-    //     $stmt = $this->conn->prepare("SELECT COUNT(*) AS totalStudents FROM student_information WHERE state = ?");
-    //     $stmt->bind_param("s", 'enrolled');
-    //     $stmt->execute();
-    //     $result = $stmt->get_result()->fetch_assoc();
-    //     return $result['totalStudents'];
-    // }
-
 }
+
+if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+    $dashboardStats = new dashboardStats($conn);
+
+    header('Content-Type: application/json');
+    echo json_encode([
+        'totalStudents' => $dashboardStats->countStudentsByState('enrolled'),
+        'totalPendingRegistrations' => $dashboardStats->countStudentsByState('registered'),
+    ]);
+}
+
+
+
+
 
 // class DashboardStats
 // {

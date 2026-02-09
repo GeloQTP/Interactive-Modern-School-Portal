@@ -3,6 +3,8 @@ include(__DIR__ . '/../../includes/db_connect.php');
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
+    header('Content-Type: application/json');
+
     $email = filter_var($_POST['email'] ?? '', FILTER_SANITIZE_EMAIL);
 
     if (filter_var($email, FILTER_VALIDATE_EMAIL)) {

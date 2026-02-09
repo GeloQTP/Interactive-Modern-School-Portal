@@ -6,6 +6,8 @@ mysqli_report(MYSQLI_REPORT_STRICT | MYSQLI_REPORT_ERROR);
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
+    header('Content-Type: application/json');
+
     $email       = filter_input(INPUT_POST, 'email', FILTER_SANITIZE_EMAIL);
 
     $stmt = $conn->prepare("SELECT * FROM student_information WHERE Email = ?");
