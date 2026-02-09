@@ -351,16 +351,20 @@
 </script>
 
 <script>
-    setInterval(() => {
-        fetch(`../../classes/dashboardStats.php`, {
-                method: 'POST',
+    function loadDashboardStats() {
+        fetch('../../classes/dashboardStats.php', {
+                method: 'POST'
             })
             .then(res => res.json())
             .then(data => {
                 document.getElementById("totalStudents").textContent = data.totalStudents;
                 document.getElementById("pendingRegistrations").textContent = data.totalPendingRegistrations;
-            });
-    }, 5000);
+            })
+            .catch(err => console.error(err));
+    }
+
+    loadDashboardStats(); // initial load
+    setInterval(loadDashboardStats, 5000); // refresh every 5s
 </script>
 
 </html>
