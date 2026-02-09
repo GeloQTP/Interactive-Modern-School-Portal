@@ -351,14 +351,16 @@
 </script>
 
 <script>
-    fetch(`../../classes/dashboardStats.php`, {
-            method: 'POST',
-        })
-        .then(res => res.json())
-        .then(data => {
-            document.getElementById("totalStudents").textContent = data.totalStudents;
-            document.getElementById("pendingRegistrations").textContent = data.totalPendingRegistrations;
-        });
+    setInterval(() => {
+        fetch(`../../classes/dashboardStats.php`, {
+                method: 'POST',
+            })
+            .then(res => res.json())
+            .then(data => {
+                document.getElementById("totalStudents").textContent = data.totalStudents;
+                document.getElementById("pendingRegistrations").textContent = data.totalPendingRegistrations;
+            });
+    }, 5000);
 </script>
 
 </html>
