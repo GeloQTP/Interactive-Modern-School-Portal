@@ -127,12 +127,12 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
             $log_description = 'New Student Registration';
 
-            $stmt = $conn->prepare("INSERT INTO logs (user_id, log_description) VALUES (?,?)");
+            $stmt = $conn->prepare("INSERT INTO logs (student_id, log_description) VALUES (?,?)");
             $stmt->bind_param("is", $student_id, $log_description);
             $stmt->execute();
             $stmt->close();
 
-            // Commit both queries
+            // Commit all queries
             $conn->commit();
 
             echo json_encode(['success' => true, 'message' => 'Registration successful']);

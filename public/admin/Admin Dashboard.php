@@ -51,7 +51,7 @@
     </div>
 
     <div class="wrapper">
-        <aside id="sidebar" style="position: fixed; height:100%;">
+        <aside id="sidebar" style="position: fixed; height:100vh;">
             <div class="d-flex">
                 <button id="toggle-btn">
                     <i class="bi bi-grid"></i>
@@ -238,13 +238,13 @@
                         </div>
                     </div>
 
-                    <!-- REGISTRATIONS THIS MONTH -->
+                    <!-- NEWS LETTER SUBSCRIBERS -->
                     <div class="col-md-6 col-lg-4">
                         <div class="card shadow-sm">
                             <div class="card-body">
                                 <div class="d-flex justify-content-between align-items-center">
                                     <div>
-                                        <p class="text-muted mb-1">Registrations this Month</p>
+                                        <p class="text-muted mb-1">Newsletter Subscribers</p>
                                         <h3 class="mb-0 fw-bold">0</h3>
                                         <small class="text-success">+12% from last month</small>
                                     </div>
@@ -262,8 +262,21 @@
 
                     <div class="col-lg-8">
                         <div class="card" style="height: 61vh;">
-                            <p class="text-muted mb-1 border-bottom p-2 fw-bold">Recent Activities</p>
-                            <div class="card-body overflow-y-scroll">
+
+                            <div class="d-flex align-items-center justify-content-between border-bottom p-2">
+                                <p class="text-muted fw-bold">Recent Activities</p>
+                                <div class="">
+                                    <span class="badge text-bg-info">registered</span>
+                                    <span class="badge text-bg-secondary">login</span>
+                                    <span class="badge text-bg-secondary">logout</span>
+                                    <span class="badge text-bg-warning">pending</span>
+                                    <span class="badge text-bg-success">approved</span>
+                                    <span class="badge text-bg-danger">rejected</span>
+
+                                </div>
+                            </div>
+
+                            <div class="card-body overflow-y-scroll" id="logs">
                                 <!-- LOG -->
                                 <div class="activity-item mb-3 pb-3 border-start border-3">
                                     <div class="d-flex justify-content-between align-items-start ps-3">
@@ -277,13 +290,38 @@
                                 </div>
                                 <!-- LOG -->
                             </div>
+
+                            <div class="d-flex justify-content-end pe-5 card-footer">
+                                <nav aria-label="Page navigation example">
+                                    <ul class="pagination">
+                                        <li class="page-item"><a class="page-link" href="#">Previous</a></li>
+                                        <li class="page-item"><a class="page-link" href="#">1</a></li>
+                                        <li class="page-item"><a class="page-link" href="#">2</a></li>
+                                        <li class="page-item"><a class="page-link" href="#">3</a></li>
+                                        <li class="page-item"><a class="page-link" href="#">Next</a></li>
+                                    </ul>
+                                </nav>
+                            </div>
+
                         </div>
                     </div>
 
-
+                    <!-- MESSAGE LOGS -->
                     <div class="col-lg-4">
                         <div class="card">
-                            <p class="text-muted mb-1 border-bottom p-2 fw-bold">Messages</p>
+                            <div class="d-flex border-bottom align-items-center justify-content-between
+                            ">
+                                <p class="text-muted fw-bold" style="transform: translate(19px,8.5px);">Messages</p>
+
+                                <div class="pe-2">
+                                    <button type="button" class="btn btn-warning btn-sm" data-bs-toggle="tooltip" data-bs-placement="right"
+                                        data-bs-custom-class="custom-tooltip-archive"
+                                        data-bs-title="Check Archive">
+                                        <i class="bi bi-archive"></i>
+                                    </button>
+                                </div>
+
+                            </div>
                             <div class="card-body">
                                 <div class="activity-item mb-3border-start border-3">
                                     <!-- MESSAGE -->
@@ -320,6 +358,7 @@
                             </div>
                         </div>
                     </div>
+                    <!-- MESSAGE LOGS -->
 
                 </div>
 
@@ -351,20 +390,59 @@
 </script>
 
 <script>
-    function loadDashboardStats() {
-        fetch('../../classes/dashboardStats.php', {
+    loadDashboardStats(); // initial load
+    loadLogs();
+    setInterval(loadDashboardStats, 5000); // refresh every 5s
+    setInterval(loadLogs, 5000);
+
+    async function loadDashboardStats() {
+
+        try {
+            const res = await fetch('../../classes/dashboardStats.php', {
                 method: 'POST'
+            });
+
+            if (!res.ok) throw new Error('Network Response was not ok.');
+
+            const data = await res.json();
+
+            document.getElementById("totalStudents").textContent = data.totalStudents;
+            document.getElementById("pendingRegistrations").textContent = data.totalPendingRegistrations;
+
+        } catch (error) {
+            document.getElementById("totalStudents").textContent = 0;
+            document.getElementById("pendingRegistrations").textContent = 0;
+        }
+    }
+
+    function loadLogs() {
+
+        fetch('../../classes/recentActivities.php ', {
+                method: 'POST',
             })
             .then(res => res.json())
             .then(data => {
-                document.getElementById("totalStudents").textContent = data.totalStudents;
-                document.getElementById("pendingRegistrations").textContent = data.totalPendingRegistrations;
-            })
-            .catch(err => console.error(err));
-    }
+                const logs = data.map(data => {
+                    const student_id = data.student_id;
+                    const log_description = data.log_description;
+                    const status_color = data.status == 'approved' ? 'success' : 'warning';
+                    const status = data.status;
+                    const log_date = data.log_date;
+                    return `<div class="activity-item mb-3 pb-3 border-start border-3">
+                                    <div class="d-flex justify-content-between align-items-start ps-3">
+                                        <div>
+                                            <p class="mb-1 fw-semibold">${student_id}</p>
+                                            <p class="mb-1 text-muted small">${log_description}</p>
+                                            <small class="text-muted">${log_date}</small>
+                                        </div>
+                                        <span class="badge text-bg-${status_color} text-light">${status}</span>
+                                    </div>
+                                </div>`;
+                }).join('');
+                document.getElementById("logs").innerHTML = logs;
+            });
 
-    loadDashboardStats(); // initial load
-    setInterval(loadDashboardStats, 5000); // refresh every 5s
+    }
 </script>
 
 </html>
