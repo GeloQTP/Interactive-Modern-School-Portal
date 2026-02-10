@@ -263,13 +263,13 @@
                     <div class="col-lg-8">
                         <div class="card" style="height: 61vh;">
 
-                            <div class="d-flex align-items-center justify-content-between border-bottom p-2">
-                                <p class="text-muted fw-bold">Recent Activities</p>
-                                <div class="">
+                            <div class="d-flex align-items-center justify-content-between border-bottom">
+                                <p class="text-muted fw-bold" style="transform: translate(19px,8.5px);">Messages</p>
+                                <div class="pe-3">
                                     <span class="badge text-bg-info">registered</span>
                                     <span class="badge text-bg-secondary">login</span>
                                     <span class="badge text-bg-secondary">logout</span>
-                                    <span class="badge text-bg-warning">pending</span>
+                                    <span class="badge text-bg-warning text-light">pending</span>
                                     <span class="badge text-bg-success">approved</span>
                                     <span class="badge text-bg-danger">rejected</span>
 
@@ -323,13 +323,13 @@
 
                             </div>
                             <div class="card-body">
-                                <div class="activity-item mb-3border-start border-3">
-                                    <!-- MESSAGE -->
-                                    <div class="activity-item mb-3 pb-3 border-start border-3">
-                                        <div class="d-flex justify-content-between align-items-start ps-3">
-                                            <div>
-                                                <p class="mb-1 fw-semibold">Juliana Cruz</p>
+                                <!-- MESSAGE -->
+                                <div class="activity-item mb-3">
+                                    <div class="d-flex justify-content-between align-items-start ps-3 border-start border-3">
+                                        <div>
+                                            <p class="mb-1 fw-semibold">Juliana Cruz</p>
 
+                                            <div class="mb-2">
                                                 <button type="button" class="btn btn-primary btn-sm" data-bs-toggle="tooltip" data-bs-placement="left"
                                                     data-bs-custom-class="custom-tooltip-view"
                                                     data-bs-title="View Message">
@@ -346,15 +346,15 @@
                                                     data-bs-custom-class="custom-tooltip-archive"
                                                     data-bs-title="Archive Message">
                                                     <i class="bi bi-archive"></i>
-                                                </button><br>
-
-                                                <small class="text-muted">5 mins ago</small>
+                                                </button>
                                             </div>
-                                            <span class="badge text-bg-warning text-light">Unread</span>
+
+                                            <small class="text-muted">5 mins ago</small>
                                         </div>
+                                        <span class="badge text-bg-warning text-light">Unread</span>
                                     </div>
-                                    <!-- MESSAGE -->
                                 </div>
+                                <!-- MESSAGE -->
                             </div>
                         </div>
                     </div>
@@ -415,7 +415,7 @@
         }
     }
 
-    function loadLogs() {
+    function loadLogs() { // TODO: REFACTOR - USE PHP PAGGINATION INSTEAD
 
         fetch('../../classes/recentActivities.php ', {
                 method: 'POST',
@@ -425,7 +425,16 @@
                 const logs = data.map(data => {
                     const student_id = data.student_id;
                     const log_description = data.log_description;
-                    const status_color = data.status == 'approved' ? 'success' : 'warning';
+
+                    let status_color;
+                    if (data.status === 'approved') {
+                        status_color = 'success';
+                    } else if (data.status === 'pending') {
+                        status_color = 'warning';
+                    } else if (data.status === 'rejected') {
+                        status_color = 'danger';
+                    }
+
                     const status = data.status;
                     const log_date = data.log_date;
                     return `<div class="activity-item mb-3 pb-3 border-start border-3">
