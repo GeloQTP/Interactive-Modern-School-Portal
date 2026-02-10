@@ -264,8 +264,9 @@
                         <div class="card" style="height: 61vh;">
 
                             <div class="d-flex align-items-center justify-content-between border-bottom">
-                                <p class="text-muted fw-bold" style="transform: translate(19px,8.5px);">Messages</p>
-                                <div class="pe-3">
+                                <p class="text-muted fw-bold" style="transform: translate(19px,8.5px);">Recent Activities</p>
+                                <i class="bi bi-activity h3 text-danger pe-3" style="transform: translate(0px, 5px);"></i>
+                                <!-- <div class=" pe-3">
                                     <span class="badge text-bg-info">registered</span>
                                     <span class="badge text-bg-secondary">login</span>
                                     <span class="badge text-bg-secondary">logout</span>
@@ -273,7 +274,7 @@
                                     <span class="badge text-bg-success">approved</span>
                                     <span class="badge text-bg-danger">rejected</span>
 
-                                </div>
+                            </div> -->
                             </div>
 
                             <div class="card-body overflow-y-scroll" id="logs">
@@ -291,17 +292,17 @@
                                 <!-- LOG -->
                             </div>
 
-                            <div class="d-flex justify-content-end pe-5 card-footer">
-                                <nav aria-label="Page navigation example">
-                                    <ul class="pagination">
-                                        <li class="page-item"><a class="page-link" href="#">Previous</a></li>
-                                        <li class="page-item"><a class="page-link" href="#">1</a></li>
-                                        <li class="page-item"><a class="page-link" href="#">2</a></li>
-                                        <li class="page-item"><a class="page-link" href="#">3</a></li>
-                                        <li class="page-item"><a class="page-link" href="#">Next</a></li>
-                                    </ul>
-                                </nav>
+                            <div class="mx-auto" style="transform: translate(0px, 10px)">
+                                <ul class="pagination">
+                                    <li class="page-item"><a class="page-link" href="#">Previous</a></li>
+                                    <li class="page-item"><a class="page-link" href="#">1</a></li>
+                                    <li class="page-item"><a class="page-link" href="#">2</a></li>
+                                    <li class="page-item"><a class="page-link" href="#">3</a></li>
+                                    <li class="page-item"><a class="page-link" href="#">Next</a></li>
+                                </ul>
                             </div>
+
+
 
                         </div>
                     </div>
