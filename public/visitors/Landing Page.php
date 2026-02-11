@@ -22,15 +22,15 @@ include __DIR__ . '/../../includes/header.php';
             <div class="col-sm-6 d-none d-sm-block">
                 <div id="carouselExampleSlidesOnly" class="carousel slide" data-bs-ride="carousel">
                     <div class="carousel-inner">
-                        <div class="carousel-item active">
+                        <!-- <div class="carousel-item active">
                             <img src="/Modern Student Portal/src/img/TRC_BACKGROUND_IMAGE.jpg" class="d-block img-fluid"
                                 alt="image of library" style="width: 576px; height: auto;">
-                        </div>
+                        </div> -->
                         <div class="carousel-item">
                             <img src="/Modern Student Portal/src/img/nursing station.jpg" class="d-block w-100"
                                 alt="image of nursing station">
                         </div>
-                        <div class="carousel-item">
+                        <div class="carousel-item active">
                             <img src="/Modern Student Portal/src/img/college computer room.jpg" class="d-block w-100"
                                 alt="image of college computer room">
                         </div>

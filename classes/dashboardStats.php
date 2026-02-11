@@ -25,6 +25,17 @@ class DashboardStats
 
         return $total;
     }
+
+    public function getTotalNewsSubscribers(): int{
+
+    $stmt = $this->conn->prepare("SELECT COUNT(*) AS totalNewsSubscribers FROM newsletter_subscribers");
+    $stmt->execute();
+    $stmt->bind_result($totalNewsSubscribers);
+    $stmt->fetch();
+    $stmt->close();
+
+    return $totalNewsSubscribers;
+    }
 }
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
@@ -34,5 +45,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     echo json_encode([
         'totalStudents' => $dashboardStats->countStudentsByState('enrolled'),
         'totalPendingRegistrations' => $dashboardStats->countStudentsByState('registered'),
+        'totalNewsSubscribers' => $dashboardStats->getTotalNewsSubscribers()
     ]);
 }
