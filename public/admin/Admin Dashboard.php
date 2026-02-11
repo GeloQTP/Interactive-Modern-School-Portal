@@ -6,6 +6,7 @@
 //     exit();
 // }
 
+include __DIR__ . '/../../classes/recentActivities.php';
 ?>
 
 <!DOCTYPE html>
@@ -279,16 +280,20 @@
 
                             <div class="card-body overflow-y-scroll" id="logs">
                                 <!-- LOG -->
-                                <div class="activity-item mb-3 pb-3 border-start border-3">
-                                    <div class="d-flex justify-content-between align-items-start ps-3">
-                                        <div>
-                                            <p class="mb-1 fw-semibold">John Doe</p>
-                                            <p class="mb-1 text-muted small">New student registration</p>
-                                            <small class="text-muted">5 mins ago</small>
+                                <?php
+                                while ($row = $result->fetch_assoc()) {
+                                ?>
+                                    <div class="activity-item mb-3 pb-3 border-start border-3">
+                                        <div class="d-flex justify-content-between align-items-start ps-3">
+                                            <div>
+                                                <p class="mb-1 fw-semibold"><?= $row['student_id'] ?></p>
+                                                <p class="mb-1 text-muted small">New student registration</p>
+                                                <small class="text-muted">5 mins ago</small>
+                                            </div>
+                                            <span class="badge text-bg-warning text-light">Pending</span>
                                         </div>
-                                        <span class="badge text-bg-warning text-light">Pending</span>
                                     </div>
-                                </div>
+                                <?php } ?>
                                 <!-- LOG -->
                             </div>
 
