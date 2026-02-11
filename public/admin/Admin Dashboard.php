@@ -246,7 +246,7 @@ include __DIR__ . '/../../classes/recentActivities.php';
                                 <div class="d-flex justify-content-between align-items-center">
                                     <div>
                                         <p class="text-muted mb-1">Newsletter Subscribers</p>
-                                        <h3 class="mb-0 fw-bold">0</h3>
+                                        <h3 class="mb-0 fw-bold" id="newsLetterSubscribers">0</h3>
                                         <small class="text-success">+12% from last month</small>
                                     </div>
                                     <div class="stat-icon bg-opacity-10 text-primary">
@@ -262,10 +262,11 @@ include __DIR__ . '/../../classes/recentActivities.php';
                 <div class="row g-3">
 
                     <div class="col-lg-8">
-                        <div class="card" style="height: 61vh;">
+                        <div class="card" style="height: 38.5vh;">
 
                             <div class="d-flex align-items-center justify-content-between border-bottom">
                                 <p class="text-muted fw-bold" style="transform: translate(19px,8.5px);">Recent Activities</p>
+                                <p class="text-muted small" style="transform: translate(-20px,9px);">Showing Page 1/100</p>
                                 <i class="bi bi-activity h3 text-danger pe-3" style="transform: translate(0px, 5px);"></i>
                                 <!-- <div class=" pe-3">
                                     <span class="badge text-bg-info">registered</span>
@@ -278,32 +279,73 @@ include __DIR__ . '/../../classes/recentActivities.php';
                             </div> -->
                             </div>
 
-                            <div class="card-body overflow-y-scroll" id="logs">
+                            <div class="card-body overflow-y-scroll">
                                 <!-- LOG -->
                                 <?php
+
                                 while ($row = $result->fetch_assoc()) {
+
+                                    $statusColor = 'info';
+                                    if ($row['status'] === 'pending') {
+                                        $statusColor = 'warning';
+                                    } else if ($row['status'] === 'rejected') {
+                                        $statusColor = 'danger';
+                                    } else if ($row['status'] === 'approved') {
+                                        $statusColor = 'success';
+                                    }
+
                                 ?>
+
+
                                     <div class="activity-item mb-3 pb-3 border-start border-3">
                                         <div class="d-flex justify-content-between align-items-start ps-3">
                                             <div>
                                                 <p class="mb-1 fw-semibold"><?= $row['student_id'] ?></p>
-                                                <p class="mb-1 text-muted small">New student registration</p>
+                                                <p class="mb-1 text-muted small"><?= $row['log_description'] ?></p>
                                                 <small class="text-muted">5 mins ago</small>
                                             </div>
-                                            <span class="badge text-bg-warning text-light">Pending</span>
+                                            <span class="badge text-bg-<?php echo $statusColor ?> text-light"><?= $row['status'] ?></span>
                                         </div>
                                     </div>
+
+
                                 <?php } ?>
                                 <!-- LOG -->
                             </div>
 
-                            <div class="mx-auto" style="transform: translate(0px, 10px)">
-                                <ul class="pagination">
-                                    <li class="page-item"><a class="page-link" href="#">Previous</a></li>
-                                    <li class="page-item"><a class="page-link" href="#">1</a></li>
-                                    <li class="page-item"><a class="page-link" href="#">2</a></li>
-                                    <li class="page-item"><a class="page-link" href="#">3</a></li>
-                                    <li class="page-item"><a class="page-link" href="#">Next</a></li>
+                            <div class="ms-auto pe-3" style="transform: translate(0px, 10px)">
+                                <ul class="pagination pagination-sm">
+
+                                    <?php
+                                    if (isset($_GET['page-nr']) && $_GET['page-nr'] > 1) {
+                                    ?>
+                                        <li class="page-item"><a class="page-link" href="?page-nr=<?= $_GET['page-nr'] - 1 ?>">Previous</a></li>
+                                    <?php
+                                    } else {
+                                    ?>
+                                        <li class="page-item"><a class="page-link" href="">Previous</a></li>
+                                    <?php
+                                    }
+                                    ?>
+
+                                    <?php
+
+                                    if (!isset($_GET['page-nr'])) { ?>
+
+                                        <li class="page-item"><a class="page-link" href="?page-nr=2">Next</a></li>
+
+                                    <?php } else { ?>
+
+                                        <?php if ($_GET['page-nr'] >= $pages) { ?>
+
+                                            <li class="page-item"><a class="page-link" href="">Next</a></li>
+
+                                        <?php
+                                        } else { ?>
+                                            <li class="page-item"><a class="page-link" href="?page-nr<?= $_GET['page-nr'] + 1 ?>">Next</a></li>
+                                    <?php
+                                     }
+                                    } ?>
                                 </ul>
                             </div>
 
@@ -397,9 +439,7 @@ include __DIR__ . '/../../classes/recentActivities.php';
 
 <script>
     loadDashboardStats(); // initial load
-    loadLogs();
     setInterval(loadDashboardStats, 5000); // refresh every 5s
-    setInterval(loadLogs, 5000);
 
     async function loadDashboardStats() {
 
@@ -414,49 +454,12 @@ include __DIR__ . '/../../classes/recentActivities.php';
 
             document.getElementById("totalStudents").textContent = data.totalStudents;
             document.getElementById("pendingRegistrations").textContent = data.totalPendingRegistrations;
+            document.getElementById("newsLetterSubscribers").textContent = data.totalNewsSubscribers;
 
         } catch (error) {
             document.getElementById("totalStudents").textContent = 0;
             document.getElementById("pendingRegistrations").textContent = 0;
         }
-    }
-
-    function loadLogs() { // TODO: REFACTOR - USE PHP PAGGINATION INSTEAD
-
-        fetch('../../classes/recentActivities.php ', {
-                method: 'POST',
-            })
-            .then(res => res.json())
-            .then(data => {
-                const logs = data.map(data => {
-                    const student_id = data.student_id;
-                    const log_description = data.log_description;
-
-                    let status_color;
-                    if (data.status === 'approved') {
-                        status_color = 'success';
-                    } else if (data.status === 'pending') {
-                        status_color = 'warning';
-                    } else if (data.status === 'rejected') {
-                        status_color = 'danger';
-                    }
-
-                    const status = data.status;
-                    const log_date = data.log_date;
-                    return `<div class="activity-item mb-3 pb-3 border-start border-3">
-                                    <div class="d-flex justify-content-between align-items-start ps-3">
-                                        <div>
-                                            <p class="mb-1 fw-semibold">${student_id}</p>
-                                            <p class="mb-1 text-muted small">${log_description}</p>
-                                            <small class="text-muted">${log_date}</small>
-                                        </div>
-                                        <span class="badge text-bg-${status_color} text-light">${status}</span>
-                                    </div>
-                                </div>`;
-                }).join('');
-                document.getElementById("logs").innerHTML = logs;
-            });
-
     }
 </script>
 
