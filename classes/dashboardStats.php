@@ -15,7 +15,7 @@ class DashboardStats
     public function countStudentsByState(string $state): int
     {
         $stmt = $this->conn->prepare(
-            "SELECT COUNT(*) FROM student_information WHERE state = ?"
+            "SELECT COUNT(*) FROM student_information WHERE current_status = ?"
         );
         $stmt->bind_param("s", $state);
         $stmt->execute();
@@ -26,15 +26,16 @@ class DashboardStats
         return $total;
     }
 
-    public function getTotalNewsSubscribers(): int{
+    public function getTotalNewsSubscribers(): int
+    {
 
-    $stmt = $this->conn->prepare("SELECT COUNT(*) AS totalNewsSubscribers FROM newsletter_subscribers");
-    $stmt->execute();
-    $stmt->bind_result($totalNewsSubscribers);
-    $stmt->fetch();
-    $stmt->close();
+        $stmt = $this->conn->prepare("SELECT COUNT(*) AS totalNewsSubscribers FROM newsletter_subscribers");
+        $stmt->execute();
+        $stmt->bind_result($totalNewsSubscribers);
+        $stmt->fetch();
+        $stmt->close();
 
-    return $totalNewsSubscribers;
+        return $totalNewsSubscribers;
     }
 }
 
@@ -44,7 +45,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     header('Content-Type: application/json');
     echo json_encode([
         'totalStudents' => $dashboardStats->countStudentsByState('enrolled'),
-        'totalPendingRegistrations' => $dashboardStats->countStudentsByState('registered'),
+        'totalPendingRegistrations' => $dashboardStats->countStudentsByState('pending'),
         'totalNewsSubscribers' => $dashboardStats->getTotalNewsSubscribers()
     ]);
 }

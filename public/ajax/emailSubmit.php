@@ -9,25 +9,43 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
     if (filter_var($email, FILTER_VALIDATE_EMAIL)) {
 
-        $stmt = $conn->prepare("SELECT email from newsletter_subscribers WHERE email =?");
+        $stmt = $conn->prepare("SELECT email FROM newsletter_subscribers WHERE email = ?");
         $stmt->bind_param("s", $email);
         $stmt->execute();
         $result = $stmt->get_result();
+        $stmt->close();
 
         if ($result->num_rows > 0) {
             echo json_encode(['success' => false, 'message' => 'This Email is already Subscribed!']);
         } else {
-            $stmt = $conn->prepare("INSERT INTO newsletter_subscribers (email) VALUES (?)");
-            $stmt->bind_param("s", $email);
 
-            if ($stmt->execute()) {
-                echo json_encode(['success' => true, 'message' => 'Subscription Sucessful.']);
-            } else {
-                $_SESSION['status'] = 'Subscription failed. Please try again.';
+            $conn->begin_transaction();
+
+            try {
+
+                $stmt = $conn->prepare("INSERT INTO newsletter_subscribers (email) VALUES (?)");
+                $stmt->bind_param("s", $email);
+                $stmt->execute();
+                $stmt->close();
+
+                $log_owner = 'Subscription';
+                $log_description = 'New newsletter subscription';
+                $current_status = 'subscription';
+
+                $subscription_log = $conn->prepare("INSERT INTO logs (log_owner, log_description, current_status) VALUES (?, ?, ?)");
+                $subscription_log->bind_param("sss", $log_owner, $log_description, $current_status);
+                $subscription_log->execute();
+                $subscription_log->close();
+
+                $conn->commit();
+
+                echo json_encode(['success' => true, 'message' => 'Subscription Successful.']);
+            } catch (Exception $e) {
+
+                $conn->rollback();
+
                 echo json_encode(['success' => false, 'message' => 'Database error']);
             }
-
-            $stmt->close();
         }
     } else {
         echo json_encode(['success' => false, 'message' => 'Invalid email']);

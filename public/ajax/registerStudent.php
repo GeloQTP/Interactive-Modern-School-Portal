@@ -126,9 +126,10 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             $stmt->close();
 
             $log_description = 'New Student Registration';
+            $log_owner = $firstName . ' ' . $lastName;
 
-            $stmt = $conn->prepare("INSERT INTO logs (student_id, log_description) VALUES (?,?)");
-            $stmt->bind_param("is", $student_id, $log_description);
+            $stmt = $conn->prepare("INSERT INTO logs (student_id, log_description, log_owner) VALUES (?,?,?)");
+            $stmt->bind_param("iss", $student_id, $log_description, $log_owner);
             $stmt->execute();
             $stmt->close();
 
