@@ -1,13 +1,3 @@
-<!DOCTYPE html>
-<html lang="en">
-
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-</head>
-
-<body>
     <aside id="sidebar" style="position: fixed; height:100vh;">
         <div class="d-flex">
             <button id="toggle-btn">
@@ -18,14 +8,14 @@
         <ul class="sidebar-nav">
 
             <li class="navbar-item">
-                <a href="#" class="sidebar-link">
+                <a href="/Modern Student Portal/public/admin/Admin Dashboard.php" class="sidebar-link">
                     <i class="bi bi-house"></i>
                     <span>Dashboard</span>
                 </a>
             </li>
 
             <li class="navbar-item">
-                <a href="#" class="sidebar-link">
+                <a href="/Modern Student Portal/public/admin/Pages/Verify Users.php" class="sidebar-link">
                     <i class="bi bi-check-circle"></i>
                     <span>Verify Users</span>
                 </a>
@@ -97,6 +87,3 @@
         </div>
 
     </aside>
-</body>
-
-</html>

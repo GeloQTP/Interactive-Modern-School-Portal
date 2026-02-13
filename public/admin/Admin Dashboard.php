@@ -3,9 +3,7 @@
 //     header('Location: ./public/visitors/Landing%20Page.php');
 //     exit();
 // }
-
 include __DIR__ . '/../../classes/recentActivities.php';
-
 ?>
 
 <!DOCTYPE html>
@@ -18,7 +16,7 @@ include __DIR__ . '/../../classes/recentActivities.php';
     <link rel="icon" type="image/png" href="/Modern Student Portal/src/img/TRC_LOGO.png">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.13.1/font/bootstrap-icons.min.css">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet">
-    <link rel="stylesheet" href="./styles/style.css">
+    <link rel="stylesheet" href="./modules/sidebar.css">
 </head>
 
 <style>
@@ -82,5 +80,6 @@ include __DIR__ . '/../../classes/recentActivities.php';
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"></script>
 <script src="./scripts/DashboardScript.js"></script>
 <script src="./scripts/loadDashboardStats.js"></script>
+<script src="./scripts/sidebar.js"></script>
 
 </html>

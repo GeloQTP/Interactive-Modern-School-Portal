@@ -10,7 +10,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
     $email       = filter_input(INPUT_POST, 'email', FILTER_SANITIZE_EMAIL);
 
-    $stmt = $conn->prepare("SELECT * FROM student_information WHERE Email = ?");
+    $stmt = $conn->prepare("SELECT * FROM user_information WHERE Email = ?");
     $stmt->bind_param("s", $email);
     $stmt->execute();
     $result = $stmt->get_result();
@@ -20,6 +20,10 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $stmt->close();
         exit;
     } else {
+
+        //ROLE
+        $role = 'student';
+
         // PERSONAL INFORMATION
         $firstName     = trim($_POST['firstName'] ?? '');
         $lastName      = trim($_POST['lastName'] ?? '');
@@ -67,7 +71,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
         try {
             // First query - Insert student
-            $stmt = $conn->prepare("INSERT INTO student_information (
+            $stmt = $conn->prepare("INSERT INTO user_information (
+                                            role,
                                             FirstName, LastName, MiddleName, Ext_Name,
                                             BirthDate, Age, Nationality, CivilStatus,
                                             Gender, Email, PhoneNumber, Address, Barangay,
@@ -81,12 +86,13 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                                             ?,?,?,?,?,
                                             ?,?,?,?,?,
                                             ?,?,?,?,
-                                            ?,?
+                                            ?,?,?
                                             )
                                             ");
 
             $stmt->bind_param(
-                "sssssississsssssssssssss",
+                "ssssssississsssssssssssss",
+                $role,
                 $firstName,
                 $lastName,
                 $middleName,

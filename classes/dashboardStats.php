@@ -15,7 +15,7 @@ class DashboardStats
     public function countStudentsByState(string $state): int
     {
         $stmt = $this->conn->prepare(
-            "SELECT COUNT(*) FROM student_information WHERE current_status = ?"
+            "SELECT COUNT(*) FROM user_information WHERE current_status = ?"
         );
         $stmt->bind_param("s", $state);
         $stmt->execute();

@@ -35,7 +35,7 @@
             </div>
 
             <div class="col-md-2 col-5 ms-md-auto">
-                <label for="extensionName" class="lead text-dark">Extention Name</label>
+                <label for="extensionName" class="lead text-dark">Suffix</label>
                 <input type="text" class="form-control form-control-sm text-dark border-1"
                     id="extensionName" name="exName" autocomplete="off">
             </div>

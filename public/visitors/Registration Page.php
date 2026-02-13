@@ -27,6 +27,14 @@
         <section class="bg-light py-5 p-lg-5 mt-5">
             <div class="container">
 
+                <!-- STUDENT / ALUMNI SELECTION -->
+                <div class="d-flex justify-content-center">
+                    <div class="btn-group" role="group" aria-label="Basic outlined example">
+                        <button type="button" class="btn btn-outline-success active">Student</button>
+                        <button type="button" class="btn btn-outline-success">Alumni</button>
+                    </div>
+                </div>
+
                 <?php
                 include __DIR__ . '/modules/RegistrationForm.php'; // REGISTRATION FORM
                 ?>
@@ -34,7 +42,6 @@
                 <?php
                 include __DIR__ . '/modules/OTPModal.php'; // OTP MODAL
                 ?>
-
             </div>
         </section>
     </main>
