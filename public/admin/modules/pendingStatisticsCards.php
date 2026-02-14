@@ -1,0 +1,66 @@
+ <div class="row g-3 mb-4">
+
+     <div class="col-md-6 col-lg-3">
+         <div class="card shadow-sm">
+             <div class="card-body">
+                 <div class="d-flex justify-content-between align-items-center">
+                     <div>
+                         <p class="text-muted mb-1">All Pending</p>
+                         <h3 class="mb-0 fw-bold" id="totalPending">0</h3>
+                     </div>
+                     <div class="stat-icon text-warning">
+                         <i class="bi bi-hourglass h3"></i>
+                     </div>
+                 </div>
+             </div>
+         </div>
+     </div>
+
+     <div class="col-md-6 col-lg-3">
+         <div class="card shadow-sm">
+             <div class="card-body">
+                 <div class="d-flex justify-content-between align-items-center">
+                     <div>
+                         <p class="text-muted mb-1">Pending Student Registrations</p>
+                         <h3 class="mb-0 fw-bold" id="totalStudents">0</h3>
+                     </div>
+                     <div class="stat-icon text-info">
+                         <i class="bi bi-people h2"></i>
+                     </div>
+                 </div>
+             </div>
+         </div>
+     </div>
+
+     <div class="col-md-6 col-lg-3">
+         <div class="card shadow-sm">
+             <div class="card-body">
+                 <div class="d-flex justify-content-between align-items-center">
+                     <div>
+                         <p class="text-muted mb-1">Pending Alumni Registrations</p>
+                         <h3 class="mb-0 fw-bold" id="totalStudents">0</h3>
+                     </div>
+                     <div class="stat-icon text-primary">
+                         <i class="bi bi-mortarboard h2"></i>
+                     </div>
+                 </div>
+             </div>
+         </div>
+     </div>
+
+     <div class="col-md-6 col-lg-3">
+         <div class="card shadow-sm">
+             <div class="card-body">
+                 <div class="d-flex justify-content-between align-items-center">
+                     <div>
+                         <p class="text-muted mb-1">Teachers</p>
+                         <h3 class="mb-0 fw-bold" id="totalStudents">0</h3>
+                     </div>
+                     <div class="stat-icon text-success">
+                         <i class="bi bi-eyeglasses h1"></i>
+                     </div>
+                 </div>
+             </div>
+         </div>
+     </div>
+ </div>

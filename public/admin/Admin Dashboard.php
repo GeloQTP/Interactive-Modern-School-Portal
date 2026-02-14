@@ -3,7 +3,7 @@
 //     header('Location: ./public/visitors/Landing%20Page.php');
 //     exit();
 // }
-include __DIR__ . '/../../classes/recentActivities.php';
+include __DIR__ . '/../../api/recentActivities.php';
 ?>
 
 <!DOCTYPE html>
@@ -76,10 +76,33 @@ include __DIR__ . '/../../classes/recentActivities.php';
     </div>
 
 </body>
-
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"></script>
-<script src="./scripts/DashboardScript.js"></script>
-<script src="./scripts/loadDashboardStats.js"></script>
 <script src="./scripts/sidebar.js"></script>
+
+<script>
+    loadDashboardStats(); // initial load
+    setInterval(loadDashboardStats, 5000); // refresh every 5s
+
+    async function loadDashboardStats() {
+        try {
+            const res = await fetch("../../api/dashboardStats.php", {
+                method: "POST",
+            });
+
+            if (!res.ok) throw new Error("Network Response was not ok.");
+
+            const data = await res.json();
+
+            document.getElementById("totalStudents").textContent = data.totalStudents;
+            document.getElementById("pendingRegistrations").textContent =
+                data.totalPendingRegistrations;
+            document.getElementById("newsLetterSubscribers").textContent =
+                data.totalNewsSubscribers;
+        } catch (error) {
+            document.getElementById("totalStudents").textContent = 0;
+            document.getElementById("pendingRegistrations").textContent = 0;
+        }
+    }
+</script>
 
 </html>

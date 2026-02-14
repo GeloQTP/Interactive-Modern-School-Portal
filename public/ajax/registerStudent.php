@@ -33,7 +33,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $age           = (int) ($_POST['age'] ?? 0);
         $nationality   = trim($_POST['nationality'] ?? '');
         $civilStatus   = $_POST['civilStatus'] ?? '';
-        $gender        = $_POST['gender'] ?? '';
+        $Gender        = $_POST['gender'] ?? '';
 
 
         // CONTACT INFORMATION
@@ -91,7 +91,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                                             ");
 
             $stmt->bind_param(
-                "ssssssississsssssssssssss",
+                "ssssssissssssssssssssssss",
                 $role,
                 $firstName,
                 $lastName,
@@ -101,7 +101,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 $age,
                 $nationality,
                 $civilStatus,
-                $gender,
+                $Gender,
                 $email,
                 $phoneNumber,
                 $address,
