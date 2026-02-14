@@ -38,7 +38,7 @@
     <header>
         <nav class="navbar navbar-expand-lg navbar-dark bg-light fixed-top">
             <div class="container my-1">
-                <a href="/Modern Student Portal/public/visitors/Landing Page.php" class="navbar-brand fw-bold d-flex align-items-center">
+                <a href="/Modern Student Portal/public/visitors/LandingPage.php" class="navbar-brand fw-bold d-flex align-items-center">
                     <span class="px-2">
                         <img src="/Modern Student Portal/src/img/TRC_LOGO.png" alt="Laragon logo" style="width: 50px; border-radius: 100px;">
                     </span>
@@ -55,18 +55,18 @@
                     <ul class="navbar-nav ms-auto">
                         <li class="nav-item">
                             <a class="nav-link text-success"
-                                href="/Modern Student Portal/public/visitors/routes/About Page.php">About</a>
+                                href="/Modern Student Portal/public/visitors/routes/AboutPage.php">About</a>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link text-success"
-                                href="/Modern Student Portal/public/visitors/routes/Admission Page.php">Admission</a>
+                                href="/Modern Student Portal/public/visitors/routes/AdmissionPage.php">Admission</a>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link text-success"
-                                href="/Modern Student Portal/public/visitors/routes/Events Page.php">Events</a>
+                                href="/Modern Student Portal/public/visitors/routes/EventsPage.php">Events</a>
                         </li>
                         <button type="button" class="btn btn-success bg-light text-success ms-lg-3"
-                            onclick="window.location.href='/Modern Student Portal/public/visitors/Login Page.php'">
+                            onclick="window.location.href='/Modern Student Portal/public/visitors/LoginPage.php'">
                             Login
                         </button>
                     </ul>

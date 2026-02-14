@@ -11,7 +11,7 @@
 <body>
     <nav class="navbar navbar-expand-lg navbar-dark bg-light fixed-top">
         <div class="container my-1">
-            <a href="./Landing Page.php" class="navbar-brand fw-bold d-flex align-items-center">
+            <a href="./LandingPage.php" class="navbar-brand fw-bold d-flex align-items-center">
                 <span class="px-2">
                     <img src="/Modern Student Portal/src/img/TRC_LOGO.png" alt="Laragon logo" style="width: 50px; border-radius: 100px;">
                 </span>
@@ -26,9 +26,9 @@
 
             <div class="collapse navbar-collapse" id="navmenu">
                 <ul class="navbar-nav ms-auto">
-                    <li class="nav-item"><a class="nav-link text-success" href="./routes/About Page.php">About</a></li>
-                    <li class="nav-item"><a class="nav-link text-success" href="./routes/Admission Page.php">Admission</a></li>
-                    <li class="nav-item"><a class="nav-link text-success" href="./routes/Events Page.php">Events</a></li>
+                    <li class="nav-item"><a class="nav-link text-success" href="./routes/AboutPage.php">About</a></li>
+                    <li class="nav-item"><a class="nav-link text-success" href="./routes/AdmissionPage.php">Admission</a></li>
+                    <li class="nav-item"><a class="nav-link text-success" href="./routes/EventsPage.php">Events</a></li>
                     <button type="button" class="btn btn-success bg-light text-success ms-lg-3"
                         onclick="window.location.href='./Login Page.php'">
                         Login

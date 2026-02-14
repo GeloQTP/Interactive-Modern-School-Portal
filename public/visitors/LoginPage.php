@@ -54,7 +54,7 @@
     <header>
         <nav class="navbar navbar-expand-lg navbar-dark bg-light fixed-top">
             <div class="container my-1">
-                <a href="/Modern Student Portal/public/visitors/Landing Page.php" class="navbar-brand fw-bold d-flex align-items-center">
+                <a href="/Modern Student Portal/public/visitors/LandingPage.php" class="navbar-brand fw-bold d-flex align-items-center">
                     <span class="px-2">
                         <img src="/Modern Student Portal/src/img/TRC_LOGO.png" alt="Laragon logo" style="width: 50px; border-radius: 100px;">
                     </span>

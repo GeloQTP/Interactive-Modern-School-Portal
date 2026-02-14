@@ -20,7 +20,7 @@
                         Join a world-class university dedicated to academic excellence and innovation.
                     </p>
                     <button class="btn btn-success btn-lg" type="button"
-                        onclick="window.location.href='/Modern Student Portal/public/visitors/Registration Page.php'">Register Now</button>
+                        onclick="window.location.href='/Modern Student Portal/public/visitors/RegistrationPage.php'">Register Now</button>
                 </div>
 
                 <div class="col-sm-6 d-none d-sm-block">
