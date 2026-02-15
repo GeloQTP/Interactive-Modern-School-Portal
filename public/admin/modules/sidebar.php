@@ -17,7 +17,7 @@
             <li class="navbar-item">
                 <a href="/Modern Student Portal/public/admin/Pages/Verify Users.php" class="sidebar-link">
                     <i class="bi bi-check-circle"></i>
-                    <span>Verify Users</span>
+                    <span>Verify Students</span>
                 </a>
             </li>
 

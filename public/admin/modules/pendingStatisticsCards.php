@@ -22,7 +22,7 @@
                  <div class="d-flex justify-content-between align-items-center">
                      <div>
                          <p class="text-muted mb-1">Pending Student Registrations</p>
-                         <h3 class="mb-0 fw-bold" id="totalStudents">0</h3>
+                         <h3 class="mb-0 fw-bold" id="totalPendingStudents">0</h3>
                      </div>
                      <div class="stat-icon text-info">
                          <i class="bi bi-people h2"></i>
@@ -53,7 +53,7 @@
              <div class="card-body">
                  <div class="d-flex justify-content-between align-items-center">
                      <div>
-                         <p class="text-muted mb-1">Teachers</p>
+                         <p class="text-muted mb-1">Pending Teachers' Accounts</p>
                          <h3 class="mb-0 fw-bold" id="totalStudents">0</h3>
                      </div>
                      <div class="stat-icon text-success">

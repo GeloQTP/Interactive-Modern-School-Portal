@@ -8,6 +8,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     header('Content-Type: application/json');
 
     $action = $_POST['action'];
+    $student_id = (int)$_POST['student_id'];
 
     switch ($action) {
 
@@ -16,7 +17,15 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             break;
 
         case 'view':
-            echo json_encode(['message' => 'this is the view case']);
+
+            $stmt = $conn->prepare("SELECT * FROM student_information WHERE student_id = ?");
+            $stmt->bind_param("i", $student_id);
+            $stmt->execute();
+            $result = $stmt->get_result();
+
+            $student = $result->fetch_assoc(); // only one student
+
+            echo json_encode($student); // directly the object
             break;
 
         case 'reject':

@@ -10,7 +10,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
     $email       = filter_input(INPUT_POST, 'email', FILTER_SANITIZE_EMAIL);
 
-    $stmt = $conn->prepare("SELECT * FROM user_information WHERE Email = ?");
+    $stmt = $conn->prepare("SELECT * FROM  WHERE Email = ?");
     $stmt->bind_param("s", $email);
     $stmt->execute();
     $result = $stmt->get_result();
@@ -71,7 +71,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
         try {
             // First query - Insert student
-            $stmt = $conn->prepare("INSERT INTO user_information (
+            $stmt = $conn->prepare("INSERT INTO student_information (
                                             role,
                                             FirstName, LastName, MiddleName, Ext_Name,
                                             BirthDate, Age, Nationality, CivilStatus,

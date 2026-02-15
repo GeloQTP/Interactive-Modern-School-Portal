@@ -23,6 +23,23 @@
 
 <body>
 
+    <!-- TOASTS SECTION -->
+    <div class="toast-container position-fixed bottom-0 end-0 p-3">
+        <div id="liveToast" class="toast bg-light text-dark" role="alert" aria-live="assertive" aria-atomic="true">
+            <div class="toast-header">
+                <img src="/Modern Student Portal/src/img/TRC_LOGO.png" style="width: 30px;" class="rounded me-2 img-fluid"
+                    alt="...">
+                <strong class="me-auto">TRC Notification</strong>
+                <small>just now</small>
+                <button type="button" class="btn-close" data-bs-dismiss="toast" aria-label="Close"></button>
+            </div>
+            <div class="toast-body">
+
+            </div>
+        </div>
+    </div>
+    <!-- TOASTS SECTION -->
+
     <div class="wrapper">
 
         <?php
@@ -42,37 +59,9 @@
                 include __DIR__ . '/../modules/pendingStatisticsCards.php'; // STATISTICS CARDS
                 ?>
 
-                <!-- MODAL -->
-                <div class="modal fade" id="viewStudentDetailsModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                    <div class="modal-dialog modal-xl modal-dialog-centered">
-                        <div class="modal-content">
-                            <div class="modal-header">
-                                <h1 class="modal-title fs-5" id="exampleModalLabel">Details about ${student_name}</h1>
-                                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                            </div>
-                            <div class="modal-body">
-                                <div class="row">
-
-                                    <div class="col-md-4">
-                                        <h5>First Name</h5>
-                                    </div>
-                                    <div class="col-md-4">
-                                        <h5>Last Name</h5>
-                                    </div>
-                                    <div class="col-md-4">
-                                        <h5>Suffix</h5>
-                                    </div>
-
-                                </div>
-                            </div>
-                            <div class="modal-footer">
-                                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                                <button type="button" class="btn btn-primary">Save changes</button>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <!-- MODAL -->
+                <?php
+                include __DIR__ . '/../modules/viewStudentModal.php'; // MODAL
+                ?>
 
                 <!-- FILTER -->
                 <div class="row pt-4">
@@ -85,8 +74,8 @@
                     </div>
 
                     <div class="col-md-2">
-                        <select class="form-select mb-2" aria-label="Large select example" name="selectByProgram">
-                            <option value="" disabled selected>Filter by Program</option>
+                        <select class="form-select mb-2" aria-label="Large select example" onchange="loadStudentRegistration(this.value)" id="filterbyProgram">
+                            <option value="show_all">Show All</option>
                             <option value="education">Education</option>
                             <option value="accounting">Accounting</option>
                             <option value="computer_science">Computer Science</option>
@@ -94,14 +83,6 @@
                         </select>
                     </div>
 
-                    <div class="col-md-2">
-                        <select class="form-select mb-3" aria-label="Large select example" name="selectByRole">
-                            <option value="" disabled selected>Filter by Role</option>
-                            <option value="education">Student</option>
-                            <option value="accounting">Alumni</option>
-                            <option value="computer_science">Teacher</option>
-                        </select>
-                    </div>
                 </div>
                 <!-- FILTER -->
 
@@ -151,15 +132,13 @@
 <script src="../scripts/VerifyUsers.js"></script>
 
 <script>
-    const modal = new bootstrap.Modal(document.getElementById("viewStudentDetailsModal")); //! FOR DESIGNING PURPOSES ONLY
-    modal.show();
-
     loadDashboardStats();
-    loadPendingList();
-    setInterval(loadDashboardStats, 5000); // refresh every 5s
-    // setInterval(loadPendingList, 5000);
+    loadStudentRegistration();
+    setInterval(loadDashboardStats, 5000);
+    setInterval(loadStudentRegistration, 5000);
 
     async function loadDashboardStats() { // LOAD DASHBOARD CARDS
+
         try {
             const res = await fetch("../../../api/dashboardStats.php", {
                 method: "POST",
@@ -169,7 +148,8 @@
 
             const data = await res.json();
 
-            document.getElementById("totalPending").textContent = data.totalPendingRegistrations
+            document.getElementById("totalPending").textContent = data.totalPendingRegistrations;
+            document.getElementById("totalPendingStudents").textContent = data.totalStudentRegistrations;
 
         } catch (error) {
             document.getElementById("totalStudents").textContent = 0;
@@ -177,18 +157,22 @@
         }
     }
 
-    async function loadPendingList() { // LOAD LIST
+    async function loadStudentRegistration(filter) { // LOAD STUDENT REGISTRATION LIST
+
+        const filterBy = filter || document.getElementById("filterbyProgram").value;
 
         try {
             const response = await fetch(`../../../api/getRegistrationList.php`, {
                 method: 'POST',
+                body: new URLSearchParams({
+                    filterBy: filterBy
+                }),
                 credentials: "same-origin"
             });
 
             if (!response.ok) throw new Error
 
             const data = await response.json();
-            console.log(data); // ! DEBUGGING ONLY, REMOVE ON PRODUCTION
 
             const list = data.map(data => {
 
@@ -204,7 +188,6 @@
 
                 const FirstName = data.FirstName;
                 const LastName = data.LastName;
-
 
                 return `
                         <tr>
@@ -227,14 +210,14 @@
             document.getElementById("table_body").innerHTML = list;
 
         } catch (Error) {
-            console.log("Something went wrong.");
+            console.log("Something went wrong. Can't Load Student Registrations");
         } finally {
 
         }
 
     }
 
-    async function verifyStudent(student_id) {
+    async function verifyStudent(student_id) { // SEND VERIFY REQUEST
         try {
 
             const res = await fetch(`../../../api/AdminVerificationController.php`, {
@@ -260,7 +243,25 @@
         }
     }
 
-    async function viewStudent(student_id) {
+    function populateViewModal(data) { // POPULATE MODAL FIELDS
+
+        document.getElementById("student_name").innerHTML = data.FirstName;
+
+        Object.keys(data).forEach(key => {
+            const element = document.getElementById(key);
+            if (element) {
+                element.textContent = data[key] || "N/A";
+            }
+        });
+    }
+
+
+    async function viewStudent(student_id) { // SEND VIEW REQUEST 
+        const placeholders = document.querySelectorAll(".placeholders");
+
+        placeholders.forEach((el) => {
+            el.classList.add("placeholder", "bg-dark");
+        });
 
         try {
 
@@ -277,8 +278,14 @@
                 throw new Error(`HTTP error! Status: ${res.status}`);
             }
 
-            const data = await res.text();
-            console.log(data);
+            const data = await res.json();
+
+
+            placeholders.forEach((el) => {
+                el.classList.remove("placeholder", "bg-dark");
+            });
+
+            populateViewModal(data);
 
         } catch (error) {
             console.error("View student failed:", error);
@@ -288,7 +295,7 @@
 
     }
 
-    async function rejectStudent(student_id) {
+    async function rejectStudent(student_id) { // SEND REJECT REQUEST
 
         try {
 
@@ -307,6 +314,8 @@
 
             const data = await res.text();
             console.log(data);
+
+            // * loadPendingList(); LOAD AGAIN TO REFRESH THE LIST
 
         } catch (error) {
             console.error("View student failed:", error);
