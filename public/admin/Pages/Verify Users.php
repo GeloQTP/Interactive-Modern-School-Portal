@@ -88,7 +88,7 @@
                 <!-- FILTER -->
 
                 <!-- TABLE -->
-                <table class="table table-hover border">
+                <table class="table table-hover border"> <!--TODO: ADD overflow to the table so it's not showing a long list-->
                     <thead class="text-center d-fix">
                         <tr>
 
