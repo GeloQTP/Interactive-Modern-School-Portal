@@ -6,10 +6,10 @@ mysqli_report(MYSQLI_REPORT_STRICT || MYSQLI_REPORT_ERROR);
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
-    $filterBy = $_POST['filterBy'] ?? '';
+    $filterBy = (string)($_POST['filterBy'] ?? '');
 
     if (
-        empty($filterBy) || $filterBy === "undefined" || $filterBy === "show_all"
+        empty($filterBy) || $filterBy === "undefined" || $filterBy === "show_all" // NO FILTER - SELECT ALL
     ) {
         $current_status = 'pending';
         $stmt = $conn->prepare("SELECT * FROM student_information WHERE current_status = ?");
@@ -24,7 +24,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         }
 
         echo json_encode($list);
-    } else {
+    } else if ($filterBy) { // FILTER ENABLED
         $current_status = 'pending';
         $stmt = $conn->prepare("SELECT * FROM student_information WHERE current_status = ? AND Program = ?");
         $stmt->bind_param("ss", $current_status, $filterBy);

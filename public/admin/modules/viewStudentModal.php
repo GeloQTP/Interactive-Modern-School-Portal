@@ -135,12 +135,29 @@
                         <small id="GuardianEmail" class="placeholders">loading...</small>
                     </div>
 
+                    <p class="display-6 mb-4 w-100 text-dark fs-2" style="border-bottom:1px solid green">
+                        Account Information
+                    </p>
+
+                    <div class="col-lg-3 mb-5">
+                        <strong>Account Username</strong><br>
+                        <small id="account_username" class="placeholders">loading...</small>
+                    </div>
+                    <div class="col-lg-3 mb-5">
+                        <strong>Recovery Email</strong><br>
+                        <small id="recovery_email" class="placeholders">loading...</small>
+                    </div>
+                    <div class="col-lg-3 mb-5">
+                        <strong>Account Role</strong><br>
+                        <small id="role" class="placeholders">loading...</small>
+                    </div>
+
                 </div>
             </div>
 
             <div class="modal-footer">
                 <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                <button type="button" class="btn btn-primary">Save changes</button>
+                <button type="button" class="btn btn-primary" id="verify_student" onclick="console.log(this.value)">Verify Student</button>
             </div>
         </div>
     </div>

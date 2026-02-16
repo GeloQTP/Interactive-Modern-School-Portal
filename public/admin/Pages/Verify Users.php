@@ -69,12 +69,13 @@
                     <div class="col-md-4">
                         <div class="input-group mb-2">
                             <span class="input-group-text" id="visible-addon"><i class="bi bi-search"></i></span>
-                            <input type="text" class="form-control rounded-2" placeholder="Search by First Name..." aria-label="Username" aria-describedby="visible-addon" name="searchbar">
+                            <input type="text" class="form-control rounded-2" placeholder="Search by Last Name..." aria-label="Username" aria-describedby="visible-addon" name="searchbar" onkeyup="searchStudent(this.value)" id="searchInput">
                         </div>
                     </div>
 
                     <div class="col-md-2">
                         <select class="form-select mb-2" aria-label="Large select example" onchange="loadStudentRegistration(this.value)" id="filterbyProgram">
+                            <option value="" disabled selected>Filter by Program</option>
                             <option value="show_all">Show All</option>
                             <option value="education">Education</option>
                             <option value="accounting">Accounting</option>
@@ -88,7 +89,7 @@
 
                 <!-- TABLE -->
                 <table class="table table-hover border">
-                    <thead class="text-center">
+                    <thead class="text-center d-fix">
                         <tr>
 
                             <th scope="col">Role</th>
@@ -107,9 +108,9 @@
                             <td>${LastName}</td>
                             <td>${data.Program}</td>
                             <td>
-                                <button type="button" class="btn btn-sm btn-success" onclick="verifyStudent()"><i class="bi bi-check2-circle h5"></i></button>
-                                <button type="button" class="btn btn-sm btn-info" onclick="viewStudent()" data-bs-toggle="modal" data-bs-target="#viewStudentDetailsModal"><i class="bi bi-eye h5"></i></button>
-                                <button type="button" class="btn btn-sm btn-danger" onclick="rejectStudent()"><i class="bi bi-trash h5"></i></button>
+                                <button type="button" class="btn btn-sm btn-success" onclick=""><i class="bi bi-check2-circle h5"></i></button>
+                                <button type="button" class="btn btn-sm btn-info" onclick="" data-bs-toggle="modal" data-bs-target="#viewStudentDetailsModal"><i class="bi bi-eye h5"></i></button>
+                                <button type="button" class="btn btn-sm btn-danger" onclick=""><i class="bi bi-trash h5"></i></button>
                             </td>
                         </tr>
                     </tbody>
@@ -117,10 +118,6 @@
                 <!-- TABLE -->
 
             </div>
-
-
-
-
         </div>
 
     </div>
@@ -135,7 +132,6 @@
     loadDashboardStats();
     loadStudentRegistration();
     setInterval(loadDashboardStats, 5000);
-    setInterval(loadStudentRegistration, 5000);
 
     async function loadDashboardStats() { // LOAD DASHBOARD CARDS
 
@@ -217,6 +213,72 @@
 
     }
 
+    async function searchStudent(searchQueue) { // SEARCH STUDENT MANUALLY
+
+        const searchInputVal = document.getElementById("searchInput").value;
+        if (!searchInputVal || searchInputVal === '') { // CHECKS IF SEARCH INPUT IS EMPTY
+            loadStudentRegistration();
+            return;
+        }
+
+        const filterbyProgram = document.getElementById("filterbyProgram").value || 'undefined';
+
+        try {
+            const res = await fetch(`../../../api/search.php`, {
+                method: 'POST',
+                body: new URLSearchParams({
+                    searchQueue: searchQueue,
+                    filterbyProgram: filterbyProgram,
+                    current_status: 'pending'
+                }),
+                credentials: 'same-origin'
+            });
+
+            const data = await res.json();
+
+            const list = data.map(data => {
+
+                const role = data.role;
+
+                const badgeColors = {
+                    student: "info",
+                    alumni: "primary",
+                };
+
+                const badge_color = badgeColors[role] || "secondary";
+
+
+                const FirstName = data.FirstName;
+                const LastName = data.LastName;
+
+                return `
+                        <tr>
+                            <td>
+                                <h6><span class="badge bg-${badge_color} text-light" style="transform: translate(0px, 4px);">${role}</span></h6>
+                            </td>
+                                <td>${FirstName}</td>
+                                <td>${LastName}</td>
+                                <td>${data.Program}</td>
+                             <td>
+                                <button type="button" class="btn btn-sm btn-success" onclick="verifyStudent(${data.student_id})"><i class="bi bi-check2-circle h5"></i></button>
+                                <button type="button" class="btn btn-sm btn-info" onclick="viewStudent(${data.student_id})" data-bs-toggle="modal" data-bs-target="#viewStudentDetailsModal"><i class="bi bi-eye h5"></i></button>
+                                <button type="button" class="btn btn-sm btn-danger" onclick="rejectStudent(${data.student_id})"><i class="bi bi-trash h5"></i></button>
+                            </td>
+                        </tr>
+
+                `;
+            }).join('');
+
+            document.getElementById("table_body").innerHTML = list;
+
+        } catch (error) {
+
+        } finally {
+
+        }
+
+    }
+
     async function verifyStudent(student_id) { // SEND VERIFY REQUEST
         try {
 
@@ -255,7 +317,6 @@
         });
     }
 
-
     async function viewStudent(student_id) { // SEND VIEW REQUEST 
         const placeholders = document.querySelectorAll(".placeholders");
 
@@ -280,6 +341,7 @@
 
             const data = await res.json();
 
+            document.getElementById("verify_student").value = student_id;
 
             placeholders.forEach((el) => {
                 el.classList.remove("placeholder", "bg-dark");
