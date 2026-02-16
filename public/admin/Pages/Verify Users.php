@@ -218,7 +218,7 @@
 
     async function searchStudent(searchQueue) { // SEARCH STUDENT MANUALLY
 
-        const filterbyProgram = document.getElementById("filterbyProgram").value || 'undefined';
+        const filterbyProgram = document.getElementById("filterbyProgram").value || '';
 
         const searchInputVal = document.getElementById("searchInput").value;
         if (!searchInputVal || searchInputVal === '') { // CHECKS IF SEARCH INPUT IS EMPTY
@@ -227,7 +227,7 @@
         }
 
         try {
-            const res = await fetch(`../../../api/search.php`, { //! BUG: SEARCHING NAMES EXISTING IN A PROGRAM DOES NOT APPEAR (NEEDS TO RE-SELECT FOR IT TO APPEAR)
+            const res = await fetch(`../../../api/search.php`, {
                 method: 'POST',
                 body: new URLSearchParams({
                     searchQueue: searchQueue,

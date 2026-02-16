@@ -15,7 +15,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $stmt = $conn->prepare("SELECT * FROM student_information WHERE current_status = ? AND LastName LIKE ?");
         $stmt->bind_param("ss", $current_status, $searchQueue);
     } else if ($searchQueue && $filterbyProgram) {
-        $stmt = $conn->prepare("SELECT * FROM student_information WHERE current_status = ? AND Program = ? AND FirstName LIKE ?");
+        $stmt = $conn->prepare("SELECT * FROM student_information WHERE current_status = ? AND Program = ? AND LastName LIKE ?");
         $stmt->bind_param("sss", $current_status, $filterbyProgram, $searchQueue);
     }
 
