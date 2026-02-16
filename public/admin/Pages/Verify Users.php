@@ -156,12 +156,15 @@
     async function loadStudentRegistration(filter) { // LOAD STUDENT REGISTRATION LIST
 
         const filterBy = filter || document.getElementById("filterbyProgram").value;
+        const searchQueue = document.getElementById("searchInput").value;
 
         try {
             const response = await fetch(`../../../api/getRegistrationList.php`, {
                 method: 'POST',
                 body: new URLSearchParams({
-                    filterBy: filterBy
+                    filterBy: filterBy,
+                    searchQueue: searchQueue,
+                    current_status: 'pending',
                 }),
                 credentials: "same-origin"
             });
@@ -215,16 +218,16 @@
 
     async function searchStudent(searchQueue) { // SEARCH STUDENT MANUALLY
 
+        const filterbyProgram = document.getElementById("filterbyProgram").value || 'undefined';
+
         const searchInputVal = document.getElementById("searchInput").value;
         if (!searchInputVal || searchInputVal === '') { // CHECKS IF SEARCH INPUT IS EMPTY
             loadStudentRegistration();
             return;
         }
 
-        const filterbyProgram = document.getElementById("filterbyProgram").value || 'undefined';
-
         try {
-            const res = await fetch(`../../../api/search.php`, {
+            const res = await fetch(`../../../api/search.php`, { //! BUG: SEARCHING NAMES EXISTING IN A PROGRAM DOES NOT APPEAR (NEEDS TO RE-SELECT FOR IT TO APPEAR)
                 method: 'POST',
                 body: new URLSearchParams({
                     searchQueue: searchQueue,

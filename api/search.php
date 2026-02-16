@@ -6,17 +6,17 @@ mysqli_report(MYSQLI_REPORT_STRICT || MYSQLI_REPORT_ERROR);
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
-    $queue = trim((string)($_POST['searchQueue'] ?? ''));
-    $filterByCourse = (string)($_POST['filterbyProgram'] ?? '');
+    $searchQueue = trim((string)($_POST['searchQueue'] ?? ''));
+    $filterbyProgram = (string)($_POST['filterbyProgram'] ?? '');
     $current_status = (string)($_POST['current_status'] ?? '');
-    $queue = $queue . '%';
+    $searchQueue = '%' . $searchQueue . '%';
 
-    if (empty($filterByCourse) || $filterByCourse === "undefined" || $filterByCourse === "show_all") { // NO SELECTION FILTER
+    if (empty($filterbyProgram) || $filterbyProgram === "undefined" || $filterbyProgram === "show_all") { // NO SELECTION FILTER
         $stmt = $conn->prepare("SELECT * FROM student_information WHERE current_status = ? AND LastName LIKE ?");
-        $stmt->bind_param("ss", $current_status, $queue);
-    } else if ($queue && $filterByCourse) {
+        $stmt->bind_param("ss", $current_status, $searchQueue);
+    } else if ($searchQueue && $filterbyProgram) {
         $stmt = $conn->prepare("SELECT * FROM student_information WHERE current_status = ? AND Program = ? AND FirstName LIKE ?");
-        $stmt->bind_param("sss", $current_status, $filterByCourse, $queue);
+        $stmt->bind_param("sss", $current_status, $filterbyProgram, $searchQueue);
     }
 
     $stmt->execute();
