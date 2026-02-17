@@ -29,6 +29,13 @@
             </li>
 
             <li class="navbar-item">
+                <a href="/Modern Student Portal/public/admin/Pages/Verify Users.php" class="sidebar-link">
+                    <i class="bi bi-eyeglasses"></i>
+                    <span>Assign Teachers</span>
+                </a>
+            </li>
+
+            <li class="navbar-item">
                 <a href="#" class="sidebar-link">
                     <i class="bi bi-file-earmark-text"></i>
                     <span>Content & Posts</span>

@@ -18,7 +18,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
         case 'view':
 
-            $stmt = $conn->prepare("SELECT * FROM student_information INNER JOIN users WHERE student_information.student_id = ?");
+            $stmt = $conn->prepare("SELECT * FROM user_information INNER JOIN users WHERE user_information.student_id = ?");
             $stmt->bind_param("i", $student_id);
             $stmt->execute();
             $result = $stmt->get_result();

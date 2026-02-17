@@ -129,6 +129,7 @@
 
 </body>
 
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"></script>
 <script src="../scripts/sidebar.js"></script>
 <script src="../scripts/VerifyUsers.js"></script>
@@ -288,6 +289,9 @@
     }
 
     async function verifyStudent(student_id) { // SEND VERIFY REQUEST
+
+        const toastBootstrap = bootstrap.Modal.getOrCreateInstance(document.getElementById("viewStudentDetailsModal"));
+
         try {
 
             const res = await fetch(`../../../api/AdminVerificationController.php`, {
@@ -305,6 +309,17 @@
 
             const data = await res.text();
             console.log(data);
+
+            toastBootstrap.hide();
+
+            Swal.fire({
+                title: "Verification Successful",
+                text: "Student account is now verified.",
+                icon: "success",
+                timer: 2000,
+                showConfirmButton: false
+            });
+
 
         } catch (error) {
             console.error("View student failed:", error);

@@ -69,4 +69,6 @@
     </div>
 </body>
 
+<script src="./../scripts/OTP_Autonext.js"></script>
+
 </html>

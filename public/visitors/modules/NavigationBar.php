@@ -30,7 +30,7 @@
                     <li class="nav-item"><a class="nav-link text-success" href="./routes/AdmissionPage.php">Admission</a></li>
                     <li class="nav-item"><a class="nav-link text-success" href="./routes/EventsPage.php">Events</a></li>
                     <button type="button" class="btn btn-success bg-light text-success ms-lg-3"
-                        onclick="window.location.href='./Login Page.php'">
+                        onclick="window.location.href='./LoginPage.php'">
                         Login
                     </button>
                 </ul>

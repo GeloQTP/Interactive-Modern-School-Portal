@@ -27,11 +27,16 @@
         <section class="bg-light py-5 p-lg-5 mt-5">
             <div class="container">
 
+                <h1 class="lead display-5 mb-3 w-100 text-dark text-center mb-4" style="border-bottom:1px solid green">
+                    Student Registration
+                </h1>
+
                 <!-- STUDENT / ALUMNI SELECTION -->
-                <div class="d-flex justify-content-center">
+                <div class="d-flex justify-content-center mb-4">
                     <div class="btn-group" role="group" aria-label="Basic outlined example">
-                        <button type="button" class="btn btn-outline-success active">Student</button>
-                        <button type="button" class="btn btn-outline-success">Alumni</button>
+                        <button type="button" class="btn btn-outline-success active" onclick="window.location.href='/Modern Student Portal/public/visitors/RegistrationPage.php'">Student</button>
+                        <button type="button" class="btn btn-outline-success disabled">or</button>
+                        <button type="button" class="btn btn-outline-success" onclick="window.location.href='/Modern Student Portal/public/visitors/AlumniRegistrationPage.php'">Alumni</button>
                     </div>
                 </div>
 
@@ -56,5 +61,13 @@
 
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"></script>
 <script src="./scripts/RegistrationPage.js"></script>
+
+<script>
+    // LOADER ANIMATION
+    const spinner = document.querySelector(".spinner-wrapper");
+    window.addEventListener("load", () => {
+        setTimeout(() => (spinner.style.display = "none"), 1000);
+    });
+</script>
 
 </html>
