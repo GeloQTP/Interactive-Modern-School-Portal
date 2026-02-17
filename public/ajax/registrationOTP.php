@@ -12,7 +12,7 @@ require __DIR__ . '/../vendor/autoload.php';
 $dotenv = Dotenv\Dotenv::createImmutable(__DIR__, 'PHPMailer.env');
 $dotenv->load();
 
-if ($_SERVER['REQUEST_METHOD'] == "POST") {
+if ($_SERVER['REQUEST_METHOD'] === "POST") {
 
     // Read action from POST
     $action = $_POST['action'] ?? '';
