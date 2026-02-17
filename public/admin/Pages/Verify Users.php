@@ -21,6 +21,22 @@
     <link rel="stylesheet" href="./../modules/sidebar.css">
 </head>
 
+<style>
+    .table-container {
+        max-height: calc(100vh - 290px);
+        /* adjust height */
+        overflow-y: auto;
+    }
+
+    .table-container thead th {
+        position: sticky;
+        top: 0;
+        background: white;
+        /* important so it doesn't become transparent */
+        z-index: 2;
+    }
+</style>
+
 <body>
 
     <!-- TOASTS SECTION -->
@@ -88,33 +104,22 @@
                 <!-- FILTER -->
 
                 <!-- TABLE -->
-                <table class="table table-hover border"> <!--TODO: ADD overflow to the table so it's not showing a long list-->
-                    <thead class="text-center d-fix">
-                        <tr>
-
-                            <th scope="col">Role</th>
-                            <th scope="col">First Name</th>
-                            <th scope="col">Last Name</th>
-                            <th scope="col">Course</th>
-                            <th scope="col">Operations</th>
-                        </tr>
-                    </thead>
-                    <tbody class="text-center" id="table_body">
-                        <tr>
-                            <td>
-                                <h6><span class="badge bg-${badge_color} text-light" style="transform: translate(0px, 4px);">${role}</span></h6>
-                            </td>
-                            <td>${FirstName}</td>
-                            <td>${LastName}</td>
-                            <td>${data.Program}</td>
-                            <td>
-                                <button type="button" class="btn btn-sm btn-success" onclick=""><i class="bi bi-check2-circle h5"></i></button>
-                                <button type="button" class="btn btn-sm btn-info" onclick="" data-bs-toggle="modal" data-bs-target="#viewStudentDetailsModal"><i class="bi bi-eye h5"></i></button>
-                                <button type="button" class="btn btn-sm btn-danger" onclick=""><i class="bi bi-trash h5"></i></button>
-                            </td>
-                        </tr>
-                    </tbody>
-                </table>
+                <div class="table-container border">
+                    <table class="table table-hover mb-0">
+                        <thead class="text-center">
+                            <tr>
+                                <th scope="col">Role</th>
+                                <th scope="col">First Name</th>
+                                <th scope="col">Last Name</th>
+                                <th scope="col">Course</th>
+                                <th scope="col">Operations</th>
+                            </tr>
+                        </thead>
+                        <tbody class="text-center" id="table_body">
+                            <!-- dynamic rows -->
+                        </tbody>
+                    </table>
+                </div>
                 <!-- TABLE -->
 
             </div>
