@@ -37,7 +37,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
 
         // CONTACT INFORMATION
-        $email       = filter_input(INPUT_POST, 'email', FILTER_SANITIZE_EMAIL);
         $phoneNumber = preg_replace('/[^0-9]/', '', $_POST['phoneNumber'] ?? '');
         $address     = trim($_POST['address'] ?? '');
         $barangay    = trim($_POST['barangayInput'] ?? '');
@@ -124,10 +123,10 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             $stmt->close();
 
             // Second query - Insert account
-            $stmt = $conn->prepare("INSERT INTO users (student_id, account_username, account_password, recovery_email) 
-                                VALUES (?,?,?,?)");
+            $stmt = $conn->prepare("INSERT INTO users (student_id, account_username, account_password, recovery_email, role) 
+                                VALUES (?,?,?,?,?)");
 
-            $stmt->bind_param("isss", $student_id, $accountUsername, $hashedPassword, $recoveryEmail);
+            $stmt->bind_param("issss", $student_id, $accountUsername, $hashedPassword, $recoveryEmail, $role);
             $stmt->execute();
             $stmt->close();
 

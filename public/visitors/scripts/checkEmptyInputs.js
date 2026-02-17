@@ -1,4 +1,4 @@
-export function validateInputs() {
+function validateInputs() {
   const registrationForm = {
     // Personal Information
     firstName: document.getElementById("firstNameInput").value,
@@ -50,7 +50,7 @@ export function validateInputs() {
   }
 }
 
-export function validateEmail() {
+function validateEmail() {
   const recoveryEmailInput = document.getElementById("recoveryEmailInput");
   const emailStatus = document.getElementById("emailStatus");
 
@@ -79,7 +79,7 @@ export function validateEmail() {
   return true;
 }
 
-export function validatePassword() {
+function validatePassword() {
   const password = document.getElementById("passwordInput").value,
     confirmPassword = document.getElementById("confirmPassword").value;
 
@@ -103,3 +103,22 @@ export function validatePassword() {
   confirmPasswordInput.classList.add("border-success");
   return true;
 }
+
+window.addEventListener("DOMContentLoaded", () => {
+  const registerBtn = document.getElementById("registerBtn"),
+    understoodEULAButton = document.getElementById("acceptEULA"),
+    eulaCheckBox = document.getElementById("termsCheck");
+  registerBtn.disabled = true;
+  understoodEULAButton.disabled = true;
+
+  document.getElementById("registrationForm").addEventListener("input", () => {
+    const isValid = validateInputs() && validateEmail() && validatePassword();
+    registerBtn.disabled = !isValid;
+
+    if (eulaCheckBox.checked) {
+      understoodEULAButton.disabled = false;
+    } else {
+      understoodEULAButton.disabled = true;
+    }
+  });
+});

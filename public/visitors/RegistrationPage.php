@@ -60,7 +60,10 @@
 </body>
 
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"></script>
-<script src="./scripts/RegistrationPage.js"></script>
+<script type="module" src="./scripts/RegistrationPage.js" type="module"></script>
+<script src="./scripts/autoAgeCalc.js"></script>
+<script src="./scripts/OTP_Autonext.js"></script>
+<script src="./scripts/checkEmptyInputs.js"></script>
 
 <script>
     // LOADER ANIMATION

@@ -1,12 +1,3 @@
-import {
-  // CHECK AND VALIDATE INPUTS
-  validateInputs,
-  validateEmail,
-  validatePassword,
-} from "./checkEmptyInputs.js";
-
-import { calculateAge } from "./autoAgeCalc.js"; // AUTO AGE CALCULATION
-
 import { sendOTP } from "./sendOTP.js"; // SEND OTP
 import { verifyOTP } from "./VerifyAndRegisterStudents.js"; // VERIFY OTP
 
