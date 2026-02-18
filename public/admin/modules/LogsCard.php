@@ -1,5 +1,5 @@
     <div class="col-lg-8">
-        <div class="card" style="height: 38.5vh;">
+        <div class="card col-12" style="height: 38.5vh;">
 
             <div class="d-flex align-items-center justify-content-between border-bottom">
                 <p class="text-muted fw-bold" style="transform: translate(19px,8.5px);">Recent Activities</p>

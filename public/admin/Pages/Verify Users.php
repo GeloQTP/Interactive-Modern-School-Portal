@@ -365,7 +365,6 @@
             }
 
             const data = await res.json();
-            console.log(data);
 
             document.getElementById("verify_student").value = student_id;
 
