@@ -5,7 +5,7 @@ mysqli_report(MYSQLI_REPORT_STRICT || MYSQLI_REPORT_ERROR);
 
 
 $start = 0;
-$rows_per_page = 9;
+$rows_per_page = 19;
 
 
 //get the total number of logs from the database
