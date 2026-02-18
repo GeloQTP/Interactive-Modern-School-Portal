@@ -93,10 +93,10 @@
                         <select class="form-select mb-2" aria-label="Large select example" onchange="loadStudentRegistration(this.value)" id="filterbyProgram">
                             <option value="" disabled selected>Filter by Program</option>
                             <option value="show_all">Show All</option>
-                            <option value="education">Education</option>
-                            <option value="accounting">Accounting</option>
-                            <option value="computer_science">Computer Science</option>
-                            <option value="business_management">Business Management</option>
+                            <option value="BEED">BEED</option>
+                            <option value="BSA">BSA</option>
+                            <option value="BSCS">BSCS</option>
+                            <option value="BSBM">BSBM</option>
                         </select>
                     </div>
 

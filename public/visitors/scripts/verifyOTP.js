@@ -48,7 +48,7 @@ export async function verifyOTP(e) {
       // IF OTP VERIFICATION IS A SUCCESS
       const form = document.getElementById("registrationForm");
 
-      const registerRes = await fetch(`../ajax/registerStudent.php`, {
+      const registerRes = await fetch(`../ajax/registerUser.php`, {
         method: "POST",
         body: new FormData(form),
         credentials: "same-origin",

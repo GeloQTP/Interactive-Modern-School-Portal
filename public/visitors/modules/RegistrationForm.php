@@ -12,6 +12,8 @@
     <form class="input-group d-flex align-items-center justify-content-center"
         id="registrationForm">
 
+        <input type="hidden" value="student" name="role"> <!--ROLE (DO NOT REMOVE)-->
+
         <h1 class="lead display-5 mb-5 w-100 text-dark" style="border-bottom:1px solid green">
             Personal Information
         </h1>
@@ -137,10 +139,10 @@
                 <select class="form-select form-select-sm text-dark border-1"
                     id="programInput" name="program" required>
                     <option value="" disabled selected>Select Program</option>
-                    <option value="education">Education</option>
-                    <option value="accounting">Accounting</option>
-                    <option value="computer_science">Computer Science</option>
-                    <option value="business_management">Business Management</option>
+                    <option value="BEED">BEED</option>
+                    <option value="BSA">BSA</option>
+                    <option value="BSCS">BSCS</option>
+                    <option value="BSBM">BSBM</option>
                 </select>
             </div>
 

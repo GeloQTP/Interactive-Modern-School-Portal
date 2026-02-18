@@ -1,5 +1,5 @@
 import { sendOTP } from "./scripts/sendOTP.js"; // SEND OTP
-import { verifyOTP } from "./scripts/sendOTP"; //VERIFY OTP
+import { verifyOTP } from "./scripts/verifyOTP.js"; //VERIFY OTP
 
 const form = document.getElementById("registrationForm");
 form.addEventListener("submit", sendOTP);

@@ -21,47 +21,47 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         exit;
     } else {
 
-        //ROLE
-        $role = 'student';
+        $role = (string)($_POST['role'] ?? '');
 
         // PERSONAL INFORMATION
-        $firstName     = trim($_POST['firstName'] ?? '');
-        $lastName      = trim($_POST['lastName'] ?? '');
-        $middleName    = trim($_POST['middleName'] ?? '');
-        $extensionName = trim($_POST['exName'] ?? '');
-        $birthDate     = $_POST['birthDate'] ?? '';
+        $firstName     = trim($_POST['firstName'] ?? 'N/A');
+        $lastName      = trim($_POST['lastName'] ?? 'N/A');
+        $middleName    = trim($_POST['middleName'] ?? 'N/A');
+        $extensionName = trim($_POST['exName'] ?? 'N/A');
+        $birthDate     = $_POST['birthDate'] ?? 'N/A';
         $age           = (int) ($_POST['age'] ?? 0);
-        $nationality   = trim($_POST['nationality'] ?? '');
-        $civilStatus   = $_POST['civilStatus'] ?? '';
-        $Gender        = $_POST['gender'] ?? '';
+        $nationality   = trim($_POST['nationality'] ?? 'N/A');
+        $civilStatus   = $_POST['civilStatus'] ?? 'N/A';
+        $Gender        = $_POST['gender'] ?? 'N/A';
 
 
         // CONTACT INFORMATION
-        $phoneNumber = preg_replace('/[^0-9]/', '', $_POST['phoneNumber'] ?? '');
-        $address     = trim($_POST['address'] ?? '');
-        $barangay    = trim($_POST['barangayInput'] ?? '');
-        $city        = trim($_POST['city'] ?? '');
-        $province    = trim($_POST['province'] ?? '');
-        $zipCode     = trim($_POST['zipCode'] ?? '');
+        $phoneNumber = preg_replace('/[^0-9]/', '', $_POST['phoneNumber'] ?? 'N/A');
+        $address     = trim($_POST['address'] ?? 'N/A');
+        $barangay    = trim($_POST['barangayInput'] ?? 'N/A');
+        $city        = trim($_POST['city'] ?? 'N/A');
+        $province    = trim($_POST['province'] ?? 'N/A');
+        $zipCode     = trim($_POST['zipCode'] ?? 'N/A');
 
 
         // ACADEMIC INFORMATION
-        $program        = $_POST['program'] ?? '';
-        $yearLevel      = $_POST['yearLevel'] ?? '';
-        $studentType    = $_POST['studentType'] ?? '';
-        $enrollmentType = $_POST['enrollmentType'] ?? '';
+        $program        = $_POST['program'] ?? 'N/A';
+        $yearLevel      = $_POST['yearLevel'] ?? 'N/A';
+        $studentType    = $_POST['studentType'] ?? 'N/A';
+        $enrollmentType = $_POST['enrollmentType'] ?? 'N/A';
 
+        
 
         // EMERGENCY CONTACT
-        $guardianName  = trim($_POST['guardianName'] ?? '');
-        $relationship  = $_POST['relationship'] ?? '';
-        $guardianPhone = preg_replace('/[^0-9]/', '', $_POST['guardianPhone'] ?? '');
+        $guardianName  = trim($_POST['guardianName'] ?? 'N/A');
+        $relationship  = $_POST['relationship'] ?? 'N/A';
+        $guardianPhone = preg_replace('/[^0-9]/', '', $_POST['guardianPhone'] ?? 'N/A');
         $guardianEmail = filter_input(INPUT_POST, 'guardianEmail', FILTER_SANITIZE_EMAIL);
 
 
         // ACCOUNT INFORMATION
-        $accountUsername = trim($_POST['accountUsername'] ?? '');
-        $password        = $_POST['password'] ?? '';
+        $accountUsername = trim($_POST['accountUsername'] ?? 'N/A');
+        $password        = $_POST['password'] ?? 'N/A';
         $hashedPassword  = password_hash($password, PASSWORD_BCRYPT);
         $recoveryEmail   = filter_input(INPUT_POST, 'recoveryInput', FILTER_SANITIZE_EMAIL);
 
