@@ -16,7 +16,6 @@
     <?php
     include __DIR__ . '/modules/Spinner&Toast.php'; // SPINNER AND TOAST NOTIFICATION
     ?>
-
     <header>
         <?php
         include __DIR__ . '/modules/NavigationBar.php'; // NAVIGATION BAR
@@ -47,6 +46,7 @@
                 <?php
                 include __DIR__ . '/modules/OTPModal.php'; // OTP MODAL
                 ?>
+
             </div>
         </section>
     </main>

@@ -43,13 +43,12 @@ export async function verifyOTP(e) {
     }
 
     const response = await res.json(); // * JSON RESPONSE
-    console.log(response);
 
     if (response.success) {
       // IF OTP VERIFICATION IS A SUCCESS
       const form = document.getElementById("registrationForm");
 
-      const registerRes = await fetch(`../ajax/registerAlumni.php`, { // ! CHANGE THIS, NOT THE ENDPOINT THAT'LL BE USED
+      const registerRes = await fetch(`../ajax/registerAlumni.php`, {
         method: "POST",
         body: new FormData(form),
         credentials: "same-origin",
@@ -65,7 +64,6 @@ export async function verifyOTP(e) {
       }
 
       const registerResponse = await registerRes.json(); // * JSON RESPONSE 
-      console.log(registerResponse);
 
       if (registerResponse.success) {
         // IF REGISTRATION IS A SUCCESS

@@ -113,12 +113,9 @@ window.addEventListener("DOMContentLoaded", () => {
 
   document.getElementById("registrationForm").addEventListener("input", () => {
     const isValid = validateInputs() && validateEmail() && validatePassword();
+    
     registerBtn.disabled = !isValid;
+    understoodEULAButton.disabled = !eulaCheckBox.checked;
 
-    if (eulaCheckBox.checked) {
-      understoodEULAButton.disabled = false;
-    } else {
-      understoodEULAButton.disabled = true;
-    }
   });
 });

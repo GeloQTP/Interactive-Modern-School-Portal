@@ -43,7 +43,6 @@ export async function verifyOTP(e) {
     }
 
     const response = await res.json(); // * JSON RESPONSE
-    console.log(response);
 
     if (response.success) {
       // IF OTP VERIFICATION IS A SUCCESS
@@ -65,7 +64,6 @@ export async function verifyOTP(e) {
       }
 
       const registerResponse = await registerRes.json(); // * JSON RESPONSE
-      console.log(registerResponse);
 
       if (registerResponse.success) {
         // IF REGISTRATION IS A SUCCESS

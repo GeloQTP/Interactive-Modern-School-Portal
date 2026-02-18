@@ -98,15 +98,13 @@
                                 required autocomplete="off">
                         </div>
 
-                    </div>
 
 
-                    <!-- ACADEMIC INFORMATION -->
-                    <h1 class="lead display-5 mb-5 w-100 text-dark mt-5" style="border-bottom:1px solid green">
-                        Academic Information
-                    </h1>
+                        <!-- ACADEMIC INFORMATION -->
+                        <h1 class="lead display-5 mb-5 w-100 text-dark mt-5" style="border-bottom:1px solid green">
+                            Academic Information
+                        </h1>
 
-                    <div class="row g-3 mt-2">
 
                         <div class="col-md-3">
                             <label class="lead text-dark">Student ID</label>
@@ -148,14 +146,12 @@
                                 autocomplete="off">
                         </div>
 
-                    </div>
 
-                    <!-- CAREER INFORMATION (OPTIONAL BUT PROFESSIONAL) -->
-                    <h1 class="lead display-5 mb-5 w-100 text-dark mt-5" style="border-bottom:1px solid green">
-                        Career Information (Optional)
-                    </h1>
+                        <!-- CAREER INFORMATION (OPTIONAL BUT PROFESSIONAL) -->
+                        <h1 class="lead display-5 mb-5 w-100 text-dark mt-5" style="border-bottom:1px solid green">
+                            Career Information (Optional)
+                        </h1>
 
-                    <div class="row g-3 mt-2">
 
                         <div class="col-md-3">
                             <label class="lead text-dark">Employment Status</label>
@@ -190,15 +186,12 @@
                                 autocomplete="off">
                         </div>
 
-                    </div>
 
+                        <!-- PASSWORD SECTION -->
+                        <h1 class="lead display-5 mb-5 w-100 text-dark mt-5" style="border-bottom:1px solid green">
+                            Account Security
+                        </h1>
 
-                    <!-- PASSWORD SECTION -->
-                    <h1 class="lead display-5 mb-5 w-100 text-dark mt-5" style="border-bottom:1px solid green">
-                        Account Security
-                    </h1>
-
-                    <div class="row g-3 mt-2">
 
                         <div class="col-md-3">
                             <label class="lead text-dark">Password</label>
@@ -215,7 +208,6 @@
                         </div>
 
                     </div>
-
 
                     <?php
                     include __DIR__ . '/modules/eulaModal.php'; // EULA MODAL
@@ -250,14 +242,19 @@
 </body>
 
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"></script>
-<script src="./scripts/AlumniRegistrationPage.js"></script>
+<script type="module" src="./scripts/AlumniRegistrationPage.js"></script>
 <script>
     // LOADER ANIMATION
     const spinner = document.querySelector(".spinner-wrapper");
-
     window.addEventListener("load", () => {
         setTimeout(() => (spinner.style.display = "none"), 1000);
     });
+
+
+    function validateInputs() {
+
+    }
+
 </script>
 
 </html>
