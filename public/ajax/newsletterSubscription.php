@@ -29,7 +29,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 $stmt->close();
 
                 $log_owner = 'Subscription';
-                $log_description = 'New newsletter subscription';
+                $log_description = 'New Newsletter Subscription';
                 $current_status = 'subscription';
 
                 $subscription_log = $conn->prepare("INSERT INTO logs (log_owner, log_description, current_status) VALUES (?, ?, ?)");
