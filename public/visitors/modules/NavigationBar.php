@@ -1,14 +1,3 @@
-<!DOCTYPE html>
-<html lang="en">
-
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=
-    , initial-scale=1.0">
-    <title>Document</title>
-</head>
-
-<body>
     <nav class="navbar navbar-expand-lg navbar-dark bg-light fixed-top">
         <div class="container my-1">
             <a href="./LandingPage.php" class="navbar-brand fw-bold d-flex align-items-center">
@@ -37,6 +26,3 @@
             </div>
         </div>
     </nav>
-</body>
-
-</html>

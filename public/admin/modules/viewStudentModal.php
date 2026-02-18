@@ -111,6 +111,40 @@
                         <small id="EnrollmentType" class="placeholders">N/A</small>
                     </div>
 
+                    <div class="col-lg-3 mb-5">
+                        <strong>Graduation Year</strong><br>
+                        <small id="GraduationYear" class="placeholders">N/A</small>
+                    </div>
+
+                    <div class="col-lg-3 mb-5">
+                        <strong>Honors</strong><br>
+                        <small id="Honors" class="placeholders">N/A</small>
+                    </div>
+
+                    <p class="display-6 mb-4 w-100 text-dark fs-2" style="border-bottom:1px solid green">
+                        Career Information
+                    </p>
+
+                    <div class="col-lg-3 mb-5">
+                        <strong>Employment Status</strong><br>
+                        <small id="EmploymentStatus" class="placeholders">N/A</small>
+                    </div>
+
+                    <div class="col-lg-3 mb-5">
+                        <strong>Company Name</strong><br>
+                        <small id="CompanyName" class="placeholders">N/A</small>
+                    </div>
+
+                    <div class="col-lg-3 mb-5">
+                        <strong>Job Title</strong><br>
+                        <small id="JobTitle" class="placeholders">N/A</small>
+                    </div>
+
+                    <div class="col-lg-3 mb-5">
+                        <strong>Work Location</strong><br>
+                        <small id="WorkLocation" class="placeholders">N/A</small>
+                    </div>
+
                     <p class="display-6 mb-4 w-100 text-dark fs-2" style="border-bottom:1px solid green">
                         Emergency Contact
                     </p>

@@ -1,18 +1,7 @@
-<!DOCTYPE html>
-<html lang="en">
-
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-</head>
-
-<body>
-
     <form class="input-group d-flex align-items-center justify-content-center"
         id="registrationForm">
 
-        <input type="hidden" value="student" name="role"> <!--ROLE (DO NOT REMOVE)-->
+        <input type="hidden" value="Student" name="role"> <!--ROLE (DO NOT REMOVE)-->
 
         <h1 class="lead display-5 mb-5 w-100 text-dark" style="border-bottom:1px solid green">
             Personal Information
@@ -272,6 +261,3 @@
 
 
     </form>
-</body>
-
-</html>

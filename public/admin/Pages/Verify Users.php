@@ -152,9 +152,11 @@
 
             document.getElementById("totalPending").textContent = data.totalPendingRegistrations;
             document.getElementById("totalPendingStudents").textContent = data.totalStudentRegistrations;
+            document.getElementById("totalStudents").textContent = data.totalAlumniRegistrations;
 
         } catch (error) {
             document.getElementById("totalStudents").textContent = 0;
+            document.getElementById("totalPendingStudents").textContent = 0;
             document.getElementById("pendingRegistrations").textContent = 0;
         }
     }
@@ -184,8 +186,8 @@
                 const role = data.role;
 
                 const badgeColors = {
-                    student: "info",
-                    alumni: "primary",
+                    Student: "info",
+                    Alumni: "primary",
                 };
 
                 const badge_color = badgeColors[role] || "secondary";
@@ -250,8 +252,8 @@
                 const role = data.role;
 
                 const badgeColors = {
-                    student: "info",
-                    alumni: "primary",
+                    Student: "info",
+                    Alumni: "primary",
                 };
 
                 const badge_color = badgeColors[role] || "secondary";
@@ -363,6 +365,7 @@
             }
 
             const data = await res.json();
+            console.log(data);
 
             document.getElementById("verify_student").value = student_id;
 

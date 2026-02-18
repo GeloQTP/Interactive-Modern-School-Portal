@@ -1,13 +1,3 @@
-<!DOCTYPE html>
-<html lang="en">
-
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-</head>
-
-<body>
     <div class="modal fade" id="otpModal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="false">
         <div class="modal-dialog modal-dialog-centered">
             <div class=" modal-content bg-light text-dark">
@@ -67,8 +57,5 @@
             </div>
         </div>
     </div>
-</body>
 
 <script src="./../scripts/OTP_Autonext.js"></script>
-
-</html>
