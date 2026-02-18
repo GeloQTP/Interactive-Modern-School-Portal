@@ -8,7 +8,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
     $filterBy = (string)($_POST['filterBy'] ?? '');
     $searchQueue = (string)($_POST['searchQueue'] ?? '');
-    $current_status = (string)($_POST['current_status']);
+    $current_status = (string)($_POST['current_status'] ?? '');
     $searchQuery = '%' . $searchQueue . '%';
 
     if (
