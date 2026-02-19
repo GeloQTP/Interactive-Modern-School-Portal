@@ -5,7 +5,7 @@
              <div class="card-body">
                  <div class="d-flex justify-content-between align-items-center">
                      <div>
-                         <p class="text-muted mb-1">All Pending</p>
+                         <p class="text-muted mb-1">All Registrations</p>
                          <h3 class="mb-0 fw-bold" id="totalPending">0</h3>
                      </div>
                      <div class="stat-icon text-warning">
@@ -53,7 +53,7 @@
              <div class="card-body">
                  <div class="d-flex justify-content-between align-items-center">
                      <div>
-                         <p class="text-muted mb-1">Pending Teachers' Accounts</p>
+                         <p class="text-muted mb-1">Teacher Registrations</p>
                          <h3 class="mb-0 fw-bold" id="totalStudents">0</h3>
                      </div>
                      <div class="stat-icon text-success">
