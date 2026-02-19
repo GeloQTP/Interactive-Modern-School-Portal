@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost:3306
--- Generation Time: Feb 19, 2026 at 11:15 AM
+-- Generation Time: Feb 19, 2026 at 12:50 PM
 -- Server version: 8.4.3
 -- PHP Version: 8.3.28
 
@@ -20,6 +20,157 @@ SET time_zone = "+00:00";
 --
 -- Database: `laragondatabase`
 --
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `alumni_information`
+--
+
+CREATE TABLE `alumni_information` (
+  `alumni_id` int NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `enrollments`
+--
+
+CREATE TABLE `enrollments` (
+  `enrollment_id` int NOT NULL,
+  `student_id` int NOT NULL,
+  `course_id` int NOT NULL,
+  `enrollment_date` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `logs`
+--
+
+CREATE TABLE `logs` (
+  `log_id` int NOT NULL,
+  `student_id` int DEFAULT NULL,
+  `log_owner` varchar(25) NOT NULL,
+  `log_description` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL,
+  `current_status` varchar(25) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL DEFAULT 'pending',
+  `log_date` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+
+--
+-- Dumping data for table `logs`
+--
+
+INSERT INTO `logs` (`log_id`, `student_id`, `log_owner`, `log_description`, `current_status`, `log_date`) VALUES
+(59, 71, 'Ernest Angelo Del Rosario', 'New Student Registration', 'pending', '2026-02-12 20:04:10'),
+(60, 72, 'Giorno Giovanna', 'New Student Registration', 'pending', '2026-02-12 20:06:53'),
+(61, NULL, 'Subscription', 'New newsletter subscription', 'subscription', '2026-02-12 20:21:46'),
+(62, 73, 'GAMAKEN Another Day', 'New Student Registration', 'pending', '2026-02-13 16:17:35'),
+(63, 94, 'Alfreda Stark', 'New Student Registration', 'pending', '2026-02-17 23:40:49'),
+(64, 104, 'Ernest Angelo Del Rosario', 'New Student Registration', 'pending', '2026-02-18 02:11:11'),
+(65, 105, 'Urielle Mcclain', 'New Student Registration', 'pending', '2026-02-18 12:45:57'),
+(66, 106, 'Kyle Giles', 'New Student Registration', 'pending', '2026-02-18 12:47:16'),
+(67, 107, 'Maxwell Lynn', 'New Student Registration', 'pending', '2026-02-18 12:49:02'),
+(68, 108, 'Gemma Head', 'New Student Registration', 'pending', '2026-02-18 18:44:46'),
+(69, NULL, 'Rigel Warner', 'NewAlumniRegistration', 'pending', '2026-02-18 20:14:04'),
+(70, NULL, 'Haley Crosby', 'New Alumni Registration', 'pending', '2026-02-18 20:24:04'),
+(71, 109, 'Kelsie Wallace', 'New student Registration', 'pending', '2026-02-18 20:33:01'),
+(72, 110, 'Beverly Porter', 'New Alumni Registration', 'pending', '2026-02-18 21:32:04'),
+(73, 111, 'Ernest Angelo Del Rosario', 'New Alumni Registration', 'pending', '2026-02-18 21:57:20'),
+(74, 112, 'Petra Brewer', 'New Student Registration', 'pending', '2026-02-18 22:23:34'),
+(75, 113, 'Kylee Frazier', 'New Student Registration', 'pending', '2026-02-18 23:10:36'),
+(76, 114, 'Jemima Cummings', 'New Alumni Registration', 'pending', '2026-02-18 23:33:26'),
+(77, 115, 'Adrian Reyes', 'New Alumni Registration', 'pending', '2026-02-19 18:25:00'),
+(78, 116, 'Shereece Claire Degula', 'New Student Registration', 'pending', '2026-02-19 18:39:28'),
+(79, 117, 'Yano John Rey', 'New Student Registration', 'pending', '2026-02-19 18:45:52');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `newsletter_subscribers`
+--
+
+CREATE TABLE `newsletter_subscribers` (
+  `subscriberID` int NOT NULL,
+  `email` varchar(255) NOT NULL,
+  `subscription_date` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+
+--
+-- Dumping data for table `newsletter_subscribers`
+--
+
+INSERT INTO `newsletter_subscribers` (`subscriberID`, `email`, `subscription_date`) VALUES
+(1, 'geloadrian24@gmail.com', '2026-01-17 23:31:22'),
+(163, 'ggio64290@gmail.com', '2026-02-12 20:21:46');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `pending_registrations`
+--
+
+CREATE TABLE `pending_registrations` (
+  `registration_id` int NOT NULL,
+  `email` varchar(255) NOT NULL,
+  `phone` varchar(255) NOT NULL,
+  `otp_hash` varchar(255) NOT NULL,
+  `otp_expires_at` int NOT NULL,
+  `eula_accepted_at` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `created_at` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `programs`
+--
+
+CREATE TABLE `programs` (
+  `program_id` int NOT NULL,
+  `program_name` varchar(25) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `teacher_information`
+--
+
+CREATE TABLE `teacher_information` (
+  `teacher_id` int NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `users`
+--
+
+CREATE TABLE `users` (
+  `user_id` int NOT NULL,
+  `student_id` int NOT NULL,
+  `Email` varchar(25) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL,
+  `account_username` varchar(255) NOT NULL,
+  `account_password` varchar(255) NOT NULL,
+  `recovery_email` varchar(255) NOT NULL,
+  `account_role` varchar(20) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+
+--
+-- Dumping data for table `users`
+--
+
+INSERT INTO `users` (`user_id`, `student_id`, `Email`, `account_username`, `account_password`, `recovery_email`, `account_role`) VALUES
+(57, 111, 'geloadrian24@gmail.com', 'mofu', '$2y$10$pMPMxpFzfFogZYFwfTBi1OPksnC4FamXiSNNqXiIxobmu4UZXmKne', 'gamain2424@gmail.com', 'Alumni'),
+(58, 112, 'gamain2424@gmail.com', 'mimaqe', '$2y$10$uPEU.GaDL/qktq00uc5ObuGyTuufxSldnEQos7hqPs4d/G7SAmzES', 'cohe@mailinator.com', 'Student'),
+(59, 113, 'ggio64290@gmail.com', 'kesorus', '$2y$10$eSUClPnQVf.wqh2vhLJtdesgjFUrWTKcOaLM3X22ZJCATw9JW8Swy', 'taxifafi@mailinator.com', 'Student'),
+(60, 114, 'dfsquidart@gmail.com', 'xakiwili', '$2y$10$o2qnPfhOZbg8D/0gVJXJn.HrWz3MNqYUnPEXCYBDkyiFNkY8sbUOC', 'qezudefic@mailinator.com', 'Alumni'),
+(61, 115, 'radrian4461@gmail.com', 'adrian', '$2y$10$YdY.TwY78krWPYQXBXZ.YOEl/X9tv.JPV5CUz3C/JFU6zTHYHuL.6', 'bautistareyes200100@gmail.com', 'Alumni'),
+(62, 116, 'shereecedegula@gmail.com', 'kklaree', '$2y$10$97.V30pl4dvAMdZzfAXmvuPq0fB./w05IWjmLjrdXNo5YNvtiFjOa', 'shereecedegula@gmail.com', 'Student'),
+(63, 117, 'johnreyano05@gmail.com', 'John Rey', '$2y$10$tiaYk6u6ciMkX/BoSORRTuZL1YqvGckp0i7EFwnQ.M8lC24G.8zke', 'johnyano@gmail.com', 'Student');
 
 -- --------------------------------------------------------
 
@@ -82,6 +233,55 @@ INSERT INTO `user_information` (`student_id`, `current_status`, `role`, `FirstNa
 --
 
 --
+-- Indexes for table `alumni_information`
+--
+ALTER TABLE `alumni_information`
+  ADD PRIMARY KEY (`alumni_id`);
+
+--
+-- Indexes for table `enrollments`
+--
+ALTER TABLE `enrollments`
+  ADD PRIMARY KEY (`enrollment_id`);
+
+--
+-- Indexes for table `logs`
+--
+ALTER TABLE `logs`
+  ADD PRIMARY KEY (`log_id`);
+
+--
+-- Indexes for table `newsletter_subscribers`
+--
+ALTER TABLE `newsletter_subscribers`
+  ADD PRIMARY KEY (`subscriberID`),
+  ADD UNIQUE KEY `email` (`email`);
+
+--
+-- Indexes for table `pending_registrations`
+--
+ALTER TABLE `pending_registrations`
+  ADD PRIMARY KEY (`registration_id`);
+
+--
+-- Indexes for table `programs`
+--
+ALTER TABLE `programs`
+  ADD PRIMARY KEY (`program_id`);
+
+--
+-- Indexes for table `teacher_information`
+--
+ALTER TABLE `teacher_information`
+  ADD PRIMARY KEY (`teacher_id`);
+
+--
+-- Indexes for table `users`
+--
+ALTER TABLE `users`
+  ADD PRIMARY KEY (`user_id`);
+
+--
 -- Indexes for table `user_information`
 --
 ALTER TABLE `user_information`
@@ -90,6 +290,54 @@ ALTER TABLE `user_information`
 --
 -- AUTO_INCREMENT for dumped tables
 --
+
+--
+-- AUTO_INCREMENT for table `alumni_information`
+--
+ALTER TABLE `alumni_information`
+  MODIFY `alumni_id` int NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT for table `enrollments`
+--
+ALTER TABLE `enrollments`
+  MODIFY `enrollment_id` int NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT for table `logs`
+--
+ALTER TABLE `logs`
+  MODIFY `log_id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=80;
+
+--
+-- AUTO_INCREMENT for table `newsletter_subscribers`
+--
+ALTER TABLE `newsletter_subscribers`
+  MODIFY `subscriberID` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=164;
+
+--
+-- AUTO_INCREMENT for table `pending_registrations`
+--
+ALTER TABLE `pending_registrations`
+  MODIFY `registration_id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=186;
+
+--
+-- AUTO_INCREMENT for table `programs`
+--
+ALTER TABLE `programs`
+  MODIFY `program_id` int NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT for table `teacher_information`
+--
+ALTER TABLE `teacher_information`
+  MODIFY `teacher_id` int NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT for table `users`
+--
+ALTER TABLE `users`
+  MODIFY `user_id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=64;
 
 --
 -- AUTO_INCREMENT for table `user_information`
