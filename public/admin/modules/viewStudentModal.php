@@ -186,6 +186,25 @@
                         <small id="role" class="placeholders">N/A</small>
                     </div>
 
+                    <p class="display-6 mb-4 w-100 text-dark fs-2" style="border-bottom:1px solid green">
+                        Registration Information
+                    </p>
+
+                     <div class="col-lg-3 mb-5">
+                        <strong>Registraton Date</strong><br>
+                        <small id="RegistrationDate" class="placeholders">N/A</small>
+                    </div>
+
+                    <div class="col-lg-3 mb-5">
+                        <strong>Verification Date</strong><br>
+                        <small id="RegistrationDate" class="placeholders">N/A</small>
+                    </div>
+
+                    <div class="col-lg-3 mb-5">
+                        <strong>Enrollment Date</strong><br>
+                        <small id="EnrollmentDate" class="placeholders">N/A</small>
+                    </div>
+
                 </div>
             </div>
 

@@ -132,7 +132,7 @@
                     <option value="BEED">BEED</option>
                     <option value="BSA">BSA</option>
                     <option value="BSCS">BSCS</option>
-                    <option value="BSBM">BSBM</option>
+                    <option value="BSBA">BSBA</option>
                 </select>
             </div>
 

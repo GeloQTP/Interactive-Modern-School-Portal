@@ -95,6 +95,7 @@ include __DIR__ . '/../../api/recentActivities.php';
             const data = await res.json();
 
             document.getElementById("totalStudents").textContent = data.totalStudents;
+            document.getElementById("totalVerifiedStudents").textContent = data.totalVerifiedStudents;
             document.getElementById("pendingRegistrations").textContent =
                 data.totalPendingRegistrations;
             document.getElementById("newsLetterSubscribers").textContent =

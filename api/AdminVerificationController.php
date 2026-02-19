@@ -13,8 +13,15 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     switch ($action) {
 
         case 'verify':
-            echo json_encode(['message' => 'this is the verify case', 'student_id' => $student_id]);
+
+            $newStatus = 'verified';
+            $stmt = $conn->prepare("UPDATE user_information SET current_status = ? WHERE student_id = ?");
+            $stmt->bind_param("si",$newStatus, $student_id);
+
+            if($stmt->execute()){
+            echo json_encode(['message' => 'Student Verified', 'student_id' => $student_id]);
             break;
+            }
 
         case 'view':
 

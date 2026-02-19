@@ -47,20 +47,4 @@
              </div>
          </div>
      </div>
-
-     <div class="col-md-6 col-lg-3">
-         <div class="card shadow-sm">
-             <div class="card-body">
-                 <div class="d-flex justify-content-between align-items-center">
-                     <div>
-                         <p class="text-muted mb-1">Teacher Registrations</p>
-                         <h3 class="mb-0 fw-bold" id="totalStudents">0</h3>
-                     </div>
-                     <div class="stat-icon text-success">
-                         <i class="bi bi-eyeglasses h1"></i>
-                     </div>
-                 </div>
-             </div>
-         </div>
-     </div>
  </div>
