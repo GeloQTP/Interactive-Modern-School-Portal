@@ -1,6 +1,6 @@
  <div class="row g-3 mb-4">
 
-     <div class="col-md-6 col-lg-3">
+     <div class="col-md-6 col-lg-4">
          <div class="card shadow-sm">
              <div class="card-body">
                  <div class="d-flex justify-content-between align-items-center">
@@ -16,7 +16,7 @@
          </div>
      </div>
 
-     <div class="col-md-6 col-lg-3">
+     <div class="col-md-6 col-lg-4">
          <div class="card shadow-sm">
              <div class="card-body">
                  <div class="d-flex justify-content-between align-items-center">
@@ -32,7 +32,7 @@
          </div>
      </div>
 
-     <div class="col-md-6 col-lg-3">
+     <div class="col-md-6 col-lg-4">
          <div class="card shadow-sm">
              <div class="card-body">
                  <div class="d-flex justify-content-between align-items-center">

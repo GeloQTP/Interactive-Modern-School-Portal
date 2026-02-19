@@ -89,7 +89,7 @@
                         </div>
                     </div>
 
-                    <div class="col-md-2">
+                    <div class="col-md-4">
                         <select class="form-select mb-2" aria-label="Large select example" onchange="loadStudentRegistration(this.value)" id="filterbyProgram">
                             <option value="" disabled selected>Filter by Program</option>
                             <option value="show_all">Show All</option>
@@ -98,6 +98,12 @@
                             <option value="BSCS">BSCS</option>
                             <option value="BSBA">BSBA</option>
                         </select>
+                    </div>
+
+                    <div class="col-md-4">
+                        <button class="btn btn-success" onclick="location.reload()">
+                            <i class="bi bi-arrow-clockwise"></i>
+                        </button>
                     </div>
 
                 </div>
@@ -205,7 +211,7 @@
                                 <td>${LastName}</td>
                                 <td>${data.Program}</td>
                              <td>
-                                <button type="button" class="btn btn-sm btn-success" onclick="verifyStudent(${data.student_id})"><i class="bi bi-check2-circle h5"></i></button>
+                                <button type="button" class="btn btn-sm btn-success" onclick="verificationConfirmation(${data.student_id})"><i class="bi bi-check2-circle h5"></i></button>
                                 <button type="button" class="btn btn-sm btn-info" onclick="viewStudent(${data.student_id})" data-bs-toggle="modal" data-bs-target="#viewStudentDetailsModal"><i class="bi bi-eye h5"></i></button>
                                 <button type="button" class="btn btn-sm btn-danger" onclick="rejectStudent(${data.student_id})"><i class="bi bi-trash h5"></i></button>
                             </td>
@@ -271,7 +277,7 @@
                                 <td>${LastName}</td>
                                 <td>${data.Program}</td>
                              <td>
-                                <button type="button" class="btn btn-sm btn-success" onclick="verifyStudent(${data.student_id})"><i class="bi bi-check2-circle h5"></i></button>
+                                <button type="button" class="btn btn-sm btn-success" onclick="verificationConfirmation(${data.student_id})"><i class="bi bi-check2-circle h5"></i></button>
                                 <button type="button" class="btn btn-sm btn-info" onclick="viewStudent(${data.student_id})" data-bs-toggle="modal" data-bs-target="#viewStudentDetailsModal"><i class="bi bi-eye h5"></i></button>
                                 <button type="button" class="btn btn-sm btn-danger" onclick="rejectStudent(${data.student_id})"><i class="bi bi-trash h5"></i></button>
                             </td>
@@ -288,6 +294,29 @@
 
         }
 
+    }
+
+    function verificationConfirmation(student_id) { // VERIFICATION CONFIRMATION
+        Swal.fire({
+            title: "Are you sure?",
+            text: `Verify User?`,
+            icon: "warning",
+            showCancelButton: true,
+            confirmButtonColor: "#198754",
+            cancelButtonColor: "#DC3545",
+            confirmButtonText: "Confirm User"
+        }).then((result) => {
+            if (result.isConfirmed) {
+
+                verifyStudent(student_id);
+
+                Swal.fire({
+                    title: "Deleted!",
+                    text: "Your file has been deleted.",
+                    icon: "success"
+                });
+            }
+        });
     }
 
     async function verifyStudent(student_id) { // SEND VERIFY REQUEST
@@ -312,6 +341,7 @@
             const data = await res.text();
             console.log(data);
 
+            loadStudentRegistration();
             toastBootstrap.hide();
 
             Swal.fire({

@@ -1,0 +1,40 @@
+<?php
+// session_start();
+
+// if(!isset($_SESSION['role']) || $_SESSION['role'] !== 'admin'){
+//     header('Location: ./public/visitors/Landing%20Page.php');
+//     exit();
+// }
+?>
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>User Management - Tomas Del Rosario College</title>
+    <link rel="icon" type="image/png" href="/Modern Student Portal/src/img/TRC_LOGO.png">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.13.1/font/bootstrap-icons.min.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="./../modules/sidebar.css">
+</head>
+
+<body>
+
+    <div class="wrapper">
+        <?php
+        include __DIR__ . '/../modules/sidebar.php';
+        ?>
+
+        <div class="main ms-5 ps-4">
+            User Management
+        </div>
+
+    </div>
+
+</body>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"></script>
+<script src="./../scripts/sidebar.js"></script>
+
+</html>

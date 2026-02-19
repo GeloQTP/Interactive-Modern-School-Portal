@@ -30,10 +30,10 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
                 $log_owner = 'Subscription';
                 $log_description = 'New Newsletter Subscription';
-                $current_status = 'subscription';
+                $log_type = 'Subscription';
 
-                $subscription_log = $conn->prepare("INSERT INTO logs (log_owner, log_description, current_status) VALUES (?, ?, ?)");
-                $subscription_log->bind_param("sss", $log_owner, $log_description, $current_status);
+                $subscription_log = $conn->prepare("INSERT INTO logs (log_owner, log_description, log_type) VALUES (?, ?, ?)");
+                $subscription_log->bind_param("sss", $log_owner, $log_description, $log_type);
                 $subscription_log->execute();
                 $subscription_log->close();
 

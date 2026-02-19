@@ -140,7 +140,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             $student_id = $conn->insert_id;
             $stmt->close();
 
-            // Second query - Insert account 
+            // Second query - INSERT ACCOUNT
             $stmt = $conn->prepare("INSERT INTO users (student_id, Email, account_username, account_password, recovery_email, account_role) 
                                 VALUES (?,?,?,?,?,?)");
 
@@ -148,11 +148,13 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             $stmt->execute();
             $stmt->close();
 
+            // LOGS
             $log_description = 'New ' . $role . ' Registration';
             $log_owner = $firstName . ' ' . $lastName;
+            $log_type = 'Registration';
 
-            $stmt = $conn->prepare("INSERT INTO logs (student_id, log_description, log_owner) VALUES (?,?,?)");
-            $stmt->bind_param("iss", $student_id, $log_description, $log_owner);
+            $stmt = $conn->prepare("INSERT INTO logs (student_id, log_description, log_owner,log_type) VALUES (?,?,?,?)");
+            $stmt->bind_param("isss", $student_id, $log_description, $log_owner, $log_type);
             $stmt->execute();
             $stmt->close();
 

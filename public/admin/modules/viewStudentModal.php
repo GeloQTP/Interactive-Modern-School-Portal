@@ -210,7 +210,7 @@
 
             <div class="modal-footer">
                 <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                <button type="button" class="btn btn-primary" id="verify_student" onclick="verifyStudent(this.value)">Verify Student</button>
+                <button type="button" class="btn btn-primary btn-success" id="verify_student" onclick="verifyStudent(this.value)">Verify Student</button>
             </div>
         </div>
     </div>

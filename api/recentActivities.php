@@ -23,7 +23,7 @@ if (isset($_GET['page-nr'])) {
     $start = $page * $rows_per_page;
 }
 
-$stmt = $conn->prepare("SELECT log_owner, log_description, current_status, log_date FROM logs ORDER BY log_date DESC LIMIT ?, ?");
+$stmt = $conn->prepare("SELECT log_owner, log_description, log_type, log_date FROM logs ORDER BY log_date DESC LIMIT ?, ?");
 $stmt->bind_param("ii", $start, $rows_per_page);
 $stmt->execute();
 $result = $stmt->get_result();

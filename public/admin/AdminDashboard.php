@@ -96,8 +96,7 @@ include __DIR__ . '/../../api/recentActivities.php';
 
             document.getElementById("totalStudents").textContent = data.totalStudents;
             document.getElementById("totalVerifiedStudents").textContent = data.totalVerifiedStudents;
-            document.getElementById("pendingRegistrations").textContent =
-                data.totalPendingRegistrations;
+            document.getElementById("pendingRegistrations").textContent = data.totalPendingRegistrations;
             document.getElementById("newsLetterSubscribers").textContent =
                 data.totalNewsSubscribers;
         } catch (error) {
