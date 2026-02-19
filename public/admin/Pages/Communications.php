@@ -5,3 +5,16 @@
 //     header('Location: ./public/visitors/Landing%20Page.php');
 //     exit();
 // }
+?>
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Communications - Tomas Del Rosario College</title>
+</head>
+<body>
+    
+</body>
+</html>

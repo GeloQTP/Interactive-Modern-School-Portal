@@ -78,6 +78,7 @@ include __DIR__ . '/../../api/recentActivities.php';
 </body>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"></script>
 <script src="./scripts/sidebar.js"></script>
+<script src="./scripts/DashboardScript.js"></script>
 
 <script>
     loadDashboardStats(); // initial load
