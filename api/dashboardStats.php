@@ -57,6 +57,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     header('Content-Type: application/json');
     echo json_encode([
         'totalStudents' => $dashboardStats->countStudentRegistrationByState('enrolled'), 
+        'totalVerifiedStudents' => $dashboardStats->countStudentRegistrationByState('verified'),
         'totalPendingRegistrations' => $dashboardStats->countStudentRegistrationByState('pending'), 
         'totalStudentRegistrations' => $dashboardStats->getRegistrationsOf('Student','pending'),
         'totalAlumniRegistrations' => $dashboardStats->getRegistrationsOf('Alumni','pending'),
