@@ -12,7 +12,7 @@ document.addEventListener("DOMContentLoaded", () => {
       '<span class="spinner-grow spinner-grow-sm" style="margin-bottom:3px" role ="status"> <span class="visually-hidden"> Loading... </span></span>';
 
     try {
-      const response = await fetch(`../ajax/newsletterSubscription.php`, {
+      const response = await fetch(`../backend/newsletterSubscription.php`, {
         method: "POST",
         body: new FormData(form),
         credentials: "same-origin",

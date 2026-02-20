@@ -14,12 +14,12 @@
 <body>
 
     <?php
-    include __DIR__ . '/modules/Spinner&Toast.php'; // SPINNER AND TOAST NOTIFICATION
+    include __DIR__ . '/components/Spinner&Toast.php'; // SPINNER AND TOAST NOTIFICATION
     ?>
 
     <header>
         <?php
-        include __DIR__ . '/modules/NavigationBar.php'; // NAVIGATION BAR
+        include __DIR__ . '/components/NavigationBar.php'; // NAVIGATION BAR
         ?>
     </header>
 
@@ -41,11 +41,11 @@
                 </div>
 
                 <?php
-                include __DIR__ . '/modules/AlumniRegistrationForm.php'; // ALUMNI REGISTRATION FORM
+                include __DIR__ . '/components/AlumniRegistrationForm.php'; // ALUMNI REGISTRATION FORM
                 ?>
 
                 <?php
-                include __DIR__ . '/modules/OTPModal.php'; // OTP MODAL
+                include __DIR__ . '/components/OTPModal.php'; // OTP MODAL
                 ?>
 
             </div>

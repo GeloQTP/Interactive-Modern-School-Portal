@@ -12,7 +12,7 @@ export async function sendOTP(e) {
   formData.append("action", "send_otp");
 
   try {
-    const res = await fetch(`../ajax/registrationOTP.php`, {
+    const res = await fetch(`../backend/registrationOTP.php`, {
       method: "POST",
       body: formData,
       credentials: "same-origin",

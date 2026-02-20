@@ -168,7 +168,7 @@
             e.preventDefault();
 
             try {
-                const res = await fetch(`../ajax/login.php`, {
+                const res = await fetch(`../backend/login.php`, {
                     method: 'POST',
                     body: new FormData(loginForm),
                     credentials: 'same-origin',

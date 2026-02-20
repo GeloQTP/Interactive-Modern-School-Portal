@@ -1,11 +1,12 @@
 <?php
+
 // session_start();
 
 // if(!isset($_SESSION['role']) || $_SESSION['role'] !== 'admin'){
 //     header('Location: ./public/visitors/Landing%20Page.php');
 //     exit();
 // }
-
+include __DIR__ . '/../../backend/getCourses.php';
 ?>
 
 <!DOCTYPE html>
@@ -18,7 +19,7 @@
     <link rel="icon" type="image/png" href="/Modern Student Portal/src/img/TRC_LOGO.png">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.13.1/font/bootstrap-icons.min.css">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet">
-    <link rel="stylesheet" href="./../modules/sidebar.css">
+    <link rel="stylesheet" href="./../components/sidebar.css">
 </head>
 
 <style>
@@ -59,7 +60,7 @@
     <div class="wrapper">
 
         <?php
-        include __DIR__ . '/../modules/sidebar.php';
+        include __DIR__ . '/../components/sidebar.php';
         ?>
 
         <div class="main ms-5 ps-4">
@@ -72,11 +73,11 @@
             <div class="p-3">
 
                 <?php
-                include __DIR__ . '/../modules/pendingStatisticsCards.php'; // STATISTICS CARDS
+                include __DIR__ . '/../components/pendingStatisticsCards.php'; // STATISTICS CARDS
                 ?>
 
                 <?php
-                include __DIR__ . '/../modules/viewStudentModal.php'; // MODAL
+                include __DIR__ . '/../components/viewStudentModal.php'; // MODAL
                 ?>
 
                 <!-- FILTER -->
@@ -93,10 +94,11 @@
                         <select class="form-select mb-2" aria-label="Large select example" onchange="loadStudentRegistration(this.value)" id="filterbyProgram">
                             <option value="" disabled selected>Filter by Program</option>
                             <option value="show_all">Show All</option>
-                            <option value="BEED">BEED</option>
-                            <option value="BSA">BSA</option>
-                            <option value="BSCS">BSCS</option>
-                            <option value="BSBA">BSBA</option>
+                            <?php
+                            while ($row = $result->fetch_assoc()) {
+                            ?>
+                                <option value="<?= $row['course_name'] ?>"><?= $row['course_name'] ?></option>
+                            <?php } ?>
                         </select>
                     </div>
 
@@ -211,9 +213,9 @@
                                 <td>${LastName}</td>
                                 <td>${data.Program}</td>
                              <td>
-                                <button type="button" class="btn btn-sm btn-success" onclick="verificationConfirmation(${data.student_id})"><i class="bi bi-check2-circle h5"></i></button>
-                                <button type="button" class="btn btn-sm btn-info" onclick="viewStudent(${data.student_id})" data-bs-toggle="modal" data-bs-target="#viewStudentDetailsModal"><i class="bi bi-eye h5"></i></button>
-                                <button type="button" class="btn btn-sm btn-danger" onclick="rejectStudent(${data.student_id})"><i class="bi bi-trash h5"></i></button>
+                                <button type="button" class="btn text-success" onclick="verificationConfirmation(${data.student_id})"><i class="bi bi-check2-circle h5"></i></button>
+                                <button type="button" class="btn text-info" onclick="viewStudent(${data.student_id})" data-bs-toggle="modal" data-bs-target="#viewStudentDetailsModal"><i class="bi bi-eye h5"></i></button>
+                                <button type="button" class="btn text-danger" onclick="deletionConfirmation(${data.student_id})"><i class="bi bi-trash h5"></i></button>
                             </td>
                         </tr>
 
@@ -277,9 +279,9 @@
                                 <td>${LastName}</td>
                                 <td>${data.Program}</td>
                              <td>
-                                <button type="button" class="btn btn-sm btn-success" onclick="verificationConfirmation(${data.student_id})"><i class="bi bi-check2-circle h5"></i></button>
-                                <button type="button" class="btn btn-sm btn-info" onclick="viewStudent(${data.student_id})" data-bs-toggle="modal" data-bs-target="#viewStudentDetailsModal"><i class="bi bi-eye h5"></i></button>
-                                <button type="button" class="btn btn-sm btn-danger" onclick="rejectStudent(${data.student_id})"><i class="bi bi-trash h5"></i></button>
+                                <button type="button" class="btn text-success" onclick="verificationConfirmation(${data.student_id})"><i class="bi bi-check2-circle h5"></i></button>
+                                <button type="button" class="btn text-info" onclick="viewStudent(${data.student_id})" data-bs-toggle="modal" data-bs-target="#viewStudentDetailsModal"><i class="bi bi-eye h5"></i></button>
+                                <button type="button" class="btn text-danger" onclick="deletionConfirmation(${data.student_id})"><i class="bi bi-trash h5"></i></button>
                             </td>
                         </tr>
 
@@ -303,18 +305,25 @@
             icon: "warning",
             showCancelButton: true,
             confirmButtonColor: "#198754",
-            cancelButtonColor: "#DC3545",
             confirmButtonText: "Confirm User"
         }).then((result) => {
             if (result.isConfirmed) {
-
                 verifyStudent(student_id);
+            }
+        });
+    }
 
-                Swal.fire({
-                    title: "Deleted!",
-                    text: "Your file has been deleted.",
-                    icon: "success"
-                });
+    function deletionConfirmation(student_id) { // DELETION CONFIRMATION
+        Swal.fire({
+            title: "Are you sure?",
+            text: `Reject User?`,
+            icon: "warning",
+            showCancelButton: true,
+            confirmButtonColor: "#DC3545",
+            confirmButtonText: "Reject User"
+        }).then((result) => {
+            if (result.isConfirmed) {
+                rejectStudent(student_id);
             }
         });
     }
@@ -329,7 +338,7 @@
                 method: 'POST',
                 body: new URLSearchParams({
                     student_id: student_id,
-                    action: 'verify'
+                    action: 'verify',
                 }),
                 credentials: 'same-origin',
             });
@@ -338,19 +347,29 @@
                 throw new Error(`HTTP error! Status: ${res.status}`);
             }
 
-            const data = await res.text();
+            const data = await res.json();
             console.log(data);
 
-            loadStudentRegistration();
-            toastBootstrap.hide();
+            if (data.success) {
+                loadStudentRegistration();
+                toastBootstrap.hide();
 
-            Swal.fire({
-                title: "Verification Successful",
-                text: "Student account is now verified.",
-                icon: "success",
-                timer: 2000,
-                showConfirmButton: false
-            });
+                Swal.fire({
+                    title: "Verification Successful",
+                    text: "The User's account has been verified.",
+                    icon: "success",
+                    timer: 2000,
+                    showConfirmButton: false
+                });
+            } else {
+                Swal.fire({
+                    title: "Verification Unsuccessful",
+                    text: "Verification Failed.",
+                    icon: "error",
+                    timer: 2000,
+                    showConfirmButton: false,
+                });
+            }
 
 
         } catch (error) {
@@ -420,7 +439,7 @@
                 method: 'POST',
                 body: new URLSearchParams({
                     student_id: student_id,
-                    action: 'reject'
+                    action: 'reject',
                 }),
                 credentials: 'same-origin',
             });
@@ -429,10 +448,27 @@
                 throw new Error(`HTTP error! Status: ${res.status}`);
             }
 
-            const data = await res.text();
-            console.log(data);
+            const data = await res.json();
 
-            // * loadPendingList(); LOAD AGAIN TO REFRESH THE LIST
+            if (data.success) {
+                loadStudentRegistration();
+
+                Swal.fire({
+                    title: "Rejection Successful",
+                    text: "The User's account has been rejected.",
+                    icon: "success",
+                    timer: 2000,
+                    showConfirmButton: false,
+                });
+            } else {
+                Swal.fire({
+                    title: "Rejection Unsuccessful",
+                    text: "Rejection Failed.",
+                    icon: "error",
+                    timer: 2000,
+                    showConfirmButton: false,
+                });
+            }
 
         } catch (error) {
             console.error("View student failed:", error);

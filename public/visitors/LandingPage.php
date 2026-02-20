@@ -6,17 +6,17 @@ include __DIR__ . '/../../includes/header.php';
 
 <!-- HERO SECTION -->
 <?php
-include __DIR__ . '/modules/HeroSection.php';
+include __DIR__ . '/components/HeroSection.php';
 ?>
 
 <!-- NEWS LETTER SECTION -->
 <?php
-include __DIR__ . '/modules/NewsletterSection.php';
+include __DIR__ . '/components/NewsletterSection.php';
 ?>
 
 <!-- CARDS SECTION -->
 <?php
-include __DIR__ . '/modules/CourseCardsSection.php';
+include __DIR__ . '/components/CourseCardsSection.php';
 ?>
 
 <footer>

@@ -16,7 +16,7 @@ include __DIR__ . '/../../api/recentActivities.php';
     <link rel="icon" type="image/png" href="/Modern Student Portal/src/img/TRC_LOGO.png">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.13.1/font/bootstrap-icons.min.css">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet">
-    <link rel="stylesheet" href="./modules/sidebar.css">
+    <link rel="stylesheet" href="./components/sidebar.css">
 </head>
 
 <style>
@@ -44,7 +44,7 @@ include __DIR__ . '/../../api/recentActivities.php';
     <div class="wrapper">
 
         <?php
-        include __DIR__ . '/modules/sidebar.php'; // SIDE BAR
+        include __DIR__ . '/components/sidebar.php'; // SIDE BAR
         ?>
 
         <div class="main ms-5 ps-4">
@@ -56,16 +56,16 @@ include __DIR__ . '/../../api/recentActivities.php';
 
             <div class="p-3">
                 <?php
-                include __DIR__ . '/modules/statisticsCards.php'; // CARDS
+                include __DIR__ . '/components/statisticsCards.php'; // CARDS
                 ?>
                 <div class="row g-3">
 
                     <?php
-                    include __DIR__ . '/modules/LogsCard.php'; // LOGS
+                    include __DIR__ . '/components/LogsCard.php'; // LOGS
                     ?>
 
                     <?php
-                    include __DIR__ . '/modules/MessagesCard.php'; // MESSAGES
+                    include __DIR__ . '/components/MessagesCard.php'; // MESSAGES
                     ?>
 
                 </div>

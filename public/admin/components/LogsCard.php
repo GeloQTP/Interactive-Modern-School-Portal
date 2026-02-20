@@ -16,11 +16,11 @@
 
                     if ($row['log_type'] === 'Registration') {
                         $statusColor = 'warning';
-                    } elseif ($row['log_type'] === 'approved') {
+                    } elseif ($row['log_type'] === 'Verified') {
                         $statusColor = 'success';
                     } elseif ($row['log_type'] === 'Subscription') {
                         $statusColor = 'primary';
-                    } elseif ($row['log_type'] === 'rejected') {
+                    } elseif ($row['log_type'] === 'Rejected') {
                         $statusColor = 'danger';
                     }
 

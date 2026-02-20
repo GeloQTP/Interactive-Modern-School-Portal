@@ -20,7 +20,7 @@ export async function verifyOTP(e) {
     '<span class="spinner-grow spinner-grow-sm text-dark" role ="status"> <span class="visually-hidden"> Loading... </span></span>';
 
   try {
-    const res = await fetch("../ajax/registrationOTP.php", {
+    const res = await fetch("../backend/registrationOTP.php", {
       method: "POST",
       headers: {
         "Content-Type": "application/x-www-form-urlencoded",
@@ -48,7 +48,7 @@ export async function verifyOTP(e) {
       // IF OTP VERIFICATION IS A SUCCESS
       const form = document.getElementById("registrationForm");
 
-      const registerRes = await fetch(`../ajax/registerUser.php`, {
+      const registerRes = await fetch(`../backend/registerUser.php`, {
         method: "POST",
         body: new FormData(form),
         credentials: "same-origin",

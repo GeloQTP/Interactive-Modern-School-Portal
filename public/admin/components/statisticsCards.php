@@ -6,7 +6,7 @@
                 <div class="card-body">
                     <div class="d-flex justify-content-between align-items-center">
                         <div>
-                            <p class="text-muted mb-1">Total Students</p>
+                            <p class="text-muted mb-1">Total Enrolled Students</p>
                             <h3 class="mb-0 fw-bold" id="totalStudents">0</h3>
                             <small class="text-success">+12% from last month</small>
                         </div>
