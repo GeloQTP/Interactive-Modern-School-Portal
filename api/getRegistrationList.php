@@ -14,26 +14,21 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     if (
         empty($filterBy) || $filterBy === "undefined" || $filterBy === "show_all" && $searchQueue === '' // NO FILTER AND NO SEARCH
     ) {
-        $stmt = $conn->prepare("SELECT * FROM user_information WHERE current_status = ?");
+        $stmt = $conn->prepare("SELECT * FROM user_information INNER JOIN users ON user_information.student_id = users.student_id WHERE current_status = ?");
         $stmt->bind_param("s", $current_status);
-        $stmt->execute();
-        $result = $stmt->get_result();
     } else if (empty($filterBy) || $filterBy === "undefined" || $filterBy === "show_all" && $searchQueue !== '') { // NO FILTER BUT THERE'S SEARCH
-        $stmt = $conn->prepare("SELECT * FROM user_information WHERE current_status = ? AND LastName LIKE ?");
+        $stmt = $conn->prepare("SELECT * FROM user_information INNER JOIN users ON user_information.student_id = users.student_id WHERE current_status = ? AND LastName LIKE ?");
         $stmt->bind_param("ss", $current_status, $searchQuery);
-        $stmt->execute();
-        $result = $stmt->get_result();
     } else if ($filterBy && $searchQueue === '') { // THERE'S FILTER BUT NO SEARCH
-        $stmt = $conn->prepare("SELECT * FROM user_information WHERE current_status = ? AND Program = ?");
+        $stmt = $conn->prepare("SELECT * FROM user_information INNER JOIN users ON user_information.student_id = users.student_id WHERE current_status = ? AND Program = ?");
         $stmt->bind_param("ss", $current_status, $filterBy);
-        $stmt->execute();
-        $result = $stmt->get_result();
     } else if ($filterBy && $searchQueue !== '') { // THERE'S FILTER AND SEARCH
-        $stmt = $conn->prepare("SELECT * FROM user_information WHERE current_status = ? AND Program = ? AND LastName LIKE ?");
+        $stmt = $conn->prepare("SELECT * FROM user_information INNER JOIN users ON user_information.student_id = users.student_id WHERE current_status = ? AND Program = ? AND LastName LIKE ?");
         $stmt->bind_param("sss", $current_status, $filterBy, $searchQuery);
-        $stmt->execute();
-        $result = $stmt->get_result();
     }
+
+    $stmt->execute();
+    $result = $stmt->get_result();
 
     $list = [];
 

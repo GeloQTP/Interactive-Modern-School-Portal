@@ -23,16 +23,20 @@ include __DIR__ . '/../../backend/getCourses.php';
 
 <body>
 
+    <?php
+    include __DIR__ . '/../components/viewUserModal.php'; // VIEW MODAL
+    ?>
+
     <div class="wrapper">
         <?php
-        include __DIR__ . '/../components/sidebar.php';
+        include __DIR__ . '/../components/sidebar.php'; // SIDEBAR
         ?>
 
         <div class="main ms-5 ps-4">
 
             <nav class="navbar navbar-expand-lg bg-light border border-bottom">
                 <div class="container-fluid justify-content-center" style="transform: translate(0px, 10px);">
-                    <p class="text-success lead">Verify Users</p>
+                    <p class="text-success lead">Manage Users</p>
                 </div>
             </nav>
 
@@ -121,48 +125,23 @@ include __DIR__ . '/../../backend/getCourses.php';
                 </div>
 
                 <!-- STUDENT ACCOUNT CARDS -->
-                <div class="row g-3">
-
-                    <div class="col-md-2 mb-4">
-                        <div class="card shadow-sm border-0 student-card h-100">
-                            <div class="card-body d-flex flex-column">
-
-                                <!-- Student Name -->
-                                <h6 class="fw-semibold mb-1">Juan Dela Cruz</h6>
-
-                                <!-- Student Info -->
-                                <small class="text-muted d-block">Student ID: 2025-00123</small>
-                                <small class="text-muted d-block">BS Computer Science</small>
-
-                                <!-- Status Badge -->
-                                <div class="mt-2">
-                                    <span class="badge bg-success-subtle text-success">
-                                        Verified & Enrolled
-                                    </span>
-                                </div>
-
-                                <!-- Divider -->
-                                <hr class="my-3">
-
-                                <!-- Action Buttons -->
-                                <div class="ms-auto">
-                                    <button class="btn text-info" title="View">
-                                        <i class="bi bi-eye"></i>
-                                    </button>
-
-                                    <button class="btn text-sucess" title="Edit">
-                                        <i class="bi bi-pencil"></i>
-                                    </button>
-
-                                    <button class="btn text-danger" title="Delete">
-                                        <i class="bi bi-trash"></i>
-                                    </button>
-                                </div>
-
-                            </div>
-                        </div>
-                    </div>
-
+                <div class="table-container border">
+                    <table class="table table-hover mb-0">
+                        <thead class="text-center">
+                            <tr>
+                                <th scope="col">Role</th>
+                                <th scope="col">First Name</th>
+                                <th scope="col">Last Name</th>
+                                <th scope="col">Username</th>
+                                <th scope="col">Course</th>
+                                <th scope="col">Status</th>
+                                <th scope="col">Operations</th>
+                            </tr>
+                        </thead>
+                        <tbody class="text-center" id="table_body">
+                            <!-- dynamic rows -->
+                        </tbody>
+                    </table>
                 </div>
 
             </div>
@@ -172,5 +151,203 @@ include __DIR__ . '/../../backend/getCourses.php';
 </body>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"></script>
 <script src="./../scripts/sidebar.js"></script>
+
+<script>
+    loadStudentRegistration();
+
+    async function loadStudentRegistration(filter) { // LOAD STUDENT REGISTRATION LIST
+
+        const filterBy = filter || document.getElementById("filterbyProgram").value;
+        const searchQueue = document.getElementById("searchInput").value;
+
+        try {
+            const response = await fetch(`../../../api/getRegistrationList.php`, {
+                method: 'POST',
+                body: new URLSearchParams({
+                    filterBy: filterBy,
+                    searchQueue: searchQueue,
+                    current_status: 'verified',
+                }),
+                credentials: "same-origin"
+            });
+
+            if (!response.ok) throw new Error
+
+            const data = await response.json();
+
+            const list = data.map(data => {
+
+                const role = data.role;
+
+                const badgeColors = {
+                    Student: "info",
+                    Alumni: "primary",
+                };
+
+                const statusColors = {
+                    verified: 'success',
+
+                };
+
+                const badge_color = badgeColors[role] || "secondary";
+
+
+                const FirstName = data.FirstName;
+                const LastName = data.LastName;
+
+                return `
+                        <tr>
+                                <td>
+                                    <h6>
+                                    <span class="badge bg-${badge_color} text-light" style="transform: translate(0px, 4px);">${data.role}</span>
+                                    </h6>
+                                </td>
+                                <td>${data.FirstName}</td>
+                                <td>${data.LastName}</td>
+                                <td>${data.account_username}</td>
+                                <td>${data.Program}</td>
+                                 <td>
+                                    <h6>
+                                    <span class="badge bg-success text-light" style="transform: translate(0px, 4px);">${data.current_status}</span>
+                                    </h6>
+                                 </td>
+                                <td>
+                                    <button type="button" class="btn text-primary" onclick="viewStudent(${data.student_id})" data-bs-toggle="modal" data-bs-target="#viewStudentDetailsModal"><i class="bi bi-eye h5"></i></button>
+                                    <button type="button" class="btn text-info" onclick="viewStudent(${data.student_id})"><i class="bi bi-pencil"></i></button>
+                                    <button type="button" class="btn text-danger" onclick="deletionConfirmation(${data.student_id})"><i class="bi bi-trash h5"></i></button>
+                                </td>
+                            </tr>
+                `;
+            }).join('');
+
+            document.getElementById("table_body").innerHTML = list;
+
+        } catch (Error) {
+            console.log("Something went wrong. Can't Load Student Registrations");
+        } finally {
+
+        }
+
+    }
+
+    async function searchStudent(searchQueue) { // SEARCH STUDENT MANUALLY
+
+        const filterbyProgram = document.getElementById("filterbyProgram").value || '';
+
+        const searchInputVal = document.getElementById("searchInput").value;
+        if (!searchInputVal || searchInputVal === '') { // CHECKS IF SEARCH INPUT IS EMPTY
+            loadStudentRegistration();
+            return;
+        }
+
+        try {
+            const res = await fetch(`../../../api/search.php`, {
+                method: 'POST',
+                body: new URLSearchParams({
+                    searchQueue: searchQueue,
+                    filterbyProgram: filterbyProgram,
+                    current_status: 'verified'
+                }),
+                credentials: 'same-origin'
+            });
+
+            const data = await res.json();
+
+            const list = data.map(data => {
+
+                const role = data.role;
+
+                const badgeColors = {
+                    Student: "info",
+                    Alumni: "primary",
+                };
+
+                const badge_color = badgeColors[role] || "secondary";
+
+
+                const FirstName = data.FirstName;
+                const LastName = data.LastName;
+
+                return `
+                       <tr>
+                                <td>
+                                    <h6><span class="badge bg-${badge_color} text-light" style="transform: translate(0px, 4px);">${data.role}</span></h6>
+                                </td>
+                                <td>${data.FirstName}</td>
+                                <td>${data.LastName}</td>
+                                <td>${data.account_username}</td>
+                                <td>${data.Program}</td>
+                                <td>${data.current_status}</td>
+                                <td>
+                                    <button type="button" class="btn text-primary" onclick="viewStudent(${data.student_id})" data-bs-toggle="modal" data-bs-target="#viewStudentDetailsModal"><i class="bi bi-eye h5"></i></button>
+                                    <button type="button" class="btn text-info" onclick="viewStudent(${data.student_id})"><i class="bi bi-pencil"></i></button>
+                                    <button type="button" class="btn text-danger" onclick="deletionConfirmation(${data.student_id})"><i class="bi bi-trash h5"></i></button>
+                                </td>
+                            </tr>
+                `;
+            }).join('');
+
+            document.getElementById("table_body").innerHTML = list;
+
+        } catch (error) {
+
+        } finally {
+
+        }
+
+    }
+
+    function populateViewModal(data) { // POPULATE MODAL FIELDS
+
+        document.getElementById("student_name").innerHTML = data.FirstName;
+
+        Object.keys(data).forEach(key => {
+            const element = document.getElementById(key);
+            if (element) {
+                element.textContent = data[key] || "N/A";
+            }
+        });
+    }
+
+    async function viewStudent(student_id) { // SEND VIEW REQUEST 
+        const placeholders = document.querySelectorAll(".placeholders");
+
+        placeholders.forEach((el) => {
+            el.classList.add("placeholder", "bg-dark");
+        });
+
+        try {
+
+            const res = await fetch(`../../../api/AdminVerificationController.php`, {
+                method: 'POST',
+                body: new URLSearchParams({
+                    student_id: student_id,
+                    action: 'view'
+                }),
+                credentials: 'same-origin',
+            });
+
+            if (!res.ok) {
+                throw new Error(`HTTP error! Status: ${res.status}`);
+            }
+
+            const data = await res.json();
+
+            document.getElementById("verify_student").value = student_id;
+
+            placeholders.forEach((el) => {
+                el.classList.remove("placeholder", "bg-dark");
+            });
+
+            populateViewModal(data);
+
+        } catch (error) {
+            console.error("View student failed:", error);
+        } finally {
+
+        }
+
+    }
+</script>
 
 </html>

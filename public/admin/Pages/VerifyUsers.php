@@ -77,7 +77,7 @@ include __DIR__ . '/../../backend/getCourses.php';
                 ?>
 
                 <?php
-                include __DIR__ . '/../components/viewStudentModal.php'; // MODAL
+                include __DIR__ . '/../components/viewUserModal.php'; // MODAL
                 ?>
 
                 <!-- FILTER -->
@@ -214,7 +214,7 @@ include __DIR__ . '/../../backend/getCourses.php';
                                 <td>${data.Program}</td>
                              <td>
                                 <button type="button" class="btn text-success" onclick="verificationConfirmation(${data.student_id})"><i class="bi bi-check2-circle h5"></i></button>
-                                <button type="button" class="btn text-info" onclick="viewStudent(${data.student_id})" data-bs-toggle="modal" data-bs-target="#viewStudentDetailsModal"><i class="bi bi-eye h5"></i></button>
+                                <button type="button" class="btn text-primary" onclick="viewStudent(${data.student_id})" data-bs-toggle="modal" data-bs-target="#viewStudentDetailsModal"><i class="bi bi-eye h5"></i></button>
                                 <button type="button" class="btn text-danger" onclick="deletionConfirmation(${data.student_id})"><i class="bi bi-trash h5"></i></button>
                             </td>
                         </tr>
@@ -280,7 +280,7 @@ include __DIR__ . '/../../backend/getCourses.php';
                                 <td>${data.Program}</td>
                              <td>
                                 <button type="button" class="btn text-success" onclick="verificationConfirmation(${data.student_id})"><i class="bi bi-check2-circle h5"></i></button>
-                                <button type="button" class="btn text-info" onclick="viewStudent(${data.student_id})" data-bs-toggle="modal" data-bs-target="#viewStudentDetailsModal"><i class="bi bi-eye h5"></i></button>
+                                <button type="button" class="btn text-primary" onclick="viewStudent(${data.student_id})" data-bs-toggle="modal" data-bs-target="#viewStudentDetailsModal"><i class="bi bi-eye h5"></i></button>
                                 <button type="button" class="btn text-danger" onclick="deletionConfirmation(${data.student_id})"><i class="bi bi-trash h5"></i></button>
                             </td>
                         </tr>

@@ -12,10 +12,10 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $searchQueue = '%' . $searchQueue . '%';
 
     if (empty($filterbyProgram) || $filterbyProgram === "undefined" || $filterbyProgram === "show_all") { // NO SELECTION FILTER
-        $stmt = $conn->prepare("SELECT * FROM user_information WHERE current_status = ? AND LastName LIKE ?");
+        $stmt = $conn->prepare("SELECT * FROM user_information INNER JOIN users ON user_information.student_id = users.student_id WHERE current_status = ? AND LastName LIKE ?");
         $stmt->bind_param("ss", $current_status, $searchQueue);
     } else if ($searchQueue && $filterbyProgram) {
-        $stmt = $conn->prepare("SELECT * FROM user_information WHERE current_status = ? AND Program = ? AND LastName LIKE ?");
+        $stmt = $conn->prepare("SELECT * FROM user_information INNER JOIN users ON user_information.student_id = users.student_id WHERE current_status = ? AND Program = ? AND LastName LIKE ?");
         $stmt->bind_param("sss", $current_status, $filterbyProgram, $searchQueue);
     }
 
