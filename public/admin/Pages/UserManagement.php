@@ -24,7 +24,7 @@ include __DIR__ . '/../../backend/getCourses.php';
 <body>
 
     <?php
-    include __DIR__ . '/../components/viewUserModal.php'; // VIEW MODAL
+    include __DIR__ . '/../components/editUserModal.php'; // EDIT USER MODAL
     ?>
 
     <div class="wrapper">
@@ -49,7 +49,7 @@ include __DIR__ . '/../../backend/getCourses.php';
                                 <div class="d-flex justify-content-between align-items-center">
                                     <div>
                                         <p class="text-muted mb-1">Total Users</p>
-                                        <h3 class="mb-0 fw-bold" id="totalStudents">0</h3>
+                                        <h3 class="mb-0 fw-bold" id="totalUsers">0</h3>
                                     </div>
                                     <div class="stat-icon text-info">
                                         <i class="bi bi-people h2"></i>
@@ -100,18 +100,18 @@ include __DIR__ . '/../../backend/getCourses.php';
                     <div class="col-md-4">
                         <div class="input-group mb-2">
                             <span class="input-group-text" id="visible-addon"><i class="bi bi-search"></i></span>
-                            <input type="text" class="form-control rounded-2" placeholder="Search by Last Name..." aria-label="Username" aria-describedby="visible-addon" name="searchbar" onkeyup="searchStudent(this.value)" id="searchInput">
+                            <input type="text" class="form-control rounded-2" placeholder="Search by Last Name..." aria-label="Username" aria-describedby="visible-addon" name="searchbar" onkeyup="searchUser(this.value)" id="searchInput">
                         </div>
                     </div>
 
                     <div class="col-md-4">
-                        <select class="form-select mb-2" aria-label="Large select example" onchange="loadStudentRegistration(this.value)" id="filterbyProgram">
+                        <select class="form-select mb-2" aria-label="Large select example" onchange="loadUsers(this.value)" id="filterbyProgram">
                             <option value="" disabled selected>Filter by Program</option>
                             <option value="show_all">Show All</option>
                             <?php
                             while ($row = $result->fetch_assoc()) {
                             ?>
-                                <option value="<?= $row['course_name'] ?>"><?= $row['course_name'] ?></option>
+                                <option value="<?= $row['program_name'] ?>"><?= $row['program_name'] ?></option>
                             <?php } ?>
                         </select>
                     </div>
@@ -153,9 +153,29 @@ include __DIR__ . '/../../backend/getCourses.php';
 <script src="./../scripts/sidebar.js"></script>
 
 <script>
-    loadStudentRegistration();
+    loadUsers();
+    loadDashboardStats();
+    setInterval(loadDashboardStats, 5000);
 
-    async function loadStudentRegistration(filter) { // LOAD STUDENT REGISTRATION LIST
+    async function loadDashboardStats() { // LOAD DASHBOARD CARDS
+
+        try {
+            const res = await fetch("../../../api/dashboardStats.php", {
+                method: "POST",
+            });
+
+            if (!res.ok) throw new Error("Network Response was not ok.");
+
+            const data = await res.json();
+
+            document.getElementById("totalUsers").textContent = data.VerifiedUsers;
+
+        } catch (error) {
+            document.getElementById("totalStudents").textContent = 0;
+        }
+    }
+
+    async function loadUsers(filter) { // LOAD USER LIST
 
         const filterBy = filter || document.getElementById("filterbyProgram").value;
         const searchQueue = document.getElementById("searchInput").value;
@@ -191,12 +211,8 @@ include __DIR__ . '/../../backend/getCourses.php';
 
                 const badge_color = badgeColors[role] || "secondary";
 
-
-                const FirstName = data.FirstName;
-                const LastName = data.LastName;
-
                 return `
-                        <tr>
+                            <tr>
                                 <td>
                                     <h6>
                                     <span class="badge bg-${badge_color} text-light" style="transform: translate(0px, 4px);">${data.role}</span>
@@ -212,8 +228,7 @@ include __DIR__ . '/../../backend/getCourses.php';
                                     </h6>
                                  </td>
                                 <td>
-                                    <button type="button" class="btn text-primary" onclick="viewStudent(${data.student_id})" data-bs-toggle="modal" data-bs-target="#viewStudentDetailsModal"><i class="bi bi-eye h5"></i></button>
-                                    <button type="button" class="btn text-info" onclick="viewStudent(${data.student_id})"><i class="bi bi-pencil"></i></button>
+                                    <button type="button" class="btn text-primary" onclick="editUser(${data.student_id})"><i class="bi bi-pencil"></i></button>
                                     <button type="button" class="btn text-danger" onclick="deletionConfirmation(${data.student_id})"><i class="bi bi-trash h5"></i></button>
                                 </td>
                             </tr>
@@ -230,13 +245,13 @@ include __DIR__ . '/../../backend/getCourses.php';
 
     }
 
-    async function searchStudent(searchQueue) { // SEARCH STUDENT MANUALLY
+    async function searchUser(searchQueue) { // SEARCH STUDENT MANUALLY
 
         const filterbyProgram = document.getElementById("filterbyProgram").value || '';
 
         const searchInputVal = document.getElementById("searchInput").value;
         if (!searchInputVal || searchInputVal === '') { // CHECKS IF SEARCH INPUT IS EMPTY
-            loadStudentRegistration();
+            loadUsers();
             return;
         }
 
@@ -264,26 +279,27 @@ include __DIR__ . '/../../backend/getCourses.php';
 
                 const badge_color = badgeColors[role] || "secondary";
 
-
-                const FirstName = data.FirstName;
-                const LastName = data.LastName;
-
                 return `
-                       <tr>
+                        <tr>
                                 <td>
-                                    <h6><span class="badge bg-${badge_color} text-light" style="transform: translate(0px, 4px);">${data.role}</span></h6>
+                                    <h6>
+                                    <span class="badge bg-${badge_color} text-light" style="transform: translate(0px, 4px);">${data.role}</span>
+                                    </h6>
                                 </td>
                                 <td>${data.FirstName}</td>
                                 <td>${data.LastName}</td>
                                 <td>${data.account_username}</td>
                                 <td>${data.Program}</td>
-                                <td>${data.current_status}</td>
+                                 <td>
+                                    <h6>
+                                    <span class="badge bg-success text-light" style="transform: translate(0px, 4px);">${data.current_status}</span>
+                                    </h6>
+                                 </td>
                                 <td>
-                                    <button type="button" class="btn text-primary" onclick="viewStudent(${data.student_id})" data-bs-toggle="modal" data-bs-target="#viewStudentDetailsModal"><i class="bi bi-eye h5"></i></button>
-                                    <button type="button" class="btn text-info" onclick="viewStudent(${data.student_id})"><i class="bi bi-pencil"></i></button>
+                                    <button type="button" class="btn text-primary" onclick="editUser(${data.student_id})"><i class="bi bi-pencil"></i></button>
                                     <button type="button" class="btn text-danger" onclick="deletionConfirmation(${data.student_id})"><i class="bi bi-trash h5"></i></button>
                                 </td>
-                            </tr>
+                        </tr>
                 `;
             }).join('');
 
@@ -297,19 +313,22 @@ include __DIR__ . '/../../backend/getCourses.php';
 
     }
 
-    function populateViewModal(data) { // POPULATE MODAL FIELDS
 
-        document.getElementById("student_name").innerHTML = data.FirstName;
 
-        Object.keys(data).forEach(key => {
+    function populateEditModal(data) { // POPULATE VIEW MODAL 
+
+        document.getElementById("edit_student_name").innerHTML = data.FirstName;
+
+        Object.keys(data).forEach(key => { // ! SEARCH HOW TO CHECK AN ELEMENT'S ELEMT USING JAVASCRIPT
             const element = document.getElementById(key);
             if (element) {
-                element.textContent = data[key] || "N/A";
+                element.value = data[key] || "N/A";
             }
         });
     }
 
-    async function viewStudent(student_id) { // SEND VIEW REQUEST 
+    async function editUser(user_id) { // SEND VIEW REQUEST 
+        const editModal = bootstrap.Modal.getOrCreateInstance(document.getElementById("editUserDetailsModal"));
         const placeholders = document.querySelectorAll(".placeholders");
 
         placeholders.forEach((el) => {
@@ -321,7 +340,7 @@ include __DIR__ . '/../../backend/getCourses.php';
             const res = await fetch(`../../../api/AdminVerificationController.php`, {
                 method: 'POST',
                 body: new URLSearchParams({
-                    student_id: student_id,
+                    student_id: user_id,
                     action: 'view'
                 }),
                 credentials: 'same-origin',
@@ -332,17 +351,31 @@ include __DIR__ . '/../../backend/getCourses.php';
             }
 
             const data = await res.json();
-
-            document.getElementById("verify_student").value = student_id;
+            console.log(data);
 
             placeholders.forEach((el) => {
                 el.classList.remove("placeholder", "bg-dark");
             });
 
-            populateViewModal(data);
+            editModal.show();
+            populateEditModal(data);
 
         } catch (error) {
             console.error("View student failed:", error);
+        } finally {
+
+        }
+
+    }
+
+
+
+    async function updateUser(user_id) {
+
+        try {
+
+        } catch {
+
         } finally {
 
         }

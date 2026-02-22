@@ -40,6 +40,12 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 $stmt->execute();
                 $stmt->close();
 
+                // ACTIVATE ACCOUNT
+                $activateAccount = $conn->prepare("UPDATE users SET active = 1 WHERE student_id = ?");
+                $activateAccount->bind_param("i", $student_id);
+                $activateAccount->execute();
+                $activateAccount->close();
+
                 //COMMIT ALL QUERIES
                 $conn->commit();
 
@@ -99,6 +105,9 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 echo json_encode(['success' => false]);
             }
 
+            break;
+
+        case 'update':
             break;
     }
 }

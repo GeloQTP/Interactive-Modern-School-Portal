@@ -1,8 +1,8 @@
-<div class="modal fade" id="viewStudentDetailsModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+<div class="modal fade" id="editUserDetailsModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog modal-xl modal-dialog-centered modal-dialog-scrollable">
         <div class="modal-content">
             <div class="modal-header">
-                <h1 class="modal-title lead ms-auto" id="exampleModalLabel"><span id="student_name"></span>'s Information</h1>
+                <h1 class="modal-title lead ms-auto" id="exampleModalLabel">Configure <span id="edit_student_name"></span>'s Information</h1>
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body px-4 py-4">
@@ -14,77 +14,77 @@
 
                     <div class="col-lg-2 mb-5">
                         <strong>First Name</strong><br>
-                        <small id="FirstName" class="placeholders">N/A</small>
+                        <input id="FirstName" class="placeholders form-control form-control-sm">
                     </div>
 
                     <div class="col-lg-2 mb-5">
                         <strong>Middle Name</strong><br>
-                        <small id="MiddleName" class="placeholders">N/A</small>
+                        <input id="MiddleName" class="placeholders form-control form-control-sm">
                     </div>
 
                     <div class="col-lg-2 mb-5">
                         <strong>Last Name</strong><br>
-                        <small id="LastName" class="placeholders">N/A</small>
+                        <input id="LastName" class="placeholders form-control form-control-sm">
                     </div>
 
                     <div class="col-lg-2 mb-5">
                         <strong>Suffix</strong><br>
-                        <small id="Ext_Name" class="placeholders">N/A</small>
+                        <input id="Ext_Name" class="placeholders form-control form-control-sm">
                     </div>
 
                     <div class="col-lg-2 mb-5">
                         <strong>Date of Birth</strong><br>
-                        <small id="BirthDate" class="placeholders">N/A</small>
+                        <input id="BirthDate" class="placeholders form-control form-control-sm">
                     </div>
 
                     <div class="col-lg-2 mb-5">
                         <strong>Age</strong><br>
-                        <small id="Age" class="placeholders">N/A</small>
+                        <input id="Age" class="placeholders form-control form-control-sm">
                     </div>
 
                     <div class="col-lg-2 mb-5">
                         <strong>Nationality</strong><br>
-                        <small id="Nationality" class="placeholders">N/A</small>
+                        <input id="Nationality" class="placeholders form-control form-control-sm">
                     </div>
 
                     <div class="col-lg-2 mb-5">
                         <strong>Civil Status</strong><br>
-                        <small id="CivilStatus" class="placeholders">N/A</small>
+                        <input id="CivilStatus" class="placeholders form-control form-control-sm">
                     </div>
 
                     <div class="col-lg-2 mb-5">
                         <strong>Gender</strong><br>
-                        <small id="Gender" class="placeholders">N/A</small>
+                        <input id="Gender" class="placeholders form-control form-control-sm">
                     </div>
 
                     <div class="col-lg-2 mb-5">
                         <strong>Phone Number</strong><br>
-                        <small id="PhoneNumber" class="placeholders">N/A</small>
+                        <input id="PhoneNumber" class="placeholders form-control form-control-sm">
                     </div>
 
                     <div class="col-lg-2 mb-5">
                         <strong>Barangay</strong><br>
-                        <small id="Barangay" class="placeholders">N/A</small>
+                        <input id="Barangay" class="placeholders form-control form-control-sm">
                     </div>
 
                     <div class="col-lg-2 mb-5">
                         <strong>City</strong><br>
-                        <small id="City" class="placeholders">N/A</small>
+                        <input id="City" class="placeholders form-control form-control-sm">
                     </div>
 
                     <div class="col-lg-2 mb-5">
                         <strong>Province</strong><br>
-                        <small id="Province" class="placeholders">N/A</small>
+                        <input id="Province" class="placeholders form-control form-control-sm">
                     </div>
 
                     <div class="col-lg-2 mb-5">
                         <strong>Zip Code</strong><br>
-                        <small id="ZipCode" class="placeholders">N/A</small>
+                        <input id="ZipCode" class="placeholders form-control form-control-sm">
                     </div>
 
                     <div class="col-lg-3 mb-5">
                         <strong>Email</strong><br>
-                        <small id="Email" class="placeholders">N/A</small>
+                        <input id="Email" class="placeholders form-control form-control-sm">
                     </div>
 
                     <p class="display-6 mb-4 w-100 text-dark fs-2" style="border-bottom:1px solid green">
@@ -93,32 +93,32 @@
 
                     <div class="col-lg-3 mb-5">
                         <strong>Program</strong><br>
-                        <small id="Program" class="placeholders">N/A</small>
+                        <input id="Program" class="placeholders form-control form-control-sm">
                     </div>
 
                     <div class="col-lg-3 mb-5">
                         <strong>Year Level</strong><br>
-                        <small id="YearLevel" class="placeholders">N/A</small>
+                        <input id="YearLevel" class="placeholders form-control form-control-sm">
                     </div>
 
                     <div class="col-lg-3 mb-5">
                         <strong>Student Type</strong><br>
-                        <small id="StudentType" class="placeholders">N/A</small>
+                        <input id="StudentType" class="placeholders form-control form-control-sm">
                     </div>
 
                     <div class="col-lg-3 mb-5">
                         <strong>Enrollment Type</strong><br>
-                        <small id="EnrollmentType" class="placeholders">N/A</small>
+                        <input id="EnrollmentType" class="placeholders form-control form-control-sm">
                     </div>
 
                     <div class="col-lg-3 mb-5">
                         <strong>Graduation Year</strong><br>
-                        <small id="GraduationYear" class="placeholders">N/A</small>
+                        <input id="GraduationYear" class="placeholders form-control form-control-sm">
                     </div>
 
                     <div class="col-lg-3 mb-5">
                         <strong>Honors</strong><br>
-                        <small id="Honors" class="placeholders">N/A</small>
+                        <input id="Honors" class="placeholders form-control form-control-sm">
                     </div>
 
                     <p class="display-6 mb-4 w-100 text-dark fs-2" style="border-bottom:1px solid green">
@@ -127,22 +127,22 @@
 
                     <div class="col-lg-3 mb-5">
                         <strong>Employment Status</strong><br>
-                        <small id="EmploymentStatus" class="placeholders">N/A</small>
+                        <input id="EmploymentStatus" class="placeholders form-control form-control-sm">
                     </div>
 
                     <div class="col-lg-3 mb-5">
                         <strong>Company Name</strong><br>
-                        <small id="CompanyName" class="placeholders">N/A</small>
+                        <input id="CompanyName" class="placeholders form-control form-control-sm">
                     </div>
 
                     <div class="col-lg-3 mb-5">
                         <strong>Job Title</strong><br>
-                        <small id="JobTitle" class="placeholders">N/A</small>
+                        <input id="JobTitle" class="placeholders form-control form-control-sm">
                     </div>
 
                     <div class="col-lg-3 mb-5">
                         <strong>Work Location</strong><br>
-                        <small id="WorkLocation" class="placeholders">N/A</small>
+                        <input id="WorkLocation" class="placeholders form-control form-control-sm">
                     </div>
 
                     <p class="display-6 mb-4 w-100 text-dark fs-2" style="border-bottom:1px solid green">
@@ -151,22 +151,22 @@
 
                     <div class="col-lg-3 mb-5">
                         <strong>Guardian's Name</strong><br>
-                        <small id="GuardianName" class="placeholders">N/A</small>
+                        <input id="GuardianName" class="placeholders form-control form-control-sm">
                     </div>
 
                     <div class="col-lg-3 mb-5">
                         <strong>Relationship</strong><br>
-                        <small id="Relationship" class="placeholders">N/A</small>
+                        <input id="Relationship" class="placeholders form-control form-control-sm">
                     </div>
 
                     <div class="col-lg-3 mb-5">
                         <strong>Guardian's Phone</strong><br>
-                        <small id="GuardianPhone" class="placeholders">N/A</small>
+                        <input id="GuardianPhone" class="placeholders form-control form-control-sm">
                     </div>
 
                     <div class="col-lg-3 mb-5">
                         <strong>Guardian's Email</strong><br>
-                        <small id="GuardianEmail" class="placeholders">N/A</small>
+                        <input id="GuardianEmail" class="placeholders form-control form-control-sm">
                     </div>
 
                     <p class="display-6 mb-4 w-100 text-dark fs-2" style="border-bottom:1px solid green">
@@ -175,15 +175,26 @@
 
                     <div class="col-lg-3 mb-5">
                         <strong>Account Username</strong><br>
-                        <small id="account_username" class="placeholders">N/A</small>
+                        <input id="account_username" class="placeholders form-control form-control-sm">
                     </div>
+
                     <div class="col-lg-3 mb-5">
                         <strong>Recovery Email</strong><br>
-                        <small id="recovery_email" class="placeholders">N/A</small>
+                        <input id="recovery_email" class="placeholders form-control form-control-sm">
                     </div>
+
                     <div class="col-lg-3 mb-5">
                         <strong>Account Role</strong><br>
-                        <small id="role" class="placeholders">N/A</small>
+                        <input id="role" class="placeholders form-control form-control-sm">
+                    </div>
+
+                    <div class="col-lg-3 mb-5">
+                        <strong>Account Status</strong><br>
+                        <select id="active" class="placeholders form-select form-select-sm">
+                            <option value=1>Active</option>
+                            <option value=2>Stricted</option>
+                            <option value=0>Disabled</option>
+                        </select>
                     </div>
 
                     <p class="display-6 mb-4 w-100 text-dark fs-2" style="border-bottom:1px solid green">
@@ -192,17 +203,17 @@
 
                     <div class="col-lg-3 mb-5">
                         <strong>Registraton Date</strong><br>
-                        <small id="RegistrationDate" class="placeholders">N/A</small>
+                        <small id="RegistrationDate" class="placeholders"></small>
                     </div>
 
                     <div class="col-lg-3 mb-5">
                         <strong>Verification Date</strong><br>
-                        <small id="RegistrationDate" class="placeholders">N/A</small>
+                        <small id="VerificationDate" class="placeholders"></small>
                     </div>
 
                     <div class="col-lg-3 mb-5">
                         <strong>Enrollment Date</strong><br>
-                        <small id="EnrollmentDate" class="placeholders">N/A</small>
+                        <small id="EnrollmentDate" class="placeholder"></small>
                     </div>
 
                 </div>
@@ -210,7 +221,7 @@
 
             <div class="modal-footer">
                 <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                <button type="button" class="btn btn-primary btn-success" id="verify_student" onclick="verifyStudent(this.value)">Verify Student</button>
+                <button type="button" class="btn btn-primary btn-success" id="verify_student" onclick="updateUser(this.value)">Save Changes</button>
             </div>
         </div>
     </div>

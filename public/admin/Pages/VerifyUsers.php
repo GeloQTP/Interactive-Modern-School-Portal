@@ -86,18 +86,18 @@ include __DIR__ . '/../../backend/getCourses.php';
                     <div class="col-md-4">
                         <div class="input-group mb-2">
                             <span class="input-group-text" id="visible-addon"><i class="bi bi-search"></i></span>
-                            <input type="text" class="form-control rounded-2" placeholder="Search by Last Name..." aria-label="Username" aria-describedby="visible-addon" name="searchbar" onkeyup="searchStudent(this.value)" id="searchInput">
+                            <input type="text" class="form-control rounded-2" placeholder="Search by Last Name..." aria-label="Username" aria-describedby="visible-addon" name="searchbar" onkeyup="searchUser(this.value)" id="searchInput">
                         </div>
                     </div>
 
                     <div class="col-md-4">
-                        <select class="form-select mb-2" aria-label="Large select example" onchange="loadStudentRegistration(this.value)" id="filterbyProgram">
+                        <select class="form-select mb-2" aria-label="Large select example" onchange="loadUserRegistration(this.value)" id="filterbyProgram">
                             <option value="" disabled selected>Filter by Program</option>
                             <option value="show_all">Show All</option>
                             <?php
                             while ($row = $result->fetch_assoc()) {
                             ?>
-                                <option value="<?= $row['course_name'] ?>"><?= $row['course_name'] ?></option>
+                                <option value="<?= $row['program_name'] ?>"><?= $row['program_name'] ?></option>
                             <?php } ?>
                         </select>
                     </div>
@@ -144,7 +144,7 @@ include __DIR__ . '/../../backend/getCourses.php';
 
 <script>
     loadDashboardStats();
-    loadStudentRegistration();
+    loadUserRegistration();
     setInterval(loadDashboardStats, 5000);
 
     async function loadDashboardStats() { // LOAD DASHBOARD CARDS
@@ -159,17 +159,17 @@ include __DIR__ . '/../../backend/getCourses.php';
             const data = await res.json();
 
             document.getElementById("totalPending").textContent = data.totalPendingRegistrations;
-            document.getElementById("totalPendingStudents").textContent = data.totalStudentRegistrations;
-            document.getElementById("totalStudents").textContent = data.totalAlumniRegistrations;
+            document.getElementById("totalPendingStudents").textContent = data.StudentRegistrations;
+            document.getElementById("totalPendingAlumni").textContent = data.AlumniRegistrations;
 
         } catch (error) {
-            document.getElementById("totalStudents").textContent = 0;
+            document.getElementById("totalPending").textContent = 0;
             document.getElementById("totalPendingStudents").textContent = 0;
-            document.getElementById("pendingRegistrations").textContent = 0;
+            document.getElementById("totalPendingAlumni").textContent = 0;
         }
     }
 
-    async function loadStudentRegistration(filter) { // LOAD STUDENT REGISTRATION LIST
+    async function loadUserRegistration(filter) { // LOAD STUDENT REGISTRATION LIST
 
         const filterBy = filter || document.getElementById("filterbyProgram").value;
         const searchQueue = document.getElementById("searchInput").value;
@@ -214,7 +214,7 @@ include __DIR__ . '/../../backend/getCourses.php';
                                 <td>${data.Program}</td>
                              <td>
                                 <button type="button" class="btn text-success" onclick="verificationConfirmation(${data.student_id})"><i class="bi bi-check2-circle h5"></i></button>
-                                <button type="button" class="btn text-primary" onclick="viewStudent(${data.student_id})" data-bs-toggle="modal" data-bs-target="#viewStudentDetailsModal"><i class="bi bi-eye h5"></i></button>
+                                <button type="button" class="btn text-primary" onclick="viewUser(${data.student_id})"><i class="bi bi-eye h5"></i></button>
                                 <button type="button" class="btn text-danger" onclick="deletionConfirmation(${data.student_id})"><i class="bi bi-trash h5"></i></button>
                             </td>
                         </tr>
@@ -232,13 +232,13 @@ include __DIR__ . '/../../backend/getCourses.php';
 
     }
 
-    async function searchStudent(searchQueue) { // SEARCH STUDENT MANUALLY
+    async function searchUser(searchQueue) { // SEARCH STUDENT MANUALLY
 
         const filterbyProgram = document.getElementById("filterbyProgram").value || '';
 
         const searchInputVal = document.getElementById("searchInput").value;
         if (!searchInputVal || searchInputVal === '') { // CHECKS IF SEARCH INPUT IS EMPTY
-            loadStudentRegistration();
+            loadUserRegistration();
             return;
         }
 
@@ -280,7 +280,7 @@ include __DIR__ . '/../../backend/getCourses.php';
                                 <td>${data.Program}</td>
                              <td>
                                 <button type="button" class="btn text-success" onclick="verificationConfirmation(${data.student_id})"><i class="bi bi-check2-circle h5"></i></button>
-                                <button type="button" class="btn text-primary" onclick="viewStudent(${data.student_id})" data-bs-toggle="modal" data-bs-target="#viewStudentDetailsModal"><i class="bi bi-eye h5"></i></button>
+                                <button type="button" class="btn text-primary" onclick="viewUser(${data.student_id})"><i class="bi bi-eye h5"></i></button>
                                 <button type="button" class="btn text-danger" onclick="deletionConfirmation(${data.student_id})"><i class="bi bi-trash h5"></i></button>
                             </td>
                         </tr>
@@ -298,7 +298,9 @@ include __DIR__ . '/../../backend/getCourses.php';
 
     }
 
-    function verificationConfirmation(student_id) { // VERIFICATION CONFIRMATION
+
+
+    function verificationConfirmation(user_id) { // VERIFICATION CONFIRMATION
         Swal.fire({
             title: "Are you sure?",
             text: `Verify User?`,
@@ -308,36 +310,21 @@ include __DIR__ . '/../../backend/getCourses.php';
             confirmButtonText: "Confirm User"
         }).then((result) => {
             if (result.isConfirmed) {
-                verifyStudent(student_id);
+                verifyUser(user_id);
             }
         });
     }
 
-    function deletionConfirmation(student_id) { // DELETION CONFIRMATION
-        Swal.fire({
-            title: "Are you sure?",
-            text: `Reject User?`,
-            icon: "warning",
-            showCancelButton: true,
-            confirmButtonColor: "#DC3545",
-            confirmButtonText: "Reject User"
-        }).then((result) => {
-            if (result.isConfirmed) {
-                rejectStudent(student_id);
-            }
-        });
-    }
+    async function verifyUser(user_id) { // SEND VERIFY REQUEST
 
-    async function verifyStudent(student_id) { // SEND VERIFY REQUEST
-
-        const toastBootstrap = bootstrap.Modal.getOrCreateInstance(document.getElementById("viewStudentDetailsModal"));
+        const toastBootstrap = bootstrap.Modal.getOrCreateInstance(document.getElementById("viewUserDetailsModal"));
 
         try {
 
             const res = await fetch(`../../../api/AdminVerificationController.php`, {
                 method: 'POST',
                 body: new URLSearchParams({
-                    student_id: student_id,
+                    student_id: user_id,
                     action: 'verify',
                 }),
                 credentials: 'same-origin',
@@ -351,7 +338,7 @@ include __DIR__ . '/../../backend/getCourses.php';
             console.log(data);
 
             if (data.success) {
-                loadStudentRegistration();
+                loadUserRegistration();
                 toastBootstrap.hide();
 
                 Swal.fire({
@@ -379,6 +366,9 @@ include __DIR__ . '/../../backend/getCourses.php';
         }
     }
 
+
+
+
     function populateViewModal(data) { // POPULATE MODAL FIELDS
 
         document.getElementById("student_name").innerHTML = data.FirstName;
@@ -391,11 +381,12 @@ include __DIR__ . '/../../backend/getCourses.php';
         });
     }
 
-    async function viewStudent(student_id) { // SEND VIEW REQUEST 
+    async function viewUser(user_id) { // SEND VIEW REQUEST 
+        const viewModal = bootstrap.Modal.getOrCreateInstance(document.getElementById("viewUserDetailsModal"));
         const placeholders = document.querySelectorAll(".placeholders");
 
         placeholders.forEach((el) => {
-            el.classList.add("placeholder", "bg-dark");
+            el.classList.add("placeholder", "bg-dark"); // ADD PLACE LOADING PLACEHOLDER
         });
 
         try {
@@ -403,7 +394,7 @@ include __DIR__ . '/../../backend/getCourses.php';
             const res = await fetch(`../../../api/AdminVerificationController.php`, {
                 method: 'POST',
                 body: new URLSearchParams({
-                    student_id: student_id,
+                    student_id: user_id,
                     action: 'view'
                 }),
                 credentials: 'same-origin',
@@ -415,12 +406,13 @@ include __DIR__ . '/../../backend/getCourses.php';
 
             const data = await res.json();
 
-            document.getElementById("verify_student").value = student_id;
+            document.getElementById("verify_student").value = user_id; // POPULATE MODAL BUTTON WITH STUDENT ID
 
             placeholders.forEach((el) => {
-                el.classList.remove("placeholder", "bg-dark");
+                el.classList.remove("placeholder", "bg-dark"); // REMOVE WHEN LOADED
             });
 
+            viewModal.show();
             populateViewModal(data);
 
         } catch (error) {
@@ -431,14 +423,31 @@ include __DIR__ . '/../../backend/getCourses.php';
 
     }
 
-    async function rejectStudent(student_id) { // SEND REJECT REQUEST
+
+
+    function deletionConfirmation(user_id) { // DELETION CONFIRMATION
+        Swal.fire({
+            title: "Are you sure?",
+            text: `Reject User?`,
+            icon: "warning",
+            showCancelButton: true,
+            confirmButtonColor: "#DC3545",
+            confirmButtonText: "Reject User"
+        }).then((result) => {
+            if (result.isConfirmed) {
+                rejectUser(user_id);
+            }
+        });
+    }
+
+    async function rejectUser(user_id) { // SEND REJECT REQUEST
 
         try {
 
             const res = await fetch(`../../../api/AdminVerificationController.php`, {
                 method: 'POST',
                 body: new URLSearchParams({
-                    student_id: student_id,
+                    student_id: user_id,
                     action: 'reject',
                 }),
                 credentials: 'same-origin',
@@ -451,7 +460,7 @@ include __DIR__ . '/../../backend/getCourses.php';
             const data = await res.json();
 
             if (data.success) {
-                loadStudentRegistration();
+                loadUserRegistration();
 
                 Swal.fire({
                     title: "Rejection Successful",

@@ -38,7 +38,7 @@
                  <div class="d-flex justify-content-between align-items-center">
                      <div>
                          <p class="text-muted mb-1">Alumni Registrations</p>
-                         <h3 class="mb-0 fw-bold" id="totalStudents">0</h3>
+                         <h3 class="mb-0 fw-bold" id="totalPendingAlumni">0</h3>
                      </div>
                      <div class="stat-icon text-primary">
                          <i class="bi bi-mortarboard h2"></i>

@@ -94,11 +94,12 @@ include __DIR__ . '/../../api/recentActivities.php';
 
             const data = await res.json();
 
-            document.getElementById("totalStudents").textContent = data.totalStudents;
-            document.getElementById("totalVerifiedStudents").textContent = data.totalVerifiedStudents;
+            document.getElementById("totalEnrolledStudents").textContent = data.EnrolledStudents;
+            document.getElementById("TotalAlumni").textContent = data.VerifiedAlumni
+            document.getElementById("totalVerifiedStudents").textContent = data.VerifiedStudents;
             document.getElementById("pendingRegistrations").textContent = data.totalPendingRegistrations;
             document.getElementById("newsLetterSubscribers").textContent =
-                data.totalNewsSubscribers;
+                data.NewsSubscribers;
         } catch (error) {
             document.getElementById("totalStudents").textContent = 0;
             document.getElementById("pendingRegistrations").textContent = 0;

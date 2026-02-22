@@ -56,11 +56,13 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
     header('Content-Type: application/json');
     echo json_encode([
-        'totalStudents' => $dashboardStats->countStudentRegistrationByState('enrolled'), 
-        'totalVerifiedStudents' => $dashboardStats->countStudentRegistrationByState('verified'),
-        'totalPendingRegistrations' => $dashboardStats->countStudentRegistrationByState('pending'), 
-        'totalStudentRegistrations' => $dashboardStats->getRegistrationsOf('Student','pending'),
-        'totalAlumniRegistrations' => $dashboardStats->getRegistrationsOf('Alumni','pending'),
-        'totalNewsSubscribers' => $dashboardStats->getTotalNewsSubscribers()
+        'EnrolledStudents' => $dashboardStats->countStudentRegistrationByState('enrolled'), // ALL ENROLLED
+        'VerifiedUsers' => $dashboardStats->countStudentRegistrationByState('verified'), // ALL VERIFIED
+        'totalPendingRegistrations' => $dashboardStats->countStudentRegistrationByState('pending'), // ALL REGISTRATIONS
+        'StudentRegistrations' => $dashboardStats->getRegistrationsOf('Student', 'pending'),
+        'VerifiedStudents' => $dashboardStats->getRegistrationsOf('Student', 'Verified'),
+        'VerifiedAlumni' => $dashboardStats->getRegistrationsOf('Alumni', 'Verified'),
+        'AlumniRegistrations' => $dashboardStats->getRegistrationsOf('Alumni', 'pending'),
+        'NewsSubscribers' => $dashboardStats->getTotalNewsSubscribers()
     ]);
 }

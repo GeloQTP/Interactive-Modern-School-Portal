@@ -190,7 +190,7 @@
                         Registration Information
                     </p>
 
-                     <div class="col-lg-3 mb-5">
+                    <div class="col-lg-3 mb-5">
                         <strong>Registraton Date</strong><br>
                         <small id="RegistrationDate" class="placeholders">N/A</small>
                     </div>
@@ -206,11 +206,6 @@
                     </div>
 
                 </div>
-            </div>
-
-            <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                <button type="button" class="btn btn-primary btn-success" id="verify_student" onclick="verifyUser(this.value)">Verify Student</button>
             </div>
         </div>
     </div>

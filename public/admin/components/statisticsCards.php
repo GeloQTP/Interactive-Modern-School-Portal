@@ -7,7 +7,7 @@
                     <div class="d-flex justify-content-between align-items-center">
                         <div>
                             <p class="text-muted mb-1">Total Enrolled Students</p>
-                            <h3 class="mb-0 fw-bold" id="totalStudents">0</h3>
+                            <h3 class="mb-0 fw-bold" id="totalEnrolledStudents">0</h3>
                             <small class="text-success">+12% from last month</small>
                         </div>
                         <div class="stat-icon text-info">
@@ -25,7 +25,7 @@
                     <div class="d-flex justify-content-between align-items-center">
                         <div>
                             <p class="text-muted mb-1">Total Alumni</p>
-                            <h3 class="mb-0 fw-bold">0</h3>
+                            <h3 class="mb-0 fw-bold" id="TotalAlumni">0</h3>
                             <small class="text-success">+12% from last month</small>
                         </div>
                         <div class="stat-icon bg-opacity-10 text-primary">

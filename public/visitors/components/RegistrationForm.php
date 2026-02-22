@@ -135,7 +135,7 @@ include __DIR__ . '/../../backend/getCourses.php';
                 <?php
                 while ($row = $result->fetch_assoc()) {
                 ?>
-                    <option value="<?= $row['course_name'] ?>"><?= $row['course_name'] ?></option>
+                    <option value="<?= $row['program_name'] ?>"><?= $row['program_name'] ?></option>
                 <?php } ?>
             </select>
         </div>
