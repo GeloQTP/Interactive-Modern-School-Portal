@@ -141,7 +141,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             $stmt->close();
 
             // Second query - INSERT ACCOUNT
-            $stmt = $conn->prepare("INSERT INTO users (student_id, Email, account_username, account_password, recovery_email, account_role) 
+            $stmt = $conn->prepare("INSERT INTO users (student_id, account_email, account_username, account_password, recovery_email, account_role) 
                                 VALUES (?,?,?,?,?,?)");
 
             $stmt->bind_param("isssss", $student_id, $email, $accountUsername, $hashedPassword, $recoveryEmail, $role);

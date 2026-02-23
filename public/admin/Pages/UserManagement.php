@@ -36,7 +36,7 @@ include __DIR__ . '/../../backend/getCourses.php';
 
             <nav class="navbar navbar-expand-lg bg-light border border-bottom">
                 <div class="container-fluid justify-content-center" style="transform: translate(0px, 10px);">
-                    <p class="text-success lead">Manage Users</p>
+                    <p class="text-success lead">User Management</p>
                 </div>
             </nav>
 
@@ -149,6 +149,7 @@ include __DIR__ . '/../../backend/getCourses.php';
     </div>
 
 </body>
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"></script>
 <script src="./../scripts/sidebar.js"></script>
 
@@ -319,11 +320,24 @@ include __DIR__ . '/../../backend/getCourses.php';
 
         document.getElementById("edit_student_name").innerHTML = data.FirstName;
 
-        Object.keys(data).forEach(key => { // ! SEARCH HOW TO CHECK AN ELEMENT'S ELEMT USING JAVASCRIPT
+        Object.keys(data).forEach(key => {
             const element = document.getElementById(key);
-            if (element) {
-                element.value = data[key] || "N/A";
+
+            if (!element) {
+                return;
             }
+
+            if (element.tagName === "INPUT" ||
+                element.tagName === "SELECT" ||
+                element.tagName === "TEXTAREA") {
+
+                element.value = data[key] || "";
+
+            } else {
+                // For <small>, <div>, <span>, etc.
+                element.textContent = data[key] || "N/A";
+            }
+
         });
     }
 
@@ -351,7 +365,8 @@ include __DIR__ . '/../../backend/getCourses.php';
             }
 
             const data = await res.json();
-            console.log(data);
+
+            document.getElementById("update_student").value = user_id;
 
             placeholders.forEach((el) => {
                 el.classList.remove("placeholder", "bg-dark");
@@ -369,10 +384,58 @@ include __DIR__ . '/../../backend/getCourses.php';
     }
 
 
+    function updateUserVerification(user_id) { // VERIFICATION CONFIRMATION
+        Swal.fire({
+            title: "Are you sure?",
+            text: `Update User?`,
+            icon: "warning",
+            showCancelButton: true,
+            confirmButtonColor: "#198754",
+            confirmButtonText: "Save Changes"
+        }).then((result) => {
+            if (result.isConfirmed) {
+                updateUser(user_id);
+            }
+        });
+    }
 
     async function updateUser(user_id) {
+        const editModal = bootstrap.Modal.getOrCreateInstance(document.getElementById("editUserDetailsModal"));
+        const editedForm = new FormData(document.getElementById("editUserForm"));
+        editedForm.append('student_id', user_id);
 
         try {
+
+            const res = await fetch('../../../api/updateUser.php', {
+                method: 'POST',
+                body: editedForm,
+                credentials: "same-origin"
+            });
+
+            if (!res.ok) throw new Error('Network Response not ok');
+
+            const data = await res.json();
+
+            if (data.success) {
+                editUser(user_id);
+                loadUsers();
+
+                Swal.fire({
+                    title: "Update Successful",
+                    text: "The User's account has been configured.",
+                    icon: "success",
+                    timer: 2000,
+                    showConfirmButton: false
+                });
+            } else {
+                Swal.fire({
+                    title: "Update Unsuccessful",
+                    text: "Configuration Failed.",
+                    icon: "error",
+                    timer: 2000,
+                    showConfirmButton: false,
+                });
+            }
 
         } catch {
 

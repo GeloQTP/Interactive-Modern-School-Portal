@@ -6,86 +6,100 @@
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body px-4 py-4">
-                <div class="row">
 
+                <form id="editUserForm" class="row">
                     <p class="display-6 mb-4 w-100 text-dark fs-2" style="border-bottom:1px solid green">
                         Personal and Contact Information
                     </p>
 
                     <div class="col-lg-2 mb-5">
                         <strong>First Name</strong><br>
-                        <input id="FirstName" class="placeholders form-control form-control-sm">
+                        <input id="FirstName" name="FirstName" class="placeholders form-control form-control-sm">
                     </div>
 
                     <div class="col-lg-2 mb-5">
                         <strong>Middle Name</strong><br>
-                        <input id="MiddleName" class="placeholders form-control form-control-sm">
+                        <input id="MiddleName" name="MiddleName" class="placeholders form-control form-control-sm">
                     </div>
 
                     <div class="col-lg-2 mb-5">
                         <strong>Last Name</strong><br>
-                        <input id="LastName" class="placeholders form-control form-control-sm">
+                        <input id="LastName" name="LastName" class="placeholders form-control form-control-sm">
                     </div>
 
                     <div class="col-lg-2 mb-5">
                         <strong>Suffix</strong><br>
-                        <input id="Ext_Name" class="placeholders form-control form-control-sm">
+                        <input id="Ext_Name" name="Ext_Name" class="placeholders form-control form-control-sm">
                     </div>
 
                     <div class="col-lg-2 mb-5">
                         <strong>Date of Birth</strong><br>
-                        <input id="BirthDate" class="placeholders form-control form-control-sm">
+                        <input id="BirthDate" name="BirthDate" class="placeholders form-control form-control-sm">
                     </div>
 
                     <div class="col-lg-2 mb-5">
                         <strong>Age</strong><br>
-                        <input id="Age" class="placeholders form-control form-control-sm">
+                        <input id="Age" name="Age" class="placeholders form-control form-control-sm">
                     </div>
 
                     <div class="col-lg-2 mb-5">
                         <strong>Nationality</strong><br>
-                        <input id="Nationality" class="placeholders form-control form-control-sm">
+                        <input id="Nationality" name="Nationality" class="placeholders form-control form-control-sm">
                     </div>
 
                     <div class="col-lg-2 mb-5">
                         <strong>Civil Status</strong><br>
-                        <input id="CivilStatus" class="placeholders form-control form-control-sm">
+                        <input id="CivilStatus" name="CivilStatus" class="placeholders form-control form-control-sm">
                     </div>
 
                     <div class="col-lg-2 mb-5">
                         <strong>Gender</strong><br>
-                        <input id="Gender" class="placeholders form-control form-control-sm">
+                        <input id="Gender" name="Gender" class="placeholders form-control form-control-sm">
                     </div>
 
                     <div class="col-lg-2 mb-5">
                         <strong>Phone Number</strong><br>
-                        <input id="PhoneNumber" class="placeholders form-control form-control-sm">
+                        <input id="PhoneNumber" name="PhoneNumber" class="placeholders form-control form-control-sm">
                     </div>
 
                     <div class="col-lg-2 mb-5">
                         <strong>Barangay</strong><br>
-                        <input id="Barangay" class="placeholders form-control form-control-sm">
+                        <input id="Barangay" name="Barangay" class="placeholders form-control form-control-sm">
                     </div>
 
                     <div class="col-lg-2 mb-5">
                         <strong>City</strong><br>
-                        <input id="City" class="placeholders form-control form-control-sm">
+                        <input id="City" name="City" class="placeholders form-control form-control-sm">
                     </div>
 
                     <div class="col-lg-2 mb-5">
                         <strong>Province</strong><br>
-                        <input id="Province" class="placeholders form-control form-control-sm">
+                        <input id="Province" name="Province" class="placeholders form-control form-control-sm">
                     </div>
 
                     <div class="col-lg-2 mb-5">
                         <strong>Zip Code</strong><br>
-                        <input id="ZipCode" class="placeholders form-control form-control-sm">
+                        <input id="ZipCode" name="ZipCode" class="placeholders form-control form-control-sm">
                     </div>
 
-                    <div class="col-lg-3 mb-5">
+                    <div class="col-lg-2 mb-5">
                         <strong>Email</strong><br>
-                        <input id="Email" class="placeholders form-control form-control-sm">
+                        <input id="Email" name="Email" class="placeholders form-control form-control-sm">
                     </div>
+
+                    <div class="col-lg-2 mb-5">
+                        <strong>User Status</strong><br>
+                        <select id="current_status" name="current_status" class="placeholders form-select form-select-sm">
+                            <option value="verified">Verified</option>
+                            <option value="pending">Pending</option>
+                            <option value="enrolled">Enrolled</option>
+                        </select>
+                    </div>
+
+                    <!-- <div class="col-lg-3 mb-5">
+                        <strong>User Role</strong><br>
+                        <input id="role" name="GuardianEmail" class="placeholders form-control form-control-sm">
+                    </div> -->
 
                     <p class="display-6 mb-4 w-100 text-dark fs-2" style="border-bottom:1px solid green">
                         Academic Information
@@ -93,32 +107,32 @@
 
                     <div class="col-lg-3 mb-5">
                         <strong>Program</strong><br>
-                        <input id="Program" class="placeholders form-control form-control-sm">
+                        <input id="Program" name="Program" class="placeholders form-control form-control-sm">
                     </div>
 
                     <div class="col-lg-3 mb-5">
                         <strong>Year Level</strong><br>
-                        <input id="YearLevel" class="placeholders form-control form-control-sm">
+                        <input id="YearLevel" name="YearLevel" class="placeholders form-control form-control-sm">
                     </div>
 
                     <div class="col-lg-3 mb-5">
                         <strong>Student Type</strong><br>
-                        <input id="StudentType" class="placeholders form-control form-control-sm">
+                        <input id="StudentType" name="StudentType" class="placeholders form-control form-control-sm">
                     </div>
 
                     <div class="col-lg-3 mb-5">
                         <strong>Enrollment Type</strong><br>
-                        <input id="EnrollmentType" class="placeholders form-control form-control-sm">
+                        <input id="EnrollmentType" name="EnrollmentType" class="placeholders form-control form-control-sm">
                     </div>
 
                     <div class="col-lg-3 mb-5">
                         <strong>Graduation Year</strong><br>
-                        <input id="GraduationYear" class="placeholders form-control form-control-sm">
+                        <input id="GraduationYear" name="GraduationYear" class="placeholders form-control form-control-sm">
                     </div>
 
                     <div class="col-lg-3 mb-5">
                         <strong>Honors</strong><br>
-                        <input id="Honors" class="placeholders form-control form-control-sm">
+                        <input id="Honors" name="Honors" class="placeholders form-control form-control-sm">
                     </div>
 
                     <p class="display-6 mb-4 w-100 text-dark fs-2" style="border-bottom:1px solid green">
@@ -127,22 +141,22 @@
 
                     <div class="col-lg-3 mb-5">
                         <strong>Employment Status</strong><br>
-                        <input id="EmploymentStatus" class="placeholders form-control form-control-sm">
+                        <input id="EmploymentStatus" name="EmploymentStatus" class="placeholders form-control form-control-sm">
                     </div>
 
                     <div class="col-lg-3 mb-5">
                         <strong>Company Name</strong><br>
-                        <input id="CompanyName" class="placeholders form-control form-control-sm">
+                        <input id="CompanyName" name="CompanyName" class="placeholders form-control form-control-sm">
                     </div>
 
                     <div class="col-lg-3 mb-5">
                         <strong>Job Title</strong><br>
-                        <input id="JobTitle" class="placeholders form-control form-control-sm">
+                        <input id="JobTitle" name="JobTitle" class="placeholders form-control form-control-sm">
                     </div>
 
                     <div class="col-lg-3 mb-5">
                         <strong>Work Location</strong><br>
-                        <input id="WorkLocation" class="placeholders form-control form-control-sm">
+                        <input id="WorkLocation" name="WorkLocation" class="placeholders form-control form-control-sm">
                     </div>
 
                     <p class="display-6 mb-4 w-100 text-dark fs-2" style="border-bottom:1px solid green">
@@ -151,22 +165,22 @@
 
                     <div class="col-lg-3 mb-5">
                         <strong>Guardian's Name</strong><br>
-                        <input id="GuardianName" class="placeholders form-control form-control-sm">
+                        <input id="GuardianName" name="GuardianName" class="placeholders form-control form-control-sm">
                     </div>
 
                     <div class="col-lg-3 mb-5">
                         <strong>Relationship</strong><br>
-                        <input id="Relationship" class="placeholders form-control form-control-sm">
+                        <input id="Relationship" name="Relationship" class="placeholders form-control form-control-sm">
                     </div>
 
                     <div class="col-lg-3 mb-5">
                         <strong>Guardian's Phone</strong><br>
-                        <input id="GuardianPhone" class="placeholders form-control form-control-sm">
+                        <input id="GuardianPhone" name="GuardianPhone" class="placeholders form-control form-control-sm">
                     </div>
 
                     <div class="col-lg-3 mb-5">
                         <strong>Guardian's Email</strong><br>
-                        <input id="GuardianEmail" class="placeholders form-control form-control-sm">
+                        <input id="GuardianEmail" name="GuardianEmail" class="placeholders form-control form-control-sm">
                     </div>
 
                     <p class="display-6 mb-4 w-100 text-dark fs-2" style="border-bottom:1px solid green">
@@ -174,26 +188,34 @@
                     </p>
 
                     <div class="col-lg-3 mb-5">
+                        <strong>Account Email</strong><br>
+                        <input id="account_email" name="account_email" class="placeholders form-control form-control-sm">
+                    </div>
+
+                    <div class="col-lg-3 mb-5">
                         <strong>Account Username</strong><br>
-                        <input id="account_username" class="placeholders form-control form-control-sm">
+                        <input id="account_username" name="account_username" class="placeholders form-control form-control-sm">
                     </div>
 
                     <div class="col-lg-3 mb-5">
                         <strong>Recovery Email</strong><br>
-                        <input id="recovery_email" class="placeholders form-control form-control-sm">
+                        <input id="recovery_email" name="recovery_email" class="placeholders form-control form-control-sm">
                     </div>
 
                     <div class="col-lg-3 mb-5">
                         <strong>Account Role</strong><br>
-                        <input id="role" class="placeholders form-control form-control-sm">
+                        <select name="role" id="role" class="placeholders form-control form-control-sm">
+                            <option value="Alumni">Alumni</option>
+                            <option value="Student">Student</option>
+                        </select>
                     </div>
 
                     <div class="col-lg-3 mb-5">
-                        <strong>Account Status</strong><br>
-                        <select id="active" class="placeholders form-select form-select-sm">
-                            <option value=1>Active</option>
-                            <option value=2>Stricted</option>
-                            <option value=0>Disabled</option>
+                        <strong>Activation Status</strong><br>
+                        <select id="activationStatus" name="activationStatus" class="placeholders form-select form-select-sm">
+                            <option value="disabled">Disabled</option>
+                            <option value="active">Active</option>
+                            <option value="stricted">Stricted</option>
                         </select>
                     </div>
 
@@ -215,13 +237,13 @@
                         <strong>Enrollment Date</strong><br>
                         <small id="EnrollmentDate" class="placeholder"></small>
                     </div>
+                </form>
 
-                </div>
             </div>
 
             <div class="modal-footer">
                 <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                <button type="button" class="btn btn-primary btn-success" id="verify_student" onclick="updateUser(this.value)">Save Changes</button>
+                <button type="button" class="btn btn-primary btn-success" id="update_student" onclick="updateUserVerification(this.value)">Save Changes</button>
             </div>
         </div>
     </div>

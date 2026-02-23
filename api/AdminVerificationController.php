@@ -1,7 +1,7 @@
 <?php
 session_start();
 include __DIR__ . '/../includes/db_connect.php';
-mysqli_report(MYSQLI_REPORT_STRICT || MYSQLI_REPORT_ERROR);
+mysqli_report(MYSQLI_REPORT_STRICT | MYSQLI_REPORT_ERROR);
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
@@ -41,8 +41,9 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 $stmt->close();
 
                 // ACTIVATE ACCOUNT
-                $activateAccount = $conn->prepare("UPDATE users SET active = 1 WHERE student_id = ?");
-                $activateAccount->bind_param("i", $student_id);
+                $activationStatus = 'active';
+                $activateAccount = $conn->prepare("UPDATE users SET active = ? WHERE student_id = ?");
+                $activateAccount->bind_param("si", $activationStatus, $student_id);
                 $activateAccount->execute();
                 $activateAccount->close();
 
@@ -105,9 +106,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 echo json_encode(['success' => false]);
             }
 
-            break;
-
-        case 'update':
             break;
     }
 }
