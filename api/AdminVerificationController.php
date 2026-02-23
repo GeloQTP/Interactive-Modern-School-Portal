@@ -32,7 +32,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 $log_owner = $row['FirstName'] . ' ' .  $row['LastName'];
                 $stmt->close();
 
-                //INSERT LOG
+                // INSERT LOG
                 $log_description = 'Verified by Admin';
                 $log_type = 'Verified';
                 $stmt = $conn->prepare("INSERT INTO logs (student_id, log_owner, log_description, log_type) VALUES (?,?,?,?)");
@@ -42,7 +42,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
                 // ACTIVATE ACCOUNT
                 $activationStatus = 'active';
-                $activateAccount = $conn->prepare("UPDATE users SET active = ? WHERE student_id = ?");
+                $activateAccount = $conn->prepare("UPDATE users SET activationStatus = ? WHERE student_id = ?");
                 $activateAccount->bind_param("si", $activationStatus, $student_id);
                 $activateAccount->execute();
                 $activateAccount->close();
@@ -53,7 +53,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 echo json_encode(['success' => true]);
             } catch (Exception $e) {
                 $conn->rollback();
-                echo json_encode(['success' => false]);
+                echo json_encode(['success' => false, 'error' => $e]);
             }
 
             break;
