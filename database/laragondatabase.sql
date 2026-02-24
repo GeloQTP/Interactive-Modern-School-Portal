@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost:3306
--- Generation Time: Feb 19, 2026 at 12:50 PM
+-- Generation Time: Feb 24, 2026 at 05:24 AM
 -- Server version: 8.4.3
 -- PHP Version: 8.3.28
 
@@ -34,6 +34,40 @@ CREATE TABLE `alumni_information` (
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `balances`
+--
+
+CREATE TABLE `balances` (
+  `balance_id` int NOT NULL,
+  `student_id` int NOT NULL,
+  `balance` int NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `courses`
+--
+
+CREATE TABLE `courses` (
+  `course_id` int NOT NULL,
+  `course_name` varchar(25) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+
+--
+-- Dumping data for table `courses`
+--
+
+INSERT INTO `courses` (`course_id`, `course_name`) VALUES
+(1, 'BEED'),
+(2, 'BSA'),
+(3, 'BSCS'),
+(4, 'BSBA'),
+(5, 'BSN');
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `enrollments`
 --
 
@@ -55,7 +89,7 @@ CREATE TABLE `logs` (
   `student_id` int DEFAULT NULL,
   `log_owner` varchar(25) NOT NULL,
   `log_description` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL,
-  `current_status` varchar(25) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL DEFAULT 'pending',
+  `log_type` varchar(25) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL,
   `log_date` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
@@ -63,28 +97,61 @@ CREATE TABLE `logs` (
 -- Dumping data for table `logs`
 --
 
-INSERT INTO `logs` (`log_id`, `student_id`, `log_owner`, `log_description`, `current_status`, `log_date`) VALUES
-(59, 71, 'Ernest Angelo Del Rosario', 'New Student Registration', 'pending', '2026-02-12 20:04:10'),
-(60, 72, 'Giorno Giovanna', 'New Student Registration', 'pending', '2026-02-12 20:06:53'),
-(61, NULL, 'Subscription', 'New newsletter subscription', 'subscription', '2026-02-12 20:21:46'),
-(62, 73, 'GAMAKEN Another Day', 'New Student Registration', 'pending', '2026-02-13 16:17:35'),
-(63, 94, 'Alfreda Stark', 'New Student Registration', 'pending', '2026-02-17 23:40:49'),
-(64, 104, 'Ernest Angelo Del Rosario', 'New Student Registration', 'pending', '2026-02-18 02:11:11'),
-(65, 105, 'Urielle Mcclain', 'New Student Registration', 'pending', '2026-02-18 12:45:57'),
-(66, 106, 'Kyle Giles', 'New Student Registration', 'pending', '2026-02-18 12:47:16'),
-(67, 107, 'Maxwell Lynn', 'New Student Registration', 'pending', '2026-02-18 12:49:02'),
-(68, 108, 'Gemma Head', 'New Student Registration', 'pending', '2026-02-18 18:44:46'),
-(69, NULL, 'Rigel Warner', 'NewAlumniRegistration', 'pending', '2026-02-18 20:14:04'),
-(70, NULL, 'Haley Crosby', 'New Alumni Registration', 'pending', '2026-02-18 20:24:04'),
-(71, 109, 'Kelsie Wallace', 'New student Registration', 'pending', '2026-02-18 20:33:01'),
-(72, 110, 'Beverly Porter', 'New Alumni Registration', 'pending', '2026-02-18 21:32:04'),
-(73, 111, 'Ernest Angelo Del Rosario', 'New Alumni Registration', 'pending', '2026-02-18 21:57:20'),
-(74, 112, 'Petra Brewer', 'New Student Registration', 'pending', '2026-02-18 22:23:34'),
-(75, 113, 'Kylee Frazier', 'New Student Registration', 'pending', '2026-02-18 23:10:36'),
-(76, 114, 'Jemima Cummings', 'New Alumni Registration', 'pending', '2026-02-18 23:33:26'),
-(77, 115, 'Adrian Reyes', 'New Alumni Registration', 'pending', '2026-02-19 18:25:00'),
-(78, 116, 'Shereece Claire Degula', 'New Student Registration', 'pending', '2026-02-19 18:39:28'),
-(79, 117, 'Yano John Rey', 'New Student Registration', 'pending', '2026-02-19 18:45:52');
+INSERT INTO `logs` (`log_id`, `student_id`, `log_owner`, `log_description`, `log_type`, `log_date`) VALUES
+(59, 71, 'Ernest Angelo Del Rosario', 'New Student Registration', 'Registration', '2026-02-12 20:04:10'),
+(60, 72, 'Giorno Giovanna', 'New Student Registration', 'Registration', '2026-02-12 20:06:53'),
+(61, NULL, 'Subscription', 'New newsletter subscription', 'Subscription', '2026-02-12 20:21:46'),
+(62, 73, 'GAMAKEN Another Day', 'New Student Registration', 'Registration', '2026-02-13 16:17:35'),
+(63, 94, 'Alfreda Stark', 'New Student Registration', 'Registration', '2026-02-17 23:40:49'),
+(64, 104, 'Ernest Angelo Del Rosario', 'New Student Registration', 'Registration', '2026-02-18 02:11:11'),
+(65, 105, 'Urielle Mcclain', 'New Student Registration', 'Registration', '2026-02-18 12:45:57'),
+(66, 106, 'Kyle Giles', 'New Student Registration', 'Registration', '2026-02-18 12:47:16'),
+(67, 107, 'Maxwell Lynn', 'New Student Registration', 'Registration', '2026-02-18 12:49:02'),
+(68, 108, 'Gemma Head', 'New Student Registration', 'Registration', '2026-02-18 18:44:46'),
+(69, NULL, 'Rigel Warner', 'NewAlumniRegistration', 'Registration', '2026-02-18 20:14:04'),
+(70, NULL, 'Haley Crosby', 'New Alumni Registration', 'Registration', '2026-02-18 20:24:04'),
+(71, 109, 'Kelsie Wallace', 'New student Registration', 'Registration', '2026-02-18 20:33:01'),
+(72, 110, 'Beverly Porter', 'New Alumni Registration', 'Registration', '2026-02-18 21:32:04'),
+(73, 111, 'Ernest Angelo Del Rosario', 'New Alumni Registration', 'Registration', '2026-02-18 21:57:20'),
+(74, 112, 'Petra Brewer', 'New Student Registration', 'Registration', '2026-02-18 22:23:34'),
+(75, 113, 'Kylee Frazier', 'New Student Registration', 'Registration', '2026-02-18 23:10:36'),
+(76, 114, 'Jemima Cummings', 'New Alumni Registration', 'Registration', '2026-02-18 23:33:26'),
+(77, 115, 'Adrian Reyes', 'New Alumni Registration', 'Registration', '2026-02-19 18:25:00'),
+(78, 116, 'Shereece Claire Degula', 'New Student Registration', 'Registration', '2026-02-19 18:39:28'),
+(79, 117, 'Yano John Rey', 'New Student Registration', 'Registration', '2026-02-19 18:45:52'),
+(80, NULL, 'Subscription', 'New Newsletter Subscription', 'Subscription', '2026-02-19 23:18:18'),
+(81, 117, 'Yano John Rey', 'Verified by Admin', 'Verified', '2026-02-20 23:28:48'),
+(82, 116, 'Shereece Claire Degula', 'Verified by Admin', 'Verified', '2026-02-20 23:30:26'),
+(83, 115, 'Adrian Reyes', 'Verified by Admin', 'Verified', '2026-02-20 23:32:49'),
+(84, 113, 'Kylee Frazier', 'Rejected by Admin', 'Verified', '2026-02-20 23:51:33'),
+(85, 113, 'Kylee Frazier', 'Rejected by Admin', 'Rejected', '2026-02-20 23:54:17'),
+(86, 114, 'Jemima Cummings', 'Rejected by Admin', 'Rejected', '2026-02-21 00:28:28'),
+(87, 112, 'Petra Brewer', 'Rejected by Admin', 'Rejected', '2026-02-21 00:28:30'),
+(88, 111, 'Ernest Angelo Del Rosario', 'Rejected by Admin', 'Rejected', '2026-02-21 00:28:32'),
+(89, 117, 'Yano John Rey', 'Verified by Admin', 'Verified', '2026-02-21 23:56:47'),
+(90, 115, 'Adrian Reyes', 'Verified by Admin', 'Verified', '2026-02-21 23:56:50'),
+(91, 111, 'Ernest Angelo Del Rosario', 'Verified by Admin', 'Verified', '2026-02-22 00:59:22'),
+(92, 113, 'Kylee Frazier', 'Rejected by Admin', 'Rejected', '2026-02-22 15:01:14'),
+(93, 112, 'Petra Brewer', 'Rejected by Admin', 'Rejected', '2026-02-22 15:01:23'),
+(94, 116, 'Shereece Claire Degula', 'Verified by Admin', 'Verified', '2026-02-22 15:01:28'),
+(95, 111, 'Ernest Angelo Del Rosario', 'Verified by Admin', 'Verified', '2026-02-22 15:05:48'),
+(96, 117, 'Yano John Rey', 'Rejected by Admin', 'Rejected', '2026-02-22 15:09:01'),
+(97, 116, 'Shereece Claire Degula', 'Verified by Admin', 'Verified', '2026-02-22 15:10:59'),
+(98, 115, 'Adrian Reyes', 'Verified by Admin', 'Verified', '2026-02-22 15:11:08'),
+(99, 113, 'Kylee Frazier', 'Verified by Admin', 'Verified', '2026-02-22 15:11:10'),
+(100, 114, 'Jemima Cummings', 'Verified by Admin', 'Verified', '2026-02-22 15:11:14'),
+(101, 112, 'Petra Brewer', 'Rejected by Admin', 'Rejected', '2026-02-22 15:11:16'),
+(102, 111, 'Ernest Angelo Del Rosario', 'Verified by Admin', 'Verified', '2026-02-22 15:21:36'),
+(103, 117, 'Yano John Rey', 'Verified by Admin', 'Verified', '2026-02-22 15:21:41'),
+(104, 116, 'Shereece Claire Degula', 'Verified by Admin', 'Verified', '2026-02-22 15:21:53'),
+(105, 115, 'Adrian Reyes', 'Verified by Admin', 'Verified', '2026-02-22 15:21:56'),
+(107, 111, 'Ernest Angelo Del Rosario', 'Verified by Admin', 'Verified', '2026-02-22 20:04:27'),
+(108, 111, 'Ernest Angelo Del Rosario', 'Verified by Admin', 'Verified', '2026-02-22 20:09:14'),
+(109, 111, 'Ernest Angelo Del Rosario', 'Verified by Admin', 'Verified', '2026-02-22 20:10:10'),
+(110, 116, 'Shereece Claire Degula', 'Verified by Admin', 'Verified', '2026-02-22 20:10:35'),
+(111, 117, 'Yano John Rey', 'Verified by Admin', 'Verified', '2026-02-22 20:10:37'),
+(112, 115, 'Adrian Reyes', 'Verified by Admin', 'Verified', '2026-02-22 20:10:40'),
+(121, 111, 'Ernest Angelo Del Rosario', 'Verified by Admin', 'Verified', '2026-02-23 21:38:50');
 
 -- --------------------------------------------------------
 
@@ -104,7 +171,19 @@ CREATE TABLE `newsletter_subscribers` (
 
 INSERT INTO `newsletter_subscribers` (`subscriberID`, `email`, `subscription_date`) VALUES
 (1, 'geloadrian24@gmail.com', '2026-01-17 23:31:22'),
-(163, 'ggio64290@gmail.com', '2026-02-12 20:21:46');
+(163, 'ggio64290@gmail.com', '2026-02-12 20:21:46'),
+(164, 'student@gmail.com', '2026-02-19 23:18:18');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `online_users`
+--
+
+CREATE TABLE `online_users` (
+  `session_id` int NOT NULL,
+  `session_time` int NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 -- --------------------------------------------------------
 
@@ -133,6 +212,38 @@ CREATE TABLE `programs` (
   `program_name` varchar(25) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
+--
+-- Dumping data for table `programs`
+--
+
+INSERT INTO `programs` (`program_id`, `program_name`) VALUES
+(1, 'BEED'),
+(2, 'BSA'),
+(3, 'BSCS'),
+(4, 'BSBA'),
+(5, 'BSN');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `school_year`
+--
+
+CREATE TABLE `school_year` (
+  `year_id` int NOT NULL,
+  `year` int NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+
+--
+-- Dumping data for table `school_year`
+--
+
+INSERT INTO `school_year` (`year_id`, `year`) VALUES
+(1, 1),
+(2, 2),
+(3, 3),
+(4, 4);
+
 -- --------------------------------------------------------
 
 --
@@ -152,25 +263,27 @@ CREATE TABLE `teacher_information` (
 CREATE TABLE `users` (
   `user_id` int NOT NULL,
   `student_id` int NOT NULL,
-  `Email` varchar(25) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL,
+  `account_email` varchar(60) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL,
   `account_username` varchar(255) NOT NULL,
   `account_password` varchar(255) NOT NULL,
   `recovery_email` varchar(255) NOT NULL,
-  `account_role` varchar(20) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL
+  `account_role` varchar(20) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL,
+  `activationStatus` varchar(20) DEFAULT 'active',
+  `stricted` tinyint(1) NOT NULL DEFAULT '0'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 --
 -- Dumping data for table `users`
 --
 
-INSERT INTO `users` (`user_id`, `student_id`, `Email`, `account_username`, `account_password`, `recovery_email`, `account_role`) VALUES
-(57, 111, 'geloadrian24@gmail.com', 'mofu', '$2y$10$pMPMxpFzfFogZYFwfTBi1OPksnC4FamXiSNNqXiIxobmu4UZXmKne', 'gamain2424@gmail.com', 'Alumni'),
-(58, 112, 'gamain2424@gmail.com', 'mimaqe', '$2y$10$uPEU.GaDL/qktq00uc5ObuGyTuufxSldnEQos7hqPs4d/G7SAmzES', 'cohe@mailinator.com', 'Student'),
-(59, 113, 'ggio64290@gmail.com', 'kesorus', '$2y$10$eSUClPnQVf.wqh2vhLJtdesgjFUrWTKcOaLM3X22ZJCATw9JW8Swy', 'taxifafi@mailinator.com', 'Student'),
-(60, 114, 'dfsquidart@gmail.com', 'xakiwili', '$2y$10$o2qnPfhOZbg8D/0gVJXJn.HrWz3MNqYUnPEXCYBDkyiFNkY8sbUOC', 'qezudefic@mailinator.com', 'Alumni'),
-(61, 115, 'radrian4461@gmail.com', 'adrian', '$2y$10$YdY.TwY78krWPYQXBXZ.YOEl/X9tv.JPV5CUz3C/JFU6zTHYHuL.6', 'bautistareyes200100@gmail.com', 'Alumni'),
-(62, 116, 'shereecedegula@gmail.com', 'kklaree', '$2y$10$97.V30pl4dvAMdZzfAXmvuPq0fB./w05IWjmLjrdXNo5YNvtiFjOa', 'shereecedegula@gmail.com', 'Student'),
-(63, 117, 'johnreyano05@gmail.com', 'John Rey', '$2y$10$tiaYk6u6ciMkX/BoSORRTuZL1YqvGckp0i7EFwnQ.M8lC24G.8zke', 'johnyano@gmail.com', 'Student');
+INSERT INTO `users` (`user_id`, `student_id`, `account_email`, `account_username`, `account_password`, `recovery_email`, `account_role`, `activationStatus`, `stricted`) VALUES
+(57, 111, 'geloadrian24@gmail.com', 'mofu', '$2y$10$pMPMxpFzfFogZYFwfTBi1OPksnC4FamXiSNNqXiIxobmu4UZXmKne', 'gamain2424@gmail.com', 'Alumni', 'active', 0),
+(58, 112, 'gamain2424@gmail.com', 'mimaqe', '$2y$10$uPEU.GaDL/qktq00uc5ObuGyTuufxSldnEQos7hqPs4d/G7SAmzES', 'cohe@mailinator.com', 'Student', 'disabled', 0),
+(59, 113, 'ggio64290@gmail.com', 'kesorus', '$2y$10$eSUClPnQVf.wqh2vhLJtdesgjFUrWTKcOaLM3X22ZJCATw9JW8Swy', 'taxifafi@mailinator.com', 'Student', 'disabled', 0),
+(60, 114, 'dfsquidart@gmail.com', 'xakiwili', '$2y$10$o2qnPfhOZbg8D/0gVJXJn.HrWz3MNqYUnPEXCYBDkyiFNkY8sbUOC', 'qezudefic@mailinator.com', 'Alumni', 'disabled', 0),
+(61, 115, 'radrian4461@gmail.com', 'adrian', '$2y$10$YdY.TwY78krWPYQXBXZ.YOEl/X9tv.JPV5CUz3C/JFU6zTHYHuL.6', 'bautistareyes200100@gmail.com', 'Alumni', 'active', 0),
+(62, 116, 'shereecedegula@gmail.com', 'kklaree', '$2y$10$97.V30pl4dvAMdZzfAXmvuPq0fB./w05IWjmLjrdXNo5YNvtiFjOa', 'shereecedegula@gmail.com', 'Student', 'active', 0),
+(63, 117, 'johnreyano05@gmail.com', 'CocaDew', '$2y$10$tiaYk6u6ciMkX/BoSORRTuZL1YqvGckp0i7EFwnQ.M8lC24G.8zke', 'johnyano@gmail.com', 'Student', 'active', 0);
 
 -- --------------------------------------------------------
 
@@ -221,12 +334,12 @@ CREATE TABLE `user_information` (
 
 INSERT INTO `user_information` (`student_id`, `current_status`, `role`, `FirstName`, `LastName`, `MiddleName`, `Ext_Name`, `BirthDate`, `Age`, `Nationality`, `CivilStatus`, `Gender`, `Email`, `PhoneNumber`, `Address`, `Barangay`, `City`, `Province`, `ZipCode`, `Program`, `YearLevel`, `StudentType`, `EnrollmentType`, `GuardianName`, `Relationship`, `GuardianPhone`, `GuardianEmail`, `GraduationYear`, `Honors`, `EmploymentStatus`, `CompanyName`, `JobTitle`, `WorkLocation`, `RegistrationDate`) VALUES
 (111, 'verified', 'Alumni', 'Ernest Angelo', 'Del Rosario', 'Flores', 'N/A', '2004-02-24', '21', 'Filipino', 'single', 'Male', 'geloadrian24@gmail.com', '09199540926', '110', 'Culis', 'Hermosa', 'Bataan', '2111', 'BSCS', 'N/A', 'N/A', 'N/A', 'N/A', 'N/A', '', 'N/A', '2026', 'N/A', 'Employed', 'NSPIRE', 'Web Developer', 'Balanga, Bataan', '2026-02-18 13:57:20.026194'),
-(112, 'verified', 'Student', 'Petra', 'Brewer', 'Jade Huffman', 'Paula Alford', '2022-09-28', '3', 'Placeat reprehender', 'widow', 'Male', 'gamain2424@gmail.com', '12384316749', '452', 'Excepteur aut corpor', 'Obcaecati culpa volu', 'Voluptatibus illum', '77820', 'BEED', '3rdYear', 'alumni', 'irregular', 'bydinuv', 'Father', '11227373926', 'sagiqosaca@mailinator.com', 'N/A', 'N/A', 'N/A', 'N/A', 'N/A', 'N/A', '2026-02-18 14:23:34.344020'),
+(112, 'pending', 'Student', 'Petra', 'Brewer', 'Jade Huffman', 'Paula Alford', '2022-09-28', '3', 'Placeat reprehender', 'widow', 'Male', 'gamain2424@gmail.com', '12384316749', '452', 'Excepteur aut corpor', 'Obcaecati culpa volu', 'Voluptatibus illum', '77820', 'BEED', '3rdYear', 'alumni', 'irregular', 'bydinuv', 'Father', '11227373926', 'sagiqosaca@mailinator.com', 'N/A', 'N/A', 'N/A', 'N/A', 'N/A', 'N/A', '2026-02-18 14:23:34.344020'),
 (113, 'pending', 'Student', 'Kylee', 'Frazier', 'Stuart Britt', 'Lacota Hickman', '2004-08-14', '21', 'Vero explicabo Non', 'married', 'Male', 'ggio64290@gmail.com', '17547531823', '108', 'Eius molestiae aliqu', 'Voluptatem Ut quo c', 'Minim irure aut quae', '12512', 'BSCS', '2ndYear', 'alumni', 'regular', 'rewajodil', 'AuntUncle', '13395784753', 'wipyceg@mailinator.com', 'N/A', 'N/A', 'N/A', 'N/A', 'N/A', 'N/A', '2026-02-18 15:10:36.722845'),
 (114, 'pending', 'Alumni', 'Jemima', 'Cummings', 'Rooney Howard', 'Philip Walter', '2003-01-16', '23', 'Amet dolor irure de', 'separated', 'Male', 'dfsquidart@gmail.com', '18718636335', '763', 'Cum qui voluptate ip', 'Qui incidunt placea', 'Temporibus Nam commo', '91918', 'BSBA', 'N/A', 'N/A', 'N/A', 'N/A', 'N/A', '', 'N/A', '1978', 'Nemo id rerum et fug', 'Self-employed', 'Nichols and Sampson Plc', 'Nulla exercitationem', 'Error voluptate exce', '2026-02-18 15:33:26.257112'),
-(115, 'pending', 'Alumni', 'Adrian', 'Reyes', 'Bautista', 'n/a', '2001-06-30', '24', 'Filipino', 'single', 'Male', 'radrian4461@gmail.com', '098985634', '09562', 'Manila', 'Kaparangan', 'America', '2112', 'BSCS', 'N/A', 'N/A', 'N/A', 'N/A', 'N/A', '', 'N/A', '2008', 'Cum Laude', 'Self-employed', 'Google', 'CEO', 'Bataan', '2026-02-19 10:25:00.146491'),
-(116, 'pending', 'Student', 'Shereece Claire', 'Degula', 'Casipit', '', '2003-10-10', '22', 'Filipino', 'single', 'Female', 'shereecedegula@gmail.com', '09674351235', '145 A. Dizon St.', 'Pto. Rivas Lote', 'Balanga City', 'Bataan', '2100', 'BSCS', '4thYear', 'returnee', 'regular', 'Shereece Degula', 'Other', '09674351235', 'shereecedegula@gmail.com', 'N/A', 'N/A', 'N/A', 'N/A', 'N/A', 'N/A', '2026-02-19 10:39:28.625846'),
-(117, 'pending', 'Student', 'Yano', 'John Rey', 'Tamayo', 'N?A', '1999-06-16', '26', 'Filipino', 'widow', 'Male', 'johnreyano05@gmail.com', '12301293', 'no.5', 'WOW', 'Balanga', 'Bataan', '2100', 'BSCS', '4thYear', 'alumni', 'irregular', 'Balanon', 'StepFather', '2100', 'jl@gmail.com', 'N/A', 'N/A', 'N/A', 'N/A', 'N/A', 'N/A', '2026-02-19 10:45:52.534997');
+(115, 'verified', 'Alumni', 'Adrian', 'Reyes', 'Bautista', 'n/a', '2001-06-30', '24', 'Filipino', 'single', 'Male', 'radrian4461@gmail.com', '098985634', '09562', 'Manila', 'Kaparangan', 'America', '2112', 'BSCS', 'N/A', 'N/A', 'N/A', 'N/A', 'N/A', '', 'N/A', '2008', 'Cum Laude', 'Self-employed', 'Google', 'CEO', 'Bataan', '2026-02-19 10:25:00.146491'),
+(116, 'verified', 'Student', 'Shereece Claire', 'Degula', 'Casipit', '', '2003-10-10', '22', 'Filipino', 'single', 'Female', 'shereecedegula@gmail.com', '09674351235', '145 A. Dizon St.', 'Pto. Rivas Lote', 'Balanga City', 'Bataan', '2100', 'BSCS', '4thYear', 'returnee', 'regular', 'Shereece Degula', 'Other', '09674351235', 'shereecedegula@gmail.com', 'N/A', 'N/A', 'N/A', 'N/A', 'N/A', 'N/A', '2026-02-19 10:39:28.625846'),
+(117, 'verified', 'Student', 'Yano', 'John Rey', 'Tamayo', 'N?A', '1999-06-16', '26', 'Filipino', 'widow', 'Male', 'johnreyano05@gmail.com', '12301293', 'no.5', 'WOW', 'Balanga', 'Bataan', '2100', 'BSCS', '4thYear', 'alumni', 'irregular', 'Balanon', 'StepFather', '2100', 'jl@gmail.com', '0', 'N/A', 'N/A', 'N/A', 'N/A', 'N/A', '2026-02-19 10:45:52.534997');
 
 --
 -- Indexes for dumped tables
@@ -237,6 +350,18 @@ INSERT INTO `user_information` (`student_id`, `current_status`, `role`, `FirstNa
 --
 ALTER TABLE `alumni_information`
   ADD PRIMARY KEY (`alumni_id`);
+
+--
+-- Indexes for table `balances`
+--
+ALTER TABLE `balances`
+  ADD PRIMARY KEY (`balance_id`);
+
+--
+-- Indexes for table `courses`
+--
+ALTER TABLE `courses`
+  ADD PRIMARY KEY (`course_id`);
 
 --
 -- Indexes for table `enrollments`
@@ -270,6 +395,12 @@ ALTER TABLE `programs`
   ADD PRIMARY KEY (`program_id`);
 
 --
+-- Indexes for table `school_year`
+--
+ALTER TABLE `school_year`
+  ADD PRIMARY KEY (`year_id`);
+
+--
 -- Indexes for table `teacher_information`
 --
 ALTER TABLE `teacher_information`
@@ -298,6 +429,18 @@ ALTER TABLE `alumni_information`
   MODIFY `alumni_id` int NOT NULL AUTO_INCREMENT;
 
 --
+-- AUTO_INCREMENT for table `balances`
+--
+ALTER TABLE `balances`
+  MODIFY `balance_id` int NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT for table `courses`
+--
+ALTER TABLE `courses`
+  MODIFY `course_id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+
+--
 -- AUTO_INCREMENT for table `enrollments`
 --
 ALTER TABLE `enrollments`
@@ -307,25 +450,31 @@ ALTER TABLE `enrollments`
 -- AUTO_INCREMENT for table `logs`
 --
 ALTER TABLE `logs`
-  MODIFY `log_id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=80;
+  MODIFY `log_id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=122;
 
 --
 -- AUTO_INCREMENT for table `newsletter_subscribers`
 --
 ALTER TABLE `newsletter_subscribers`
-  MODIFY `subscriberID` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=164;
+  MODIFY `subscriberID` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=165;
 
 --
 -- AUTO_INCREMENT for table `pending_registrations`
 --
 ALTER TABLE `pending_registrations`
-  MODIFY `registration_id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=186;
+  MODIFY `registration_id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=187;
 
 --
 -- AUTO_INCREMENT for table `programs`
 --
 ALTER TABLE `programs`
-  MODIFY `program_id` int NOT NULL AUTO_INCREMENT;
+  MODIFY `program_id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+
+--
+-- AUTO_INCREMENT for table `school_year`
+--
+ALTER TABLE `school_year`
+  MODIFY `year_id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- AUTO_INCREMENT for table `teacher_information`
