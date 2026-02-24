@@ -51,7 +51,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $accountEmail   = (string)($_POST['account_email'] ?? '');
     $accountUsername   = (string)($_POST['account_username'] ?? '');
     $recoveryEmail     = (string)($_POST['recovery_email'] ?? '');
-    $role              = (string)($_POST['role'] ?? '');
+    $account_role              = (string)($_POST['account_role'] ?? '');
     $activationStatus  = (string)($_POST['activationStatus'] ?? 'disabled');
 
     $conn->begin_transaction();
@@ -138,7 +138,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                                     activationStatus = ?
                                     WHERE student_id = ?
                                     ");
-        $stmt->bind_param("ssssss", $accountEmail, $accountUsername, $recoveryEmail, $role, $activationStatus, $student_id);
+        $stmt->bind_param("ssssss", $accountEmail, $accountUsername, $recoveryEmail, $account_role, $activationStatus, $student_id);
         $stmt->execute();
         $stmt->close();
 

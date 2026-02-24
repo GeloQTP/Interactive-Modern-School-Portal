@@ -204,7 +204,7 @@
 
                     <div class="col-lg-3 mb-5">
                         <strong>Account Role</strong><br>
-                        <select name="role" id="role" class="placeholders form-control form-control-sm">
+                        <select name="account_role" id="account_role" class="placeholders form-control form-control-sm">
                             <option value="Alumni">Alumni</option>
                             <option value="Student">Student</option>
                         </select>
