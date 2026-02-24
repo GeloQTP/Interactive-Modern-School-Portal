@@ -29,6 +29,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $zipCode           = (int)($_POST['ZipCode'] ?? 0);
 
     $email             = (string)($_POST['Email'] ?? '');
+    $user_role         = (string)($_POST['role'] ?? '');
 
     $program           = (string)($_POST['Program'] ?? '');
     $yearLevel         = (string)($_POST['YearLevel'] ?? '');
@@ -48,10 +49,10 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $guardianEmail     = (string)($_POST['GuardianEmail'] ?? '');
 
     // USER ACCOUNT TABLE
-    $accountEmail   = (string)($_POST['account_email'] ?? '');
+    $accountEmail      = (string)($_POST['account_email'] ?? '');
     $accountUsername   = (string)($_POST['account_username'] ?? '');
     $recoveryEmail     = (string)($_POST['recovery_email'] ?? '');
-    $account_role              = (string)($_POST['account_role'] ?? '');
+    $account_role      = (string)($_POST['account_role'] ?? '');
     $activationStatus  = (string)($_POST['activationStatus'] ?? 'disabled');
 
     $conn->begin_transaction();
@@ -76,6 +77,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                                     Province = ?, 
                                     ZipCode = ?, 
                                     Email = ?, 
+                                    role = ?,
                                     Program = ?,
                                     YearLevel = ?, 
                                     StudentType = ?, 
@@ -94,7 +96,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     ");
 
         $stmt->bind_param(
-            "ssssssisssssssssssssssssssssssi",
+            "ssssssissssssssssssssssssssssssi",
 
             $current_status,
             $firstName,
@@ -112,6 +114,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             $province,
             $zipCode,
             $email,
+            $user_role,
             $program,
             $yearLevel,
             $studentType,

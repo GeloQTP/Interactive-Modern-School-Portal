@@ -82,7 +82,7 @@
                         <input id="ZipCode" name="ZipCode" class="placeholders form-control form-control-sm">
                     </div>
 
-                    <div class="col-lg-2 mb-5">
+                    <div class="col-lg-3 mb-5">
                         <strong>Email</strong><br>
                         <input id="Email" name="Email" class="placeholders form-control form-control-sm">
                     </div>
@@ -96,10 +96,13 @@
                         </select>
                     </div>
 
-                    <!-- <div class="col-lg-3 mb-5">
+                    <div class="col-lg-2 mb-5">
                         <strong>User Role</strong><br>
-                        <input id="role" name="GuardianEmail" class="placeholders form-control form-control-sm">
-                    </div> -->
+                        <select id="role" name="role" class="placeholders form-select form-select-sm">
+                            <option value="Student">Student</option>
+                            <option value="Alumni">Alumni</option>
+                        </select>
+                    </div>
 
                     <p class="display-6 mb-4 w-100 text-dark fs-2" style="border-bottom:1px solid green">
                         Academic Information

@@ -141,35 +141,13 @@ include __DIR__ . '/../../backend/getCourses.php';
         </div>
 
         <div class="col-md-3 col-6">
-            <label for="yearLevelInput" class="lead text-dark">Year Level</label>
+            <label for="applicationType" class="lead text-dark">Applying As</label>
             <select class="form-select form-select-sm text-dark border-1"
-                id="yearLevelInput" name="yearLevel" required>
-                <option value="" disabled selected>Select Year Level</option>
-                <option value="1stYear">1st Year</option>
-                <option value="2ndYear">2nd Year</option>
-                <option value="3rdYear">3rd Year</option>
-                <option value="4thYear">4th Year</option>
-            </select>
-        </div>
-
-        <div class="col-md-3 col-6">
-            <label for="studentType" class="lead text-dark">Student Type</label>
-            <select class="form-select form-select-sm text-dark border-1"
-                id="studentType" name="studentType" required>
-                <option value="" disabled selected>Select Student Type</option>
-                <option value="newStudent">New Student</option>
-                <option value="returnee">Returnee</option>
+                id="applicationType" name="applicationType" required>
+                <option value="" disabled selected>Select Application Type</option>
+                <option value="freshman">First Year (Freshman)</option>
                 <option value="transferee">Transferee</option>
-            </select>
-        </div>
-
-        <div class="col-md-3 col-6">
-            <label for="enrollmentType" class="lead text-dark">Enrollment Type</label>
-            <select class="form-select form-select-sm text-dark border-1"
-                id="enrollmentType" name="enrollmentType" required>
-                <option value="" disabled selected>Select Enrollment Type</option>
-                <option value="regular">Regular</option>
-                <option value="irregular">Irregular</option>
+                <option value="returnee">Returnee</option>
             </select>
         </div>
 

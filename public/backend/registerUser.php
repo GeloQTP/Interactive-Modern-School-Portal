@@ -46,9 +46,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
         // ACADEMIC INFORMATION
         $program        = $_POST['program'] ?? 'N/A';
-        $yearLevel      = $_POST['yearLevel'] ?? 'N/A';
-        $studentType    = $_POST['studentType'] ?? 'N/A';
-        $enrollmentType = $_POST['enrollmentType'] ?? 'N/A';
+        $applicationType    = $_POST['applicationType'] ?? 'N/A';
 
         // ACADEMIC INFORMATION FOR ALUMNIS
         $graduation_year = $_POST['graduationYear'] ?? 'N/A';
@@ -83,8 +81,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                                             FirstName, LastName, MiddleName, Ext_Name,
                                             BirthDate, Age, Nationality, CivilStatus,
                                             Gender, Email, PhoneNumber, Address, Barangay,
-                                            City, Province, ZipCode, Program, YearLevel, 
-                                            StudentType, EnrollmentType, GuardianName, Relationship,
+                                            City, Province, ZipCode, Program, ApplicationType,
+                                            GuardianName, Relationship,
                                             GuardianPhone, GuardianEmail, GraduationYear, Honors,
                                             EmploymentStatus, CompanyName, JobTitle, WorkLocation
                                             )
@@ -94,15 +92,15 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                                             ?,?,?,?,
                                             ?,?,?,?,
                                             ?,?,?,?,?,
-                                            ?,?,?,?,?,
                                             ?,?,?,?,
                                             ?,?,?,?,
-                                            ?,?,?,?
+                                            ?,?,?,?,
+                                            ?,?,?
                                             )
                                             ");
 
             $stmt->bind_param(
-                "ssssssissssssssssssssssssssssss",
+                "ssssssissssssssssssssssssssss",
                 $role,
                 $firstName,
                 $lastName,
@@ -121,9 +119,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 $province,
                 $zipCode,
                 $program,
-                $yearLevel,
-                $studentType,
-                $enrollmentType,
+                $applicationType,
                 $guardianName,
                 $relationship,
                 $guardianPhone,

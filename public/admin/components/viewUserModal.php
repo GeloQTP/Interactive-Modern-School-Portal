@@ -102,13 +102,8 @@
                     </div>
 
                     <div class="col-lg-3 mb-5">
-                        <strong>Student Type</strong><br>
-                        <small id="StudentType" class="placeholders">N/A</small>
-                    </div>
-
-                    <div class="col-lg-3 mb-5">
-                        <strong>Enrollment Type</strong><br>
-                        <small id="EnrollmentType" class="placeholders">N/A</small>
+                        <strong>Application Type</strong><br>
+                        <small id="ApplicationType" class="placeholders">N/A</small>
                     </div>
 
                     <div class="col-lg-3 mb-5">
@@ -190,7 +185,7 @@
                         Registration Information
                     </p>
 
-                     <div class="col-lg-3 mb-5">
+                    <div class="col-lg-3 mb-5">
                         <strong>Registraton Date</strong><br>
                         <small id="RegistrationDate" class="placeholders">N/A</small>
                     </div>
