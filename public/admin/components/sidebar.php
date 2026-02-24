@@ -29,21 +29,21 @@
              </li>
 
              <li class="navbar-item">
-                 <a href="#" class="sidebar-link">
+                 <a href="/Modern Student Portal/public/admin/Pages/TeacherManagement.php" class="sidebar-link">
                      <i class="bi bi-eyeglasses"></i>
                      <span>Manage Teachers</span>
                  </a>
              </li>
 
              <li class="navbar-item">
-                 <a href="#" class="sidebar-link">
+                 <a href="/Modern Student Portal/public/admin/Pages/Content&Posts.php" class="sidebar-link">
                      <i class="bi bi-file-earmark-text"></i>
                      <span>Posts & Announcements</span>
                  </a>
              </li>
 
              <li class="navbar-item">
-                 <a href="#" class="sidebar-link">
+                 <a href="/Modern Student Portal/public/admin/Pages/AcademicData.php" class="sidebar-link">
                      <i class="bi bi-book"></i>
                      <span>Academic Data</span>
                  </a>
