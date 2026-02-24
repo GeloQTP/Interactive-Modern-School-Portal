@@ -135,7 +135,7 @@ include __DIR__ . '/../../backend/getCourses.php';
                                 <th scope="col">Username</th>
                                 <th scope="col">Course</th>
                                 <th scope="col">Status</th>
-                                <th scope="col">Operations</th>
+                                <th scope="col">Edit User</th>
                             </tr>
                         </thead>
                         <tbody class="text-center" id="table_body">
@@ -230,7 +230,6 @@ include __DIR__ . '/../../backend/getCourses.php';
                                  </td>
                                 <td>
                                     <button type="button" class="btn text-primary" onclick="editUser(${data.student_id})"><i class="bi bi-pencil"></i></button>
-                                    <button type="button" class="btn text-danger" onclick="deletionConfirmation(${data.student_id})"><i class="bi bi-trash h5"></i></button>
                                 </td>
                             </tr>
                 `;
@@ -298,7 +297,6 @@ include __DIR__ . '/../../backend/getCourses.php';
                                  </td>
                                 <td>
                                     <button type="button" class="btn text-primary" onclick="editUser(${data.student_id})"><i class="bi bi-pencil"></i></button>
-                                    <button type="button" class="btn text-danger" onclick="deletionConfirmation(${data.student_id})"><i class="bi bi-trash h5"></i></button>
                                 </td>
                         </tr>
                 `;
