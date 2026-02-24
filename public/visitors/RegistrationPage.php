@@ -63,7 +63,7 @@
 <script type="module" src="./scripts/RegistrationPage.js" type="module"></script>
 <script src="./scripts/autoAgeCalc.js"></script>
 <script src="./scripts/OTP_Autonext.js"></script>
-<script src="./scripts/validateStudentInputs.js"></script>
+<script src="./scripts/checkEmptyInputs.js"></script>
 
 <script>
     // LOADER ANIMATION
