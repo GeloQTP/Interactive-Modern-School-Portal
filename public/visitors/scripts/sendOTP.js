@@ -19,7 +19,6 @@ export async function sendOTP(e) {
     });
 
     if (!res.ok) {
-      console.log(res);
       document.querySelector(".toast-body").textContent =
         "Request Error. Please try again.";
       const toastBootstrap = bootstrap.Toast.getOrCreateInstance(
@@ -43,7 +42,6 @@ export async function sendOTP(e) {
       toastBootstrap.show();
     }
   } catch (error) {
-    console.log(error);
     document.querySelector(".toast-body").textContent =
       "An error occurred. Please try again.";
     const toastBootstrap = bootstrap.Toast.getOrCreateInstance(
