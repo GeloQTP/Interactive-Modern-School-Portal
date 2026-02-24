@@ -63,7 +63,7 @@
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"></script>
 <script type="module" src="./scripts/AlumniRegistrationPage.js"></script>
 <script src="./scripts/autoAgeCalc.js"></script>
-<script src="./scripts/OTP_Autonext.js"></script>
+<script src="./scripts/OTPAutonext.js"></script>
 <script src="./scripts/validateAlumniInputs.js"></script>
 <script>
     // LOADER ANIMATION

@@ -57,5 +57,3 @@
             </div>
         </div>
     </div>
-
-<script src="./../scripts/OTP_Autonext.js"></script>
