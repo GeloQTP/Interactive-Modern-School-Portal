@@ -33,8 +33,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
     $program           = (string)($_POST['Program'] ?? '');
     $yearLevel         = (string)($_POST['YearLevel'] ?? '');
-    $studentType       = (string)($_POST['StudentType'] ?? '');
-    $enrollmentType    = (string)($_POST['EnrollmentType'] ?? '');
     $graduationYear    = (int)($_POST['GraduationYear'] ?? 0);
     $honors            = (string)($_POST['Honors'] ?? '');
 
@@ -80,8 +78,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                                     role = ?,
                                     Program = ?,
                                     YearLevel = ?, 
-                                    StudentType = ?, 
-                                    EnrollmentType = ?, 
                                     GraduationYear = ?, 
                                     Honors = ?, 
                                     EmploymentStatus = ?, 
@@ -96,7 +92,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     ");
 
         $stmt->bind_param(
-            "ssssssissssssssssssssssssssssssi",
+            "ssssssissssssssssssssssssssssi",
 
             $current_status,
             $firstName,
@@ -117,8 +113,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             $user_role,
             $program,
             $yearLevel,
-            $studentType,
-            $enrollmentType,
             $graduationYear,
             $honors,
             $employmentStatus,
@@ -141,7 +135,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                                     activationStatus = ?
                                     WHERE student_id = ?
                                     ");
-        $stmt->bind_param("ssssss", $accountEmail, $accountUsername, $recoveryEmail, $account_role, $activationStatus, $student_id);
+        $stmt->bind_param("sssssi", $accountEmail, $accountUsername, $recoveryEmail, $account_role, $activationStatus, $student_id);
         $stmt->execute();
         $stmt->close();
 

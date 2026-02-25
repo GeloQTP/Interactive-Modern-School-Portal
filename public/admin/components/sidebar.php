@@ -52,7 +52,7 @@
              <li class="navbar-item">
                  <a href="#" class="sidebar-link">
                      <i class="bi bi-mortarboard"></i>
-                     <span>Alumni Management</span>
+                     <span>Batch Management</span>
                  </a>
              </li>
 

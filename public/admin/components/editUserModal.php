@@ -34,12 +34,12 @@
 
                     <div class="col-lg-2 mb-5">
                         <strong>Date of Birth</strong><br>
-                        <input id="BirthDate" name="BirthDate" class="placeholders form-control form-control-sm">
+                        <input type="date" id="BirthDate" name="BirthDate" class="placeholders form-control form-control-sm">
                     </div>
 
                     <div class="col-lg-2 mb-5">
                         <strong>Age</strong><br>
-                        <input id="Age" name="Age" class="placeholders form-control form-control-sm">
+                        <input id="Age" name="Age" class="placeholders form-control form-control-sm" readonly>
                     </div>
 
                     <div class="col-lg-2 mb-5">
@@ -119,18 +119,17 @@
                     </div>
 
                     <div class="col-lg-3 mb-5">
-                        <strong>Student Type</strong><br>
-                        <input id="StudentType" name="StudentType" class="placeholders form-control form-control-sm">
-                    </div>
-
-                    <div class="col-lg-3 mb-5">
-                        <strong>Enrollment Type</strong><br>
-                        <input id="EnrollmentType" name="EnrollmentType" class="placeholders form-control form-control-sm">
-                    </div>
-
-                    <div class="col-lg-3 mb-5">
-                        <strong>Graduation Year</strong><br>
-                        <input id="GraduationYear" name="GraduationYear" class="placeholders form-control form-control-sm">
+                        <label class="lead text-dark">Graduation Year</label>
+                        <select name="graduationYear" id="graduationYear"
+                            class="form-select form-select-sm text-dark border-1" required>
+                            <option value="" disabled selected>Select Year</option>
+                            <?php
+                            $currentYear = date("Y");
+                            for ($i = $currentYear; $i >= $currentYear - 50; $i--) {
+                                echo "<option value='$i'>$i</option>";
+                            }
+                            ?>
+                        </select>
                     </div>
 
                     <div class="col-lg-3 mb-5">
@@ -218,7 +217,7 @@
                         <select id="activationStatus" name="activationStatus" class="placeholders form-select form-select-sm">
                             <option value="disabled">Disabled</option>
                             <option value="active">Active</option>
-                            <option value="stricted">Stricted</option>
+                            <option value="restricted">Restricted</option>
                         </select>
                     </div>
 
@@ -227,7 +226,7 @@
                     </p>
 
                     <div class="col-lg-3 mb-5">
-                        <strong>Registraton Date</strong><br>
+                        <strong>Registration Date</strong><br>
                         <small id="RegistrationDate" class="placeholders"></small>
                     </div>
 
@@ -238,7 +237,7 @@
 
                     <div class="col-lg-3 mb-5">
                         <strong>Enrollment Date</strong><br>
-                        <small id="EnrollmentDate" class="placeholder"></small>
+                        <small id="EnrollmentDate" class="placeholders"></small>
                     </div>
                 </form>
 
@@ -251,4 +250,6 @@
         </div>
     </div>
 </div>
+<script src="../scripts/autoAgeCalc.js">
+</script>
 <!-- MODAL -->

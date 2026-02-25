@@ -382,6 +382,7 @@ include __DIR__ . '/../../backend/getCourses.php';
     }
 
 
+
     function updateUserVerification(user_id) { // VERIFICATION CONFIRMATION
         Swal.fire({
             title: "Are you sure?",
@@ -413,6 +414,7 @@ include __DIR__ . '/../../backend/getCourses.php';
             if (!res.ok) throw new Error('Network Response not ok');
 
             const data = await res.json();
+            console.log(data);
 
             if (data.success) {
                 editUser(user_id);
