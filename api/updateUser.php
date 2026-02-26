@@ -139,6 +139,23 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $stmt->execute();
         $stmt->close();
 
+        //GET STUDENT NAME
+        $stmt = $conn->prepare("SELECT FirstName, LastName FROM user_information WHERE student_id = ?");
+        $stmt->bind_param("i", $student_id);
+        $stmt->execute();
+        $result = $stmt->get_result();
+        $row = $result->fetch_assoc();
+        $log_owner = $row['FirstName'] . ' ' .  $row['LastName'];
+        $stmt->close();
+
+        // INSERT LOG
+        $log_description = 'Edited by Admin';
+        $log_type = 'Information Edit';
+        $stmt = $conn->prepare("INSERT INTO logs (student_id, log_owner, log_description, log_type) VALUES (?,?,?,?)");
+        $stmt->bind_param("isss", $student_id, $log_owner, $log_description, $log_type);
+        $stmt->execute();
+        $stmt->close();
+
         $conn->commit();
         echo json_encode(['success' => true]);
     } catch (Exception $e) {

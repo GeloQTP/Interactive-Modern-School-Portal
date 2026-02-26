@@ -45,48 +45,66 @@
 <body>
 
     <?php include __DIR__ . '/../components/editBroadcastModal.php'; ?> <!--EDIT BROADCAST MODAL-->
-    <?php include __DIR__ . '/../components/createContentModal.php';  ?> <!--CREATE CONTENT MODAL-->
-    <?php include __DIR__ . '/../components/archiveBroadcastModal.php'; ?> <!--ARCHIVE CONFIRMATION MODAL-->
-
-    <div class="modal fade" id="archiveBroadcastModal" tabindex="-1">
-        <div class="modal-dialog modal-sm modal-dialog-centered">
-            <div class="modal-content text-center p-3">
-
-                <h6 class="mb-3">Archive this broadcast?</h6>
-                <p class="small text-muted">
-                    This announcement will no longer be visible to students.
-                </p>
-
-                <div class="d-flex justify-content-center gap-2">
-                    <button class="btn btn-secondary btn-sm" data-bs-dismiss="modal">Cancel</button>
-                    <button class="btn btn-warning btn-sm">Archive</button>
-                </div>
-
-            </div>
-        </div>
-    </div>
+    <?php include __DIR__ . '/../components/createBroadcastModal.php';  ?> <!--CREATE BROADCAST MODAL-->
+    <?php include __DIR__ . '/../components/createPostModal.php';  ?> <!--CREATE POST MODAL-->
 
     <div class="wrapper">
 
-        <?php include __DIR__ . '/../components/sidebar.php'; ?> <!-- SIDEBAR-->
+        <?php include __DIR__ . '/../components/sidebar.php'; ?> <!--SIDEBAR-->
 
         <div class="main ms-5 ps-4">
 
-            <!-- Header -->
             <nav class="navbar navbar-expand-lg bg-light border border-bottom">
                 <div class="container-fluid justify-content-center" style="transform: translate(0px, 10px);">
                     <p class="text-success lead">Content and Posts</p>
                 </div>
 
                 <div class="pe-2">
-                    <button class="btn btn-success btn-sm" data-bs-toggle="modal" data-bs-target="#createContentModal">
-                        <i class="bi bi-plus-lg h4"></i>
-                    </button>
-                </div>
 
+                    <div class="dropdown">
+                        <button class="btn btn-success dropdown-toggle"
+                            type="button"
+                            data-bs-toggle="dropdown"
+                            aria-expanded="false">
+                            <i class="bi bi-plus-lg me-1"></i> Create
+                        </button>
+
+                        <ul class="dropdown-menu dropdown-menu-end">
+                            <li>
+                                <button class="btn dropdown-item"
+                                    data-bs-toggle="modal"
+                                    data-bs-target="#createBroadcastModal">
+                                    <i class="bi bi-file-earmark-plus me-2"></i>
+                                    Create Broadcast
+                                </button>
+                            </li>
+
+                            <li>
+                                <button class="btn dropdown-item"
+                                    data-bs-toggle="modal"
+                                    data-bs-target="#createPostModal">
+                                    <i class="bi bi-megaphone me-2"></i>
+                                    Create Post
+                                </button>
+                            </li>
+
+                            <li>
+                                <hr class="dropdown-divider">
+                            </li>
+
+                            <li>
+                                <a class="dropdown-item" href="#">
+                                    <i class="bi bi-folder-plus me-2"></i>
+                                    Create Category
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
+
+                </div>
             </nav>
 
-            <div class="container-fluid py-4">
+            <div class="p-3">
 
                 <ul class="nav nav-tabs mb-4">
                     <li class="nav-item">
@@ -105,37 +123,7 @@
 
                     <div class="tab-pane fade show active" id="broadcastTab">
 
-                        <!-- Carousel Preview -->
-                        <div id="broadcastCarousel" class="carousel slide mb-4 shadow-sm">
-                            <div class="carousel-inner rounded">
-
-                                <div class="carousel-item active bg-success text-white p-5">
-                                    <div>
-                                        <h5>Enrollment is Now Open!</h5>
-                                        <small>Published • 2 days ago</small>
-                                    </div>
-                                </div>
-
-                                <div class="carousel-item bg-dark text-white p-5">
-                                    <div>
-                                        <h5>Midterm Examination Schedule Released</h5>
-                                        <small>Draft</small>
-                                    </div>
-                                </div>
-
-                            </div>
-
-                            <button class="carousel-control-prev" type="button" data-bs-target="#broadcastCarousel" data-bs-slide="prev">
-                                <span class="carousel-control-prev-icon"></span>
-                            </button>
-
-                            <button class="carousel-control-next" type="button" data-bs-target="#broadcastCarousel" data-bs-slide="next">
-                                <span class="carousel-control-next-icon"></span>
-                            </button>
-                        </div>
-
-
-                        <!-- Broadcast List -->
+                        <!-- ================= BROADCAST LIST ================= -->
                         <div class="card shadow-sm">
                             <div class="card-body">
 
@@ -159,9 +147,9 @@
                                         </div>
 
                                         <div class="btn-group btn-group-sm">
-                                            <button class="btn text-primary" data-bs-toggle="modal" data-bs-target="#editBroadcastModal"><i class="bi bi-pencil"></i></button>
-                                            <button class="btn text-warning" data-bs-toggle="modal" data-bs-target="#archiveBroadcastModal"><i class="bi bi-archive"></i></button>
-                                            <button class="btn btn-outline-danger"><i class="bi bi-trash"></i></button>
+                                            <button class="btn text-primary" data-bs-toggle="modal" data-bs-target="#editBroadcastModal"><i class="bi bi-pencil h6"></i></button>
+                                            <button class="btn text-warning" data-bs-toggle="modal" data-bs-target="#archiveBroadcastModal"><i class="bi bi-archive h6"></i></button>
+                                            <button class="btn text-danger"><i class="bi bi-trash h6"></i></button>
                                         </div>
                                     </div>
 
@@ -169,14 +157,10 @@
 
                             </div>
                         </div>
-
                     </div>
-
-
 
                     <!-- ================= POSTS ================= -->
                     <div class="tab-pane fade" id="postsTab">
-
                         <div class="row g-4">
 
                             <!-- Post Card -->
@@ -185,13 +169,14 @@
 
                                     <div class="card-body">
 
-                                        <div class="d-flex justify-content-between mb-2">
+                                        <div>
+                                            <div class="d-flex">
+                                                <strong>Admin</strong>
+                                                <span class="badge bg-success ms-auto">Published</span><br>
+                                            </div>
                                             <div>
-                                                <strong>Admin</strong><br>
                                                 <small class="text-muted">Feb 18, 2026</small>
                                             </div>
-
-                                            <span class="badge bg-success">Published</span>
                                         </div>
 
                                         <p class="mt-2">
@@ -225,12 +210,10 @@
                             </div>
 
                         </div>
-
                     </div>
 
                 </div>
             </div>
-
         </div>
     </div>
 

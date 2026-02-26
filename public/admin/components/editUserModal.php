@@ -119,10 +119,11 @@
                     </div>
 
                     <div class="col-lg-3 mb-5">
-                        <label class="lead text-dark">Graduation Year</label>
+                        <strong>Graduation Year</strong><br>
                         <select name="graduationYear" id="graduationYear"
                             class="form-select form-select-sm text-dark border-1" required>
                             <option value="" disabled selected>Select Year</option>
+                            <option value="N/A">N/A</option>
                             <?php
                             $currentYear = date("Y");
                             for ($i = $currentYear; $i >= $currentYear - 50; $i--) {
