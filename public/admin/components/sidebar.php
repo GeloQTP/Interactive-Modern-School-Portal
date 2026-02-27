@@ -43,6 +43,13 @@
              </li>
 
              <li class="navbar-item">
+                 <a href="#" class="sidebar-link">
+                     <i class="bi bi-calendar"></i>
+                     <span>Set Event</span>
+                 </a>
+             </li>
+
+             <li class="navbar-item">
                  <a href="/Modern Student Portal/public/admin/Pages/AcademicData.php" class="sidebar-link">
                      <i class="bi bi-book"></i>
                      <span>Academic Data</span>

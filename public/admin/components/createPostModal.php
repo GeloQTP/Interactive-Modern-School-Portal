@@ -9,45 +9,47 @@
 
             <div class="modal-body">
 
-                <div class="mb-3">
-                    <label class="form-label">Content Type</label>
-                    <input type="text" class="form-control" value="Post" readonly>
-                </div>
+                <form id="postForm">
+                    <div class="mb-3">
+                        <label class="form-label">Content Type</label>
+                        <input type="text" class="form-control" value="Post" readonly>
+                    </div>
 
-                <div class="mb-3">
-                    <label class="form-label">Title</label>
-                    <input type="text" class="form-control">
-                </div>
+                    <div class="mb-3">
+                        <label class="form-label">Title</label>
+                        <input type="text" class="form-control">
+                    </div>
 
-                <div class="mb-3">
-                    <label class="form-label">Caption</label>
-                    <textarea class="form-control" rows="4"></textarea>
-                </div>
+                    <div class="mb-3">
+                        <label class="form-label">Caption</label>
+                        <textarea class="form-control" rows="4"></textarea>
+                    </div>
 
-                <!-- File Upload -->
-                <div class="mb-3">
-                    <label class="form-label">Upload Image</label>
-                    <input type="file" id="fileInput" class="form-control" accept="image/*">
-                </div>
+                    <!-- File Upload -->
+                    <div class="mb-3">
+                        <label class="form-label">Upload Image</label>
+                        <input type="file" id="fileInput" class="form-control" accept="image/*">
+                    </div>
 
-                <!-- Image Preview -->
-                <div class="mb-3 text-center">
-                    <div id="preview"></div>
-                </div>
+                    <!-- Image Preview -->
+                    <div class="mb-3 text-center">
+                        <div id="preview"></div>
+                    </div>
 
-                <div class="mb-3">
-                    <label class="form-label">Status</label>
-                    <select class="form-select">
-                        <option>Draft</option>
-                        <option>Publish</option>
-                    </select>
-                </div>
+                    <div class="mb-3">
+                        <label class="form-label">Status</label>
+                        <select class="form-select">
+                            <option>Draft</option>
+                            <option>Publish</option>
+                        </select>
+                    </div>
+                </form>
 
             </div>
 
             <div class="modal-footer">
                 <button class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
-                <button class="btn btn-success">Save</button>
+                <button class="btn btn-success">Post</button>
             </div>
 
         </div>

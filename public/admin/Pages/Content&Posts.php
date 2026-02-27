@@ -20,17 +20,6 @@
             background-color: #f8f9fa;
         }
 
-        .content-card:hover {
-            transform: translateY(-3px);
-            transition: 0.2s ease;
-        }
-
-        .carousel-item {
-            min-height: 160px;
-            display: flex;
-            align-items: center;
-        }
-
         .post-image {
             height: 200px;
             object-fit: cover;
@@ -106,7 +95,7 @@
 
             <div class="p-3">
 
-                <ul class="nav nav-tabs mb-4">
+                <ul class="nav nav-tabs mb-4"> <!--TAB LIST-->
                     <li class="nav-item">
                         <button class="nav-link active" data-bs-toggle="tab" data-bs-target="#broadcastTab">
                             Broadcasts
@@ -119,7 +108,7 @@
                     </li>
                 </ul>
 
-                <div class="tab-content">
+                <div class="tab-content"> <!--TAB CONTENTS-->
 
                     <div class="tab-pane fade show active" id="broadcastTab">
 
@@ -139,19 +128,94 @@
 
                                 <div class="list-group">
 
-                                    <div class="list-group-item d-flex justify-content-between align-items-center">
-                                        <div>
-                                            <strong>Enrollment is Now Open!</strong><br>
-                                            <span class="badge bg-success">Published</span>
-                                            <small class="text-muted ms-2">340 views</small>
-                                        </div>
+                                    <div class="card border mb-2">
+                                        <div class="card-body d-flex justify-content-between align-items-start">
 
-                                        <div class="btn-group btn-group-sm">
-                                            <button class="btn text-primary" data-bs-toggle="modal" data-bs-target="#editBroadcastModal"><i class="bi bi-pencil h6"></i></button>
-                                            <button class="btn text-warning" data-bs-toggle="modal" data-bs-target="#archiveBroadcastModal"><i class="bi bi-archive h6"></i></button>
-                                            <button class="btn text-danger"><i class="bi bi-trash h6"></i></button>
+                                            <!-- LEFT CONTENT -->
+                                            <div class="d-flex">
+
+                                                <!-- Color Indicator -->
+                                                <div class="me-3">
+                                                    <div class="rounded-circle bg-success" style="width: 12px; height: 12px;"></div>
+                                                </div>
+
+                                                <div>
+                                                    <h6 class="fw-bold mb-1">
+                                                        📢 Enrollment is Now Open!
+                                                    </h6>
+
+                                                    <p class="mb-2 text-muted small">
+                                                        We are excited to announce that enrollment for the upcoming semester is officially open.
+                                                        Please complete your registration before the deadline.
+                                                    </p>
+
+                                                    <div class="d-flex align-items-center gap-2">
+                                                        <span class="badge bg-success">Published</span>
+                                                        <small class="text-muted">Expires: March 30, 2026</small>
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                            <!-- RIGHT ACTIONS -->
+                                            <div class="btn-group btn-group-sm">
+                                                <button class="btn text-primary" data-bs-toggle="modal" data-bs-target="#editBroadcastModal">
+                                                    <i class="bi bi-pencil"></i>
+                                                </button>
+                                                <button class="btn text-warning" data-bs-toggle="modal" data-bs-target="#archiveBroadcastModal">
+                                                    <i class="bi bi-archive"></i>
+                                                </button>
+                                                <button class="btn text-danger">
+                                                    <i class="bi bi-trash"></i>
+                                                </button>
+                                            </div>
+
                                         </div>
                                     </div>
+
+                                    <div class="card border mb-2">
+                                        <div class="card-body d-flex justify-content-between align-items-start">
+
+                                            <!-- LEFT CONTENT -->
+                                            <div class="d-flex">
+
+                                                <!-- Color Indicator -->
+                                                <div class="me-3">
+                                                    <div class="rounded-circle bg-success" style="width: 12px; height: 12px;"></div>
+                                                </div>
+
+                                                <div>
+                                                    <h6 class="fw-bold mb-1">
+                                                        📢 Tomas Del Rosario - Intramurals 2026
+                                                    </h6>
+
+                                                    <p class="mb-2 text-muted small">
+                                                        We are excited to announce that enrollment for the upcoming semester is officially open.
+                                                        Please complete your registration before the deadline.
+                                                    </p>
+
+                                                    <div class="d-flex align-items-center gap-2">
+                                                        <span class="badge bg-success">Published</span>
+                                                        <small class="text-muted">Expires: March 30, 2026</small>
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                            <!-- RIGHT ACTIONS -->
+                                            <div class="btn-group btn-group-sm">
+                                                <button class="btn text-primary" data-bs-toggle="modal" data-bs-target="#editBroadcastModal">
+                                                    <i class="bi bi-pencil"></i>
+                                                </button>
+                                                <button class="btn text-warning" data-bs-toggle="modal" data-bs-target="#archiveBroadcastModal">
+                                                    <i class="bi bi-archive"></i>
+                                                </button>
+                                                <button class="btn text-danger">
+                                                    <i class="bi bi-trash"></i>
+                                                </button>
+                                            </div>
+
+                                        </div>
+                                    </div>
+
 
                                 </div>
 
@@ -163,51 +227,71 @@
                     <div class="tab-pane fade" id="postsTab">
                         <div class="row g-4">
 
-                            <!-- Post Card -->
+                            <!-- POST CARD -->
                             <div class="col-md-6 col-lg-4">
-                                <div class="card shadow-sm h-100 content-card">
+                                <div class="card border shadow-sm h-100 content-card">
 
                                     <div class="card-body">
 
-                                        <div>
-                                            <div class="d-flex">
-                                                <strong>Admin</strong>
-                                                <span class="badge bg-success ms-auto">Published</span><br>
-                                            </div>
+                                        <!-- HEADER -->
+                                        <div class="d-flex align-items-center mb-2">
                                             <div>
-                                                <small class="text-muted">Feb 18, 2026</small>
+                                                <h6 class="mb-0 fw-semibold">Foundation Day Celebration</h6>
+                                                <small class="text-muted">
+                                                    By Admin • Feb 18, 2026
+                                                </small>
                                             </div>
+                                            <span class="badge bg-success ms-auto">Published</span>
                                         </div>
 
-                                        <p class="mt-2">
+                                        <!-- IMAGE -->
+                                        <img src="./../../../src/img/Accountancy.jpg"
+                                            class="card-img-top object-fit-cover rounded mb-2"
+                                            style="height:400px;">
+
+                                        <!-- CAPTION -->
+                                        <p class="text-muted small mb-2">
                                             The School Foundation Day celebration will be held on March 15.
                                             All students are encouraged to participate.
                                         </p>
 
-                                        <img src="https://via.placeholder.com/400x200"
-                                            class="img-fluid rounded post-image mb-3">
-
-                                        <div class="d-flex justify-content-between text-muted stat-box">
-                                            <span><i class="bi bi-eye"></i> 120 Views</span>
-                                            <span><i class="bi bi-chat"></i> 15 Comments</span>
+                                        <!-- STATS -->
+                                        <div class="d-flex justify-content-between border-top pt-2 text-muted small">
+                                            <span><i class="bi bi-eye me-1"></i>120</span>
+                                            <span><i class="bi bi-chat me-1"></i>15</span>
                                         </div>
 
                                     </div>
 
-                                    <div class="card-footer bg-white d-flex justify-content-between">
-                                        <div class="btn-group btn-group-sm">
-                                            <button class="btn btn-outline-primary"><i class="bi bi-pencil"></i></button>
-                                            <button class="btn btn-outline-secondary"><i class="bi bi-eye"></i></button>
-                                            <button class="btn btn-outline-danger"><i class="bi bi-trash"></i></button>
-                                        </div>
+                                    <!-- FOOTER ACTIONS -->
+                                    <div class="card-footer bg-white border-0 pt-0 pb-3">
+                                        <div class="d-flex justify-content-between">
 
-                                        <button class="btn btn-outline-warning btn-sm">
-                                            <i class="bi bi-archive"></i>
-                                        </button>
+                                            <div class="btn-group btn-group-sm">
+                                                <button class="btn text-primary">
+                                                    <i class="bi bi-pencil h6"></i>
+                                                </button>
+                                                <button class="btn text-secondary">
+                                                    <i class="bi bi-eye h6"></i>
+                                                </button>
+                                                <button class="btn text-warning">
+                                                    <i class="bi bi-archive h6"></i>
+                                                </button>
+                                                <button class="btn text-danger">
+                                                    <i class="bi bi-trash h6"></i>
+                                                </button>
+                                            </div>
+
+                                            <button class="btn text-secondary">
+                                                <i class="bi bi-chat me-1"></i>
+                                            </button>
+
+                                        </div>
                                     </div>
 
                                 </div>
                             </div>
+                            <!-- POST CARD -->
 
                         </div>
                     </div>
