@@ -142,9 +142,10 @@
                                                 <div>
                                                     <h6 class="fw-bold mb-1">
                                                         📢 Enrollment is Now Open!
+                                                        <small class="text-muted ms-4">February 27, 2026</small>
                                                     </h6>
 
-                                                    <p class="mb-2 text-muted small">
+                                                    <p class="my-2 text-muted small">
                                                         We are excited to announce that enrollment for the upcoming semester is officially open.
                                                         Please complete your registration before the deadline.
                                                     </p>
@@ -171,51 +172,6 @@
 
                                         </div>
                                     </div>
-
-                                    <div class="card border mb-2">
-                                        <div class="card-body d-flex justify-content-between align-items-start">
-
-                                            <!-- LEFT CONTENT -->
-                                            <div class="d-flex">
-
-                                                <!-- Color Indicator -->
-                                                <div class="me-3">
-                                                    <div class="rounded-circle bg-success" style="width: 12px; height: 12px;"></div>
-                                                </div>
-
-                                                <div>
-                                                    <h6 class="fw-bold mb-1">
-                                                        📢 Tomas Del Rosario - Intramurals 2026
-                                                    </h6>
-
-                                                    <p class="mb-2 text-muted small">
-                                                        We are excited to announce that enrollment for the upcoming semester is officially open.
-                                                        Please complete your registration before the deadline.
-                                                    </p>
-
-                                                    <div class="d-flex align-items-center gap-2">
-                                                        <span class="badge bg-success">Published</span>
-                                                        <small class="text-muted">Expires: March 30, 2026</small>
-                                                    </div>
-                                                </div>
-                                            </div>
-
-                                            <!-- RIGHT ACTIONS -->
-                                            <div class="btn-group btn-group-sm">
-                                                <button class="btn text-primary" data-bs-toggle="modal" data-bs-target="#editBroadcastModal">
-                                                    <i class="bi bi-pencil"></i>
-                                                </button>
-                                                <button class="btn text-warning" data-bs-toggle="modal" data-bs-target="#archiveBroadcastModal">
-                                                    <i class="bi bi-archive"></i>
-                                                </button>
-                                                <button class="btn text-danger">
-                                                    <i class="bi bi-trash"></i>
-                                                </button>
-                                            </div>
-
-                                        </div>
-                                    </div>
-
 
                                 </div>
 
