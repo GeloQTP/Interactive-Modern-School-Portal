@@ -7,22 +7,17 @@
                 <button class="btn-close" data-bs-dismiss="modal"></button>
             </div>
 
-            <div class="modal-body">
-
-                <form id="postForm">
-                    <div class="mb-3">
-                        <label class="form-label">Content Type</label>
-                        <input type="text" class="form-control" value="Post" readonly>
-                    </div>
+            <form id="postForm">
+                <div class="modal-body">
 
                     <div class="mb-3">
                         <label class="form-label">Title</label>
-                        <input type="text" class="form-control">
+                        <input type="text" class="form-control" name="postTitle">
                     </div>
 
                     <div class="mb-3">
                         <label class="form-label">Caption</label>
-                        <textarea class="form-control" rows="4"></textarea>
+                        <textarea class="form-control" rows="4" name="postCaption"></textarea>
                     </div>
 
                     <!-- File Upload -->
@@ -43,20 +38,47 @@
                             <option>Publish</option>
                         </select>
                     </div>
-                </form>
 
-            </div>
+                </div>
 
-            <div class="modal-footer">
-                <button class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
-                <button class="btn btn-success">Post</button>
-            </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+                    <button type="submit" class="btn btn-success">Post</button>
+                </div>
 
+            </form>
         </div>
     </div>
 </div>
 
 <script>
+    document.addEventListener('DOMContentLoaded', () => {
+        const postForm = document.getElementById("postForm");
+
+        postForm.addEventListener('submit', async function(e) {
+            e.preventDefault();
+
+            const postFormData = new FormData(broadcastForm);
+            postFormData.append('action', 'post');
+
+            const res = await fetch(`./../backend/postAnnouncement.php`, {
+                method: 'POST',
+                body: postFormData,
+                credentials: "same-origin",
+            });
+
+            if (!res.ok && res.status !== 200) throw new Error('Network Response Error');
+
+            const data = await res.json();
+            console.log(data);
+
+        });
+
+    });
+</script>
+
+<script>
+    // IMAGE PREVIEW FUNCTIONALITY
     document.addEventListener('DOMContentLoaded', function() {
 
         const fileInput = document.getElementById('fileInput');
