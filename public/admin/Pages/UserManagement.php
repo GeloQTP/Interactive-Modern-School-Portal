@@ -205,11 +205,6 @@ include __DIR__ . '/../../backend/getCourses.php';
                     Alumni: "primary",
                 };
 
-                const statusColors = {
-                    verified: 'success',
-
-                };
-
                 const badge_color = badgeColors[role] || "secondary";
 
                 return `

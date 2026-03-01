@@ -10,19 +10,19 @@
                 <div class="modal-body">
 
                     <div class="mb-3">
-                        <label class="form-label">Title</label>
-                        <input type="text" class="form-control" name="title" required>
+                        <label for="title" class="form-label">Title</label>
+                        <input id="title" type="text" class="form-control" name="title" required>
                     </div>
 
                     <div class="mb-3">
-                        <label class="form-label">Announcement Message</label>
-                        <textarea class="form-control" rows="4" name="announcement_message" required></textarea>
+                        <label for="announcement_message" class="form-label">Announcement Message</label>
+                        <textarea id="announcement_message" class="form-control" rows="4" name="announcement_message" required></textarea>
                     </div>
 
                     <div class="row">
                         <div class="col-md-6 mb-3">
-                            <label class="form-label">Theme Color</label>
-                            <select class="form-select" name="theme_color" required>
+                            <label for="theme_color" class="form-label">Theme Color</label>
+                            <select id="theme_color" class="form-select" name="theme_color" required>
                                 <option value="bg-success">Green (Important)</option>
                                 <option value="bg-primary">Blue (General)</option>
                                 <option value="bg-warning">Yellow (Reminder)</option>
@@ -32,14 +32,14 @@
                         </div>
 
                         <div class="mb-3 col-md-6">
-                            <label class="form-label">Expiration Date</label>
-                            <input type="date" class="form-control" name="expires_at" required>
+                            <label for="expires_at" class="form-label">Expiration Date</label>
+                            <input id="expires_at" type="date" class="form-control" name="expires_at" required>
                         </div>
                     </div>
 
                     <div class="mb-3">
-                        <label class="form-label">Status</label>
-                        <select class="form-select" name="status" required>
+                        <label for="status" class="form-label">Status</label>
+                        <select id="status" class="form-select" name="status" required>
                             <option value="draft">Draft</option>
                             <option value="published">Published</option>
                             <option value="archived">Archived</option>
@@ -80,6 +80,9 @@
             const data = await res.json();
 
             if (data.success) {
+
+                loadAnnouncementList(); // THIS FUNCTION IS FROM ANOTHER COMPONENT
+
                 Swal.fire({
                     title: "Posted Successfuly",
                     text: "Your Announcement has been posted Successfuly.",
