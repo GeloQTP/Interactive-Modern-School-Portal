@@ -81,7 +81,7 @@
 
             if (data.success) {
 
-                loadAnnouncementList(); // THIS FUNCTION IS FROM ANOTHER COMPONENT
+                loadAnnouncementList(); // THIS FUNCTION IS FROM ANOTHER COMPONENT (DO NOT REMOVE)
 
                 Swal.fire({
                     title: "Posted Successfuly",

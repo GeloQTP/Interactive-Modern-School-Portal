@@ -23,7 +23,7 @@
 <script>
     loadAnnouncementList();
 
-    async function loadAnnouncementList(filter) {
+    async function loadAnnouncementList(filter) { // LOAD LIST
         const list_group = document.querySelector(".list-group");
         try {
 
@@ -38,6 +38,7 @@
             if (!res.ok) throw new Error('Network response is not ok.');
 
             const data = await res.json();
+            console.log(data);
 
             const announcements = data.map(data => {
 
@@ -77,7 +78,7 @@
                         </div>
 
                         <div class="btn-group btn-group-sm">
-                            <button class="btn text-primary" data-bs-toggle="modal" data-bs-target="#editBroadcastModal">
+                            <button class="btn text-primary" data-bs-toggle="modal" data-bs-target="#editBroadcastModal" onclick="populateEditModal(${data.broadcast_id})">
                                 <i class="bi bi-pencil h5"></i>
                             </button>
                             <button class="btn text-warning" data-bs-toggle="modal" data-bs-target="#archiveBroadcastModal">
@@ -93,6 +94,35 @@
             }).join('');
 
             list_group.innerHTML = announcements;
+
+        } catch {
+
+        } finally {
+
+        }
+    }
+
+    async function populateEditModal(announcement_id) { // EDIT 
+
+        try {
+
+            const res = await fetch('./../../../api/AnnouncementController.php', {
+                method: 'POST',
+                body: new URLSearchParams({
+                    announcement_id: announcement_id,
+                    action: 'view',
+                }),
+                credentials: "same-origin",
+            });
+
+            if (!res.ok) throw new Error('Network response is not ok.');
+
+            const data = await res.json();
+            console.log(data);
+
+            if (data.success) {
+
+            }
 
         } catch {
 
