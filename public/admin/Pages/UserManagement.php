@@ -232,9 +232,7 @@ include __DIR__ . '/../../backend/getCourses.php';
 
             document.getElementById("table_body").innerHTML = list;
 
-        } catch (Error) {
-            console.log("Something went wrong. Can't Load Student Registrations");
-        } finally {
+        } catch (Error) {} finally {
 
         }
 
@@ -409,8 +407,6 @@ include __DIR__ . '/../../backend/getCourses.php';
             if (!res.ok) throw new Error('Network Response not ok');
 
             const data = await res.json();
-            console.log(data);
-
             if (data.success) {
                 editUser(user_id);
                 loadUsers();

@@ -80,10 +80,10 @@
                             <button class="btn text-primary" data-bs-toggle="modal" data-bs-target="#editBroadcastModal" onclick="getAnnouncementInformation(${data.broadcast_id})">
                                 <i class="bi bi-pencil h5"></i>
                             </button>
-                            <button class="btn text-warning" data-bs-toggle="modal" data-bs-target="#archiveBroadcastModal">
+                            <button class="btn text-warning" onclick="archiveAnnouncementConfirmation(${data.broadcast_id})">
                                 <i class="bi bi-archive h5"></i>
                             </button>
-                            <button class="btn text-danger">
+                            <button class="btn text-danger" onclick="deleteAnnouncementConfirmation(${data.broadcast_id})">
                                 <i class="bi bi-trash h5"></i>
                             </button>
                         </div>
@@ -101,7 +101,120 @@
         }
     }
 
-    function deleteAnnouncementConfirmation() {
+    function deleteAnnouncementConfirmation(announcement_id) {
+        Swal.fire({
+            title: "Are you sure?",
+            text: `Delete this Announcement?`,
+            icon: "warning",
+            showCancelButton: true,
+            confirmButtonColor: "#DC3545",
+            confirmButtonText: "Delete"
+        }).then((result) => {
+            if (result.isConfirmed) {
+                deleteAnnouncement(announcement_id);
+            }
+        });
+    }
 
+    async function deleteAnnouncement(announcement_id) {
+
+        try {
+
+            const res = await fetch('./../../../api/AnnouncementController.php', {
+                method: 'POST',
+                body: new URLSearchParams({
+                    action: 'delete',
+                    announcement_id: announcement_id,
+                }),
+                credentials: "same-origin",
+            });
+
+            if (!res.ok) throw new Error('Network response error');
+
+            const data = await res.json();
+
+            if (data.success) {
+                loadAnnouncementList();
+                Swal.fire({
+                    title: "Deletion Successful",
+                    text: "Broadcast Deleted.",
+                    icon: "success",
+                    timer: 2000,
+                    showConfirmButton: false
+                });
+            } else {
+                Swal.fire({
+                    title: "Deletion Unsuccessful",
+                    text: "Broadcast Deletion Failed.",
+                    icon: "error",
+                    timer: 2000,
+                    showConfirmButton: false,
+                });
+            }
+
+        } catch {
+
+        } finally {
+
+        }
+
+    }
+
+    function archiveAnnouncementConfirmation(announcement_id) {
+        Swal.fire({
+            title: "Are you sure?",
+            text: `Arhive this Announcement?`,
+            icon: "question",
+            showCancelButton: true,
+            confirmButtonColor: "#ffc107",
+            confirmButtonText: "Archive"
+        }).then((result) => {
+            if (result.isConfirmed) {
+                archiveAnnouncement(announcement_id);
+            }
+        });
+    }
+
+    async function archiveAnnouncement(announcement_id) {
+        try {
+
+            const res = await fetch('./../../../api/AnnouncementController.php', {
+                method: 'POST',
+                body: new URLSearchParams({
+                    action: 'archive',
+                    announcement_id: announcement_id,
+                }),
+                credentials: "same-origin",
+            });
+
+            if (!res.ok) throw new Error('Network response error');
+
+            const data = await res.json();
+            console.log(data);
+
+            if (data.success) {
+                loadAnnouncementList();
+                Swal.fire({
+                    title: "Archiving Successful",
+                    text: "The Broadcast has been Archived.",
+                    icon: "success",
+                    timer: 2000,
+                    showConfirmButton: false
+                });
+            } else {
+                Swal.fire({
+                    title: "Archiving Unsuccessful",
+                    text: "The Broadcast could not be archived.",
+                    icon: "error",
+                    timer: 2000,
+                    showConfirmButton: false,
+                });
+            }
+
+        } catch {
+
+        } finally {
+
+        }
     }
 </script>

@@ -93,9 +93,34 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     }
 
     if ($action === 'archive') {
+
+        $announcement_id = $_POST['announcement_id'];
+        $status = 'archived';
+
+        $stmt = $conn->prepare("UPDATE broadcasts SET status = ? WHERE broadcast_id = ?");
+        $stmt->bind_param("si", $status, $announcement_id);
+
+        if ($stmt->execute()) {
+            echo json_encode(['success' => true]);
+        } else {
+            echo json_encode(['success' => false]);
+        }
+        exit;
     }
 
     if ($action === 'delete') {
+
+        $announcement_id = $_POST['announcement_id'];
+
+        $stmt = $conn->prepare("DELETE FROM broadcasts WHERE broadcast_id = ?");
+        $stmt->bind_param("i", $announcement_id);
+
+        if ($stmt->execute()) {
+            echo json_encode(['success' => true]);
+        } else {
+            echo json_encode(['success' => false]);
+        }
+        exit;
     }
 
     if ($action === 'search') {

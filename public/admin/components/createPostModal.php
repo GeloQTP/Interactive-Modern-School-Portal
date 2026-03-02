@@ -70,7 +70,6 @@
             if (!res.ok && res.status !== 200) throw new Error('Network Response Error');
 
             const data = await res.json();
-            console.log(data);
 
         });
 
