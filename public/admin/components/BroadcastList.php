@@ -190,7 +190,6 @@
             if (!res.ok) throw new Error('Network response error');
 
             const data = await res.json();
-            console.log(data);
 
             if (data.success) {
                 loadAnnouncementList();
