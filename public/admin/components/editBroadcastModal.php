@@ -1,4 +1,3 @@
-<!-- EDIT BROADCAST MODAL -->
 <div class="modal fade" id="editBroadcastModal" tabindex="-1">
     <div class="modal-dialog modal-lg modal-dialog-centered">
         <div class="modal-content">
@@ -8,7 +7,7 @@
                 <button class="btn-close" data-bs-dismiss="modal"></button>
             </div>
 
-            <form id="editBroadcastModal">
+            <form id="editBroadcastForm">
                 <div class="modal-body">
 
                     <div class="mb-3">
@@ -53,9 +52,117 @@
 
             <div class="modal-footer">
                 <button class="btn btn-outline-secondary" data-bs-dismiss="modal">Cancel</button>
-                <button class="btn btn-success">Save Changes</button>
+                <button type="button" class="btn btn-success" onclick="editConfirmationModal(this.value)" id="announcement_id_holder">Save Changes</button>
             </div>
 
         </div>
     </div>
 </div>
+
+<script>
+    function editConfirmationModal(announcement_id) {
+        Swal.fire({
+            title: "Are you sure?",
+            text: `Update Announcement?`,
+            icon: "warning",
+            showCancelButton: true,
+            confirmButtonColor: "#198754",
+            confirmButtonText: "Save Changes"
+        }).then((result) => {
+            if (result.isConfirmed) {
+                updateAnnouncement(announcement_id);
+            }
+        });
+    }
+
+    async function updateAnnouncement(announcement_id) {
+        const editedForm = new FormData(document.getElementById("editBroadcastForm"));
+        editedForm.append('action', 'edit');
+        editedForm.append('announcement_id', announcement_id);
+
+        try {
+
+            const res = await fetch('./../../../api/AnnouncementController.php', {
+                method: 'POST',
+                body: editedForm,
+                credentials: "same-origin",
+            });
+
+            if (!res.ok) throw new Error('Network response error');
+
+            const data = await res.json();
+            console.log(data);
+
+            if (data.success) {
+                loadAnnouncementList();
+                Swal.fire({
+                    title: "Update Successful",
+                    text: "This Broadcast has been configured.",
+                    icon: "success",
+                    timer: 2000,
+                    showConfirmButton: false
+                });
+            } else {
+                Swal.fire({
+                    title: "Update Unsuccessful",
+                    text: "Broadcast Configuration Failed.",
+                    icon: "error",
+                    timer: 2000,
+                    showConfirmButton: false,
+                });
+            }
+
+        } catch {
+
+        } finally {
+
+        }
+
+    }
+
+    function populateEditModal(data) {
+
+        const button = document.getElementById("announcement_id_holder");
+        button.value = data.broadcast_id;
+
+        Object.keys(data).forEach(key => {
+
+            const element = document.getElementById(key);
+
+            if (!element) {
+                return;
+            }
+
+            element.value = data[key];
+
+        });
+
+    }
+
+    async function getAnnouncementInformation(announcement_id) { // EDIT 
+
+        try {
+
+            const res = await fetch('./../../../api/AnnouncementController.php', {
+                method: 'POST',
+                body: new URLSearchParams({
+                    announcement_id: announcement_id,
+                    action: 'populate',
+                }),
+                credentials: "same-origin",
+            });
+
+            if (!res.ok) throw new Error('Network response is not ok.');
+
+            const data = await res.json();
+
+            populateEditModal(data);
+
+
+        } catch {
+
+        } finally {
+
+        }
+    }
+</script>

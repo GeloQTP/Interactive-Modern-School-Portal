@@ -12,11 +12,10 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     if ($action === 'load') {
 
         if ($filter !== 'undefined' || $filter === '') {
-            $stmt = $conn->prepare("SELECT * FROM broadcasts WHERE expires_at > ? AND status = ?");
-            $stmt->bind_param("ss", $date_today, $filter);
+            $stmt = $conn->prepare("SELECT * FROM broadcasts WHERE status = ?");
+            $stmt->bind_param("s", $filter);
         } else {
-            $stmt = $conn->prepare("SELECT * FROM broadcasts WHERE expires_at > ?");
-            $stmt->bind_param("s", $date_today);
+            $stmt = $conn->prepare("SELECT * FROM broadcasts");
         }
 
         $stmt->execute();
@@ -32,19 +31,65 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         exit;
     }
 
-    if ($action === 'view') {
+    if ($action === 'populate') {
         $announcement_id = (int)($_POST['announcement_id']);
 
         $stmt = $conn->prepare("SELECT * FROM broadcasts WHERE broadcast_id = ?");
         $stmt->bind_param("i", $announcement_id);
-        $stmt->execute();
-        $result = $stmt->get_result();
-        $row = $result->fetch_assoc();
 
-        echo json_encode($row);
+        if ($stmt->execute()) {
+            $result = $stmt->get_result();
+            $row = $result->fetch_assoc();
+
+            echo json_encode($row);
+        }
+
+        exit;
     }
 
     if ($action === 'edit') {
+
+        $announcement_id = (int)($_POST['announcement_id'] ?? 0);
+
+        $broadcastTitle = filter_input(INPUT_POST, 'title', FILTER_SANITIZE_SPECIAL_CHARS);
+        $broadcastTitle = $broadcastTitle !== '' ? $broadcastTitle : 'N/A';
+
+        $announcement_message = trim(filter_input(INPUT_POST, 'announcement_message', FILTER_SANITIZE_SPECIAL_CHARS));
+        $announcement_message = $announcement_message !== '' ? $announcement_message : 'N/A';
+
+        $theme_color = (string)($_POST['theme_color'] ?? '');
+        $expires_at = $_POST['expires_at'];
+        $status = (string)($_POST['status'] ?? '');
+
+        $log_description = 'Admin edited an Announcement';
+        $log_type = 'Announcement Edit';
+        $log_owner = 'Broadcast Edited';
+
+        $conn->begin_transaction();
+
+        try {
+            $stmt = $conn->prepare("UPDATE broadcasts SET title = ?, 
+                                    announcement_message = ?, 
+                                    theme_color = ?, 
+                                    status = ?, 
+                                    expires_at = ?
+                                    WHERE broadcast_id = ?");
+
+            $stmt->bind_param("sssssi", $broadcastTitle, $announcement_message, $theme_color, $status, $expires_at, $announcement_id);
+            $stmt->execute();
+            $stmt->close();
+
+            $stmt = $conn->prepare("INSERT INTO logs (log_owner, log_description, log_type) VALUES (?,?,?)");
+            $stmt->bind_param("sss", $log_owner, $log_description, $log_type);
+            $stmt->execute();
+            $stmt->close();
+
+            $conn->commit();
+            echo json_encode(['success' => true]);
+        } catch (Exception $e) {
+            $conn->rollback();
+            echo json_encode(['success' => false, 'error' => $e]);
+        }
     }
 
     if ($action === 'archive') {

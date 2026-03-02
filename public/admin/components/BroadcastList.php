@@ -38,7 +38,6 @@
             if (!res.ok) throw new Error('Network response is not ok.');
 
             const data = await res.json();
-            console.log(data);
 
             const announcements = data.map(data => {
 
@@ -78,7 +77,7 @@
                         </div>
 
                         <div class="btn-group btn-group-sm">
-                            <button class="btn text-primary" data-bs-toggle="modal" data-bs-target="#editBroadcastModal" onclick="populateEditModal(${data.broadcast_id})">
+                            <button class="btn text-primary" data-bs-toggle="modal" data-bs-target="#editBroadcastModal" onclick="getAnnouncementInformation(${data.broadcast_id})">
                                 <i class="bi bi-pencil h5"></i>
                             </button>
                             <button class="btn text-warning" data-bs-toggle="modal" data-bs-target="#archiveBroadcastModal">
@@ -102,32 +101,7 @@
         }
     }
 
-    async function populateEditModal(announcement_id) { // EDIT 
+    function deleteAnnouncementConfirmation() {
 
-        try {
-
-            const res = await fetch('./../../../api/AnnouncementController.php', {
-                method: 'POST',
-                body: new URLSearchParams({
-                    announcement_id: announcement_id,
-                    action: 'view',
-                }),
-                credentials: "same-origin",
-            });
-
-            if (!res.ok) throw new Error('Network response is not ok.');
-
-            const data = await res.json();
-            console.log(data);
-
-            if (data.success) {
-
-            }
-
-        } catch {
-
-        } finally {
-
-        }
     }
 </script>

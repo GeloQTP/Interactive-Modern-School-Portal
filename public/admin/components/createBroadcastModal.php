@@ -3,9 +3,10 @@
         <div class="modal-content">
 
             <div class="modal-header">
-                <h5>Create New Broadcast</h5>
+                <h5 class="modal-title">Create Broadcast</h5>
                 <button class="btn-close" data-bs-dismiss="modal"></button>
             </div>
+            
             <form id="broadcastForm">
                 <div class="modal-body">
 

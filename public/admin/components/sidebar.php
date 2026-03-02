@@ -37,7 +37,7 @@
 
              <li class="navbar-item">
                  <a href="/Modern Student Portal/public/admin/Pages/Content&Posts.php" class="sidebar-link">
-                     <i class="bi bi-file-earmark-text"></i>
+                     <i class="bi bi-megaphone"></i>
                      <span>Posts & Announcements</span>
                  </a>
              </li>
