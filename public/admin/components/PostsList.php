@@ -31,8 +31,7 @@
 
                      <!-- STATS -->
                      <div class="d-flex justify-content-between pt-2 text-muted small">
-                         <span><i class="bi bi-eye me-1"></i>120</span>
-                         <span><i class="bi bi-heart me-1"></i>298</span>
+                         <span class="ms-auto"><i class="bi bi-heart me-1"></i>298</span>
                      </div>
 
                  </div>

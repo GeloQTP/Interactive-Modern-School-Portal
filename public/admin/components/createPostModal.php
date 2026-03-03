@@ -52,28 +52,7 @@
 </div>
 
 <script>
-    document.addEventListener('DOMContentLoaded', () => {
-        const postForm = document.getElementById("postForm");
-
-        postForm.addEventListener('submit', async function(e) {
-            e.preventDefault();
-
-            const postFormData = new FormData(broadcastForm);
-            postFormData.append('action', 'post');
-
-            const res = await fetch(`./../backend/postAnnouncement.php`, {
-                method: 'POST',
-                body: postFormData,
-                credentials: "same-origin",
-            });
-
-            if (!res.ok && res.status !== 200) throw new Error('Network Response Error');
-
-            const data = await res.json();
-
-        });
-
-    });
+   
 </script>
 
 <script>
