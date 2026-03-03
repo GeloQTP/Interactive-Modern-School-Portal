@@ -23,7 +23,7 @@
                     <!-- File Upload -->
                     <div class="mb-3">
                         <label class="form-label">Upload Image</label>
-                        <input type="file" id="fileInput" class="form-control" accept="image/*">
+                        <input type="file" id="postImage" name="postImage" class="form-control" accept="image/*">
                     </div>
 
                     <!-- Image Preview -->
@@ -33,7 +33,7 @@
 
                     <div class="mb-3">
                         <label class="form-label">Status</label>
-                        <select class="form-select">
+                        <select class="form-select" name="status">
                             <option>Draft</option>
                             <option>Publish</option>
                         </select>
@@ -52,17 +52,60 @@
 </div>
 
 <script>
-   
+    document.addEventListener('DOMContentLoaded', () => {
+        const postForm = document.getElementById("postForm");
+
+        postForm.addEventListener('submit', async (e) => {
+            e.preventDefault();
+
+            const postFormData = new FormData(postForm);
+
+            const res = await fetch(`./../backend/uploadPost.php`, {
+                method: 'POST',
+                body: postFormData,
+                credentials: "same-origin",
+            });
+
+            if (!res.ok) throw new Error('Network Response Error');
+
+            const data = await res.json();
+            console.log(data);
+
+            if (data.success) {
+
+                // loadAnnouncementList();
+
+                Swal.fire({
+                    title: "Upload Successful",
+                    text: "Your Post has been uploaded Successfuly.",
+                    icon: "success",
+                    timer: 2000,
+                    showConfirmButton: false
+                });
+            } else {
+                Swal.fire({
+                    title: "Oops",
+                    text: "There was an error uploading your file",
+                    icon: "error",
+                    timer: 2000,
+                    showConfirmButton: false,
+                });
+            }
+
+
+        });
+
+    });
 </script>
 
 <script>
     // IMAGE PREVIEW FUNCTIONALITY
     document.addEventListener('DOMContentLoaded', function() {
 
-        const fileInput = document.getElementById('fileInput');
+        const postImage = document.getElementById('postImage');
         const preview = document.getElementById('preview');
 
-        fileInput.addEventListener('change', function() {
+        postImage.addEventListener('change', function() {
             const file = this.files[0];
 
             if (file && file.type.startsWith('image/')) {

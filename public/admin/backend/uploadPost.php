@@ -1,77 +1,84 @@
 <?php
-
 session_start();
-include('./includes/db_connect.php');
+include __DIR__ . '/../../../includes/db_connect.php';
 
-mysqli_report(MYSQLI_REPORT_STRICT | MYSQLI_REPORT_ERROR); // catch any mysqli (database) errors and turn it into exceptions. 
+mysqli_report(MYSQLI_REPORT_STRICT | MYSQLI_REPORT_ERROR);
 
-if ($_SERVER['REQUEST_METHOD'] !== 'POST') { // checks if the user submitted the form with post method
-    die('Invalid request');
+if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+
+    $postTitle = trim($_POST['postTitle'] ?? '');
+
+    $postCaption = trim($_POST['postCaption'] ?? '');
+    $postCaption = htmlspecialchars($postCaption, ENT_QUOTES, 'UTF-8');
+
+    $status = trim($_POST['status'] ?? '');
+
+    if (!isset($_FILES['postImage']) || $_FILES['postImage']['error'] !== UPLOAD_ERR_OK) {
+        echo json_encode(['success' => false, 'message' => 'Please upload a valid file']);
+        exit;
+    }
+
+    $targetDir = __DIR__ . '/../../Uploads/';
+
+    $maxSize = 5; // size limit 
+    $maxSize = $maxSize * 1024 * 1024;
+    if ($_FILES['postImage']['size'] > $maxSize) {
+        echo json_encode(['success' => false, 'message' => 'File is too Large.']);
+        exit;
+    }
+
+    $allowedTypes = [ // array of valid or acceptable file types.
+        'jpeg',
+        'png',
+        'pdf',
+        'jpg'
+    ];
+
+    $filename = $_FILES['postImage']['name']; // only gets the base name (image.png).
+    $extension = strtolower(pathinfo($filename, PATHINFO_EXTENSION)); // pathinfo gets the file extension from the filename and converts it to lowercases.
+
+    if (!in_array($extension, $allowedTypes)) {
+        echo json_encode(['success' => false, 'message' => 'Invalid File Type.']);
+        exit;
+    }
+
+    $allowedMimeTypes = [ // list of allowed mime types
+        'image/jpeg',
+        'image/png',
+        'application/pdf'
+    ];
+
+    $mimeType = mime_content_type($_FILES['postImage']['tmp_name']);
+
+    if (!in_array($mimeType, $allowedMimeTypes)) { // mime type checking
+        echo json_encode(['success' => false, 'message' => 'Invalid File Type.']);
+        exit;
+    }
+
+    // create a Unique filename
+    $filename = bin2hex(random_bytes(16)) . '.' . $extension; // variable that holds the new base name (file name) (3scxouwhrg5svo.png or whatever)
+    $targetPath = $targetDir . $filename; // transfer the target folder or directory with the new file name (in this case - uploads/3scxouwhrg5svo.png)
+
+    if (!move_uploaded_file($_FILES['postImage']['tmp_name'], $targetPath)) {
+        echo json_encode(['success' => false, 'message' => 'Uploading Failed. Please try again.']);
+        exit;
+    }
+
+    $conn->begin_transaction();
+
+    try {
+        $stmt = $conn->prepare("INSERT INTO posts (post_title, post_caption, image_src, status) VALUES (?,?,?,?)");
+        $stmt->bind_param("ssss", $postTitle, $postCaption, $targetPath, $status);
+        $stmt->execute();
+        $stmt->close();
+
+        // $conn->commit();
+        echo json_encode(['success' => true]);
+    } catch (Exception $e) {
+        $conn->rollback();
+        echo json_encode(['success' => false, 'message' => 'Something went wrong. Please try again.']);
+    }
+} else {
+    echo json_encode(['success' => false, 'message' => 'Invalid Request Type']);
+    exit;
 }
-
-$post_caption = trim($_POST['upload_caption'] ?? '');
-$post_caption = htmlspecialchars($post_caption, ENT_QUOTES, 'UTF-8');
-
-
-if (!isset($_FILES['file_upload']) || $_FILES['file_upload']['error'] !== UPLOAD_ERR_OK) { // checks if $_FILES["you_input_name"] is not empty nor have errors
-    die('Please upload a valid file');
-}
-
-$targetDir = '../uploads/'; // target path
-
-$maxSize = 5 * 1024 * 1024; // size limit 5mb
-if ($_FILES['file_upload']['size'] > $maxSize) { // checks the file size if it's greater than 5,000,000kb (5MB).
-    die('File is too large');
-}
-
-// file type validation
-$allowedTypes = [ // array of valid or acceptable file types.
-    'jpeg',
-    'png',
-    'pdf',
-    'jpg'
-];
-
-$filename = $_FILES['file_upload']['name']; // only gets the base name (image.png).
-$extension = strtolower(pathinfo($filename, PATHINFO_EXTENSION)); // pathinfo gets the file extension from the filename and converts it to lowercases.
-
-if (!in_array($extension, $allowedTypes)) { // checks if the extension taken from the pathinfo function is in the array, if not, die.
-    die('Invalid file type');
-}
-
-$allowedMimeTypes = [ // list of allowed mime types
-    'image/jpeg',
-    'image/png',
-    'application/pdf'
-];
-
-$mimeType = mime_content_type($_FILES['file_upload']['tmp_name']);
-
-if (!in_array($mimeType, $allowedMimeTypes)) { // mime type checking
-    die('Invalid file type');
-}
-
-
-// create a Unique filename
-$filename = bin2hex(random_bytes(16)) . '.' . $extension; // variable that holds the new base name (file name) (3scxouwhrg5svo.png or whatever)
-$targetPath = $targetDir . $filename; // transfer the target folder or directory with the new file name (in this case - uploads/3scxouwhrg5svo.png)
-
-if (!move_uploaded_file($_FILES['file_upload']['tmp_name'], $targetPath)) { // does not only checks if the files was moved, but it also does the moving itself (what this does is transfer the uploaded file from the php temporary folder to the new $target path, to it's new name, the original name does not matter at this point)
-    die('Upload failed');
-}
-
-$stmt = $conn->prepare( // ! REFACTOR
-    'INSERT INTO file_uploads (userID, fileName, filePath, caption) VALUES (?, ?, ?, ?)' // ! REFACTOR
-); // ! REFACTOR
-$stmt->bind_param(  // ! REFACTOR
-    'isss',  // ! REFACTOR
-    $_SESSION['userID'],  // ! REFACTOR
-    $_FILES['file_upload']['name'],  // ! REFACTOR
-    $targetPath,  // ! REFACTOR
-    $post_caption  // ! REFACTOR
-); // ! REFACTOR
-$stmt->execute();  // ! REFACTOR
-$stmt->close(); // ! REFACTOR
-
-header('Location: adminDashboard.php'); // ! REFACTOR
-exit; // ! REFACTOR

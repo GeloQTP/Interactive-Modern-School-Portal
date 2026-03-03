@@ -1,11 +1,9 @@
-.env
-PHPMailer.env
 database.env
-vendor/
-dist/
+PHPMailer.env
+node_modules
 libraries/
-node_modules/
-package.json
-package-lock.json
 composer.json
 composer.lock
+package-lock.json
+package.json
+vendor

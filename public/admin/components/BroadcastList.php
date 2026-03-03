@@ -5,7 +5,7 @@
 
             <div class="d-flex justify-content-between mb-3">
                 <h6 class="mb-0">All Broadcasts</h6>
-                <select class="form-select form-select-sm w-auto" onchange="loadAnnouncementList(this.value)">
+                <select id="filterSelection" class="form-select form-select-sm w-auto" onchange="loadAnnouncementList(this.value)">
                     <option value="undefined">All</option>
                     <option value="published">Published</option>
                     <option value="draft">Draft</option>
