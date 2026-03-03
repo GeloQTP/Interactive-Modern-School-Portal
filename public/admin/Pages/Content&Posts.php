@@ -63,7 +63,7 @@
                                 <button class="btn dropdown-item"
                                     data-bs-toggle="modal"
                                     data-bs-target="#createBroadcastModal">
-                                    <i class="bi bi-file-earmark-plus me-2"></i>
+                                    <i class="bi bi-megaphone me-2"></i>
                                     Create Broadcast
                                 </button>
                             </li>
@@ -72,21 +72,11 @@
                                 <button class="btn dropdown-item"
                                     data-bs-toggle="modal"
                                     data-bs-target="#createPostModal">
-                                    <i class="bi bi-megaphone me-2"></i>
+                                    <i class="bi bi-file-earmark-plus me-2"></i>
                                     Create Post
                                 </button>
                             </li>
 
-                            <li>
-                                <hr class="dropdown-divider">
-                            </li>
-
-                            <li>
-                                <a class="dropdown-item" href="#">
-                                    <i class="bi bi-folder-plus me-2"></i>
-                                    Create Category
-                                </a>
-                            </li>
                         </ul>
                     </div>
 

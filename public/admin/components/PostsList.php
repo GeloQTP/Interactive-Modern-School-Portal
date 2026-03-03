@@ -15,7 +15,7 @@
                                  By Admin • Feb 18, 2026
                              </small>
                          </div>
-                         <span class="badge bg-success ms-auto">Published</span>
+                         <span class="badge bg-success ms-auto mb-3">Published</span>
                      </div>
 
                      <!-- IMAGE -->
@@ -29,12 +29,6 @@
                          All students are encouraged to participate.
                      </p>
 
-                     <!-- STATS -->
-                     <div class="d-flex justify-content-between border-top pt-2 text-muted small">
-                         <span><i class="bi bi-eye me-1"></i>120</span>
-                         <span><i class="bi bi-chat me-1"></i>15</span>
-                     </div>
-
                  </div>
 
                  <!-- FOOTER ACTIONS -->
@@ -42,22 +36,22 @@
                      <div class="d-flex justify-content-between">
 
                          <div class="btn-group btn-group-sm">
-                             <button class="btn text-primary">
-                                 <i class="bi bi-pencil h6"></i>
+                             <button class="btn text-success">
+                                 <i class="bi bi-pencil h5"></i>
                              </button>
-                             <button class="btn text-secondary">
-                                 <i class="bi bi-eye h6"></i>
+                             <button class="btn text-primary">
+                                 <i class="bi bi-eye h5"></i>
                              </button>
                              <button class="btn text-warning">
-                                 <i class="bi bi-archive h6"></i>
+                                 <i class="bi bi-archive h5"></i>
                              </button>
                              <button class="btn text-danger">
-                                 <i class="bi bi-trash h6"></i>
+                                 <i class="bi bi-trash h5"></i>
                              </button>
                          </div>
 
                          <button class="btn text-secondary">
-                             <i class="bi bi-chat me-1"></i>
+                             <i class="bi bi-chat me-1 h5"></i>
                          </button>
 
                      </div>
