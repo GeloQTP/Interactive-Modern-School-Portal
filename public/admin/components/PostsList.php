@@ -1,5 +1,5 @@
  <div class="tab-pane fade" id="postsTab">
-     <div class="row g-4">
+     <div class="row g-4" id="post_list_group">
 
          <!-- POST CARD -->
          <div class="col-md-6 col-lg-4">
@@ -29,6 +29,12 @@
                          All students are encouraged to participate.
                      </p>
 
+                     <!-- STATS -->
+                     <div class="d-flex justify-content-between pt-2 text-muted small">
+                         <span><i class="bi bi-eye me-1"></i>120</span>
+                         <span><i class="bi bi-heart me-1"></i>298</span>
+                     </div>
+
                  </div>
 
                  <!-- FOOTER ACTIONS -->
@@ -50,9 +56,14 @@
                              </button>
                          </div>
 
-                         <button class="btn text-secondary">
-                             <i class="bi bi-chat me-1 h5"></i>
-                         </button>
+                         <div class="btn-group btn-group-sm">
+                             <button class="btn text-secondary text-danger">
+                                 <i class="bi bi-heart h5"></i>
+                             </button>
+                             <button class="btn text-secondary">
+                                 <i class="bi bi-chat h5"></i>
+                             </button>
+                         </div>
 
                      </div>
                  </div>
