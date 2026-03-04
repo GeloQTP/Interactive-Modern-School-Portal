@@ -36,6 +36,7 @@
     <?php include __DIR__ . '/../components/editBroadcastModal.php'; ?> <!--EDIT BROADCAST MODAL-->
     <?php include __DIR__ . '/../components/createBroadcastModal.php';  ?> <!--CREATE BROADCAST MODAL-->
     <?php include __DIR__ . '/../components/createPostModal.php';  ?> <!--CREATE POST MODAL-->
+    <?php include __DIR__ . '/../components/editPostModal.php'; ?> <!-- EDIT POST MODAL-->
 
     <div class="wrapper">
 

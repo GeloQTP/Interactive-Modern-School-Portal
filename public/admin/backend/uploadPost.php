@@ -7,11 +7,13 @@ mysqli_report(MYSQLI_REPORT_STRICT | MYSQLI_REPORT_ERROR);
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
     $postTitle = trim($_POST['postTitle'] ?? '');
+    $posted_by = 'Admin';
 
     $postCaption = trim($_POST['postCaption'] ?? '');
     $postCaption = htmlspecialchars($postCaption, ENT_QUOTES, 'UTF-8');
 
     $status = trim($_POST['status'] ?? '');
+    $post_date = date("F j, Y");
 
     $log_owner = 'Admin';
     $log_description = 'Admin Posted an Announcement';
@@ -22,7 +24,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         exit;
     }
 
-    $targetDir = __DIR__ . '/../../Uploads/';
+    $targetDir = __DIR__ .  '/../../Uploads/';
 
     $maxSize = 5; // size limit 
     $maxSize = $maxSize * 1024 * 1024;
@@ -59,7 +61,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         exit;
     }
 
-    // create a Unique filename
+    // create a (new) Unique filename
     $filename = bin2hex(random_bytes(16)) . '.' . $extension; // variable that holds the new base name (file name) (3scxouwhrg5svo.png or whatever)
     $targetPath = $targetDir . $filename; // transfer the target folder or directory with the new file name (in this case - uploads/3scxouwhrg5svo.png)
 
@@ -68,11 +70,13 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         exit;
     }
 
+    $imagePathForDB = '/Modern Student Portal/public/Uploads/' . $filename; // directory for database
+
     $conn->begin_transaction();
 
     try {
-        $stmt = $conn->prepare("INSERT INTO posts (post_title, post_caption, image_src, status) VALUES (?,?,?,?)");
-        $stmt->bind_param("ssss", $postTitle, $postCaption, $targetPath, $status);
+        $stmt = $conn->prepare("INSERT INTO posts (post_title, posted_by, post_caption, image_src, status, post_date) VALUES (?,?,?,?,?,?)");
+        $stmt->bind_param("ssssss", $postTitle, $posted_by, $postCaption, $imagePathForDB, $status, $post_date);
         $stmt->execute();
         $stmt->close();
 

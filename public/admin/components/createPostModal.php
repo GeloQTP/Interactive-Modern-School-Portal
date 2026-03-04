@@ -34,8 +34,8 @@
                     <div class="mb-3">
                         <label class="form-label">Status</label>
                         <select class="form-select" name="status">
-                            <option>Draft</option>
-                            <option>Publish</option>
+                            <option value="Drafted">Draft</option>
+                            <option value="Published">Publish</option>
                         </select>
                     </div>
 
@@ -54,6 +54,7 @@
 <script>
     document.addEventListener('DOMContentLoaded', () => {
         const postForm = document.getElementById("postForm");
+        const image_preview = document.getElementById("preview");
 
         postForm.addEventListener('submit', async (e) => {
             e.preventDefault();
@@ -73,7 +74,9 @@
 
             if (data.success) {
 
-                // loadAnnouncementList();
+                loadPosts();
+                postForm.reset();
+                image_preview.innerHTML = "";
 
                 Swal.fire({
                     title: "Upload Successful",

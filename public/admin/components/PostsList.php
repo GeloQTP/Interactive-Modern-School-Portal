@@ -2,7 +2,37 @@
      <div class="row g-4" id="post_list_group">
 
          <!-- POST CARD -->
-         <div class="col-md-6 col-lg-4">
+         <!-- POST CARD -->
+
+     </div>
+ </div>
+
+ <script>
+     loadPosts();
+
+     async function loadPosts() { // LOAD LIST
+
+         const post_list_group = document.getElementById("post_list_group");
+
+         try {
+
+             const res = await fetch('./../../../api/PostController.php', {
+                 method: 'POST',
+                 body: new URLSearchParams({
+                     action: 'load',
+                 }),
+                 credentials: "same-origin",
+             });
+
+             if (!res.ok) throw new Error('Network response is not ok.');
+
+             const data = await res.json();
+
+             const posts = data.map(data => {
+
+
+
+                 return ` <div class="col-md-6 col-lg-4">
              <div class="card border shadow-sm h-100 content-card">
 
                  <div class="card-body">
@@ -10,28 +40,27 @@
                      <!-- HEADER -->
                      <div class="d-flex align-items-center mb-2">
                          <div>
-                             <h6 class="mb-0 fw-semibold">Foundation Day Celebration</h6>
+                             <h6 class="mb-0 fw-semibold">${data.post_title}</h6>
                              <small class="text-muted">
-                                 By Admin • Feb 18, 2026
+                                 By ${data.posted_by} • ${data.post_date}
                              </small>
                          </div>
-                         <span class="badge bg-success ms-auto mb-3">Published</span>
+                         <span class="badge bg-success ms-auto mb-3">${data.status}</span>
                      </div>
 
                      <!-- IMAGE -->
-                     <img src="./../../../src/img/Accountancy.jpg"
+                     <img src="${data.image_src}"
                          class="card-img-top object-fit-cover rounded mb-2"
                          style="height:400px;">
 
                      <!-- CAPTION -->
                      <p class="text-muted small mb-2">
-                         The School Foundation Day celebration will be held on March 15.
-                         All students are encouraged to participate.
+             ${data.post_caption}
                      </p>
 
                      <!-- STATS -->
                      <div class="d-flex justify-content-between pt-2 text-muted small">
-                         <span class="ms-auto"><i class="bi bi-heart me-1"></i>298</span>
+                         <span class="ms-auto"><i class="bi bi-heart me-1"></i>67</span>
                      </div>
 
                  </div>
@@ -41,7 +70,8 @@
                      <div class="d-flex justify-content-between">
 
                          <div class="btn-group btn-group-sm">
-                             <button class="btn text-success">
+                             <button class="btn text-success" data-bs-toggle="modal" data-bs-target="#editPostModal"
+                             onclick="getPostIfo(${data.post_id})">
                                  <i class="bi bi-pencil h5"></i>
                              </button>
                              <button class="btn text-primary">
@@ -68,8 +98,15 @@
                  </div>
 
              </div>
-         </div>
-         <!-- POST CARD -->
+         </div>`;
+             }).join('');
 
-     </div>
- </div>
+             post_list_group.innerHTML = posts;
+
+         } catch {
+
+         } finally {
+
+         }
+     }
+ </script>

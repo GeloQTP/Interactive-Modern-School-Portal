@@ -5,6 +5,8 @@ mysqli_report(MYSQLI_REPORT_STRICT | MYSQLI_REPORT_ERROR);
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
+    header('Content-Type: application/json');
+
     $action = $_POST['action'];
     $filter = $_POST['filter'] ?? '';
     $date_today = date("Y-m-d");
@@ -121,8 +123,5 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             echo json_encode(['success' => false]);
         }
         exit;
-    }
-
-    if ($action === 'search') {
     }
 }
