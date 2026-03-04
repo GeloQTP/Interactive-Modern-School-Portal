@@ -13,6 +13,10 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
     $status = trim($_POST['status'] ?? '');
 
+    $log_owner = 'Admin';
+    $log_description = 'Admin Posted an Announcement';
+    $log_type = 'Post';
+
     if (!isset($_FILES['postImage']) || $_FILES['postImage']['error'] !== UPLOAD_ERR_OK) {
         echo json_encode(['success' => false, 'message' => 'Please upload a valid file']);
         exit;
@@ -72,7 +76,13 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $stmt->execute();
         $stmt->close();
 
-        // $conn->commit();
+        // INSERT LOG
+        $stmt = $conn->prepare("INSERT INTO logs (log_owner, log_description, log_type) VALUES (?,?,?)");
+        $stmt->bind_param("sss", $log_owner, $log_description, $log_type);
+        $stmt->execute();
+        $stmt->close();
+
+        $conn->commit();
         echo json_encode(['success' => true]);
     } catch (Exception $e) {
         $conn->rollback();

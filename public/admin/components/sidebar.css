@@ -67,7 +67,7 @@ body {
 }
 
 #sidebar.expand {
-    width: 260px;
+    width: 300px;
     min-width: 260px;
 }
 
@@ -108,7 +108,7 @@ a.sidebar-link {
     color: #FFF;
     display: block;
     font-size: 0.9rem;
-    white-space: nowrap;
+    /* white-space: nowrap; */
     border-left: 3px solid transparent;
 }
 
