@@ -8,7 +8,7 @@
 </head>
 
 <body>
-    <iframe src="https://calendar.google.com/calendar/embed?src=geloadrian24%40gmail.com&ctz=Asia%2FManila" style="border: 0" width="1000" height="900" frameborder="0" scrolling="no"></iframe>
+    <iframe src="https://calendar.google.com/calendar/embed?src=geloadrian24%40gmail.com&ctz=Asia%2FManila" style="border: 0" width="1000" height="900" frameborder="0" scrolling="no"></iframe> // TODO: LEARN MORE ABOUT GOOGLE CALENDAR AND FIX THIS
 </body>
 
 </html>
