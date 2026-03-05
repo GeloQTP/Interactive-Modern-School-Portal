@@ -1,9 +1,6 @@
  <div class="tab-pane fade" id="postsTab">
      <div class="row g-4" id="post_list_group">
-
-         <!-- POST CARD -->
-         <!-- POST CARD -->
-
+         <!-- DYNAMIC POST LIST -->
      </div>
  </div>
 
@@ -30,6 +27,14 @@
 
              const posts = data.map(data => {
 
+                 const status_colors = {
+                     Drafted: 'secondary',
+                     Published: 'success',
+                     Archived: 'warning',
+                 }
+
+                 const status = data.status;
+                 const status_color = status_colors[status] || 'secondary';
 
 
                  return ` <div class="col-md-6 col-lg-4">
@@ -43,9 +48,10 @@
                              <h6 class="mb-0 fw-semibold">${data.post_title}</h6>
                              <small class="text-muted">
                                  By ${data.posted_by} • ${data.post_date}
+                                 <span class="ms-3"><i class="bi bi-heart me-1"></i>1.2k </span>
                              </small>
                          </div>
-                         <span class="badge bg-success ms-auto mb-3">${data.status}</span>
+                         <span class="badge bg-${status_color} ms-auto mb-3">${data.status}</span>
                      </div>
 
                      <!-- IMAGE -->
@@ -54,14 +60,9 @@
                          style="height:400px;">
 
                      <!-- CAPTION -->
-                     <p class="text-muted small mb-2">
-             ${data.post_caption}
+                     <p class="text-muted small mb-1" style="overflow-y:auto; max-height:60.5px">
+                      ${data.post_caption}
                      </p>
-
-                     <!-- STATS -->
-                     <div class="d-flex justify-content-between pt-2 text-muted small">
-                         <span class="ms-auto"><i class="bi bi-heart me-1"></i>67</span>
-                     </div>
 
                  </div>
 
@@ -74,13 +75,10 @@
                              onclick="getPostIfo(${data.post_id})">
                                  <i class="bi bi-pencil h5"></i>
                              </button>
-                             <button class="btn text-primary">
-                                 <i class="bi bi-eye h5"></i>
-                             </button>
-                             <button class="btn text-warning">
+                             <button class="btn text-warning" onclick="archivePostConfirmation(${data.post_id})">
                                  <i class="bi bi-archive h5"></i>
                              </button>
-                             <button class="btn text-danger">
+                             <button class="btn text-danger" onclick="deletePostConfirmation(${data.post_id})">
                                  <i class="bi bi-trash h5"></i>
                              </button>
                          </div>
@@ -89,7 +87,7 @@
                              <button class="btn text-secondary text-danger">
                                  <i class="bi bi-heart h5"></i>
                              </button>
-                             <button class="btn text-secondary">
+                             <button class="btn text-secondary" style="transform: translate(0px, -1px)">
                                  <i class="bi bi-chat h5"></i>
                              </button>
                          </div>
@@ -108,5 +106,125 @@
          } finally {
 
          }
+     }
+
+     function archivePostConfirmation(post_id) {
+         Swal.fire({
+             title: "Are you sure?",
+             text: `Arhive this Announcement?`,
+             icon: "question",
+             showCancelButton: true,
+             confirmButtonColor: "#ffc107",
+             confirmButtonText: "Archive"
+         }).then((result) => {
+             if (result.isConfirmed) {
+                 archivePost(post_id);
+             }
+         });
+     }
+
+     async function archivePost(post_id) {
+
+         try {
+
+             const res = await fetch('./../../../api/PostController.php', {
+                 method: 'POST',
+                 body: new URLSearchParams({
+                     action: 'archive',
+                     post_id: post_id,
+                     new_status: 'Archived',
+                 }),
+                 credentials: "same-origin",
+             });
+
+             if (!res.ok) throw new Error('Network response is not ok.');
+
+             const data = await res.json();
+
+             if (data.success) {
+                 loadPosts();
+                 Swal.fire({
+                     title: "Archiving Successful",
+                     text: "Post has been Archived.",
+                     icon: "success",
+                     timer: 2000,
+                     showConfirmButton: false
+                 });
+             } else {
+                 Swal.fire({
+                     title: "Archiving Unsuccessful",
+                     text: "Post could not be archived.",
+                     icon: "error",
+                     timer: 2000,
+                     showConfirmButton: false,
+                 });
+             }
+
+         } catch {
+
+         } finally {
+
+         }
+
+     }
+
+     function deletePostConfirmation(post_id) {
+         Swal.fire({
+             title: "Are you sure?",
+             text: `Delete this Post?`,
+             icon: "warning",
+             showCancelButton: true,
+             confirmButtonColor: "#DC3545",
+             confirmButtonText: "Delete"
+         }).then((result) => {
+             if (result.isConfirmed) {
+                 deletePost(post_id);
+             }
+         });
+     }
+
+     async function deletePost(post_id) {
+
+         try {
+
+             const res = await fetch('./../../../api/PostController.php', {
+                 method: 'POST',
+                 body: new URLSearchParams({
+                     action: 'delete',
+                     post_id: post_id,
+                 }),
+                 credentials: "same-origin",
+             });
+
+             if (!res.ok) throw new Error('Network response is not ok.');
+
+             const data = await res.json();
+             console.log(data);
+
+             if (data.success) {
+                 loadPosts();
+                 Swal.fire({
+                     title: "Deletion Successful",
+                     text: "Post Deleted.",
+                     icon: "success",
+                     timer: 2000,
+                     showConfirmButton: false
+                 });
+             } else {
+                 Swal.fire({
+                     title: "Deletion Unsuccessful",
+                     text: "Post Deletion Failed.",
+                     icon: "error",
+                     timer: 2000,
+                     showConfirmButton: false,
+                 });
+             }
+
+         } catch {
+
+         } finally {
+
+         }
+
      }
  </script>

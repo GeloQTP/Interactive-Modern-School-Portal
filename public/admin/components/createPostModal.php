@@ -1,5 +1,5 @@
 <div class="modal fade" id="createPostModal" tabindex="-1">
-    <div class="modal-dialog modal-lg modal-dialog-centered modal-dialog-scrollable">
+    <div class="modal-dialog modal-xl modal-dialog-centered modal-dialog-scrollable">
         <div class="modal-content">
 
             <div class="modal-header">
@@ -8,7 +8,7 @@
             </div>
 
             <form id="postForm">
-                <div class="modal-body">
+                <div class="modal-body" style="height: 700px;">
 
                     <div class="mb-3">
                         <label class="form-label">Title</label>
@@ -28,14 +28,17 @@
 
                     <!-- Image Preview -->
                     <div class="mb-3 text-center">
-                        <div id="preview"></div>
+                        <img id="image_preview"
+                            class="img-fluid rounded mt-2"
+                            style="max-height: 500px;">
                     </div>
 
                     <div class="mb-3">
                         <label class="form-label">Status</label>
                         <select class="form-select" name="status">
-                            <option value="Drafted">Draft</option>
-                            <option value="Published">Publish</option>
+                            <option value="Drafted">Drafted</option>
+                            <option value="Published">Published</option>
+                            <option value="Archived">Archived</option>
                         </select>
                     </div>
 
@@ -115,16 +118,12 @@
                 const reader = new FileReader();
 
                 reader.onload = function(e) {
-                    preview.innerHTML = `
-                    <img src="${e.target.result}" 
-                         class="img-fluid rounded mt-2" 
-                         style="max-height: 300px;">
-                `;
+                    image_preview.src = e.target.result;
                 };
 
                 reader.readAsDataURL(file);
             } else {
-                preview.innerHTML = '';
+                image_preview.src = '';
             }
         });
 

@@ -2,6 +2,7 @@ database.env
 PHPMailer.env
 node_modules
 libraries/
+Uploads/
 composer.json
 composer.lock
 package-lock.json

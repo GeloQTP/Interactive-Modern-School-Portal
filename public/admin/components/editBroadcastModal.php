@@ -146,7 +146,7 @@
                 method: 'POST',
                 body: new URLSearchParams({
                     announcement_id: announcement_id,
-                    action: 'populate',
+                    action: 'view',
                 }),
                 credentials: "same-origin",
             });

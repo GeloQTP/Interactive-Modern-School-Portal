@@ -33,7 +33,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         exit;
     }
 
-    if ($action === 'populate') {
+    if ($action === 'view') {
         $announcement_id = (int)($_POST['announcement_id']);
 
         $stmt = $conn->prepare("SELECT * FROM broadcasts WHERE broadcast_id = ?");

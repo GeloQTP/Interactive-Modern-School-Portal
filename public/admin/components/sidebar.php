@@ -43,7 +43,7 @@
              </li>
 
              <li class="navbar-item">
-                 <a href="#" class="sidebar-link">
+                 <a href="/Modern Student Portal/public/admin/Pages/SetEvent.php" class="sidebar-link">
                      <i class="bi bi-calendar"></i>
                      <span>Set Event</span>
                  </a>
