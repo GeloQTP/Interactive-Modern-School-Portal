@@ -106,7 +106,7 @@
 
 <script>
     // IMAGE PREVIEW FUNCTIONALITY
-    document.addEventListener('DOMContentLoaded', function() {
+    document.addEventListener('DOMContentLoaded', function() { // TODO: AFTER POSTING, HIDE THE POST MODAL AND CLEAN THE FIELDS!
 
         const postImage = document.getElementById('postImage');
         const preview = document.getElementById('preview');

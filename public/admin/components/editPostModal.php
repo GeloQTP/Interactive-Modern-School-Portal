@@ -93,7 +93,7 @@
         });
     }
 
-    async function updatePost(post_id) {
+    async function updatePost(post_id) { // TODO: AFTER SUCCESSION OF EDITING A POST, HIDE THE EDIT MODAL
 
         const editForm = document.getElementById("editPostForm");
         const editFormData = new FormData(editForm);
