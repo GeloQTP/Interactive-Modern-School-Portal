@@ -1,2 +1,4 @@
-<!-- ASK IF DELETING REJECTED REGISTRATION IS OKAY OR JUST  HIDE IT FROM THE VISIBLE REGISTRATIONS (DATABASE MATTER) -->
-<!-- ALUMNI REGISTRATION (CRITICAL PRIORITY)-->
+#Social-Media-Like and Interactive College School Portal
+
+This is Project serves as a Model that School Portals and Students deserves a Good and Modern Look that
+resonates with the Modern world.
