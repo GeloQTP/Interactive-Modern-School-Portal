@@ -40,7 +40,7 @@
                  return ` <div class="col-md-6 col-lg-4">
              <div class="card border shadow-sm h-100 content-card">
 
-                 <div class="card-body">
+                <div class="card-body">
 
                      <!-- HEADER -->
                      <div class="d-flex align-items-center mb-2">
@@ -64,7 +64,7 @@
                       ${data.post_caption}
                      </p>
 
-                 </div>
+                </div>
 
                  <!-- FOOTER ACTIONS -->
                  <div class="card-footer bg-white border-0 pt-0 pb-3">
@@ -78,7 +78,7 @@
                              <button class="btn text-warning" onclick="archivePostConfirmation(${data.post_id})">
                                  <i class="bi bi-archive h5"></i>
                              </button>
-                             <button class="btn text-danger" onclick="deletePostConfirmation(${data.post_id})">
+                             <button class="btn text-danger" onclick="deletePostConfirmation(${data.post_id}, '${data.image_src}')">
                                  <i class="bi bi-trash h5"></i>
                              </button>
                          </div>
@@ -111,7 +111,7 @@
      function archivePostConfirmation(post_id) {
          Swal.fire({
              title: "Are you sure?",
-             text: `Arhive this Announcement?`,
+             text: `Arhive this Post?`,
              icon: "question",
              showCancelButton: true,
              confirmButtonColor: "#ffc107",
@@ -168,7 +168,7 @@
 
      }
 
-     function deletePostConfirmation(post_id) {
+     function deletePostConfirmation(post_id, image_src) {
          Swal.fire({
              title: "Are you sure?",
              text: `Delete this Post?`,
@@ -178,12 +178,12 @@
              confirmButtonText: "Delete"
          }).then((result) => {
              if (result.isConfirmed) {
-                 deletePost(post_id);
+                 deletePost(post_id, image_src);
              }
          });
      }
 
-     async function deletePost(post_id) {
+     async function deletePost(post_id, image_src) {
 
          try {
 
@@ -192,6 +192,7 @@
                  body: new URLSearchParams({
                      action: 'delete',
                      post_id: post_id,
+                     image_src: image_src,
                  }),
                  credentials: "same-origin",
              });

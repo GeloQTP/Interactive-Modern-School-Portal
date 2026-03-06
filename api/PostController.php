@@ -15,6 +15,12 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
     $action = $_POST['action'] ?? '';
 
+    $image_directory = $_POST['image_src'] ?? '';
+
+    $document_root = $_SERVER['DOCUMENT_ROOT'];
+
+    $image_src = $document_root . $image_directory;
+
     switch ($action) {
 
         case 'load':
@@ -47,12 +53,31 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
 
         case 'update':
-            $stmt =  $conn->prepare("UPDATE posts SET post_title = ?, post_caption = ?, status = ? WHERE post_id = ?");
-            $stmt->bind_param("sssi", $edit_post_title, $edit_post_caption, $edit_current_status, $post_id);
 
-            if ($stmt->execute()) {
-                echo json_encode(['success' => true]);
-            } else {
+            $conn->begin_transaction();
+
+            try {
+
+                $stmt =  $conn->prepare("UPDATE posts SET post_title = ?, post_caption = ?, status = ? WHERE post_id = ?");
+                $stmt->bind_param("sssi", $edit_post_title, $edit_post_caption, $edit_current_status, $post_id);
+                $stmt->execute();
+                $stmt->close();
+
+                $stmt = $conn->prepare("SELECT * FROM posts WHERE post_id = ?");
+                $stmt->bind_param("i", $post_id);
+                $stmt->execute();
+                $result = $stmt->get_result();
+                $row = $result->fetch_assoc();
+                if (!$row) {
+                    $post_title = 'Could not fetch Post Title';
+                }
+                $post_title = $row['post_title'];
+                $stmt->close();
+
+                $conn->commit();
+                echo json_encode(['success' => true, 'post_title' => $post_title]);
+            } catch (Exception $e) {
+                $conn->rollback();
                 echo json_encode(['success' => false]);
             }
 
@@ -72,7 +97,12 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             break;
 
 
-        case 'delete': // TODO: DELETE THE IMAGE FROM THE UPLOAD FOLDERS TOO
+        case 'delete':
+
+            if (!empty($image_src) && file_exists($image_src)) {
+                unlink($image_src);
+            }
+
             $stmt = $conn->prepare("DELETE FROM posts WHERE post_id = ?");
             $stmt->bind_param("s", $post_id);
 
@@ -81,6 +111,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             } else {
                 echo json_encode(['success' => false]);
             }
+
             break;
     }
 }

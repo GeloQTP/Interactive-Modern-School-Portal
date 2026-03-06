@@ -58,6 +58,7 @@
     document.addEventListener('DOMContentLoaded', () => {
         const postForm = document.getElementById("postForm");
         const image_preview = document.getElementById("preview");
+        const createPostModal = bootstrap.Modal.getOrCreateInstance("#createPostModal");
 
         postForm.addEventListener('submit', async (e) => {
             e.preventDefault();
@@ -78,6 +79,7 @@
             if (data.success) {
 
                 loadPosts();
+                createPostModal.hide();
                 postForm.reset();
                 image_preview.innerHTML = "";
 
@@ -106,7 +108,7 @@
 
 <script>
     // IMAGE PREVIEW FUNCTIONALITY
-    document.addEventListener('DOMContentLoaded', function() { // TODO: AFTER POSTING, HIDE THE POST MODAL AND CLEAN THE FIELDS!
+    document.addEventListener('DOMContentLoaded', function() {
 
         const postImage = document.getElementById('postImage');
         const preview = document.getElementById('preview');

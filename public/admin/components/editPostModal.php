@@ -93,8 +93,9 @@
         });
     }
 
-    async function updatePost(post_id) { // TODO: AFTER SUCCESSION OF EDITING A POST, HIDE THE EDIT MODAL
+    async function updatePost(post_id) {
 
+        const post_title_header = document.getElementById("post_title_header");
         const editForm = document.getElementById("editPostForm");
         const editFormData = new FormData(editForm);
         editFormData.append('action', 'update');
@@ -112,6 +113,7 @@
             const data = await res.json();
 
             if (data.success) {
+                post_title_header.textContent = data.post_title;
                 loadPosts();
                 Swal.fire({
                     title: "Update Successful",
