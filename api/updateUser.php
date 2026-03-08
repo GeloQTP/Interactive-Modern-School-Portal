@@ -50,7 +50,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $accountEmail      = (string)($_POST['account_email'] ?? '');
     $accountUsername   = (string)($_POST['account_username'] ?? '');
     $recoveryEmail     = (string)($_POST['recovery_email'] ?? '');
-    $account_role      = (string)($_POST['account_role'] ?? '');
     $activationStatus  = (string)($_POST['activationStatus'] ?? 'disabled');
 
     $conn->begin_transaction();
@@ -131,11 +130,10 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $stmt = $conn->prepare("UPDATE users SET account_email = ?, 
                                     account_username = ?, 
                                     recovery_email = ?, 
-                                    account_role = ? ,
                                     activationStatus = ?
                                     WHERE student_id = ?
                                     ");
-        $stmt->bind_param("sssssi", $accountEmail, $accountUsername, $recoveryEmail, $account_role, $activationStatus, $student_id);
+        $stmt->bind_param("ssssi", $accountEmail, $accountUsername, $recoveryEmail, $activationStatus, $student_id);
         $stmt->execute();
         $stmt->close();
 

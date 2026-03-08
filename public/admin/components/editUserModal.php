@@ -206,14 +206,6 @@
                     </div>
 
                     <div class="col-lg-3 mb-5">
-                        <strong>Account Role</strong><br>
-                        <select name="account_role" id="account_role" class="placeholders form-control form-control-sm">
-                            <option value="Alumni">Alumni</option>
-                            <option value="Student">Student</option>
-                        </select>
-                    </div>
-
-                    <div class="col-lg-3 mb-5">
                         <strong>Activation Status</strong><br>
                         <select id="activationStatus" name="activationStatus" class="placeholders form-select form-select-sm">
                             <option value="disabled">Disabled</option>

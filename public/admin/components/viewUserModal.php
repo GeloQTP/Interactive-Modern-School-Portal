@@ -176,10 +176,6 @@
                         <strong>Recovery Email</strong><br>
                         <small id="recovery_email" class="placeholders">N/A</small>
                     </div>
-                    <div class="col-lg-3 mb-5">
-                        <strong>Account Role</strong><br>
-                        <small id="role" class="placeholders">N/A</small>
-                    </div>
 
                     <p class="display-6 mb-4 w-100 text-dark fs-2" style="border-bottom:1px solid green">
                         Registration Information
