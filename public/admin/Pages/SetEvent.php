@@ -23,11 +23,11 @@
 
             <nav class="navbar navbar-expand-lg bg-light border border-bottom">
                 <div class="container-fluid justify-content-center" style="transform: translate(0px, 10px);">
-                    <p class="text-success lead">Teacher Management</p>
+                    <p class="text-success lead">Event Calendar</p>
                 </div>
             </nav>
 
-            <iframe src="https://calendar.google.com/calendar/embed?src=geloadrian24%40gmail.com&ctz=Asia%2FManila" style="border: 0" width="1000" height="900" frameborder="0" scrolling="no"></iframe> // TODO: LEARN MORE ABOUT GOOGLE CALENDAR AND FIX THIS
+            <iframe src="https://calendar.google.com/calendar/embed?height=600&wkst=1&ctz=Asia%2FManila&showPrint=0&showTz=0&showCalendars=0&src=ZGZzcXVpZGFydEBnbWFpbC5jb20&src=ZW4ucGhpbGlwcGluZXMjaG9saWRheUBncm91cC52LmNhbGVuZGFyLmdvb2dsZS5jb20&color=%23039be5&color=%230b8043$hl=en" style="border-width:0" width="100%" height="100%" frameborder="0" scrolling="no"></iframe>
 
         </div>
 
