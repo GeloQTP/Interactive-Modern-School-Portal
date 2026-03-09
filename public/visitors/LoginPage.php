@@ -75,7 +75,7 @@
 
                         <h2 class="text-center lead display-6 mb-5">LOGIN</h2>
 
-                        <form id="loginForm">
+                        <form id="loginForm"> <!--TODO: BREAK THIS PAGE INTO COMPONENTS-->
 
                             <!-- Email -->
                             <div class="form-floating mb-3">
