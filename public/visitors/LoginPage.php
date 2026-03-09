@@ -63,11 +63,6 @@
                     </span>
                 </a>
 
-                <!-- <button type="button" class="btn btn-success bg-light text-success ms-lg-3"
-                    onclick="window.location.href='/Modern Student Portal/public/visitors/Registration Page.php'">
-                    Register
-                </button> -->
-
             </div>
         </nav>
     </header>
@@ -89,6 +84,7 @@
                                     class="form-control form-control-sm"
                                     name="email"
                                     placeholder="name@example.com"
+                                    autocomplete="email"
                                     required>
                                 <label for="loginEmail">
                                     <i class="bi bi-envelope me-1"></i>Email address
@@ -136,7 +132,7 @@
                         <!-- Register -->
                         <p class="text-center small mb-0 text-secondary">
                             Don&#39;t have an account?
-                            <a href="/Modern Student Portal/public/visitors/Registration Page.php" class="text-decoration-none fw-semibold text-success">
+                            <a href="/Modern Student Portal/public/visitors/RegistrationPage.php" class="text-decoration-none fw-semibold text-success">
                                 Register here
                             </a>
                         </p>
@@ -151,6 +147,7 @@
 </body>
 
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 
 <script>
     const spinner = document.querySelector('.spinner-wrapper');
@@ -183,17 +180,47 @@
                     toastBootstrap.show();
                 }
 
-                const response = await res.json();
+                const data = await res.json();
+                console.log(data);
 
-                if (response.success) {
-                    document.querySelector(".toast-body").textContent = response.message;
-                    const toastBootstrap = bootstrap.Toast.getOrCreateInstance(
-                        document.getElementById("liveToast"),
-                    );
-                    toastBootstrap.show();
+                if (data.success) {
+                    let timerInterval;
+                    Swal.fire({
+                        html: `<img src="/Modern Student Portal/src/img/TRC_LOGO.png" style="width: 50%"> 
+                        <p>Login Successful! Please wait</p>
+                        <br>
+                        <small>Welcome Back, ${data.account_username}!</small>`,
+
+                        timer: 3000,
+                        timerProgressBar: true,
+                        didOpen: () => {
+                            Swal.showLoading();
+                        },
+                        willClose: () => {
+                            clearInterval(timerInterval);
+                        }
+                    }).then((result) => {
+                        if (result.dismiss === Swal.DismissReason.timer) {
+
+                            switch (data.account_role) {
+                                case 'Admin':
+                                    window.location.href = "/Modern%20Student%20Portal/public/admin/AdminDashboard.php"
+                                    break;
+                                case 'Alumni':
+                                    window.location.href = "/Modern%20Student%20Portal/public/student/StudentDashboard.php"
+                                    break;
+                                case 'Student':
+                                    window.location.href = "/Modern%20Student%20Portal/public/teacher/TeacherDashboard.php"
+                                    break;
+                                default:
+                                    window.location.href = "/Modern%20Student%20Portal/public/visitors/LoginPage.php";
+                            }
+
+                        }
+                    });
                 } else {
                     document.querySelector(".toast-body").textContent =
-                        "Something went wrong. Please try again.";
+                        data.message;
                     const toastBootstrap = bootstrap.Toast.getOrCreateInstance(
                         document.getElementById("liveToast"),
                     );
@@ -201,6 +228,7 @@
                 }
 
             } catch (error) {
+                console.log(error);
                 document.querySelector(".toast-body").textContent =
                     "Something went wrong. Please try again.";
                 const toastBootstrap = bootstrap.Toast.getOrCreateInstance(

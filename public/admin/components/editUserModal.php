@@ -101,6 +101,7 @@
                         <select id="role" name="role" class="placeholders form-select form-select-sm">
                             <option value="Student">Student</option>
                             <option value="Alumni">Alumni</option>
+                            <option value="Admin" disabled>Admin</option>
                         </select>
                     </div>
 
