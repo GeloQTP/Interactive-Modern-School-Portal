@@ -60,7 +60,7 @@
                          style="height:400px;">
 
                      <!-- CAPTION -->
-                     <p class="text-muted small mb-1" style="overflow-y:auto; max-height:60.5px">
+                     <p class="text-muted small mb-1" style="overflow-y:auto; max-height:60.5px;">
                       ${data.post_caption}
                      </p>
 

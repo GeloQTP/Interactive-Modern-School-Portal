@@ -27,7 +27,7 @@
                 </div>
             </nav>
 
-            <iframe src="https://calendar.google.com/calendar/embed?height=600&wkst=1&ctz=Asia%2FManila&showPrint=0&showTz=0&showCalendars=0&src=ZGZzcXVpZGFydEBnbWFpbC5jb20&src=ZW4ucGhpbGlwcGluZXMjaG9saWRheUBncm91cC52LmNhbGVuZGFyLmdvb2dsZS5jb20&color=%23039be5&color=%230b8043$hl=en" style="border-width:0" width="100%" height="94%"></iframe>
+            <iframe src="https://calendar.google.com/calendar/embed?height=600&wkst=1&ctz=Asia%2FManila&showPrint=0&showTz=0&showCalendars=0&src=ZGZzcXVpZGFydEBnbWFpbC5jb20&src=ZW4ucGhpbGlwcGluZXMjaG9saWRheUBncm91cC52LmNhbGVuZGFyLmdvb2dsZS5jb20&color=%23039be5&color=%230b8043&hl=en" style="border-width:0" width="100%" height="93%"></iframe>
 
         </div>
 
