@@ -1,5 +1,4 @@
 database.env
-database
 PHPMailer.env
 node_modules
 libraries/
