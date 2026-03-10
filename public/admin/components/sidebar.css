@@ -87,6 +87,10 @@ body {
     margin: auto 0;
 }
 
+.sidebar-logo a{
+   color: #fff;
+}
+
 /* .sidebar-logo img {
      color: #FFF;
      font-size: 1.15rem;

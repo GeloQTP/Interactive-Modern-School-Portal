@@ -159,10 +159,10 @@
                                 case 'Admin':
                                     window.location.href = "/Modern%20Student%20Portal/public/admin/AdminDashboard.php"
                                     break;
-                                case 'Alumni':
+                                case 'Student':
                                     window.location.href = "/Modern%20Student%20Portal/public/student/StudentDashboard.php"
                                     break;
-                                case 'Student':
+                                case 'Teacher':
                                     window.location.href = "/Modern%20Student%20Portal/public/teacher/TeacherDashboard.php"
                                     break;
                                 default:

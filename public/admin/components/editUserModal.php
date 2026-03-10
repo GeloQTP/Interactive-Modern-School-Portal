@@ -226,7 +226,7 @@
 
                     <div class="col-lg-3 mb-5">
                         <strong>Verification Date</strong><br>
-                        <small id="VerificationDate" class="placeholders"></small>
+                        <small id="date_verified" class="placeholders"></small>
                     </div>
 
                     <div class="col-lg-3 mb-5">
