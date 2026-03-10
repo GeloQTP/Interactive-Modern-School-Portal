@@ -1,10 +1,11 @@
 <?php
-// session_start();
+session_start();
 
-// if(!isset($_SESSION['role']) || $_SESSION['role'] !== 'admin'){
-//     header('Location: ./public/visitors/Landing%20Page.php');
-//     exit();
-// }
+if (!isset($_SESSION['role']) || $_SESSION['role'] !== 'Admin') {
+    header('Location: ./../../visitors/LoginPage.php');
+    exit();
+}
+
 include __DIR__ . '/../../backend/getCourses.php';
 ?>
 

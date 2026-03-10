@@ -7,6 +7,7 @@
     <title>Login - Tomas Del Rosario College</title>
     <link rel="icon" type="image/png" href="/Modern Student Portal/src/img/TRC_LOGO.png">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.13.1/font/bootstrap-icons.min.css">
     <link rel="stylesheet" href="/../Modern Student Portal/styles/style.css">
 </head>
 
@@ -41,7 +42,7 @@
                 <img src="/Modern Student Portal/src/img/TRC_LOGO.png" style="width: 30px;" class="rounded me-2 img-fluid"
                     alt="...">
                 <strong class="me-auto">TRC Notification</strong>
-                <small>just now</small>
+                <i class="bi bi-bell text-dark"></i>
                 <button type="button" class="btn-close" data-bs-dismiss="toast" aria-label="Close"></button>
             </div>
             <div class="toast-body">
@@ -75,56 +76,9 @@
 
                         <h2 class="text-center lead display-6 mb-5">LOGIN</h2>
 
-                        <form id="loginForm"> <!--TODO: BREAK THIS PAGE INTO COMPONENTS-->
-
-                            <!-- Email -->
-                            <div class="form-floating mb-3">
-                                <input
-                                    type="email"
-                                    class="form-control form-control-sm"
-                                    name="email"
-                                    placeholder="name@example.com"
-                                    autocomplete="email"
-                                    required>
-                                <label for="loginEmail">
-                                    <i class="bi bi-envelope me-1"></i>Email address
-                                </label>
-                            </div>
-
-                            <!-- Password -->
-                            <div class="form-floating mb-3">
-                                <input
-                                    type="password"
-                                    class="form-control"
-                                    name="password"
-                                    placeholder="Password"
-                                    required>
-                                <label for="loginPassword">
-                                    <i class="bi bi-lock me-1"></i>Password
-                                </label>
-                            </div>
-
-                            <!-- Remember & Forgot -->
-                            <div class="d-flex justify-content-between align-items-center mb-4">
-                                <div class="form-check">
-                                    <input class="form-check-input" type="checkbox" id="rememberMe">
-                                    <label class="form-check-label" for="rememberMe">
-                                        Remember me
-                                    </label>
-                                </div>
-                                <a href="#" class="text-decoration-none small text-success">
-                                    Forgot password?
-                                </a>
-                            </div>
-
-                            <!-- Button -->
-                            <button
-                                type="submit"
-                                class="btn btn-success w-100 py-2 fw-semibold">
-                                Login
-                            </button>
-
-                        </form>
+                        <?php
+                        include __DIR__ . '/components/LoginForm.php';
+                        ?>
 
                         <!-- Divider -->
                         <hr class="my-4">
@@ -188,7 +142,6 @@
                     Swal.fire({
                         html: `<img src="/Modern Student Portal/src/img/TRC_LOGO.png" style="width: 50%"> 
                         <p>Login Successful! Please wait</p>
-                        <br>
                         <small>Welcome Back, ${data.account_username}!</small>`,
 
                         timer: 3000,

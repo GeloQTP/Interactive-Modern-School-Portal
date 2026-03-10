@@ -242,7 +242,7 @@
 
      <div class="d-grid gap-2 d-flex justify-content-md-end mt-5 ms-auto">
          <button type="button" class="btn btn-outline-success"
-             onclick="window.location.href='Landing Page.php'">
+             onclick="window.location.href='LandingPage.php'">
              Cancel
          </button>
          <button type="button" class="btn btn-success" data-bs-toggle="modal" data-bs-target="#eulaModal" id="registerBtn">

@@ -1,8 +1,11 @@
 <?php
-// if(!isset($_SESSION['role']) || $_SESSION['role'] !== 'admin'){
-//     header('Location: ./public/visitors/Landing%20Page.php');
-//     exit();
-// }
+session_start();
+
+if (!isset($_SESSION['role']) || $_SESSION['role'] !== 'Admin') {
+    header('Location: ./public/visitors/LoginPage.php');
+    exit();
+}
+
 include __DIR__ . '/../../api/recentActivities.php';
 ?>
 

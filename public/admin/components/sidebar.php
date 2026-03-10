@@ -3,6 +3,9 @@
              <button id="toggle-btn">
                  <i class="bi bi-grid"></i>
              </button>
+             <div class="sidebar-logo">
+                 <a href="#">Welcome, <?= $_SESSION['account_username'] ?? '' ?>!</a>
+             </div>
          </div>
 
          <ul class="sidebar-nav">
