@@ -57,7 +57,7 @@
 <script>
     document.addEventListener('DOMContentLoaded', () => {
         const postForm = document.getElementById("postForm");
-        const image_preview = document.getElementById("preview");
+        const image_preview = document.getElementById("image_preview");
         const createPostModal = bootstrap.Modal.getOrCreateInstance("#createPostModal");
 
         postForm.addEventListener('submit', async (e) => {
@@ -81,7 +81,7 @@
                 loadPosts();
                 createPostModal.hide();
                 postForm.reset();
-                image_preview.innerHTML = "";
+                image_preview.src = "";
 
                 Swal.fire({
                     title: "Upload Successful",

@@ -65,7 +65,7 @@ include __DIR__ . '/../../backend/getCourses.php';
                             <div class="card-body">
                                 <div class="d-flex justify-content-between align-items-center">
                                     <div>
-                                        <p class="text-muted mb-1">Active Users</p>
+                                        <p class="text-muted mb-1">Logins this Month</p>
                                         <h3 class="mb-0 fw-bold">0</h3>
                                     </div>
                                     <div class="stat-icon bg-opacity-10 text-success">

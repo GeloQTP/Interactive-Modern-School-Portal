@@ -6,7 +6,7 @@
                 <h5 class="modal-title">Create Broadcast</h5>
                 <button class="btn-close" data-bs-dismiss="modal"></button>
             </div>
-            
+
             <form id="broadcastForm">
                 <div class="modal-body">
 
@@ -63,6 +63,7 @@
 <script>
     document.addEventListener('DOMContentLoaded', () => {
         const broadcastForm = document.getElementById("broadcastForm");
+        const createBroadcastModal = bootstrap.Modal.getOrCreateInstance("#createBroadcastModal");
 
         broadcastForm.addEventListener('submit', async function(e) {
             e.preventDefault();
@@ -82,7 +83,9 @@
 
             if (data.success) {
 
-                loadAnnouncementList(); // THIS FUNCTION IS FROM ANOTHER COMPONENT (DO NOT REMOVE)
+                loadAnnouncementList();
+                createBroadcastModal.hide();
+                broadcastForm.reset();
 
                 Swal.fire({
                     title: "Posted Successfuly",

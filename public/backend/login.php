@@ -26,7 +26,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         }
 
         if ($row['activationStatus'] !== 'active') {
-            echo json_encode(['success' => false, 'message' => 'Sorry! But your Account is Disabled right now. Please Contact the Admin if you think this is a mistake.']);
+            echo json_encode(['success' => false, 'message' => 'Account is Disabled']);
             exit();
         }
 
