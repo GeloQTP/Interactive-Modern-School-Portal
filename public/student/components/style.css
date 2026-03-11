@@ -1,0 +1,16 @@
+  @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap');
+
+  * {
+      border: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: Poppins;
+  }
+
+  @media(min-width:992px) {
+      #posts_wrapper {
+
+          width: 60%;
+
+      }
+  }
