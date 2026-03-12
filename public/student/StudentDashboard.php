@@ -19,7 +19,6 @@ if (!isset($_SESSION['role']) || $_SESSION['role'] !== 'Student') {
     <title>My Dashboard - Tomas Del Rosario College</title>
     <link rel="icon" type="image/png" href="/Modern Student Portal/src/img/TRC_LOGO.png">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.13.1/font/bootstrap-icons.min.css">
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.13.1/font/bootstrap-icons.min.css">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="./components/style.css">
 </head>
@@ -27,10 +26,13 @@ if (!isset($_SESSION['role']) || $_SESSION['role'] !== 'Student') {
 <body>
 
     <nav class="navbar navbar-expand-lg bg-light border border-bottom">
-        <img src="/Modern Student Portal/src/img/TRC_LOGO.png" alt="TRC_LOGO" style="width: 50px;">
+        <img src="/Modern Student Portal/src/img/TRC_LOGO.png" alt="TRC_LOGO" style="width: 50px;" class="ms-3">
         <div class="input-group mx-auto" style="width: 40%;">
             <span class="input-group-text" id="basic-addon1"><i class="bi bi-search"></i></span>
-            <input type="text" class="form-control" placeholder="Search People" aria-label="Search People" aria-describedby="basic-addon1">
+            <input type="text" class="form-control form-control-sm" placeholder="Search Classmates" aria-label="Search People" aria-describedby="basic-addon1">
+        </div>
+        <div class="me-3">
+            <i class="bi bi-bell h4"></i>
         </div>
     </nav>
 
@@ -48,16 +50,13 @@ if (!isset($_SESSION['role']) || $_SESSION['role'] !== 'Student') {
                 include __DIR__ . '/components/announcementCarousel.php'; // ANNOUNCEMENT CAROUSEL
                 ?>
 
-                <div class="overflow-auto bg-light rounded" style="max-height: 80.8vh;">
-
-                    <?php
-                    include __DIR__ . '/components/postsView.php'; // POSTS VIEW 
-                    ?>
-                </div>
+                <?php
+                include __DIR__ . '/components/postsView.php'; // POSTS VIEW 
+                ?>
 
             </div>
 
-            <div class="col-md-1">
+            <div class="col-md-1 text-center">
                 <?php
                 include __DIR__ . '/components/evenCalendar.php'; // EVENT CALENDAR
                 ?>
