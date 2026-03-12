@@ -32,7 +32,7 @@ if (!isset($_SESSION['role']) || $_SESSION['role'] !== 'Student') {
             <input type="text" class="form-control form-control-sm" placeholder="Search Classmates" aria-label="Search People" aria-describedby="basic-addon1">
         </div>
         <div class="me-3">
-            <i class="bi bi-bell h4"></i>
+            <i class="bi bi-bell h4 text-success"></i>
         </div>
     </nav>
 
