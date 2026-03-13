@@ -16,19 +16,19 @@
                     </div>
 
                     <div class="mb-3">
-                        <label for="announcement_message" class="form-label">Announcement Message</label>
-                        <textarea id="announcement_message" class="form-control" rows="4" name="announcement_message" required></textarea>
+                        <label for="announcement_message" class="form-label">Announcement Message</label> <small class="text-muted">(Max Character 100)</small>
+                        <textarea id="announcement_message" class="form-control" rows="4" name="announcement_message" required maxlength="100"></textarea>
                     </div>
 
                     <div class="row">
                         <div class="col-md-6 mb-3">
                             <label for="theme_color" class="form-label">Theme Color</label>
                             <select id="theme_color" class="form-select" name="theme_color" required>
-                                <option value="bg-success">Green (Important)</option>
-                                <option value="bg-primary">Blue (General)</option>
+                                <option value="bg-success text-light">Green (Important)</option>
+                                <option value="bg-primary text-light">Blue (General)</option>
                                 <option value="bg-warning">Yellow (Reminder)</option>
-                                <option value="bg-danger">Red (Urgent)</option>
-                                <option value="bg-dark">Dark (Neutral)</option>
+                                <option value="bg-danger text-light">Red (Urgent)</option>
+                                <option value="bg-dark text-light">Dark (Neutral)</option>
                             </select>
                         </div>
 
@@ -80,6 +80,7 @@
             if (!res.ok && res.status !== 200) throw new Error('Network Response Error');
 
             const data = await res.json();
+            console.log(data);
 
             if (data.success) {
 

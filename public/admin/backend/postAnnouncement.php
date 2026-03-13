@@ -9,7 +9,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
     if ($action === 'broadcast') {
 
-        $broadcastTitle = filter_input(INPUT_POST, 'title', FILTER_SANITIZE_SPECIAL_CHARS);
+        // $broadcastTitle = filter_input(INPUT_POST, 'title', FILTER_SANITIZE_SPECIAL_CHARS);
+        $broadcastTitle = $_POST['title'];
         $broadcastTitle = $broadcastTitle !== '' ? $broadcastTitle : 'N/A';
 
         $announcement_message = trim(filter_input(INPUT_POST, 'announcement_message', FILTER_SANITIZE_SPECIAL_CHARS));

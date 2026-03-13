@@ -24,11 +24,11 @@
                         <div class="col-md-6 mb-3">
                             <label for="theme_color" class="form-label">Theme Color</label>
                             <select id="theme_color" class="form-select" name="theme_color" required>
-                                <option value="bg-success">Green (Important)</option>
-                                <option value="bg-primary">Blue (General)</option>
+                                <option value="bg-success text-light">Green (Important)</option>
+                                <option value="bg-primary text-light">Blue (General)</option>
                                 <option value="bg-warning">Yellow (Reminder)</option>
-                                <option value="bg-danger">Red (Urgent)</option>
-                                <option value="bg-dark">Dark (Neutral)</option>
+                                <option value="bg-danger text-light">Red (Urgent)</option>
+                                <option value="bg-dark text-light">Dark (Neutral)</option>
                             </select>
                         </div>
 

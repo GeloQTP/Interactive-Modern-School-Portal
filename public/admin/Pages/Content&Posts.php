@@ -54,7 +54,7 @@ if (!isset($_SESSION['role']) || $_SESSION['role'] !== 'Admin') {
 
         <div class="main ms-5 ps-4">
 
-            <nav class="navbar navbar-expand-lg bg-light border border-bottom">
+            <nav class="navbar navbar-expand-lg bg-light border border-bottom fixed-top z-1 ms-5">
                 <div class="container-fluid justify-content-center" style="transform: translate(0px, 10px);">
                     <p class="text-success lead">Content and Posts</p>
                 </div>
@@ -94,7 +94,7 @@ if (!isset($_SESSION['role']) || $_SESSION['role'] !== 'Admin') {
                 </div>
             </nav>
 
-            <div class="p-3">
+            <div class="p-3 pt-5 mt-4">
 
                 <ul class="nav nav-tabs mb-4"> <!--TAB LIST-->
                     <li class="nav-item">

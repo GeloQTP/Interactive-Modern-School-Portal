@@ -28,8 +28,8 @@ if (!isset($_SESSION['role']) || $_SESSION['role'] !== 'Student') {
     <nav class="navbar navbar-expand-lg bg-light border border-bottom">
         <img src="/Modern Student Portal/src/img/TRC_LOGO.png" alt="TRC_LOGO" style="width: 50px;" class="ms-3">
         <div class="input-group mx-auto" style="width: 40%;">
-            <span class="input-group-text" id="basic-addon1"><i class="bi bi-search"></i></span>
-            <input type="text" class="form-control form-control-sm" placeholder="Search Classmates" aria-label="Search People" aria-describedby="basic-addon1">
+            <span class="input-group-text d-none d-lg-block" id="basic-addon1"><i class="bi bi-search d-none d-lg-block"></i></span>
+            <input type="text" class="form-control form-control-sm" placeholder="Search Classmates" aria-label="Search People" aria-describedby="basic-addon1" name="searchbar" id="searchbar">
         </div>
         <div class="me-3">
             <i class="bi bi-bell h4 text-success"></i>
