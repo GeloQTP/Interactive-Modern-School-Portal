@@ -22,7 +22,6 @@
                          <h6 class="mb-0 fw-semibold"><?= $row['post_title'] ?></h6>
                          <small class="text-muted">
                              By <?= $row['posted_by'] ?> • <?= $row['post_date'] ?>
-                             <span class="ms-3"><i class="bi bi-heart me-1"></i>1.2k </span>
                          </small>
                      </div>
                  </div>
@@ -42,7 +41,7 @@
              <!-- FOOTER ACTIONS -->
              <div class="card-footer bg-white border-0 pt-0 pb-3">
                  <div class="d-flex justify-content-between">
-
+                     <span class="ms-3" style="transform: translate(0px, 7px)"><i class="bi bi-heart me-1"></i>1.2k </span>
                      <div class="btn-group btn-group-sm ms-auto">
                          <button class="btn text-secondary text-danger">
                              <i class="bi bi-heart h5"></i>

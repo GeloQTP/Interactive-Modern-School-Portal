@@ -4,13 +4,26 @@
     </div>
     <div class="card-body p-4 pb-0 pt-3">
         <img src="/../Modern Student Portal/src/img/Screenshot 2026-01-06 013627.png" alt="profile_picture" style="width:120px; height:110px; border-radius:50%" class="mb-3 d-flex mx-auto">
-        <p class="mb-1">Username: <small class="ms-2"><?= $_SESSION['account_username'] ?></small></p>
-        <p class="mb-1">Program: <small class="ms-2">BSCS</small></p>
-        <p class="mb-1">Year: <small class="ms-2">4th Year</small></p>
-        <p class="mb-1">Semester: <small class="ms-2">2nd</small></p>
-        <p>Account Status:
-            <i class=" bi bi-circle-fill text-success ms-1"></i>
-        </p>
+        <div class="d-flex">
+            <p class="mb-1">Username:</p>
+            <span class="ms-auto"><?= $_SESSION['account_username'] ?></span>
+        </div>
+        <div class="d-flex">
+            <p class="mb-1">Program:</p>
+            <span class="ms-auto">BSCS</span>
+        </div>
+        <div class="d-flex">
+            <p class="mb-1">Year:</p>
+            <span class="ms-auto">4th Year</span>
+        </div>
+        <div class="d-flex">
+            <p class="mb-1">Semester:</p>
+            <span class="ms-auto">2nd</span>
+        </div>
+        <div class="d-flex">
+            <p>Account Status:</p>
+            <i class="bi bi-circle-fill text-success ms-auto"></i>
+        </div>
     </div>
 </div>
 
