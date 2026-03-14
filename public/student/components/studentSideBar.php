@@ -33,10 +33,10 @@
         <small>MAIN</small>
     </div>
     <div class="card-body">
-        <p><i class="bi bi-calendar pe-2 text-success"></i><a href="#">Schedule</a></p>
-        <p><i class="bi bi-bar-chart pe-2 text-success"></i><a href="#">Grades</a></p>
+        <p><i class="bi bi-calendar pe-2 text-success"></i><a href="#">My Schedule</a></p>
+        <p><i class="bi bi-bar-chart pe-2 text-success"></i><a href="#">My Grades</a></p>
         <p><i class="bi bi-envelope pe-2 text-success"></i><a href="#">Messages</a></p>
-        <p><i class="bi bi-cash pe-2 text-success"></i><a href="#">Balance</a></p>
+        <p><i class="bi bi-cash pe-2 text-success"></i><a href="#">My Balance</a></p>
         <p><i class="bi bi-journal pe-2 text-success"></i><a href="#">Curriculum</a></p>
     </div>
     <div class="card-header bg-success border-0 text-center text-light">

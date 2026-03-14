@@ -56,13 +56,10 @@ if (!isset($_SESSION['role']) || $_SESSION['role'] !== 'Student') {
 
             </div>
 
-            <div class="col-md-1 text-center">
+            <div class="col-md-2 text-center">
                 <?php
                 include __DIR__ . '/components/evenCalendar.php'; // EVENT CALENDAR
                 ?>
-
-                
-
             </div>
 
         </div>
