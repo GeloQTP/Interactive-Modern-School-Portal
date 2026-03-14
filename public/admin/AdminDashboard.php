@@ -2,7 +2,7 @@
 session_start();
 
 if (!isset($_SESSION['role']) || $_SESSION['role'] !== 'Admin') {
-    header('Location: ./public/visitors/LoginPage.php');
+    header('Location: /Modern Student Portal/public/visitors/LoginPage.php');
     exit();
 }
 

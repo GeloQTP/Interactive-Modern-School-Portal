@@ -25,7 +25,7 @@ if (!isset($_SESSION['role']) || $_SESSION['role'] !== 'Student') {
 
 <body>
 
-    <nav class="navbar navbar-expand-lg bg-light border border-bottom">
+    <nav class="navbar navbar-expand-lg bg-light border border-bottom fixed-top">
         <img src="/Modern Student Portal/src/img/TRC_LOGO.png" alt="TRC_LOGO" style="width: 50px;" class="ms-3">
         <div class="input-group mx-auto" style="width: 40%;">
             <span class="input-group-text d-none d-lg-block" id="basic-addon1"><i class="bi bi-search d-none d-lg-block"></i></span>
@@ -36,7 +36,7 @@ if (!isset($_SESSION['role']) || $_SESSION['role'] !== 'Student') {
         </div>
     </nav>
 
-    <div class="main p-md-2 p-1">
+    <div class="main p-md-2 p-1" style="margin-top: 4rem;">
         <div class="row g-3">
 
             <div class="col-md-2">
@@ -60,6 +60,9 @@ if (!isset($_SESSION['role']) || $_SESSION['role'] !== 'Student') {
                 <?php
                 include __DIR__ . '/components/evenCalendar.php'; // EVENT CALENDAR
                 ?>
+
+                
+
             </div>
 
         </div>

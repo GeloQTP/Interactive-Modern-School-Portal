@@ -11,11 +11,10 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $email = $_POST['email'] ?? '';
     $passcode = $_POST['password'] ?? '';
 
-    $stmt = $conn->prepare("SELECT user_id, account_email, account_username, account_password, activationStatus, current_status, role FROM users INNER JOIN user_information ON users.account_email = user_information.Email WHERE account_email = ?");
+    $stmt = $conn->prepare("SELECT user_id, account_email, account_username, account_password, activationStatus, current_status, role, Program, YearLevel FROM users INNER JOIN user_information ON users.account_email = user_information.Email WHERE account_email = ?");
     $stmt->bind_param("s", $email);
     $stmt->execute();
     $result = $stmt->get_result();
-
 
     if ($result->num_rows > 0) {
         $row = $result->fetch_assoc();
@@ -38,10 +37,14 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $account_username = $row['account_username'];
         $user_id = $row['user_id'];
         $role = $row['role'];
+        $Program = $row['Program'];
+        $YearLevel = $row['YearLevel'];
 
         $_SESSION['account_username'] = $account_username;
         $_SESSION['user_id'] = $user_id;
         $_SESSION['role'] = $role;
+        $_SESSION['Program'] = $Program;
+        $_SESSION['YearLevel'] = $YearLevel;
 
         echo json_encode(['success' => 'true', 'account_username' => $account_username, 'account_role' => $role]);
     } else {

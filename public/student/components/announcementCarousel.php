@@ -14,7 +14,7 @@
      <div class="carousel-inner">
          <div class="carousel-item active mb-2">
              <div class="card bg-success text-light" style="width:100%">
-                 <div class="card-body">
+                 <div class="card-body text-center">
                      <h5 class="card-title">Good Afternoon, <?= $_SESSION['account_username'] ?>!</h5>
                      <p class="card-text">Here are some Announcements for you Today!</p>
                  </div>
@@ -26,10 +26,10 @@
              <div class="carousel-item mb-2">
                  <div class="card <?= $row['theme_color'] ?>" style="width:100%">
                      <div class="card-body">
-                         <h5 class="card-title">
+                         <h5 class="card-title text-center">
                              📢 <?= $row['title'] ?>!
                          </h5>
-                         <p class="card-text ms-4"><?= $row['announcement_message'] ?></p>
+                         <p class="card-text text-center"><?= $row['announcement_message'] ?></p>
                      </div>
                  </div>
              </div>

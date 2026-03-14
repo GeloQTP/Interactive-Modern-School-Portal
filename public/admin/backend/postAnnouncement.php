@@ -5,7 +5,7 @@ mysqli_report(MYSQLI_REPORT_STRICT | MYSQLI_REPORT_ERROR);
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
-    $action = $_POST['action'];
+    $action = $_POST['action'] ?? '';
 
     if ($action === 'broadcast') {
 
@@ -51,6 +51,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         }
 
         exit;
+    } else {
+        echo json_encode(['success' => false, 'message' => 'Invalid Action']);
     }
 } else {
     echo json_encode(['success' => false, 'message' => 'Invalid HTTP Request']);
