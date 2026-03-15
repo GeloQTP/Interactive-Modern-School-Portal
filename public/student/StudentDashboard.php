@@ -25,6 +25,10 @@ if (!isset($_SESSION['role']) || $_SESSION['role'] !== 'Student') {
 
 <body>
 
+    <?php
+    include __DIR__ . '/components/commentsModal.php'; // COMMENT SECTION MODAL
+    ?>
+
     <nav class="navbar navbar-expand-lg bg-light border border-bottom fixed-top">
         <img src="/Modern Student Portal/src/img/TRC_LOGO.png" alt="TRC_LOGO" style="width: 50px;" class="ms-3">
         <div class="input-group mx-auto" style="width: 40%;">
@@ -60,6 +64,16 @@ if (!isset($_SESSION['role']) || $_SESSION['role'] !== 'Student') {
                 <?php
                 include __DIR__ . '/components/evenCalendar.php'; // EVENT CALENDAR
                 ?>
+
+                <div class="card" style="width: 24vw;">
+                    <div class="card-header bg-success border-0 text-center text-light">
+                        <small>BADGES</small>
+                    </div>
+                    <div class="card-body">
+                        test
+                    </div>
+                </div>
+
             </div>
 
         </div>

@@ -16,8 +16,8 @@
                     </div>
 
                     <div class="mb-3">
-                        <label for="announcement_message" class="form-label">Announcement Message</label>
-                        <textarea id="announcement_message" class="form-control" rows="4" name="announcement_message" required></textarea>
+                        <label for="announcement_message" class="form-label">Announcement Message</label> <small class="text-muted">(Max Character 100)</small>
+                        <textarea id="announcement_message" class="form-control" rows="4" name="announcement_message" required maxlength="100"></textarea>
                     </div>
 
                     <div class="row">

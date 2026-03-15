@@ -46,7 +46,7 @@
                          <button class="btn text-secondary text-danger">
                              <i class="bi bi-heart h5"></i>
                          </button>
-                         <button class="btn text-secondary" style="transform: translate(0px, -1px)">
+                         <button class="btn text-secondary" style="transform: translate(0px, -1px)" data-bs-toggle="modal" data-bs-target="#commentModal">
                              <i class="bi bi-chat h5"></i>
                          </button>
                      </div>
